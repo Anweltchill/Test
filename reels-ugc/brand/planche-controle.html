@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:CG;src:url(fonts/candidats/cormorant-garamond-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:CG;src:url(fonts/candidats/cormorant-garamond-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:CG;src:url(fonts/candidats/cormorant-garamond-latin-600-italic.woff2);font-weight:600;font-style:italic}
+@font-face{font-family:LB;src:url(fonts/candidats/libre-baskerville-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:LB;src:url(fonts/candidats/libre-baskerville-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:LB;src:url(fonts/candidats/libre-baskerville-latin-400-italic.woff2);font-weight:400;font-style:italic}
+@font-face{font-family:MA;src:url(fonts/candidats/marcellus-latin-400-normal.woff2)}
+@font-face{font-family:JO;src:url(fonts/candidats/jost-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:JO;src:url(fonts/candidats/jost-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:JO;src:url(fonts/candidats/jost-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:QU;src:url(fonts/candidats/questrial-latin-400-normal.woff2)}
+:root{--nuit:#0E1928;--nuit2:#172742;--rose:#E2718D;--vieux:#CC7183;--poudre:#DB96A1;--pinceau:#E6BDC1;--creme:#F0E6DD;--carte:#FDF4ED;--lav:#8F9AC3;--lavc:#C2C7DD;--lavf:#FBF5F5}
+*{margin:0;box-sizing:border-box}
+body{width:1600px;background:#fff;font-family:JO;color:var(--nuit);padding:48px}
+h1{font:600 44px JO;margin-bottom:6px} .sub{font:400 22px JO;color:#666;margin-bottom:36px}
+h2{font:600 26px JO;letter-spacing:.12em;text-transform:uppercase;color:#777;margin:40px 0 18px}
+.row{display:flex;gap:24px;align-items:flex-start}
+.logo{background:var(--creme);border-radius:24px;padding:30px;width:400px;height:400px;display:flex;align-items:center;justify-content:center}
+.logo img{width:300px}
+.ref img{height:400px;border-radius:24px}
+.sw{width:160px}.sw div{height:120px;border-radius:18px;border:1px solid #0001}.sw b{display:block;font:600 20px JO;margin-top:8px}.sw span{font:400 17px JO;color:#555;line-height:1.3;display:block}
+.cand{border:2px solid #eee;border-radius:20px;padding:22px 26px;flex:1;background:var(--creme)}
+.cand .lab{font:600 18px JO;color:#888;margin-bottom:8px}
+.t1{font-size:66px;line-height:1.05;color:var(--nuit)} .t1 em{font-style:normal;color:var(--rose)}
+.q{font-size:38px;line-height:1.2;margin-top:10px} .q i{color:var(--vieux)}
+.s1{font-size:34px} .s1 em{font-style:normal;color:var(--rose)}
+.wave{display:block;margin:14px 0}
+.comp{background:var(--creme);border-radius:28px;padding:40px;flex:1;min-height:460px}
+.card{background:var(--carte);border-radius:26px;padding:30px;display:flex;gap:26px;align-items:center;box-shadow:0 8px 30px #0e192812}
+.card .ic{width:120px;height:120px;flex:none}
+.card .sep{width:2px;align-self:stretch;background:var(--pinceau)}
+.card h3{font:500 36px JO;color:var(--nuit)} .card p{font:400 25px/1.4 JO;color:#2b3448;margin-top:6px}
+.check{display:flex;gap:22px;align-items:center;margin:20px 0}
+.check p{font:400 34px/1.25 JO} .check em{font-style:normal;color:var(--vieux)}
+.pill{display:inline-block;background:var(--lavc);color:var(--nuit);font:500 28px JO;letter-spacing:.08em;padding:12px 30px;border-radius:999px}
+.note{font:400 19px JO;color:#666;margin-top:14px}
+</style></head><body>
+<h1>Planche de contrôle — Phoenix Pro</h1>
+<div class="sub">Relevé à partir de tes 11 captures de stories. Logo provisoire (découpé dans une capture). Polices : candidats à choisir.</div>
+
+<h2>1 · Logo</h2>
+<div class="row">
+  <div class="logo"><img src="logo/phoenix-logo-PROVISOIRE.png"></div>
+  <div class="ref"><img src="references/crop-titre.png"></div>
+  <div class="note" style="width:420px">Logo extrait de ta story « Bienvenue » (333 px) : utilisable petit, flou en grand.<br><br>→ Il me faut le <b>fichier original</b> (PNG transparent ou SVG) pour l'utiliser tel quel en grand.<br><br>Le phénix n'est lisible que sur fond clair (l'aile bleu nuit disparaît sur fond foncé).</div>
+</div>
+
+<h2>2 · Couleurs relevées</h2>
+<div class="row" style="flex-wrap:wrap">
+  <div class="sw"><div style="background:#0E1928"></div><b>#0E1928</b><span>Bleu nuit — titres, logo, texte</span></div>
+  <div class="sw"><div style="background:#172742"></div><b>#172742</b><span>Bleu nuit 2 — coups de pinceau</span></div>
+  <div class="sw"><div style="background:#E2718D"></div><b>#E2718D</b><span>Rose phénix — aile du logo, « PRO »</span></div>
+  <div class="sw"><div style="background:#CC7183"></div><b>#CC7183</b><span>Vieux rose — mots d'accent, icônes</span></div>
+  <div class="sw"><div style="background:#DB96A1"></div><b>#DB96A1</b><span>Rose poudré — filets, vagues</span></div>
+  <div class="sw"><div style="background:#E6BDC1"></div><b>#E6BDC1</b><span>Rose pinceau — textures</span></div>
+  <div class="sw"><div style="background:#F0E6DD"></div><b>#F0E6DD</b><span>Crème — fond principal</span></div>
+  <div class="sw"><div style="background:#FDF4ED"></div><b>#FDF4ED</b><span>Blanc cassé — cartes</span></div>
+</div>
+<div class="row" style="margin-top:18px">
+  <div class="sw"><div style="background:#8F9AC3"></div><b>#8F9AC3</b><span>Lavande — série « UGC »</span></div>
+  <div class="sw"><div style="background:#C2C7DD"></div><b>#C2C7DD</b><span>Lavande claire — cercles, pastilles</span></div>
+  <div class="sw"><div style="background:#FBF5F5"></div><b>#FBF5F5</b><span>Fond rosé — série « UGC »</span></div>
+  <div class="note" style="flex:1;margin-left:20px">Les stories « UGC, c'est quoi ? » utilisent une variante lavande au lieu du rose.<br>→ À me confirmer : lavande = couleur de la série UGC, ou rose partout ?</div>
+</div>
+
+<h2>3 · Polices — à choisir (aucun nom de police dans tes visuels)</h2>
+<div class="row">
+  <div class="ref"><img src="references/crop-citation.png" style="height:330px"></div>
+  <div class="cand"><div class="lab">Titres A · Cormorant Garamond</div><div class="t1" style="font-family:CG;font-weight:700">PHOENIX <em>PRO</em></div><div class="q" style="font-family:CG;font-weight:600">Le meilleur moment <i style="font-style:italic">c'est maintenant.</i></div></div>
+  <div class="cand"><div class="lab">Titres B · Libre Baskerville</div><div class="t1" style="font-family:LB;font-weight:700;font-size:56px">PHOENIX <em>PRO</em></div><div class="q" style="font-family:LB;font-size:32px">Le meilleur moment <i>c'est maintenant.</i></div></div>
+  <div class="cand"><div class="lab">Titres C · Marcellus</div><div class="t1" style="font-family:MA">PHOENIX <em>PRO</em></div><div class="q" style="font-family:MA;font-size:34px">Le meilleur moment <i style="font-style:normal">c'est maintenant.</i></div></div>
+</div>
+<div class="row" style="margin-top:18px">
+  <div class="cand"><div class="lab">Texte 1 · Jost</div><div class="s1" style="font-family:JO">Ton <em>évolution</em> commence ici.</div><div class="s1" style="font-family:JO;font-weight:500;font-size:28px;margin-top:8px">Celles et ceux qui veulent plus de liberté</div></div>
+  <div class="cand"><div class="lab">Texte 2 · Questrial</div><div class="s1" style="font-family:QU">Ton <em>évolution</em> commence ici.</div><div class="s1" style="font-family:QU;font-size:28px;margin-top:8px">Celles et ceux qui veulent plus de liberté</div></div>
+</div>
+
+<h2>4 · Deux composants (repris de tes stories, avec Titres A + Texte 1)</h2>
+<div class="row">
+  <div class="comp">
+    <div class="t1" style="font-family:CG;font-weight:700;font-size:60px;text-align:center">CE QUE TU TROUVERAS<br>CHEZ <em>PHOENIX PRO</em></div>
+    <svg class="wave" style="margin:16px auto" width="130" height="16" viewBox="0 0 130 16"><path d="M3 10 C 18 2, 28 2, 43 10 S 68 18, 83 10 S 108 2, 127 9" fill="none" stroke="#DB96A1" stroke-width="3" stroke-linecap="round"/></svg>
+    <div class="card">
+      <svg class="ic" viewBox="0 0 64 64" fill="none" stroke="#CC7183" stroke-width="2.2" stroke-linejoin="round"><path d="M4 24 L32 12 L60 24 L32 36 Z"/><path d="M16 30 V44 C16 50 48 50 48 44 V30"/><path d="M58 25 V40"/><circle cx="58" cy="42" r="2" fill="#CC7183"/></svg>
+      <div class="sep"></div>
+      <div><h3>Une formation claire</h3><p>Conçue pour t'apporter des méthodes simples et efficaces que tu peux appliquer dès aujourd'hui.</p></div>
+    </div>
+  </div>
+  <div class="comp">
+    <div class="check"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#CC7183" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="28"/><path d="M20 33 L28 41 L44 24"/></svg><p>Celles et ceux qui veulent<br>se lancer dans l'<em>UGC</em></p></div>
+    <div class="check"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#CC7183" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="28"/><path d="M20 33 L28 41 L44 24"/></svg><p>Celles et ceux qui veulent<br>plus de <em>liberté</em></p></div>
+    <div style="margin-top:40px;text-align:center"><span class="pill">USER GENERATED CONTENT</span></div>
+    <div class="note" style="text-align:center">Pastille de la série UGC (lavande)</div>
+  </div>
+</div>
+</body></html>
