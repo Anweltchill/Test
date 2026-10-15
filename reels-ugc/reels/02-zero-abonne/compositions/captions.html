@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .cap-g { position: absolute; left: 64px; right: 120px; top: 1400px; text-align: center; opacity: 0; display: block; }
+        .cap-w { position: relative; display: inline-block; margin: 0 6px; font: 600 58px "PxSans", sans-serif; color: #0E1928; padding: 4px 14px; }
+        .cap-bg { position: absolute; inset: 0; border-radius: 16px; background: #E6BDC1; opacity: 0; display: block; }
+        .cap-t { position: relative; display: inline-block; }
+      </style>
+      <div id="root" data-composition-id="cap" data-width="1080" data-height="1920">
+        <div id="cap-box"></div>
+      </div>
+      <script>
+        (function () {
+          const G = [[["Zéro", 0.0], ["abonné ?", 0.4]], [["Parfait !", 1.12]], [["Tu", 1.6], ["peux", 1.76], ["quand", 1.92]], [["même", 2.08], ["faire", 2.24]], [["de", 2.4], ["l'UGC.", 2.48]], [["Je", 3.36], ["t'explique.", 3.6]], [["L'influenceuse", 4.24], ["publie", 5.12], ["sur", 5.44]], [["son", 5.6], ["compte,", 5.76]], [["pour", 6.16], ["sa", 6.32], ["communauté.", 6.48]], [["La", 7.12], ["créatrice", 7.28], ["UGC,", 7.76]], [["elle,", 8.56]], [["crée", 8.88], ["la", 9.2], ["vidéo", 9.36]], [["et", 9.84], ["c'est", 10.0], ["la", 10.16]], [["marque", 10.32], ["qui", 10.64]], [["la", 10.8], ["publie.", 10.96]], [["Sur", 11.52], ["son", 11.76], ["compte,", 11.92]], [["dans", 12.4], ["ses", 12.56], ["publicités,", 12.72]], [["sur", 13.52], ["son", 13.68], ["site.", 13.84]], [["Donc", 14.24], ["ce", 14.48], ["qu'on", 14.64]], [["te", 14.8], ["demande,", 14.96]], [["c'est", 15.36], ["pas", 15.6], ["ta", 15.76], ["visibilité,", 15.92]], [["c'est", 16.72], ["ton", 16.96], ["talent", 17.12]], [["pour", 17.52], ["donner", 17.68], ["envie.", 18.0]], [["Une", 18.56], ["bonne", 18.72], ["lumière,", 18.96]], [["un", 19.6], ["bon", 19.76], ["rythme,", 20.0]], [["une", 20.48], ["accroche", 20.64], ["qui", 21.12]], [["arrête", 21.28], ["le", 21.68], ["pouce.", 21.84]], [["Ça", 22.4], ["veut", 22.56], ["dire", 22.72]], [["que", 22.88], ["tu", 22.96], ["peux", 23.12]], [["commencer", 23.28], ["avec", 23.76], ["ton", 23.92]], [["téléphone", 24.16], ["même", 24.8], ["si", 25.04]], [["personne", 25.28], ["ne", 25.6], ["te", 25.76]], [["suit", 25.92], ["encore.", 26.24]], [["Ce", 26.64], ["qu'il", 26.8], ["te", 27.04], ["faut,", 27.2]], [["c'est", 27.52], ["une", 27.76], ["méthode.", 27.92]], [["Quoi", 28.48], ["montrer,", 28.8]], [["à", 29.36], ["qui", 29.6], ["et", 29.92]], [["comment", 30.08], ["te", 30.4], ["vendre.", 30.56]], [["Envoie-moi", 31.04], ["« PHOENIX »", 31.52], ["en", 32.08]], [["message", 32.16], ["privé", 32.56], ["et", 32.88]], [["je", 33.04], ["te", 33.12], ["dis", 33.28]], [["par", 33.44], ["où", 33.6], ["commencer.", 33.76]]];
+          const END = 36.0;
+          const box = document.querySelector("#cap-box");
+          const tl = gsap.timeline({ paused: true });
+          G.forEach((g, gi) => {
+            const el = document.createElement("div");
+            el.className = "cap-g";
+            el.id = "cap-g" + gi;
+            g.forEach((w, wi) => {
+              const s = document.createElement("span");
+              s.className = "cap-w";
+              s.innerHTML = '<span class="cap-bg"></span><span class="cap-t"></span>';
+              s.querySelector(".cap-t").textContent = w[0];
+              el.appendChild(s);
+            });
+            box.appendChild(el);
+            const t0 = Math.max(0, g[0][1] - 0.06);
+            const t1 = gi + 1 < G.length ? Math.max(t0 + 0.2, G[gi + 1][0][1] - 0.06) : END;
+            tl.fromTo(el, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.14, ease: "power2.out" }, t0);
+            if (gi + 1 < G.length) tl.to(el, { opacity: 0, duration: 0.06 }, t1 - 0.06);
+            const words = el.querySelectorAll(".cap-w");
+            g.forEach((w, wi) => {
+              const bg = words[wi].querySelector(".cap-bg");
+              const wEnd = wi + 1 < g.length ? g[wi + 1][1] : t1;
+              tl.fromTo(bg, { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.1, ease: "back.out(2)" }, Math.max(t0, w[1] - 0.03));
+              if (wi + 1 < g.length) tl.to(bg, { opacity: 0, duration: 0.08 }, Math.max(t0 + 0.05, wEnd - 0.03));
+            });
+          });
+          window.__timelines["cap"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

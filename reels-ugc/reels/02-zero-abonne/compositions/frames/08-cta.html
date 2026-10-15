@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s8-cam { position: absolute; inset: 0; }
+        #s8-a { position: absolute; inset: 0; }
+        #s8-q { position: absolute; left: 64px; right: 120px; top: 290px; text-align: center; font-size: 46px; display: block; }
+        #s8-dm { position: absolute; left: 112px; top: 370px; width: 800px; height: 900px; display: block; overflow: hidden; }
+        #s8-head { position: absolute; left: 0; right: 0; top: 0; height: 150px; border-bottom: 2px solid #E6BDC1; display: flex; align-items: center; gap: 26px; padding: 0 40px; }
+        #s8-av { width: 100px; height: 100px; border-radius: 50%; background: #F0E6DD; border: 4px solid #E2718D; display: flex; align-items: center; justify-content: center; flex: none; }
+        #s8-avimg { width: 70px; height: 72px; display: block; }
+        #s8-name { font-size: 44px; display: block; }
+        #s8-st { font-size: 26px; color: #CC7183; display: block; margin-top: 4px; }
+        #s8-me { position: absolute; right: 40px; top: 330px; background: #E2718D; color: #FDF4ED; border-radius: 34px 34px 8px 34px; padding: 22px 40px; font: 600 54px "PxSans", sans-serif; letter-spacing: 0.08em; display: block; }
+        #s8-dots { position: absolute; left: 40px; top: 470px; background: #F0E6DD; border-radius: 34px 34px 34px 8px; padding: 26px 34px; display: flex; gap: 12px; }
+        .s8-d { width: 18px; height: 18px; border-radius: 50%; background: #0E1928; display: block; }
+        #s8-rep { position: absolute; left: 40px; top: 470px; width: 560px; background: #F0E6DD; border-radius: 34px 34px 34px 8px; padding: 24px 34px; font: 500 42px "PxSans", sans-serif; line-height: 1.25; display: block; }
+        #s8-in { position: absolute; left: 30px; right: 30px; bottom: 30px; height: 120px; border-radius: 60px; border: 3px solid #E6BDC1; display: flex; align-items: center; padding: 0 20px 0 40px; justify-content: space-between; }
+        #s8-txt { font: 600 52px "PxSans", sans-serif; letter-spacing: 0.08em; color: #0E1928; display: block; min-width: 10px; }
+        #s8-ph { font: 400 40px "PxSans", sans-serif; color: #B9AAA0; display: block; }
+        #s8-send { width: 88px; height: 88px; border-radius: 50%; background: #0E1928; display: flex; align-items: center; justify-content: center; flex: none; }
+        #s8-arr { width: 44px; height: 44px; display: block; }
+        #s8-b { position: absolute; inset: 0; opacity: 0; }
+        #s8-logo { position: absolute; left: 357px; top: 400px; width: 310px; height: 320px; display: block; }
+        .s8-line { position: absolute; left: 64px; right: 120px; text-align: center; overflow: hidden; display: block; padding-bottom: 14px; }
+        .s8-w { display: block; font-size: 112px; }
+        #s8-l1 { top: 790px; }
+        #s8-l2 { top: 930px; }
+        #s8-wave { position: absolute; left: 427px; top: 1110px; width: 170px; height: 26px; display: block; }
+      </style>
+      <div id="root" data-composition-id="s8" data-width="1080" data-height="1920">
+        <div id="s8-cam" data-layout-allow-overflow>
+          <div id="s8-a" data-layout-allow-overlap>
+            <div id="s8-q" class="t-label">Envoie-moi en message privé</div>
+            <div id="s8-dm" class="card">
+              <div id="s8-head"><div id="s8-av"><img id="s8-avimg" src="assets/brand/phoenix-logo-avatar.png" alt="" /></div><div><span id="s8-name" class="t-serif">Phoenix Pro</span><span id="s8-st" class="t-label">en ligne</span></div></div>
+              <div id="s8-me">PHOENIX</div>
+              <div id="s8-dots"><span class="s8-d"></span><span class="s8-d"></span><span class="s8-d"></span></div>
+              <div id="s8-rep">Je te dis par où <span class="acc2">commencer</span>.</div>
+              <div id="s8-in"><span id="s8-txt"></span><span id="s8-ph">Message…</span><span id="s8-send"><svg id="s8-arr" viewBox="0 0 64 64" fill="none"><path d="M10 32l44-20-14 44-8-18z" fill="#FDF4ED" /></svg></span></div>
+            </div>
+          </div>
+          <div id="s8-b" data-layout-allow-overlap>
+            <img id="s8-logo" src="assets/brand/phoenix-logo-PROVISOIRE.png" alt="" />
+            <div id="s8-l1" class="s8-line"><span class="s8-w t-serif">Ton évolution</span></div>
+            <div id="s8-l2" class="s8-line"><span class="s8-w t-serif">commence <span class="acc">ici.</span></span></div>
+            <svg id="s8-wave" viewBox="0 0 170 26" fill="none"><path id="s8-wave-p" d="M4 14 C 24 4, 36 4, 56 14 S 90 24, 112 14 S 146 4, 166 12" stroke="#DB96A1" stroke-width="4" stroke-linecap="round" stroke-dasharray="200" stroke-dashoffset="200" /></svg>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 30.85, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « Envoie-moi » 31.04 · « Phoenix » 31.52 · « message privé » 32.16–32.56 · « dis » 33.28 · « commencer » 33.76
+          tl.fromTo("#s8-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0);
+          tl.fromTo("#s8-q", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4 }, at(30.95));
+          tl.fromTo("#s8-dm", { y: 140, opacity: 0, scale: 0.95 }, { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" }, at(30.95));
+          const txt = document.querySelector("#s8-txt"), ph = document.querySelector("#s8-ph"), W = "PHOENIX";
+          const ty = { _v: 0, get v() { return this._v; }, set v(x) { this._v = x; const n = Math.round(x); txt.textContent = W.slice(0, n); ph.style.display = n > 0 ? "none" : "block"; } };
+          tl.fromTo(ty, { v: 0 }, { v: 7, duration: 0.6, ease: "none" }, at(31.35));
+          tl.fromTo("#s8-send", { scale: 1 }, { scale: 0.82, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.in" }, at(32.2));
+          tl.to(ty, { v: 0, duration: 0.01 }, at(32.32));
+          tl.fromTo("#s8-me", { y: 260, scale: 0.6, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.8)" }, at(32.3));
+          tl.fromTo("#s8-dots", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, at(32.75));
+          gsap.utils.toArray("#s8-dots .s8-d").forEach((d, i) => tl.fromTo(d, { y: 0 }, { y: -10, duration: 0.15, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, at(32.8 + i * 0.08)));
+          tl.to("#s8-dots", { opacity: 0, duration: 0.1 }, at(33.2));
+          tl.fromTo("#s8-rep", { opacity: 0, y: 30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(2)" }, at(33.2));
+          // final : logo + signature (même fin que la série)
+          tl.to("#s8-a", { y: -200, opacity: 0, filter: "blur(10px)", duration: 0.4, ease: "power3.in" }, at(34.2));
+          tl.fromTo("#s8-b", { opacity: 0 }, { opacity: 1, duration: 0.25 }, at(34.4));
+          tl.fromTo("#s8-logo", { scale: 0.4, opacity: 0, y: 60 }, { scale: 1, opacity: 1, y: 0, duration: 0.7, ease: "back.out(1.6)" }, at(34.4));
+          tl.fromTo("#s8-l1 .s8-w", { yPercent: 115 }, { yPercent: 0, duration: 0.5, ease: "power4.out" }, at(34.55));
+          tl.fromTo("#s8-l2 .s8-w", { yPercent: 115 }, { yPercent: 0, duration: 0.5, ease: "power4.out" }, at(34.85));
+          tl.fromTo("#s8-wave-p", { attr: { "stroke-dashoffset": 200 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.inOut" }, at(35.2));
+          tl.fromTo("#s8-b", { scale: 1 }, { scale: 1.04, duration: 1.6, ease: "sine.out", immediateRender: false }, at(34.6));
+          window.__timelines["s8"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
