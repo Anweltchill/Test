@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <script src="assets/gsap.min.js"></script>
+      <style>
+        @font-face { font-family: "TestSans"; src: url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"); font-weight: 800; }
+        @font-face { font-family: "TestSans"; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+        #root { position: absolute; inset: 0; background: #f5f5f5; color: #0b0b0b; font-family: "TestSans", sans-serif; overflow: hidden; }
+        #f02-cam { position: absolute; inset: 0; }
+        #f02-check { position: absolute; left: 340px; top: 470px; width: 400px; height: 400px; display: block; }
+        #f02-title { position: absolute; left: 64px; right: 120px; top: 930px; text-align: center; font-size: 150px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; display: block; }
+        #f02-sub { position: absolute; left: 64px; right: 120px; top: 1110px; text-align: center; font-size: 56px; font-weight: 500; opacity: 0; display: block; }
+        #f02-chips { position: absolute; left: 64px; right: 120px; top: 1230px; text-align: center; }
+        .f02-chip { display: inline-block; margin: 10px 8px; padding: 16px 30px; border-radius: 999px; background: #0b0b0b; color: #f5f5f5; font-size: 34px; font-weight: 500; opacity: 0; }
+      </style>
+      <div id="root" data-composition-id="f02" data-width="1080" data-height="1920">
+        <div id="f02-cam" data-layout-allow-overflow>
+          <svg id="f02-check" viewBox="0 0 200 200">
+            <circle id="f02-ring" cx="100" cy="100" r="88" fill="none" stroke="#0b0b0b" stroke-width="12" stroke-dasharray="553" stroke-dashoffset="553" transform="rotate(-90 100 100)" />
+            <path id="f02-tick" d="M58 104 L88 134 L144 74" fill="none" stroke="#0b0b0b" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="130" stroke-dashoffset="130" />
+          </svg>
+          <div id="f02-title">Pipeline OK</div>
+          <div id="f02-sub">Image, son, rendu 1080×1920</div>
+          <div id="f02-chips"><span class="f02-chip">HyperFrames</span><span class="f02-chip">GSAP local</span><span class="f02-chip">FFmpeg</span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#f02-cam", { x: 1080, filter: "blur(18px)" }, { x: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.out" }, 0);
+          tl.fromTo("#f02-ring", { attr: { "stroke-dashoffset": 553 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.inOut" }, 0.05);
+          tl.fromTo("#f02-tick", { attr: { "stroke-dashoffset": 130 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.35, ease: "power3.out" }, 0.45);
+          tl.fromTo("#f02-check", { scale: 0.85 }, { scale: 1, duration: 0.6, ease: "back.out(2.5)" }, 0.45);
+          tl.fromTo("#f02-title", { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.05);
+          tl.fromTo("#f02-sub", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power4.out" }, 0.95);
+          gsap.utils.toArray("#f02-chips .f02-chip").forEach((c, i) => tl.fromTo(c, { opacity: 0, y: 40, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(2)" }, 1.35 + i * 0.18));
+          tl.fromTo("#f02-cam", { scale: 1 }, { scale: 1.05, duration: 2.4, ease: "none", immediateRender: false }, 2.0);
+          window.__timelines["f02"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

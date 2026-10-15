@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <script src="assets/gsap.min.js"></script>
+      <style>
+        @font-face { font-family: "TestSans"; src: url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"); font-weight: 800; }
+        @font-face { font-family: "TestSans"; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+        #root { position: absolute; inset: 0; background: #0b0b0b; color: #f5f5f5; font-family: "TestSans", sans-serif; overflow: hidden; }
+        #f01-grid { position: absolute; inset: -200px; background-image: linear-gradient(#ffffff10 2px, transparent 2px), linear-gradient(90deg, #ffffff10 2px, transparent 2px); background-size: 120px 120px; }
+        #f01-cam { position: absolute; inset: 0; }
+        .f01-line { position: absolute; left: 96px; padding-left: 8px; right: 120px; overflow: hidden; display: block; }
+        .f01-word { display: block; font-weight: 800; line-height: 1; letter-spacing: -0.04em; }
+        #f01-l1 { top: 420px; height: 190px; }
+        #f01-l1 .f01-word { font-size: 170px; }
+        #f01-l2 { top: 610px; height: 190px; }
+        #f01-l2 .f01-word { font-size: 170px; color: #0b0b0b; -webkit-text-stroke: 4px #f5f5f5; }
+        #f01-card { position: absolute; left: 64px; top: 900px; width: 896px; height: 300px; border-radius: 36px; background: #f5f5f5; color: #0b0b0b; padding: 48px 56px; display: block; opacity: 0; }
+        #f01-label { font-size: 34px; font-weight: 500; opacity: 0.6; display: block; }
+        #f01-count { font-size: 150px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; display: block; }
+        #f01-bar { position: absolute; left: 56px; right: 56px; bottom: 40px; height: 14px; border-radius: 7px; background: #0b0b0b22; overflow: hidden; }
+        #f01-fill { width: 100%; height: 100%; background: #0b0b0b; transform-origin: left center; transform: scaleX(0); }
+        #f01-cap { position: absolute; left: 64px; right: 120px; top: 1330px; text-align: center; font-size: 60px; font-weight: 800; }
+        .f01-cw { display: inline-block; margin: 0 8px; opacity: 0.25; }
+      </style>
+      <div id="root" data-composition-id="f01" data-width="1080" data-height="1920">
+        <div id="f01-cam" data-layout-allow-overflow>
+          <div id="f01-grid"></div>
+          <div id="f01-l1" class="f01-line"><span class="f01-word">MOTION</span></div>
+          <div id="f01-l2" class="f01-line"><span class="f01-word">DESIGN</span></div>
+          <div id="f01-card">
+            <span id="f01-label">Test du pipeline</span>
+            <span id="f01-count">0 %</span>
+            <div id="f01-bar"><div id="f01-fill"></div></div>
+          </div>
+        </div>
+        <div id="f01-cap"><span class="f01-cw">texte</span><span class="f01-cw">animé</span><span class="f01-cw">en</span><span class="f01-cw">rythme</span></div>
+      </div>
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#f01-grid", { y: 0 }, { y: -240, duration: 5, ease: "none" }, 0);
+          tl.fromTo("#f01-cam", { scale: 1.06 }, { scale: 1, duration: 5, ease: "power2.out" }, 0);
+          tl.fromTo("#f01-l1 .f01-word", { yPercent: 110 }, { yPercent: 0, duration: 0.6, ease: "power4.out" }, 0.15);
+          tl.fromTo("#f01-l2 .f01-word", { yPercent: 110 }, { yPercent: 0, duration: 0.6, ease: "power4.out" }, 0.45);
+          tl.fromTo("#f01-card", { opacity: 0, y: 160, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "back.out(1.6)" }, 1.1);
+          const countEl = document.querySelector("#f01-count");
+          const c = { _v: 0, get v() { return this._v; }, set v(x) { this._v = x; countEl.textContent = Math.round(x) + " %"; } };
+          tl.fromTo(c, { v: 0 }, { v: 100, duration: 2.2, ease: "power2.inOut" }, 1.4);
+          tl.fromTo("#f01-fill", { scaleX: 0 }, { scaleX: 1, duration: 2.2, ease: "power2.inOut" }, 1.4);
+          const cw = gsap.utils.toArray("#f01-cap .f01-cw");
+          cw.forEach((w, i) => tl.fromTo(w, { opacity: 0.25, y: 10 }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out", immediateRender: false }, 0.6 + i * 0.5));
+          tl.to("#f01-cam", { x: -1080, filter: "blur(18px)", duration: 0.35, ease: "power3.in" }, 4.65);
+          tl.to("#f01-cap", { opacity: 0, duration: 0.2 }, 4.7);
+          window.__timelines["f01"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

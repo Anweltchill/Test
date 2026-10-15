@@ -1,0 +1,19 @@
+# vidéos et sorties
+renders/
+**/renders/
+snapshots/
+**/snapshots/
+.hyperframes/
+**/.hyperframes/
+*.mp4
+*.mov
+# gros fichiers audio de travail (la voix MP3 et les .sfx.json restent versionnés)
+*.wav
+# modèle de reconnaissance vocale (re-téléchargé par tools/setup.sh)
+models/
+# divers
+node_modules/
+__pycache__/
+*.tmp
+tmp/
+.DS_Store
