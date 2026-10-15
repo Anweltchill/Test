@@ -1,0 +1,520 @@
+{
+ "duration": 29.45,
+ "words": [
+  {
+   "word": "meilleur",
+   "start": 0.23,
+   "end": 0.55
+  },
+  {
+   "word": "moment",
+   "start": 0.55,
+   "end": 0.87
+  },
+  {
+   "word": "pour",
+   "start": 0.87,
+   "end": 1.03
+  },
+  {
+   "word": "commencer,",
+   "start": 1.03,
+   "end": 1.75
+  },
+  {
+   "word": "c'était",
+   "start": 1.75,
+   "end": 2.15
+  },
+  {
+   "word": "hier.",
+   "start": 2.15,
+   "end": 2.79
+  },
+  {
+   "word": "Le",
+   "start": 2.79,
+   "end": 2.95
+  },
+  {
+   "word": "deuxième",
+   "start": 2.95,
+   "end": 3.35
+  },
+  {
+   "word": "meilleur",
+   "start": 3.35,
+   "end": 3.75
+  },
+  {
+   "word": "moment,",
+   "start": 3.75,
+   "end": 4.23
+  },
+  {
+   "word": "c'est",
+   "start": 4.23,
+   "end": 4.47
+  },
+  {
+   "word": "maintenant.",
+   "start": 4.47,
+   "end": 5.03
+  },
+  {
+   "word": "Tu",
+   "start": 5.03,
+   "end": 5.27
+  },
+  {
+   "word": "te",
+   "start": 5.27,
+   "end": 5.35
+  },
+  {
+   "word": "dis",
+   "start": 5.35,
+   "end": 5.59
+  },
+  {
+   "word": "peut-être",
+   "start": 5.59,
+   "end": 5.91
+  },
+  {
+   "word": "que",
+   "start": 5.91,
+   "end": 5.99
+  },
+  {
+   "word": "tu",
+   "start": 5.99,
+   "end": 6.15
+  },
+  {
+   "word": "n'es",
+   "start": 6.15,
+   "end": 6.31
+  },
+  {
+   "word": "pas",
+   "start": 6.31,
+   "end": 6.39
+  },
+  {
+   "word": "assez",
+   "start": 6.39,
+   "end": 6.63
+  },
+  {
+   "word": "à",
+   "start": 6.63,
+   "end": 6.71
+  },
+  {
+   "word": "l'aise",
+   "start": 6.71,
+   "end": 6.95
+  },
+  {
+   "word": "devant",
+   "start": 6.95,
+   "end": 7.19
+  },
+  {
+   "word": "la",
+   "start": 7.19,
+   "end": 7.27
+  },
+  {
+   "word": "caméra.",
+   "start": 7.27,
+   "end": 7.83
+  },
+  {
+   "word": "Pas",
+   "start": 7.83,
+   "end": 8.07
+  },
+  {
+   "word": "assez.",
+   "start": 8.07,
+   "end": 8.87
+  },
+  {
+   "word": "Que",
+   "start": 8.95,
+   "end": 9.19
+  },
+  {
+   "word": "c'est",
+   "start": 9.19,
+   "end": 9.35
+  },
+  {
+   "word": "trop",
+   "start": 9.35,
+   "end": 9.51
+  },
+  {
+   "word": "tard,",
+   "start": 9.51,
+   "end": 9.83
+  },
+  {
+   "word": "qu'il",
+   "start": 9.83,
+   "end": 10.07
+  },
+  {
+   "word": "y",
+   "start": 10.07,
+   "end": 10.15
+  },
+  {
+   "word": "a",
+   "start": 10.15,
+   "end": 10.23
+  },
+  {
+   "word": "déjà",
+   "start": 10.23,
+   "end": 10.47
+  },
+  {
+   "word": "trop",
+   "start": 10.47,
+   "end": 10.63
+  },
+  {
+   "word": "de",
+   "start": 10.63,
+   "end": 10.71
+  },
+  {
+   "word": "monde.",
+   "start": 10.71,
+   "end": 11.11
+  },
+  {
+   "word": "But",
+   "start": 11.11,
+   "end": 11.35
+  },
+  {
+   "word": "chaque",
+   "start": 11.35,
+   "end": 11.59
+  },
+  {
+   "word": "créatrice",
+   "start": 11.59,
+   "end": 12.15
+  },
+  {
+   "word": "que",
+   "start": 12.15,
+   "end": 12.23
+  },
+  {
+   "word": "tu",
+   "start": 12.23,
+   "end": 12.39
+  },
+  {
+   "word": "admires",
+   "start": 12.39,
+   "end": 12.87
+  },
+  {
+   "word": "a",
+   "start": 12.87,
+   "end": 13.03
+  },
+  {
+   "word": "commencé",
+   "start": 13.03,
+   "end": 13.43
+  },
+  {
+   "word": "par",
+   "start": 13.43,
+   "end": 13.59
+  },
+  {
+   "word": "une",
+   "start": 13.59,
+   "end": 13.75
+  },
+  {
+   "word": "première",
+   "start": 13.75,
+   "end": 14.07
+  },
+  {
+   "word": "vidéo.",
+   "start": 14.07,
+   "end": 14.63
+  },
+  {
+   "word": "Un",
+   "start": 14.63,
+   "end": 14.79
+  },
+  {
+   "word": "peu",
+   "start": 14.79,
+   "end": 14.95
+  },
+  {
+   "word": "ratée.",
+   "start": 14.95,
+   "end": 15.59
+  },
+  {
+   "word": "La",
+   "start": 15.59,
+   "end": 15.83
+  },
+  {
+   "word": "différence",
+   "start": 15.83,
+   "end": 16.31
+  },
+  {
+   "word": "?",
+   "start": 16.31,
+   "end": 16.55
+  },
+  {
+   "word": "Elle",
+   "start": 16.55,
+   "end": 16.71
+  },
+  {
+   "word": "a",
+   "start": 16.71,
+   "end": 16.95
+  },
+  {
+   "word": "osé.",
+   "start": 16.95,
+   "end": 17.59
+  },
+  {
+   "word": "Elle",
+   "start": 17.59,
+   "end": 17.83
+  },
+  {
+   "word": "a",
+   "start": 17.83,
+   "end": 17.99
+  },
+  {
+   "word": "testé,",
+   "start": 17.99,
+   "end": 18.63
+  },
+  {
+   "word": "appris",
+   "start": 18.63,
+   "end": 19.19
+  },
+  {
+   "word": "et",
+   "start": 19.19,
+   "end": 19.35
+  },
+  {
+   "word": "elle",
+   "start": 19.35,
+   "end": 19.51
+  },
+  {
+   "word": "a",
+   "start": 19.51,
+   "end": 19.67
+  },
+  {
+   "word": "continué.",
+   "start": 19.67,
+   "end": 20.25
+  },
+  {
+   "word": "Chez",
+   "start": 20.25,
+   "end": 20.49
+  },
+  {
+   "word": "Phoenix",
+   "start": 20.49,
+   "end": 21.05
+  },
+  {
+   "word": "Pro,",
+   "start": 21.05,
+   "end": 21.37
+  },
+  {
+   "word": "on",
+   "start": 21.37,
+   "end": 21.45
+  },
+  {
+   "word": "ne",
+   "start": 21.45,
+   "end": 21.53
+  },
+  {
+   "word": "te",
+   "start": 21.53,
+   "end": 21.69
+  },
+  {
+   "word": "vend",
+   "start": 21.69,
+   "end": 21.93
+  },
+  {
+   "word": "pas",
+   "start": 21.93,
+   "end": 22.01
+  },
+  {
+   "word": "du",
+   "start": 22.01,
+   "end": 22.17
+  },
+  {
+   "word": "rêve.",
+   "start": 22.17,
+   "end": 22.65
+  },
+  {
+   "word": "On",
+   "start": 22.65,
+   "end": 22.81
+  },
+  {
+   "word": "t'apporte",
+   "start": 22.81,
+   "end": 23.29
+  },
+  {
+   "word": "un",
+   "start": 23.29,
+   "end": 23.37
+  },
+  {
+   "word": "plan,",
+   "start": 23.37,
+   "end": 23.77
+  },
+  {
+   "word": "un",
+   "start": 23.77,
+   "end": 23.93
+  },
+  {
+   "word": "mindset",
+   "start": 23.93,
+   "end": 24.57
+  },
+  {
+   "word": "et",
+   "start": 24.57,
+   "end": 24.73
+  },
+  {
+   "word": "les",
+   "start": 24.73,
+   "end": 24.89
+  },
+  {
+   "word": "outils",
+   "start": 24.89,
+   "end": 25.21
+  },
+  {
+   "word": "pour",
+   "start": 25.21,
+   "end": 25.29
+  },
+  {
+   "word": "le",
+   "start": 25.29,
+   "end": 25.45
+  },
+  {
+   "word": "réaliser.",
+   "start": 25.45,
+   "end": 26.09
+  },
+  {
+   "word": "Prête",
+   "start": 26.09,
+   "end": 26.41
+  },
+  {
+   "word": "à",
+   "start": 26.41,
+   "end": 26.49
+  },
+  {
+   "word": "prendre",
+   "start": 26.49,
+   "end": 26.65
+  },
+  {
+   "word": "ta",
+   "start": 26.65,
+   "end": 26.81
+  },
+  {
+   "word": "vie",
+   "start": 26.81,
+   "end": 26.97
+  },
+  {
+   "word": "en",
+   "start": 26.97,
+   "end": 27.13
+  },
+  {
+   "word": "main",
+   "start": 27.13,
+   "end": 27.29
+  },
+  {
+   "word": "?",
+   "start": 27.29,
+   "end": 27.53
+  },
+  {
+   "word": "Envoie-moi",
+   "start": 27.53,
+   "end": 28.09
+  },
+  {
+   "word": "prête",
+   "start": 28.09,
+   "end": 28.49
+  },
+  {
+   "word": "en",
+   "start": 28.49,
+   "end": 28.57
+  },
+  {
+   "word": "message",
+   "start": 28.57,
+   "end": 28.97
+  },
+  {
+   "word": "privé.",
+   "start": 28.97,
+   "end": 29.45
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s7-cam { position: absolute; inset: 0; }
+        #s7-a { position: absolute; inset: 0; }
+        #s7-pre { position: absolute; left: 64px; right: 120px; top: 300px; text-align: center; font-size: 48px; display: block; }
+        #s7-title { position: absolute; left: 64px; right: 120px; top: 370px; text-align: center; font-size: 118px; display: block; padding-bottom: 14px; }
+        #s7-list { position: absolute; left: 112px; top: 610px; width: 800px; height: 600px; padding: 50px 56px; display: block; }
+        .s7-row { position: absolute; left: 56px; right: 56px; height: 140px; display: flex; align-items: center; gap: 34px; }
+        #s7-r1 { top: 50px; }
+        #s7-r2 { top: 230px; }
+        #s7-r3 { top: 410px; }
+        .s7-ck { width: 100px; height: 100px; flex: none; display: block; }
+        .s7-txt { font-size: 54px; line-height: 1.1; display: block; }
+        .s7-sep { position: absolute; left: 56px; right: 56px; height: 2px; background: #E6BDC1; display: block; }
+        #s7-sep1 { top: 205px; }
+        #s7-sep2 { top: 385px; }
+        #s7-b { position: absolute; inset: 0; opacity: 0; }
+        #s7-pre2 { position: absolute; left: 64px; right: 120px; top: 330px; text-align: center; font-size: 38px; display: block; }
+        #s7-logo { position: absolute; left: 352px; top: 450px; width: 320px; height: 330px; display: block; }
+        #s7-brand { position: absolute; left: 64px; right: 120px; top: 850px; text-align: center; font-size: 104px; display: block; white-space: nowrap; }
+        #s7-line { position: absolute; left: 432px; top: 1020px; width: 160px; height: 6px; border-radius: 3px; background: #E2718D; transform-origin: center; display: block; }
+      </style>
+      <div id="root" data-composition-id="s7" data-width="1080" data-height="1920">
+        <div id="s7-cam" data-layout-allow-overflow>
+          <div id="s7-a">
+            <div id="s7-pre" class="t-label">Alors oui,</div>
+            <div id="s7-title" class="t-serif">ça s'<span class="acc">apprend</span>.</div>
+            <div id="s7-list" class="card">
+              <div id="s7-r1" class="s7-row"><svg class="s7-ck" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="28" stroke="#CC7183" stroke-width="3" /><path class="s7-tick" d="M20 33l8 8 16-17" stroke="#CC7183" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40" /></svg><span class="s7-txt">Trouver les <span class="acc2">marques</span></span></div>
+              <div id="s7-sep1" class="s7-sep"></div>
+              <div id="s7-r2" class="s7-row"><svg class="s7-ck" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="28" stroke="#CC7183" stroke-width="3" /><path class="s7-tick" d="M20 33l8 8 16-17" stroke="#CC7183" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40" /></svg><span class="s7-txt">Fixer ses <span class="acc2">prix</span></span></div>
+              <div id="s7-sep2" class="s7-sep"></div>
+              <div id="s7-r3" class="s7-row"><svg class="s7-ck" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="28" stroke="#CC7183" stroke-width="3" /><path class="s7-tick" d="M20 33l8 8 16-17" stroke="#CC7183" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40" /></svg><span class="s7-txt">Se lancer <span class="acc2">proprement</span></span></div>
+            </div>
+          </div>
+          <div id="s7-b">
+            <div id="s7-pre2" class="t-label">C'est exactement ce qu'on fait chez</div>
+            <img id="s7-logo" src="assets/brand/phoenix-logo-PROVISOIRE.png" alt="" />
+            <div id="s7-brand" class="t-serif">PHOENIX <span class="acc">PRO</span></div>
+            <div id="s7-line"></div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 26.2, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « alors oui » 26.32 · « s'apprend » 27.20 · « trouver » 27.84 · « fixer » 28.80 · « se lancer » 29.76
+          // « c'est exactement » 31.04 · « Phoenix » 32.40 · « Pro » 32.88
+          tl.fromTo("#s7-cam", { scale: 0.6, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, 0);
+          tl.fromTo("#s7-pre", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, at(26.25));
+          tl.fromTo("#s7-title", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.55, ease: "power4.out" }, at(27.0));
+          tl.fromTo("#s7-list", { y: 200, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, at(27.35));
+          const rows = ["#s7-r1", "#s7-r2", "#s7-r3"], times = [27.7, 28.65, 29.6];
+          rows.forEach((r, i) => {
+            tl.fromTo(r, { x: 60, opacity: 0.25 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, at(times[i]));
+            tl.fromTo(r + " .s7-tick", { attr: { "stroke-dashoffset": 40 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.35, ease: "power2.out" }, at(times[i] + 0.15));
+            tl.fromTo(r + " .s7-ck", { scale: 0.7 }, { scale: 1, duration: 0.45, ease: "back.out(3)" }, at(times[i] + 0.15));
+          });
+          tl.fromTo("#s7-a", { scale: 1 }, { scale: 1.03, duration: 3, ease: "none", immediateRender: false }, at(27.4));
+          // bascule vers Phoenix Pro
+          tl.to("#s7-a", { y: -260, opacity: 0, filter: "blur(10px)", duration: 0.45, ease: "power3.in" }, at(30.7));
+          tl.fromTo("#s7-b", { opacity: 0 }, { opacity: 1, duration: 0.3 }, at(31.0));
+          tl.fromTo("#s7-pre2", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, at(31.0));
+          tl.fromTo("#s7-logo", { scale: 0.3, opacity: 0, y: 80, rotation: -10 }, { scale: 1, opacity: 1, y: 0, rotation: 0, duration: 0.8, ease: "back.out(1.6)" }, at(31.6));
+          tl.fromTo("#s7-brand", { opacity: 0, y: 50, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, at(32.25));
+          tl.fromTo("#s7-line", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power3.out" }, at(32.7));
+          tl.to("#s7-cam", { x: -1080, filter: "blur(16px)", duration: 0.28, ease: "power3.in" }, at(33.32));
+          window.__timelines["s7"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

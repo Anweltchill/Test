@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s6-cam { position: absolute; inset: 0; }
+        #s6-title { position: absolute; left: 64px; right: 120px; top: 300px; text-align: center; font-size: 112px; display: block; padding-bottom: 14px; }
+        #s6-prof { position: absolute; left: 152px; top: 520px; width: 720px; height: 330px; padding: 40px 48px; display: block; }
+        #s6-av { position: absolute; left: 48px; top: 48px; width: 130px; height: 130px; border-radius: 50%; background: #C2C7DD; display: block; }
+        #s6-avp { position: absolute; left: 48px; top: 48px; width: 130px; height: 130px; display: block; }
+        .s6-bar { position: absolute; left: 210px; height: 22px; border-radius: 11px; background: #E6BDC1; display: block; }
+        #s6-b1 { top: 70px; width: 300px; }
+        #s6-b2 { top: 112px; width: 210px; background: #ECE2DA; }
+        #s6-stat { position: absolute; left: 48px; right: 48px; top: 210px; display: flex; align-items: baseline; gap: 22px; }
+        #s6-count { font: 700 92px "PxSerif", serif; color: #0E1928; display: block; }
+        #s6-ab { font-size: 44px; font-weight: 500; color: #0E1928; display: block; }
+        #s6-x { position: absolute; left: 120px; top: 600px; width: 790px; height: 200px; display: block; }
+        #s6-l1 { position: absolute; left: 64px; right: 120px; top: 960px; text-align: center; font-size: 48px; display: block; }
+        #s6-l2 { position: absolute; left: 64px; right: 120px; top: 1030px; text-align: center; font-size: 104px; line-height: 1.12; display: block; padding-bottom: 10px; }
+        #s6-ul { position: absolute; left: 330px; top: 1290px; width: 380px; height: 40px; display: block; }
+      </style>
+      <div id="root" data-composition-id="s6" data-width="1080" data-height="1920">
+        <div id="s6-cam" data-layout-allow-overflow>
+          <div id="s6-title" class="t-serif">Le plus <span class="acc">fou</span> ?</div>
+          <div id="s6-prof" class="card">
+            <div id="s6-av"></div>
+            <svg id="s6-avp" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="25" r="9" stroke="#0E1928" stroke-width="3" /><path d="M16 50c2-9 8.5-13 16-13s14 4 16 13" stroke="#0E1928" stroke-width="3" stroke-linecap="round" /></svg>
+            <div id="s6-b1" class="s6-bar"></div>
+            <div id="s6-b2" class="s6-bar"></div>
+            <div id="s6-stat"><span id="s6-count">0</span><span id="s6-ab">abonnés</span></div>
+          </div>
+          <svg id="s6-x" viewBox="0 0 790 200" fill="none"><path id="s6-xp" d="M20 150 C 250 120, 520 80, 770 40" stroke="#E2718D" stroke-width="16" stroke-linecap="round" stroke-dasharray="800" stroke-dashoffset="800" /></svg>
+          <div id="s6-l1" class="t-label">Elles regardent</div>
+          <div id="s6-l2" class="t-italic">ta façon de raconter</div>
+          <svg id="s6-ul" viewBox="0 0 380 40" fill="none"><path id="s6-ulp" d="M6 22 C 50 6, 80 6, 124 22 S 200 38, 250 22 S 330 6, 374 20" stroke="#DB96A1" stroke-width="5" stroke-linecap="round" stroke-dasharray="420" stroke-dashoffset="420" /></svg>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 21.45, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « fou » 22.00 · « nombre » 23.52 · « d'abonnés » 23.76 · « regarde » 24.64 · « façon » 25.20 · « raconter » 25.60
+          tl.fromTo("#s6-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.32, ease: "power3.out" }, 0);
+          tl.fromTo("#s6-title", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2.2)" }, at(21.6));
+          tl.fromTo("#s6-prof", { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, at(22.45));
+          const countEl = document.querySelector("#s6-count");
+          const c = { _v: 0, get v() { return this._v; }, set v(x) { this._v = x; countEl.textContent = Math.round(x).toLocaleString("fr-FR").replace(/ | /g, " "); } };
+          tl.fromTo(c, { v: 0 }, { v: 12450, duration: 1.1, ease: "power2.out" }, at(22.7));
+          tl.fromTo("#s6-xp", { attr: { "stroke-dashoffset": 800 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.35, ease: "power3.out" }, at(23.85));
+          tl.to("#s6-prof", { opacity: 0.4, scale: 0.92, rotation: -3, duration: 0.4, ease: "power2.out" }, at(24.0));
+          tl.fromTo("#s6-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, at(24.45));
+          tl.fromTo("#s6-l2", { opacity: 0, y: 60, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "power4.out" }, at(25.05));
+          tl.fromTo("#s6-ulp", { attr: { "stroke-dashoffset": 420 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.inOut" }, at(25.55));
+          tl.to("#s6-cam", { scale: 1.45, opacity: 0, filter: "blur(14px)", duration: 0.3, ease: "power3.in" }, at(25.9));
+          window.__timelines["s6"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

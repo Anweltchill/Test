@@ -1,0 +1,590 @@
+{
+ "duration": 37.68,
+ "words": [
+  {
+   "word": "Et",
+   "start": 0.0,
+   "end": 0.16
+  },
+  {
+   "word": "si",
+   "start": 0.16,
+   "end": 0.4
+  },
+  {
+   "word": "des",
+   "start": 0.4,
+   "end": 0.56
+  },
+  {
+   "word": "marques",
+   "start": 0.56,
+   "end": 0.88
+  },
+  {
+   "word": "te",
+   "start": 0.88,
+   "end": 1.04
+  },
+  {
+   "word": "payaient",
+   "start": 1.04,
+   "end": 1.52
+  },
+  {
+   "word": "pour",
+   "start": 1.52,
+   "end": 1.68
+  },
+  {
+   "word": "filmer",
+   "start": 1.68,
+   "end": 2.0
+  },
+  {
+   "word": "leurs",
+   "start": 2.0,
+   "end": 2.24
+  },
+  {
+   "word": "produits",
+   "start": 2.24,
+   "end": 2.88
+  },
+  {
+   "word": "sans",
+   "start": 2.88,
+   "end": 3.2
+  },
+  {
+   "word": "que",
+   "start": 3.2,
+   "end": 3.28
+  },
+  {
+   "word": "tu",
+   "start": 3.28,
+   "end": 3.44
+  },
+  {
+   "word": "sois",
+   "start": 3.44,
+   "end": 3.68
+  },
+  {
+   "word": "influenceuse,",
+   "start": 3.68,
+   "end": 4.48
+  },
+  {
+   "word": "ça",
+   "start": 4.64,
+   "end": 4.88
+  },
+  {
+   "word": "a",
+   "start": 4.88,
+   "end": 5.04
+  },
+  {
+   "word": "un",
+   "start": 5.04,
+   "end": 5.68
+  },
+  {
+   "word": "l'UGC.",
+   "start": 5.68,
+   "end": 6.48
+  },
+  {
+   "word": "User",
+   "start": 7.12,
+   "end": 7.6
+  },
+  {
+   "word": "generated",
+   "start": 7.6,
+   "end": 8.24
+  },
+  {
+   "word": "content.",
+   "start": 8.24,
+   "end": 8.96
+  },
+  {
+   "word": "Du",
+   "start": 8.96,
+   "end": 9.2
+  },
+  {
+   "word": "contenu",
+   "start": 9.2,
+   "end": 9.6
+  },
+  {
+   "word": "authentique",
+   "start": 9.6,
+   "end": 10.32
+  },
+  {
+   "word": "créé",
+   "start": 10.32,
+   "end": 10.72
+  },
+  {
+   "word": "par",
+   "start": 10.72,
+   "end": 10.8
+  },
+  {
+   "word": "de",
+   "start": 10.8,
+   "end": 10.96
+  },
+  {
+   "word": "vraies",
+   "start": 10.96,
+   "end": 11.28
+  },
+  {
+   "word": "personnes",
+   "start": 11.28,
+   "end": 11.68
+  },
+  {
+   "word": "pour",
+   "start": 11.68,
+   "end": 11.92
+  },
+  {
+   "word": "mettre",
+   "start": 11.92,
+   "end": 12.16
+  },
+  {
+   "word": "en",
+   "start": 12.16,
+   "end": 12.32
+  },
+  {
+   "word": "avant",
+   "start": 12.32,
+   "end": 12.56
+  },
+  {
+   "word": "des",
+   "start": 12.56,
+   "end": 12.72
+  },
+  {
+   "word": "marques.",
+   "start": 12.72,
+   "end": 13.2
+  },
+  {
+   "word": "Un",
+   "start": 13.2,
+   "end": 13.28
+  },
+  {
+   "word": "test",
+   "start": 13.28,
+   "end": 13.76
+  },
+  {
+   "word": "produit",
+   "start": 13.76,
+   "end": 14.08
+  },
+  {
+   "word": "?",
+   "start": 14.08,
+   "end": 14.32
+  },
+  {
+   "word": "Une",
+   "start": 14.32,
+   "end": 14.48
+  },
+  {
+   "word": "routine",
+   "start": 14.48,
+   "end": 14.88
+  },
+  {
+   "word": "?",
+   "start": 14.88,
+   "end": 15.12
+  },
+  {
+   "word": "Un",
+   "start": 15.12,
+   "end": 15.28
+  },
+  {
+   "word": "unboxing,",
+   "start": 15.28,
+   "end": 16.08
+  },
+  {
+   "word": "un",
+   "start": 16.08,
+   "end": 16.24
+  },
+  {
+   "word": "avis",
+   "start": 16.24,
+   "end": 16.56
+  },
+  {
+   "word": "face",
+   "start": 16.56,
+   "end": 16.8
+  },
+  {
+   "word": "caméra.",
+   "start": 16.8,
+   "end": 17.44
+  },
+  {
+   "word": "Les",
+   "start": 17.44,
+   "end": 17.6
+  },
+  {
+   "word": "marques",
+   "start": 17.6,
+   "end": 18.0
+  },
+  {
+   "word": "adorent,",
+   "start": 18.0,
+   "end": 18.72
+  },
+  {
+   "word": "parce",
+   "start": 18.72,
+   "end": 18.8
+  },
+  {
+   "word": "que",
+   "start": 18.8,
+   "end": 18.96
+  },
+  {
+   "word": "ça",
+   "start": 18.96,
+   "end": 19.12
+  },
+  {
+   "word": "inspire",
+   "start": 19.12,
+   "end": 19.6
+  },
+  {
+   "word": "confiance",
+   "start": 19.6,
+   "end": 20.16
+  },
+  {
+   "word": "et",
+   "start": 20.16,
+   "end": 20.32
+  },
+  {
+   "word": "ça",
+   "start": 20.32,
+   "end": 20.48
+  },
+  {
+   "word": "donne",
+   "start": 20.48,
+   "end": 20.8
+  },
+  {
+   "word": "envie",
+   "start": 20.8,
+   "end": 21.04
+  },
+  {
+   "word": "d'acheter.",
+   "start": 21.04,
+   "end": 21.6
+  },
+  {
+   "word": "Et",
+   "start": 21.6,
+   "end": 21.76
+  },
+  {
+   "word": "le",
+   "start": 21.76,
+   "end": 21.84
+  },
+  {
+   "word": "plus",
+   "start": 21.84,
+   "end": 22.0
+  },
+  {
+   "word": "fou",
+   "start": 22.0,
+   "end": 22.24
+  },
+  {
+   "word": "?",
+   "start": 22.24,
+   "end": 22.48
+  },
+  {
+   "word": "Elle",
+   "start": 22.48,
+   "end": 22.72
+  },
+  {
+   "word": "ne",
+   "start": 22.72,
+   "end": 22.88
+  },
+  {
+   "word": "regarde",
+   "start": 22.88,
+   "end": 23.2
+  },
+  {
+   "word": "pas",
+   "start": 23.2,
+   "end": 23.36
+  },
+  {
+   "word": "ton",
+   "start": 23.36,
+   "end": 23.52
+  },
+  {
+   "word": "nombre",
+   "start": 23.52,
+   "end": 23.76
+  },
+  {
+   "word": "d'abonnés,",
+   "start": 23.76,
+   "end": 24.4
+  },
+  {
+   "word": "elle",
+   "start": 24.4,
+   "end": 24.64
+  },
+  {
+   "word": "regarde",
+   "start": 24.64,
+   "end": 25.04
+  },
+  {
+   "word": "ta",
+   "start": 25.04,
+   "end": 25.2
+  },
+  {
+   "word": "façon",
+   "start": 25.2,
+   "end": 25.52
+  },
+  {
+   "word": "de",
+   "start": 25.52,
+   "end": 25.6
+  },
+  {
+   "word": "raconter.",
+   "start": 25.6,
+   "end": 26.32
+  },
+  {
+   "word": "Alors",
+   "start": 26.32,
+   "end": 26.64
+  },
+  {
+   "word": "oui,",
+   "start": 26.64,
+   "end": 26.96
+  },
+  {
+   "word": "ça",
+   "start": 26.96,
+   "end": 27.2
+  },
+  {
+   "word": "s'apprend.",
+   "start": 27.2,
+   "end": 27.84
+  },
+  {
+   "word": "Trouver",
+   "start": 27.84,
+   "end": 28.16
+  },
+  {
+   "word": "les",
+   "start": 28.16,
+   "end": 28.32
+  },
+  {
+   "word": "marques,",
+   "start": 28.32,
+   "end": 28.8
+  },
+  {
+   "word": "fixer",
+   "start": 28.8,
+   "end": 29.2
+  },
+  {
+   "word": "ses",
+   "start": 29.2,
+   "end": 29.36
+  },
+  {
+   "word": "prix,",
+   "start": 29.36,
+   "end": 29.76
+  },
+  {
+   "word": "se",
+   "start": 29.76,
+   "end": 29.92
+  },
+  {
+   "word": "lancer",
+   "start": 29.92,
+   "end": 30.32
+  },
+  {
+   "word": "proprement,",
+   "start": 30.32,
+   "end": 31.04
+  },
+  {
+   "word": "c'est",
+   "start": 31.04,
+   "end": 31.36
+  },
+  {
+   "word": "exactement",
+   "start": 31.36,
+   "end": 31.76
+  },
+  {
+   "word": "ce",
+   "start": 31.76,
+   "end": 31.92
+  },
+  {
+   "word": "qu'on",
+   "start": 31.92,
+   "end": 32.08
+  },
+  {
+   "word": "fait",
+   "start": 32.08,
+   "end": 32.24
+  },
+  {
+   "word": "chez",
+   "start": 32.24,
+   "end": 32.4
+  },
+  {
+   "word": "Phoenix",
+   "start": 32.4,
+   "end": 32.88
+  },
+  {
+   "word": "Pro.",
+   "start": 32.88,
+   "end": 33.28
+  },
+  {
+   "word": "Si",
+   "start": 33.28,
+   "end": 33.44
+  },
+  {
+   "word": "tu",
+   "start": 33.44,
+   "end": 33.52
+  },
+  {
+   "word": "veux",
+   "start": 33.52,
+   "end": 33.68
+  },
+  {
+   "word": "savoir",
+   "start": 33.68,
+   "end": 33.92
+  },
+  {
+   "word": "comment",
+   "start": 33.92,
+   "end": 34.16
+  },
+  {
+   "word": "démarrer,",
+   "start": 34.16,
+   "end": 34.72
+  },
+  {
+   "word": "clique",
+   "start": 34.72,
+   "end": 35.04
+  },
+  {
+   "word": "sur",
+   "start": 35.04,
+   "end": 35.2
+  },
+  {
+   "word": "le",
+   "start": 35.2,
+   "end": 35.28
+  },
+  {
+   "word": "lien",
+   "start": 35.28,
+   "end": 35.52
+  },
+  {
+   "word": "en",
+   "start": 35.52,
+   "end": 35.6
+  },
+  {
+   "word": "bio.",
+   "start": 35.6,
+   "end": 36.0
+  },
+  {
+   "word": "Ton",
+   "start": 36.0,
+   "end": 36.24
+  },
+  {
+   "word": "évolution",
+   "start": 36.24,
+   "end": 36.8
+  },
+  {
+   "word": "commence",
+   "start": 36.8,
+   "end": 37.2
+  },
+  {
+   "word": "ici.",
+   "start": 37.2,
+   "end": 37.68
+  }
+ ]
+}

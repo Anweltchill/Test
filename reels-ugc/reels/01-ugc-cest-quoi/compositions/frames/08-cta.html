@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s8-cam { position: absolute; inset: 0; }
+        #s8-a { position: absolute; inset: 0; }
+        #s8-q { position: absolute; left: 64px; right: 120px; top: 300px; text-align: center; font-size: 100px; display: block; padding-bottom: 12px; }
+        #s8-prof { position: absolute; left: 132px; top: 520px; width: 760px; height: 520px; padding: 48px; display: block; }
+        #s8-av { position: absolute; left: 48px; top: 48px; width: 170px; height: 170px; border-radius: 50%; background: #F0E6DD; border: 5px solid #E2718D; display: flex; align-items: center; justify-content: center; }
+        #s8-avimg { width: 118px; height: 122px; display: block; }
+        #s8-name { position: absolute; left: 250px; top: 70px; font-size: 56px; display: block; }
+        #s8-sub { position: absolute; left: 250px; top: 150px; font-size: 32px; color: #CC7183; display: block; }
+        #s8-bio { position: absolute; left: 48px; right: 48px; top: 260px; font-size: 38px; line-height: 1.35; display: block; }
+        #s8-link { position: absolute; left: 48px; top: 380px; display: flex; align-items: center; gap: 16px; background: #E2718D; color: #FDF4ED; border-radius: 999px;
+          padding: 18px 38px; font: 600 42px "PxSans", sans-serif; }
+        #s8-chain { width: 46px; height: 46px; display: block; }
+        #s8-ripple { position: absolute; left: 330px; top: 940px; width: 180px; height: 180px; margin: -90px 0 0 -90px; border-radius: 50%; border: 6px solid #0E1928; opacity: 0; display: block; }
+        #s8-cursor { position: absolute; left: 330px; top: 940px; width: 92px; height: 92px; display: block; }
+        #s8-b { position: absolute; inset: 0; opacity: 0; }
+        #s8-logo { position: absolute; left: 357px; top: 400px; width: 310px; height: 320px; display: block; }
+        .s8-line { position: absolute; left: 64px; right: 120px; text-align: center; overflow: hidden; display: block; padding-bottom: 14px; }
+        .s8-w { display: block; font-size: 112px; }
+        #s8-l1 { top: 790px; }
+        #s8-l2 { top: 930px; }
+        #s8-wave { position: absolute; left: 427px; top: 1110px; width: 170px; height: 26px; display: block; }
+      </style>
+      <div id="root" data-composition-id="s8" data-width="1080" data-height="1920">
+        <div id="s8-cam" data-layout-allow-overflow>
+          <div id="s8-a" data-layout-allow-overlap>
+            <div id="s8-q" class="t-serif">Envie de <span class="acc">démarrer</span> ?</div>
+            <div id="s8-prof" class="card">
+              <div id="s8-av"><img id="s8-avimg" src="assets/brand/phoenix-logo-avatar.png" alt="" /></div>
+              <div id="s8-name" class="t-serif">Phoenix Pro</div>
+              <div id="s8-sub" class="t-label">Formation UGC</div>
+              <div id="s8-bio"><span style="display:block">Apprendre. Passer à l'action.</span><span style="display:block">Obtenir des résultats.</span></div>
+              <div id="s8-link"><svg id="s8-chain" viewBox="0 0 64 64" fill="none" stroke="#FDF4ED" stroke-width="5" stroke-linecap="round"><path d="M28 36a10 10 0 0 0 14 0l9-9a10 10 0 0 0-14-14l-4 4" /><path d="M36 28a10 10 0 0 0-14 0l-9 9a10 10 0 0 0 14 14l4-4" /></svg>Lien en bio</div>
+            </div>
+            <div id="s8-ripple"></div>
+            <svg id="s8-cursor" viewBox="0 0 64 64"><path d="M14 6l36 26-15 3 9 18-7 3-9-18-11 10z" fill="#0E1928" stroke="#FDF4ED" stroke-width="3" stroke-linejoin="round" /></svg>
+          </div>
+          <div id="s8-b" data-layout-allow-overlap>
+            <img id="s8-logo" src="assets/brand/phoenix-logo-PROVISOIRE.png" alt="" />
+            <div id="s8-l1" class="s8-line"><span class="s8-w t-serif">Ton évolution</span></div>
+            <div id="s8-l2" class="s8-line"><span class="s8-w t-serif">commence <span class="acc">ici.</span></span></div>
+            <svg id="s8-wave" viewBox="0 0 170 26" fill="none"><path id="s8-wave-p" d="M4 14 C 24 4, 36 4, 56 14 S 90 24, 112 14 S 146 4, 166 12" stroke="#DB96A1" stroke-width="4" stroke-linecap="round" stroke-dasharray="200" stroke-dashoffset="200" /></svg>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 33.6, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « démarrer » 34.16 · « clique » 34.72 · « lien » 35.28 · « bio » 35.60 · « Ton évolution » 36.00 · « commence » 36.80 · « ici » 37.20
+          tl.fromTo("#s8-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.32, ease: "power3.out" }, 0);
+          tl.fromTo("#s8-q", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, at(33.75));
+          tl.fromTo("#s8-prof", { y: 160, opacity: 0, scale: 0.94 }, { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, at(34.0));
+          tl.fromTo("#s8-link", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2.4)" }, at(34.6));
+          tl.fromTo("#s8-cursor", { x: 420, y: 420, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, at(34.75));
+          tl.fromTo("#s8-cursor", { scale: 1 }, { scale: 0.8, duration: 0.1, ease: "power2.in", yoyo: true, repeat: 1, immediateRender: false }, at(35.25));
+          tl.fromTo("#s8-link", { scale: 1 }, { scale: 0.93, duration: 0.1, ease: "power2.in", yoyo: true, repeat: 1, immediateRender: false }, at(35.25));
+          tl.fromTo("#s8-ripple", { scale: 0.3, opacity: 1 }, { scale: 1.7, opacity: 0, duration: 0.5, ease: "power2.out", immediateRender: false }, at(35.3));
+          // final : logo + signature
+          tl.to("#s8-a", { y: -200, opacity: 0, filter: "blur(10px)", duration: 0.4, ease: "power3.in" }, at(35.75));
+          tl.fromTo("#s8-b", { opacity: 0 }, { opacity: 1, duration: 0.25 }, at(35.95));
+          tl.fromTo("#s8-logo", { scale: 0.4, opacity: 0, y: 60 }, { scale: 1, opacity: 1, y: 0, duration: 0.8, ease: "back.out(1.6)" }, at(35.95));
+          tl.fromTo("#s8-l1 .s8-w", { yPercent: 115 }, { yPercent: 0, duration: 0.55, ease: "power4.out" }, at(36.05));
+          tl.fromTo("#s8-l2 .s8-w", { yPercent: 115 }, { yPercent: 0, duration: 0.55, ease: "power4.out" }, at(36.65));
+          tl.fromTo("#s8-wave-p", { attr: { "stroke-dashoffset": 200 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.inOut" }, at(37.25));
+          tl.fromTo("#s8-b", { scale: 1 }, { scale: 1.04, duration: 2.6, ease: "sine.out", immediateRender: false }, at(36.4));
+          window.__timelines["s8"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,570 @@
+{
+ "duration": 33.36,
+ "words": [
+  {
+   "word": "Si",
+   "start": 0.0,
+   "end": 0.16
+  },
+  {
+   "word": "une",
+   "start": 0.16,
+   "end": 0.32
+  },
+  {
+   "word": "marque",
+   "start": 0.32,
+   "end": 0.64
+  },
+  {
+   "word": "passe",
+   "start": 0.64,
+   "end": 0.88
+  },
+  {
+   "word": "sur",
+   "start": 0.88,
+   "end": 1.04
+  },
+  {
+   "word": "ton",
+   "start": 1.04,
+   "end": 1.2
+  },
+  {
+   "word": "profil,",
+   "start": 1.2,
+   "end": 1.6
+  },
+  {
+   "word": "elle",
+   "start": 1.6,
+   "end": 1.84
+  },
+  {
+   "word": "a",
+   "start": 1.84,
+   "end": 2.0
+  },
+  {
+   "word": "3",
+   "start": 2.0,
+   "end": 2.24
+  },
+  {
+   "word": "secondes",
+   "start": 2.24,
+   "end": 2.56
+  },
+  {
+   "word": "pour",
+   "start": 2.56,
+   "end": 2.72
+  },
+  {
+   "word": "comprendre",
+   "start": 2.72,
+   "end": 3.04
+  },
+  {
+   "word": "ce",
+   "start": 3.04,
+   "end": 3.2
+  },
+  {
+   "word": "que",
+   "start": 3.2,
+   "end": 3.28
+  },
+  {
+   "word": "tu",
+   "start": 3.28,
+   "end": 3.44
+  },
+  {
+   "word": "fais.",
+   "start": 3.44,
+   "end": 3.68
+  },
+  {
+   "word": "Alors",
+   "start": 3.68,
+   "end": 3.92
+  },
+  {
+   "word": "ta",
+   "start": 3.92,
+   "end": 4.16
+  },
+  {
+   "word": "bio",
+   "start": 4.16,
+   "end": 4.56
+  },
+  {
+   "word": "doit",
+   "start": 4.56,
+   "end": 4.72
+  },
+  {
+   "word": "répondre",
+   "start": 4.72,
+   "end": 5.04
+  },
+  {
+   "word": "à",
+   "start": 5.04,
+   "end": 5.2
+  },
+  {
+   "word": "une",
+   "start": 5.2,
+   "end": 5.36
+  },
+  {
+   "word": "seule",
+   "start": 5.36,
+   "end": 5.6
+  },
+  {
+   "word": "question.",
+   "start": 5.6,
+   "end": 6.24
+  },
+  {
+   "word": "Pourquoi",
+   "start": 6.24,
+   "end": 6.8
+  },
+  {
+   "word": "te",
+   "start": 6.8,
+   "end": 6.96
+  },
+  {
+   "word": "contacter",
+   "start": 6.96,
+   "end": 7.6
+  },
+  {
+   "word": "toi",
+   "start": 7.6,
+   "end": 7.92
+  },
+  {
+   "word": "?",
+   "start": 7.92,
+   "end": 8.24
+  },
+  {
+   "word": "Premier",
+   "start": 8.24,
+   "end": 8.56
+  },
+  {
+   "word": "réflexe,",
+   "start": 8.56,
+   "end": 9.2
+  },
+  {
+   "word": "mets",
+   "start": 9.2,
+   "end": 9.52
+  },
+  {
+   "word": "UGC",
+   "start": 9.52,
+   "end": 10.24
+  },
+  {
+   "word": "dans",
+   "start": 10.24,
+   "end": 10.32
+  },
+  {
+   "word": "ton",
+   "start": 10.32,
+   "end": 10.48
+  },
+  {
+   "word": "pseudo",
+   "start": 10.48,
+   "end": 10.88
+  },
+  {
+   "word": "ou",
+   "start": 10.88,
+   "end": 11.04
+  },
+  {
+   "word": "dans",
+   "start": 11.04,
+   "end": 11.12
+  },
+  {
+   "word": "ton",
+   "start": 11.12,
+   "end": 11.28
+  },
+  {
+   "word": "nom.",
+   "start": 11.28,
+   "end": 11.68
+  },
+  {
+   "word": "Tu",
+   "start": 11.68,
+   "end": 11.84
+  },
+  {
+   "word": "seras",
+   "start": 11.84,
+   "end": 12.08
+  },
+  {
+   "word": "mieux",
+   "start": 12.08,
+   "end": 12.32
+  },
+  {
+   "word": "référencée",
+   "start": 12.32,
+   "end": 12.88
+  },
+  {
+   "word": "sur",
+   "start": 12.88,
+   "end": 13.04
+  },
+  {
+   "word": "Instagram",
+   "start": 13.04,
+   "end": 13.44
+  },
+  {
+   "word": "et",
+   "start": 13.44,
+   "end": 13.6
+  },
+  {
+   "word": "TikTok.",
+   "start": 13.6,
+   "end": 14.4
+  },
+  {
+   "word": "Ensuite,",
+   "start": 14.4,
+   "end": 14.96
+  },
+  {
+   "word": "dis",
+   "start": 14.96,
+   "end": 15.2
+  },
+  {
+   "word": "clairement",
+   "start": 15.2,
+   "end": 15.68
+  },
+  {
+   "word": "ce",
+   "start": 15.68,
+   "end": 15.76
+  },
+  {
+   "word": "que",
+   "start": 15.76,
+   "end": 15.92
+  },
+  {
+   "word": "tu",
+   "start": 15.92,
+   "end": 16.08
+  },
+  {
+   "word": "fais",
+   "start": 16.08,
+   "end": 16.32
+  },
+  {
+   "word": "et",
+   "start": 16.32,
+   "end": 16.48
+  },
+  {
+   "word": "ton",
+   "start": 16.48,
+   "end": 16.72
+  },
+  {
+   "word": "univers.",
+   "start": 16.72,
+   "end": 17.36
+  },
+  {
+   "word": "Skincare,",
+   "start": 17.36,
+   "end": 18.16
+  },
+  {
+   "word": "food,",
+   "start": 18.32,
+   "end": 18.72
+  },
+  {
+   "word": "mode,",
+   "start": 18.72,
+   "end": 19.2
+  },
+  {
+   "word": "voyage.",
+   "start": 19.2,
+   "end": 19.92
+  },
+  {
+   "word": "Et",
+   "start": 19.92,
+   "end": 20.08
+  },
+  {
+   "word": "il",
+   "start": 20.08,
+   "end": 20.32
+  },
+  {
+   "word": "reste",
+   "start": 20.32,
+   "end": 20.72
+  },
+  {
+   "word": "deux",
+   "start": 20.72,
+   "end": 20.96
+  },
+  {
+   "word": "éléments",
+   "start": 20.96,
+   "end": 21.36
+  },
+  {
+   "word": "indispensables.",
+   "start": 21.36,
+   "end": 22.16
+  },
+  {
+   "word": "Sans",
+   "start": 22.4,
+   "end": 22.72
+  },
+  {
+   "word": "eux,",
+   "start": 22.72,
+   "end": 23.04
+  },
+  {
+   "word": "la",
+   "start": 23.04,
+   "end": 23.2
+  },
+  {
+   "word": "marque",
+   "start": 23.2,
+   "end": 23.52
+  },
+  {
+   "word": "repart",
+   "start": 23.52,
+   "end": 24.08
+  },
+  {
+   "word": "et",
+   "start": 24.08,
+   "end": 24.24
+  },
+  {
+   "word": "ne",
+   "start": 24.24,
+   "end": 24.4
+  },
+  {
+   "word": "revient",
+   "start": 24.4,
+   "end": 24.8
+  },
+  {
+   "word": "jamais.",
+   "start": 24.8,
+   "end": 25.36
+  },
+  {
+   "word": "Bonus,",
+   "start": 25.36,
+   "end": 26.08
+  },
+  {
+   "word": "il",
+   "start": 26.08,
+   "end": 26.24
+  },
+  {
+   "word": "y",
+   "start": 26.24,
+   "end": 26.32
+  },
+  {
+   "word": "a",
+   "start": 26.32,
+   "end": 26.4
+  },
+  {
+   "word": "aussi",
+   "start": 26.4,
+   "end": 26.56
+  },
+  {
+   "word": "des",
+   "start": 26.56,
+   "end": 26.72
+  },
+  {
+   "word": "infos",
+   "start": 26.72,
+   "end": 27.04
+  },
+  {
+   "word": "que",
+   "start": 27.04,
+   "end": 27.2
+  },
+  {
+   "word": "tu",
+   "start": 27.2,
+   "end": 27.36
+  },
+  {
+   "word": "dois",
+   "start": 27.36,
+   "end": 27.6
+  },
+  {
+   "word": "absolument",
+   "start": 27.6,
+   "end": 28.08
+  },
+  {
+   "word": "retirer",
+   "start": 28.08,
+   "end": 28.48
+  },
+  {
+   "word": "de",
+   "start": 28.48,
+   "end": 28.64
+  },
+  {
+   "word": "ta",
+   "start": 28.64,
+   "end": 28.8
+  },
+  {
+   "word": "bio.",
+   "start": 28.8,
+   "end": 29.2
+  },
+  {
+   "word": "Tu",
+   "start": 29.2,
+   "end": 29.36
+  },
+  {
+   "word": "veux",
+   "start": 29.36,
+   "end": 29.52
+  },
+  {
+   "word": "la",
+   "start": 29.52,
+   "end": 29.68
+  },
+  {
+   "word": "checklist",
+   "start": 29.68,
+   "end": 30.16
+  },
+  {
+   "word": "complète",
+   "start": 30.16,
+   "end": 30.4
+  },
+  {
+   "word": "pour",
+   "start": 30.4,
+   "end": 30.56
+  },
+  {
+   "word": "transformer",
+   "start": 30.56,
+   "end": 30.96
+  },
+  {
+   "word": "ton",
+   "start": 30.96,
+   "end": 31.12
+  },
+  {
+   "word": "compte",
+   "start": 31.12,
+   "end": 31.28
+  },
+  {
+   "word": "en",
+   "start": 31.28,
+   "end": 31.44
+  },
+  {
+   "word": "vitrine",
+   "start": 31.44,
+   "end": 31.92
+  },
+  {
+   "word": "?",
+   "start": 31.92,
+   "end": 32.08
+  },
+  {
+   "word": "Elle",
+   "start": 32.08,
+   "end": 32.32
+  },
+  {
+   "word": "est",
+   "start": 32.32,
+   "end": 32.4
+  },
+  {
+   "word": "dans",
+   "start": 32.4,
+   "end": 32.48
+  },
+  {
+   "word": "le",
+   "start": 32.48,
+   "end": 32.56
+  },
+  {
+   "word": "lien",
+   "start": 32.56,
+   "end": 32.8
+  },
+  {
+   "word": "en",
+   "start": 32.8,
+   "end": 32.88
+  },
+  {
+   "word": "bio.",
+   "start": 32.88,
+   "end": 33.36
+  }
+ ]
+}

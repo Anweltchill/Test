@@ -1,0 +1,550 @@
+{
+ "duration": 28.44,
+ "words": [
+  {
+   "word": "Tu",
+   "start": 0.0,
+   "end": 0.16
+  },
+  {
+   "word": "peux",
+   "start": 0.16,
+   "end": 0.32
+  },
+  {
+   "word": "faire",
+   "start": 0.32,
+   "end": 0.48
+  },
+  {
+   "word": "de",
+   "start": 0.48,
+   "end": 0.56
+  },
+  {
+   "word": "l'UGC",
+   "start": 0.56,
+   "end": 1.36
+  },
+  {
+   "word": "sans",
+   "start": 1.44,
+   "end": 1.68
+  },
+  {
+   "word": "quitter",
+   "start": 1.68,
+   "end": 2.08
+  },
+  {
+   "word": "ton",
+   "start": 2.08,
+   "end": 2.24
+  },
+  {
+   "word": "travail",
+   "start": 2.24,
+   "end": 2.56
+  },
+  {
+   "word": "?",
+   "start": 2.56,
+   "end": 2.8
+  },
+  {
+   "word": "Oui",
+   "start": 2.8,
+   "end": 3.04
+  },
+  {
+   "word": "!",
+   "start": 3.04,
+   "end": 3.28
+  },
+  {
+   "word": "Et",
+   "start": 3.28,
+   "end": 3.44
+  },
+  {
+   "word": "c'est",
+   "start": 3.44,
+   "end": 3.68
+  },
+  {
+   "word": "même",
+   "start": 3.68,
+   "end": 3.92
+  },
+  {
+   "word": "comme",
+   "start": 3.92,
+   "end": 4.08
+  },
+  {
+   "word": "ça",
+   "start": 4.08,
+   "end": 4.24
+  },
+  {
+   "word": "que",
+   "start": 4.24,
+   "end": 4.4
+  },
+  {
+   "word": "beaucoup",
+   "start": 4.4,
+   "end": 4.8
+  },
+  {
+   "word": "commencent.",
+   "start": 4.8,
+   "end": 5.36
+  },
+  {
+   "word": "Une",
+   "start": 5.36,
+   "end": 5.6
+  },
+  {
+   "word": "vidéo",
+   "start": 5.6,
+   "end": 6.0
+  },
+  {
+   "word": "UGC,",
+   "start": 6.0,
+   "end": 6.64
+  },
+  {
+   "word": "ça",
+   "start": 6.64,
+   "end": 6.8
+  },
+  {
+   "word": "se",
+   "start": 6.8,
+   "end": 6.96
+  },
+  {
+   "word": "tourne",
+   "start": 6.96,
+   "end": 7.28
+  },
+  {
+   "word": "chez",
+   "start": 7.28,
+   "end": 7.44
+  },
+  {
+   "word": "toi,",
+   "start": 7.44,
+   "end": 7.76
+  },
+  {
+   "word": "le",
+   "start": 7.76,
+   "end": 7.92
+  },
+  {
+   "word": "soir",
+   "start": 7.92,
+   "end": 8.24
+  },
+  {
+   "word": "ou",
+   "start": 8.24,
+   "end": 8.4
+  },
+  {
+   "word": "le",
+   "start": 8.4,
+   "end": 8.56
+  },
+  {
+   "word": "week-end.",
+   "start": 8.56,
+   "end": 9.12
+  },
+  {
+   "word": "Ça",
+   "start": 9.12,
+   "end": 9.36
+  },
+  {
+   "word": "se",
+   "start": 9.36,
+   "end": 9.44
+  },
+  {
+   "word": "monte",
+   "start": 9.44,
+   "end": 9.84
+  },
+  {
+   "word": "depuis",
+   "start": 9.84,
+   "end": 10.08
+  },
+  {
+   "word": "ton",
+   "start": 10.08,
+   "end": 10.24
+  },
+  {
+   "word": "téléphone.",
+   "start": 10.24,
+   "end": 10.8
+  },
+  {
+   "word": "Et",
+   "start": 10.8,
+   "end": 10.96
+  },
+  {
+   "word": "c'est",
+   "start": 10.96,
+   "end": 11.2
+  },
+  {
+   "word": "toi",
+   "start": 11.2,
+   "end": 11.36
+  },
+  {
+   "word": "qui",
+   "start": 11.36,
+   "end": 11.52
+  },
+  {
+   "word": "choisis",
+   "start": 11.52,
+   "end": 12.0
+  },
+  {
+   "word": "les",
+   "start": 12.0,
+   "end": 12.08
+  },
+  {
+   "word": "collaborations",
+   "start": 12.08,
+   "end": 12.56
+  },
+  {
+   "word": "que",
+   "start": 12.56,
+   "end": 12.64
+  },
+  {
+   "word": "tu",
+   "start": 12.64,
+   "end": 12.88
+  },
+  {
+   "word": "acceptes.",
+   "start": 12.88,
+   "end": 13.4
+  },
+  {
+   "word": "Tu",
+   "start": 13.4,
+   "end": 13.64
+  },
+  {
+   "word": "avances",
+   "start": 13.64,
+   "end": 14.12
+  },
+  {
+   "word": "à",
+   "start": 14.12,
+   "end": 14.2
+  },
+  {
+   "word": "ton",
+   "start": 14.2,
+   "end": 14.36
+  },
+  {
+   "word": "rythme.",
+   "start": 14.36,
+   "end": 14.92
+  },
+  {
+   "word": "D'abord",
+   "start": 14.92,
+   "end": 15.32
+  },
+  {
+   "word": "quelques",
+   "start": 15.32,
+   "end": 15.64
+  },
+  {
+   "word": "collaborations",
+   "start": 15.64,
+   "end": 16.2
+  },
+  {
+   "word": "pour",
+   "start": 16.2,
+   "end": 16.36
+  },
+  {
+   "word": "te",
+   "start": 16.36,
+   "end": 16.52
+  },
+  {
+   "word": "faire",
+   "start": 16.52,
+   "end": 16.68
+  },
+  {
+   "word": "la",
+   "start": 16.68,
+   "end": 16.84
+  },
+  {
+   "word": "main,",
+   "start": 16.84,
+   "end": 17.24
+  },
+  {
+   "word": "puis",
+   "start": 17.24,
+   "end": 17.48
+  },
+  {
+   "word": "tes",
+   "start": 17.48,
+   "end": 17.64
+  },
+  {
+   "word": "premiers",
+   "start": 17.64,
+   "end": 17.96
+  },
+  {
+   "word": "tarifs,",
+   "start": 17.96,
+   "end": 18.52
+  },
+  {
+   "word": "puis",
+   "start": 18.52,
+   "end": 18.76
+  },
+  {
+   "word": "des",
+   "start": 18.76,
+   "end": 18.92
+  },
+  {
+   "word": "clients",
+   "start": 18.92,
+   "end": 19.24
+  },
+  {
+   "word": "qui",
+   "start": 19.24,
+   "end": 19.4
+  },
+  {
+   "word": "reviennent.",
+   "start": 19.4,
+   "end": 19.96
+  },
+  {
+   "word": "Ce",
+   "start": 19.96,
+   "end": 20.2
+  },
+  {
+   "word": "qui",
+   "start": 20.2,
+   "end": 20.36
+  },
+  {
+   "word": "compte,",
+   "start": 20.36,
+   "end": 20.76
+  },
+  {
+   "word": "ce",
+   "start": 20.76,
+   "end": 20.92
+  },
+  {
+   "word": "n'est",
+   "start": 20.92,
+   "end": 21.08
+  },
+  {
+   "word": "pas",
+   "start": 21.08,
+   "end": 21.24
+  },
+  {
+   "word": "le",
+   "start": 21.24,
+   "end": 21.32
+  },
+  {
+   "word": "temps",
+   "start": 21.32,
+   "end": 21.48
+  },
+  {
+   "word": "que",
+   "start": 21.48,
+   "end": 21.64
+  },
+  {
+   "word": "tu",
+   "start": 21.64,
+   "end": 21.8
+  },
+  {
+   "word": "as.",
+   "start": 21.8,
+   "end": 22.12
+  },
+  {
+   "word": "C'est",
+   "start": 22.12,
+   "end": 22.44
+  },
+  {
+   "word": "d'avoir",
+   "start": 22.44,
+   "end": 22.68
+  },
+  {
+   "word": "une",
+   "start": 22.68,
+   "end": 22.84
+  },
+  {
+   "word": "méthode",
+   "start": 22.84,
+   "end": 23.24
+  },
+  {
+   "word": "pour",
+   "start": 23.24,
+   "end": 23.4
+  },
+  {
+   "word": "ne",
+   "start": 23.4,
+   "end": 23.56
+  },
+  {
+   "word": "pas",
+   "start": 23.56,
+   "end": 23.72
+  },
+  {
+   "word": "le",
+   "start": 23.72,
+   "end": 23.8
+  },
+  {
+   "word": "perdre.",
+   "start": 23.8,
+   "end": 24.36
+  },
+  {
+   "word": "Notre",
+   "start": 24.36,
+   "end": 24.68
+  },
+  {
+   "word": "plan",
+   "start": 24.68,
+   "end": 24.92
+  },
+  {
+   "word": "pour",
+   "start": 24.92,
+   "end": 25.08
+  },
+  {
+   "word": "lancer",
+   "start": 25.08,
+   "end": 25.48
+  },
+  {
+   "word": "ton",
+   "start": 25.48,
+   "end": 25.64
+  },
+  {
+   "word": "activité",
+   "start": 25.64,
+   "end": 25.96
+  },
+  {
+   "word": "à",
+   "start": 25.96,
+   "end": 26.12
+  },
+  {
+   "word": "côté",
+   "start": 26.12,
+   "end": 26.36
+  },
+  {
+   "word": "de",
+   "start": 26.36,
+   "end": 26.44
+  },
+  {
+   "word": "ton",
+   "start": 26.44,
+   "end": 26.6
+  },
+  {
+   "word": "emploi",
+   "start": 26.6,
+   "end": 26.92
+  },
+  {
+   "word": "?",
+   "start": 26.92,
+   "end": 27.16
+  },
+  {
+   "word": "Clique",
+   "start": 27.16,
+   "end": 27.48
+  },
+  {
+   "word": "sur",
+   "start": 27.48,
+   "end": 27.56
+  },
+  {
+   "word": "le",
+   "start": 27.56,
+   "end": 27.64
+  },
+  {
+   "word": "lien",
+   "start": 27.64,
+   "end": 27.88
+  },
+  {
+   "word": "en",
+   "start": 27.88,
+   "end": 28.04
+  },
+  {
+   "word": "bio.",
+   "start": 28.04,
+   "end": 28.44
+  }
+ ]
+}

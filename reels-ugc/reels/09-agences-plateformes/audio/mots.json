@@ -1,0 +1,515 @@
+{
+ "duration": 34.11,
+ "words": [
+  {
+   "word": "Trouver",
+   "start": 0.0,
+   "end": 0.32
+  },
+  {
+   "word": "des",
+   "start": 0.32,
+   "end": 0.48
+  },
+  {
+   "word": "marques",
+   "start": 0.48,
+   "end": 0.72
+  },
+  {
+   "word": "toutes",
+   "start": 0.72,
+   "end": 0.96
+  },
+  {
+   "word": "seules,",
+   "start": 0.96,
+   "end": 1.36
+  },
+  {
+   "word": "c'est",
+   "start": 1.36,
+   "end": 1.6
+  },
+  {
+   "word": "long.",
+   "start": 1.6,
+   "end": 2.0
+  },
+  {
+   "word": "Mais",
+   "start": 2.0,
+   "end": 2.16
+  },
+  {
+   "word": "tu",
+   "start": 2.16,
+   "end": 2.32
+  },
+  {
+   "word": "savais",
+   "start": 2.32,
+   "end": 2.56
+  },
+  {
+   "word": "qu'il",
+   "start": 2.56,
+   "end": 2.8
+  },
+  {
+   "word": "existe",
+   "start": 2.8,
+   "end": 3.12
+  },
+  {
+   "word": "des",
+   "start": 3.12,
+   "end": 3.28
+  },
+  {
+   "word": "agences",
+   "start": 3.28,
+   "end": 3.68
+  },
+  {
+   "word": "et",
+   "start": 3.68,
+   "end": 3.76
+  },
+  {
+   "word": "des",
+   "start": 3.76,
+   "end": 3.84
+  },
+  {
+   "word": "plateformes",
+   "start": 3.84,
+   "end": 4.24
+  },
+  {
+   "word": "qui",
+   "start": 4.24,
+   "end": 4.32
+  },
+  {
+   "word": "t'apportent",
+   "start": 4.32,
+   "end": 4.8
+  },
+  {
+   "word": "des",
+   "start": 4.8,
+   "end": 4.88
+  },
+  {
+   "word": "briefs",
+   "start": 4.88,
+   "end": 5.28
+  },
+  {
+   "word": "?",
+   "start": 5.28,
+   "end": 5.44
+  },
+  {
+   "word": "Les",
+   "start": 5.44,
+   "end": 5.6
+  },
+  {
+   "word": "agences",
+   "start": 5.6,
+   "end": 6.0
+  },
+  {
+   "word": "UGC",
+   "start": 6.0,
+   "end": 6.64
+  },
+  {
+   "word": "se",
+   "start": 6.64,
+   "end": 6.8
+  },
+  {
+   "word": "multiplient.",
+   "start": 6.8,
+   "end": 7.6
+  },
+  {
+   "word": "Leurs",
+   "start": 7.6,
+   "end": 7.92
+  },
+  {
+   "word": "avantages.",
+   "start": 7.92,
+   "end": 8.72
+  },
+  {
+   "word": "Plus",
+   "start": 8.72,
+   "end": 9.04
+  },
+  {
+   "word": "d'opportunités,",
+   "start": 9.04,
+   "end": 9.84
+  },
+  {
+   "word": "des",
+   "start": 10.0,
+   "end": 10.16
+  },
+  {
+   "word": "partenariats",
+   "start": 10.16,
+   "end": 10.8
+  },
+  {
+   "word": "sous",
+   "start": 10.8,
+   "end": 11.04
+  },
+  {
+   "word": "contrat,",
+   "start": 11.04,
+   "end": 11.68
+  },
+  {
+   "word": "et",
+   "start": 11.68,
+   "end": 11.84
+  },
+  {
+   "word": "souvent",
+   "start": 11.84,
+   "end": 12.16
+  },
+  {
+   "word": "tu",
+   "start": 12.16,
+   "end": 12.4
+  },
+  {
+   "word": "n'as",
+   "start": 12.4,
+   "end": 12.64
+  },
+  {
+   "word": "qu'à",
+   "start": 12.64,
+   "end": 12.88
+  },
+  {
+   "word": "envoyer",
+   "start": 12.88,
+   "end": 13.2
+  },
+  {
+   "word": "tes",
+   "start": 13.2,
+   "end": 13.36
+  },
+  {
+   "word": "rushs,",
+   "start": 13.36,
+   "end": 13.92
+  },
+  {
+   "word": "sans",
+   "start": 13.92,
+   "end": 14.16
+  },
+  {
+   "word": "montage.",
+   "start": 14.16,
+   "end": 14.77
+  },
+  {
+   "word": "Les",
+   "start": 14.77,
+   "end": 15.01
+  },
+  {
+   "word": "plateformes,",
+   "start": 15.01,
+   "end": 15.65
+  },
+  {
+   "word": "elles,",
+   "start": 15.65,
+   "end": 16.05
+  },
+  {
+   "word": "simplifient",
+   "start": 16.05,
+   "end": 16.61
+  },
+  {
+   "word": "la",
+   "start": 16.61,
+   "end": 16.77
+  },
+  {
+   "word": "mise",
+   "start": 16.77,
+   "end": 16.93
+  },
+  {
+   "word": "en",
+   "start": 16.93,
+   "end": 17.09
+  },
+  {
+   "word": "relation",
+   "start": 17.09,
+   "end": 17.49
+  },
+  {
+   "word": "entre",
+   "start": 17.49,
+   "end": 17.81
+  },
+  {
+   "word": "créateur",
+   "start": 17.81,
+   "end": 18.37
+  },
+  {
+   "word": "et",
+   "start": 18.37,
+   "end": 18.53
+  },
+  {
+   "word": "marque.",
+   "start": 18.53,
+   "end": 19.09
+  },
+  {
+   "word": "Mais",
+   "start": 19.09,
+   "end": 19.33
+  },
+  {
+   "word": "y'a",
+   "start": 19.33,
+   "end": 19.57
+  },
+  {
+   "word": "un",
+   "start": 19.57,
+   "end": 19.73
+  },
+  {
+   "word": "revers.",
+   "start": 19.73,
+   "end": 20.45
+  },
+  {
+   "word": "Beaucoup",
+   "start": 20.45,
+   "end": 20.77
+  },
+  {
+   "word": "de",
+   "start": 20.77,
+   "end": 20.93
+  },
+  {
+   "word": "concurrence,",
+   "start": 20.93,
+   "end": 21.65
+  },
+  {
+   "word": "des",
+   "start": 21.65,
+   "end": 21.81
+  },
+  {
+   "word": "brief",
+   "start": 21.81,
+   "end": 22.21
+  },
+  {
+   "word": "très",
+   "start": 22.21,
+   "end": 22.45
+  },
+  {
+   "word": "cadrés,",
+   "start": 22.45,
+   "end": 23.09
+  },
+  {
+   "word": "parfois",
+   "start": 23.09,
+   "end": 23.49
+  },
+  {
+   "word": "une",
+   "start": 23.49,
+   "end": 23.65
+  },
+  {
+   "word": "commission.",
+   "start": 23.65,
+   "end": 24.45
+  },
+  {
+   "word": "Alors",
+   "start": 24.61,
+   "end": 24.93
+  },
+  {
+   "word": "laquelle",
+   "start": 24.93,
+   "end": 25.49
+  },
+  {
+   "word": "choisir",
+   "start": 25.49,
+   "end": 25.97
+  },
+  {
+   "word": "et",
+   "start": 25.97,
+   "end": 26.13
+  },
+  {
+   "word": "comment",
+   "start": 26.13,
+   "end": 26.53
+  },
+  {
+   "word": "te",
+   "start": 26.53,
+   "end": 26.69
+  },
+  {
+   "word": "démarquer",
+   "start": 26.69,
+   "end": 27.17
+  },
+  {
+   "word": "pour",
+   "start": 27.17,
+   "end": 27.33
+  },
+  {
+   "word": "être",
+   "start": 27.33,
+   "end": 27.49
+  },
+  {
+   "word": "sélectionnée",
+   "start": 27.49,
+   "end": 28.05
+  },
+  {
+   "word": "?",
+   "start": 28.05,
+   "end": 28.21
+  },
+  {
+   "word": "On",
+   "start": 28.21,
+   "end": 28.37
+  },
+  {
+   "word": "a",
+   "start": 28.37,
+   "end": 28.45
+  },
+  {
+   "word": "listé",
+   "start": 28.45,
+   "end": 28.85
+  },
+  {
+   "word": "les",
+   "start": 28.85,
+   "end": 28.93
+  },
+  {
+   "word": "agences",
+   "start": 28.93,
+   "end": 29.33
+  },
+  {
+   "word": "et",
+   "start": 29.33,
+   "end": 29.41
+  },
+  {
+   "word": "les",
+   "start": 29.41,
+   "end": 29.57
+  },
+  {
+   "word": "plateformes",
+   "start": 29.57,
+   "end": 29.97
+  },
+  {
+   "word": "pour",
+   "start": 29.97,
+   "end": 30.13
+  },
+  {
+   "word": "débuter,",
+   "start": 30.13,
+   "end": 30.69
+  },
+  {
+   "word": "avec",
+   "start": 30.69,
+   "end": 30.93
+  },
+  {
+   "word": "nos",
+   "start": 30.93,
+   "end": 31.17
+  },
+  {
+   "word": "conseils",
+   "start": 31.17,
+   "end": 31.57
+  },
+  {
+   "word": "pour",
+   "start": 31.57,
+   "end": 31.65
+  },
+  {
+   "word": "chacune.",
+   "start": 31.65,
+   "end": 32.21
+  },
+  {
+   "word": "Envoie-moi",
+   "start": 32.21,
+   "end": 32.85
+  },
+  {
+   "word": "liste",
+   "start": 32.85,
+   "end": 33.17
+  },
+  {
+   "word": "en",
+   "start": 33.17,
+   "end": 33.33
+  },
+  {
+   "word": "message",
+   "start": 33.33,
+   "end": 33.65
+  },
+  {
+   "word": "privé.",
+   "start": 33.65,
+   "end": 34.11
+  }
+ ]
+}

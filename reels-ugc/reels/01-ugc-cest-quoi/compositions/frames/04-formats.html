@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s4-cam { position: absolute; inset: 0; }
+        .s4-card { position: absolute; width: 420px; height: 440px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; }
+        .s4-ring { position: absolute; inset: -6px; border-radius: 40px; border: 5px solid #E2718D; opacity: 0; display: block; }
+        #s4-c1 { left: 76px; top: 340px; }
+        #s4-c2 { left: 528px; top: 340px; }
+        #s4-c3 { left: 76px; top: 820px; }
+        #s4-c4 { left: 528px; top: 820px; }
+        .s4-ic { width: 210px; height: 210px; display: block; }
+        .s4-lab { font-size: 44px; text-align: center; line-height: 1.1; display: block; }
+        .s4-num { position: absolute; left: 28px; top: 22px; font-size: 40px; color: #CC7183; display: block; }
+      </style>
+      <div id="root" data-composition-id="s4" data-width="1080" data-height="1920">
+        <div id="s4-cam" data-layout-allow-overflow>
+          <div id="s4-c1" class="s4-card card"><span class="s4-ring"></span><span class="s4-num t-serif">1</span>
+            <svg class="s4-ic" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#E6BDC1" /><rect x="22" y="12" width="20" height="40" rx="4" stroke="#0E1928" stroke-width="2.6" /><path d="M29 26v12l9-6z" fill="#CC7183" /><path d="M14 26l-4-2M14 38l-4 2M50 26l4-2M50 38l4 2" stroke="#CC7183" stroke-width="2.4" stroke-linecap="round" /></svg>
+            <span class="s4-lab t-serif">Test produit</span></div>
+          <div id="s4-c2" class="s4-card card"><span class="s4-ring"></span><span class="s4-num t-serif">2</span>
+            <svg class="s4-ic" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#C2C7DD" /><path d="M32 13l3.2 9.6L45 26l-9.8 3.4L32 39l-3.2-9.6L19 26l9.8-3.4z" stroke="#0E1928" stroke-width="2.4" stroke-linejoin="round" /><path d="M44 38l1.6 4.6L50 44l-4.4 1.4L44 50l-1.6-4.6L38 44l4.4-1.4z" fill="#CC7183" /></svg>
+            <span class="s4-lab t-serif">Routine</span></div>
+          <div id="s4-c3" class="s4-card card"><span class="s4-ring"></span><span class="s4-num t-serif">3</span>
+            <svg class="s4-ic" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#C2C7DD" /><path d="M16 26l16-8 16 8v16l-16 8-16-8z" stroke="#0E1928" stroke-width="2.6" stroke-linejoin="round" /><path d="M16 26l16 8 16-8M32 34v16" stroke="#0E1928" stroke-width="2.6" stroke-linejoin="round" /><path d="M24 22l16 8" stroke="#CC7183" stroke-width="2.6" stroke-linecap="round" /></svg>
+            <span class="s4-lab t-serif">Unboxing</span></div>
+          <div id="s4-c4" class="s4-card card"><span class="s4-ring"></span><span class="s4-num t-serif">4</span>
+            <svg class="s4-ic" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#E6BDC1" /><path d="M14 18h36a3 3 0 0 1 3 3v19a3 3 0 0 1-3 3H30l-9 8v-8h-7a3 3 0 0 1-3-3V21a3 3 0 0 1 3-3z" stroke="#0E1928" stroke-width="2.6" stroke-linejoin="round" /><path d="M32 37s-8-4.6-8-9.5a4.2 4.2 0 0 1 8-1.8 4.2 4.2 0 0 1 8 1.8c0 4.9-8 9.5-8 9.5z" fill="#CC7183" /></svg>
+            <span class="s4-lab t-serif">Avis face caméra</span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 13.1, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « test produit » 13.28 · « routine » 14.48 · « unboxing » 15.28 · « avis face caméra » 16.24
+          tl.fromTo("#s4-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.32, ease: "power3.out" }, 0);
+          const cards = ["#s4-c1", "#s4-c2", "#s4-c3", "#s4-c4"], times = [13.12, 14.33, 15.13, 16.08];
+          cards.forEach((c, i) => {
+            tl.fromTo(c, { scale: 0.4, opacity: 0, rotation: i % 2 ? 6 : -6 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.55, ease: "back.out(1.9)" }, at(times[i]));
+            tl.fromTo(c + " .s4-ic", { rotation: -25, scale: 0.7 }, { rotation: 0, scale: 1, duration: 0.6, ease: "back.out(2.4)" }, at(times[i] + 0.08));
+            tl.fromTo(c + " .s4-ring", { opacity: 0 }, { opacity: 1, duration: 0.2 }, at(times[i] + 0.1));
+            if (i > 0) {
+              tl.to(cards[i - 1] + " .s4-ring", { opacity: 0, duration: 0.25 }, at(times[i] + 0.1));
+              tl.to(cards[i - 1], { scale: 0.96, duration: 0.25 }, at(times[i] + 0.1));
+            }
+          });
+          tl.fromTo("#s4-cam", { scale: 1 }, { scale: 1.04, duration: 3.6, ease: "none", immediateRender: false }, at(13.4));
+          tl.to("#s4-cam", { y: -300, scale: 1.3, opacity: 0, filter: "blur(14px)", duration: 0.3, ease: "power3.in" }, at(17.05));
+          window.__timelines["s4"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

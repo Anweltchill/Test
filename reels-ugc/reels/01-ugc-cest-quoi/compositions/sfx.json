@@ -1,0 +1,11 @@
+[{"t":0.25,"sound":"whoosh-short","vol":0.35},{"t":1.1,"sound":"pop","vol":0.4},{"t":1.25,"sound":"whoosh","vol":0.3},{"t":1.68,"sound":"click-soft","vol":0.45},
+ {"t":4.0,"sound":"whoosh-short","vol":0.3},{"t":4.25,"sound":"whoosh","vol":0.4},{"t":5.55,"sound":"impact-bass-1","vol":0.35},{"t":6.2,"sound":"sparkle","vol":0.25},
+ {"t":6.97,"sound":"click-soft","vol":0.3},{"t":7.45,"sound":"click-soft","vol":0.3},{"t":8.09,"sound":"click-soft","vol":0.3},{"t":8.55,"sound":"whoosh-short","vol":0.35},
+ {"t":9.45,"sound":"chime","vol":0.25},{"t":10.3,"sound":"pop","vol":0.3},{"t":10.42,"sound":"pop","vol":0.3},{"t":10.54,"sound":"pop","vol":0.3},{"t":10.66,"sound":"pop","vol":0.3},
+ {"t":12.35,"sound":"ping","vol":0.35},{"t":12.82,"sound":"whoosh","vol":0.4},
+ {"t":13.12,"sound":"pop","vol":0.4},{"t":14.33,"sound":"pop","vol":0.4},{"t":15.13,"sound":"pop","vol":0.4},{"t":16.08,"sound":"pop","vol":0.4},{"t":17.05,"sound":"whoosh-short","vol":0.35},
+ {"t":18.0,"sound":"sparkle","vol":0.35},{"t":19.4,"sound":"whoosh-short","vol":0.3},{"t":19.75,"sound":"ping","vol":0.3},{"t":20.6,"sound":"whoosh-short","vol":0.3},{"t":21.0,"sound":"click","vol":0.5},{"t":21.2,"sound":"whoosh","vol":0.35},
+ {"t":21.6,"sound":"pop","vol":0.35},{"t":22.7,"sound":"typing","vol":0.2},{"t":23.85,"sound":"error","vol":0.25},{"t":25.05,"sound":"chime","vol":0.25},{"t":25.9,"sound":"whoosh-short","vol":0.35},
+ {"t":27.0,"sound":"pop","vol":0.35},{"t":27.85,"sound":"ping","vol":0.3},{"t":28.8,"sound":"ping","vol":0.3},{"t":29.75,"sound":"ping","vol":0.3},{"t":30.7,"sound":"whoosh-short","vol":0.3},
+ {"t":31.0,"sound":"riser","vol":0.25},{"t":31.6,"sound":"impact-bass-2","vol":0.3},{"t":32.25,"sound":"sparkle","vol":0.3},{"t":33.32,"sound":"whoosh","vol":0.4},
+ {"t":34.0,"sound":"notification","vol":0.3},{"t":35.25,"sound":"click","vol":0.55},{"t":35.75,"sound":"whoosh-short","vol":0.3},{"t":35.95,"sound":"chime","vol":0.3},{"t":37.25,"sound":"sparkle","vol":0.3}]

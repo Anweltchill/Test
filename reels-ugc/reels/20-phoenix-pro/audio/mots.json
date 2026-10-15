@@ -1,0 +1,495 @@
+{
+ "duration": 33.701,
+ "words": [
+  {
+   "word": "On",
+   "start": 0.0,
+   "end": 0.16
+  },
+  {
+   "word": "ne",
+   "start": 0.16,
+   "end": 0.24
+  },
+  {
+   "word": "parle",
+   "start": 0.24,
+   "end": 0.4
+  },
+  {
+   "word": "pas",
+   "start": 0.4,
+   "end": 0.56
+  },
+  {
+   "word": "de",
+   "start": 0.56,
+   "end": 0.72
+  },
+  {
+   "word": "rêve,",
+   "start": 0.72,
+   "end": 1.28
+  },
+  {
+   "word": "on",
+   "start": 1.28,
+   "end": 1.44
+  },
+  {
+   "word": "parle",
+   "start": 1.44,
+   "end": 1.76
+  },
+  {
+   "word": "de",
+   "start": 1.76,
+   "end": 1.92
+  },
+  {
+   "word": "résultat.",
+   "start": 1.92,
+   "end": 2.67
+  },
+  {
+   "word": "Phoenix",
+   "start": 2.67,
+   "end": 3.23
+  },
+  {
+   "word": "Pro,",
+   "start": 3.23,
+   "end": 3.55
+  },
+  {
+   "word": "c'est",
+   "start": 3.55,
+   "end": 3.71
+  },
+  {
+   "word": "l'espace",
+   "start": 3.71,
+   "end": 4.11
+  },
+  {
+   "word": "pour",
+   "start": 4.11,
+   "end": 4.27
+  },
+  {
+   "word": "celles",
+   "start": 4.27,
+   "end": 4.51
+  },
+  {
+   "word": "et",
+   "start": 4.51,
+   "end": 4.67
+  },
+  {
+   "word": "ceux",
+   "start": 4.67,
+   "end": 4.83
+  },
+  {
+   "word": "qui",
+   "start": 4.83,
+   "end": 4.99
+  },
+  {
+   "word": "veulent",
+   "start": 4.99,
+   "end": 5.23
+  },
+  {
+   "word": "se",
+   "start": 5.23,
+   "end": 5.31
+  },
+  {
+   "word": "lancer",
+   "start": 5.31,
+   "end": 5.55
+  },
+  {
+   "word": "dans",
+   "start": 5.55,
+   "end": 5.63
+  },
+  {
+   "word": "l'UGC,",
+   "start": 5.63,
+   "end": 6.43
+  },
+  {
+   "word": "gagner",
+   "start": 6.51,
+   "end": 6.83
+  },
+  {
+   "word": "en",
+   "start": 6.83,
+   "end": 6.99
+  },
+  {
+   "word": "liberté",
+   "start": 6.99,
+   "end": 7.55
+  },
+  {
+   "word": "et",
+   "start": 7.55,
+   "end": 7.71
+  },
+  {
+   "word": "entreprendre",
+   "start": 7.71,
+   "end": 8.35
+  },
+  {
+   "word": "autrement.",
+   "start": 8.35,
+   "end": 8.99
+  },
+  {
+   "word": "Une",
+   "start": 8.99,
+   "end": 9.23
+  },
+  {
+   "word": "formation",
+   "start": 9.23,
+   "end": 9.63
+  },
+  {
+   "word": "claire,",
+   "start": 9.63,
+   "end": 10.11
+  },
+  {
+   "word": "avec",
+   "start": 10.11,
+   "end": 10.35
+  },
+  {
+   "word": "des",
+   "start": 10.35,
+   "end": 10.51
+  },
+  {
+   "word": "méthodes",
+   "start": 10.51,
+   "end": 10.91
+  },
+  {
+   "word": "simples",
+   "start": 10.91,
+   "end": 11.23
+  },
+  {
+   "word": "à",
+   "start": 11.23,
+   "end": 11.39
+  },
+  {
+   "word": "appliquer",
+   "start": 11.39,
+   "end": 11.87
+  },
+  {
+   "word": "dès",
+   "start": 11.87,
+   "end": 12.11
+  },
+  {
+   "word": "aujourd'hui.",
+   "start": 12.11,
+   "end": 12.75
+  },
+  {
+   "word": "Une",
+   "start": 12.75,
+   "end": 12.91
+  },
+  {
+   "word": "communauté",
+   "start": 12.91,
+   "end": 13.55
+  },
+  {
+   "word": "présente.",
+   "start": 13.55,
+   "end": 14.27
+  },
+  {
+   "word": "Tu",
+   "start": 14.27,
+   "end": 14.43
+  },
+  {
+   "word": "n'es",
+   "start": 14.43,
+   "end": 14.83
+  },
+  {
+   "word": "jamais",
+   "start": 14.83,
+   "end": 15.15
+  },
+  {
+   "word": "seul.",
+   "start": 15.15,
+   "end": 15.55
+  },
+  {
+   "word": "On",
+   "start": 15.55,
+   "end": 15.79
+  },
+  {
+   "word": "avance",
+   "start": 15.79,
+   "end": 16.27
+  },
+  {
+   "word": "ensemble.",
+   "start": 16.27,
+   "end": 16.91
+  },
+  {
+   "word": "And",
+   "start": 16.91,
+   "end": 17.07
+  },
+  {
+   "word": "an",
+   "start": 17.07,
+   "end": 17.31
+  },
+  {
+   "word": "accompagnement",
+   "start": 17.31,
+   "end": 18.03
+  },
+  {
+   "word": "pensé",
+   "start": 18.03,
+   "end": 18.51
+  },
+  {
+   "word": "pour",
+   "start": 18.51,
+   "end": 18.67
+  },
+  {
+   "word": "toi,",
+   "start": 18.67,
+   "end": 19.15
+  },
+  {
+   "word": "avec",
+   "start": 19.15,
+   "end": 19.39
+  },
+  {
+   "word": "des",
+   "start": 19.39,
+   "end": 19.55
+  },
+  {
+   "word": "conseils",
+   "start": 19.55,
+   "end": 20.03
+  },
+  {
+   "word": "personnalisés",
+   "start": 20.03,
+   "end": 20.75
+  },
+  {
+   "word": "and",
+   "start": 20.75,
+   "end": 20.91
+  },
+  {
+   "word": "a",
+   "start": 20.91,
+   "end": 21.07
+  },
+  {
+   "word": "very",
+   "start": 21.07,
+   "end": 21.31
+  },
+  {
+   "word": "suivi.",
+   "start": 21.31,
+   "end": 22.11
+  },
+  {
+   "word": "Apprene.",
+   "start": 22.11,
+   "end": 22.91
+  },
+  {
+   "word": "Passer",
+   "start": 22.91,
+   "end": 23.23
+  },
+  {
+   "word": "à",
+   "start": 23.23,
+   "end": 23.31
+  },
+  {
+   "word": "l'action.",
+   "start": 23.31,
+   "end": 24.03
+  },
+  {
+   "word": "Obtener",
+   "start": 24.03,
+   "end": 24.51
+  },
+  {
+   "word": "des",
+   "start": 24.51,
+   "end": 24.67
+  },
+  {
+   "word": "resultats.",
+   "start": 24.67,
+   "end": 25.47
+  },
+  {
+   "word": "Notre",
+   "start": 25.68,
+   "end": 26.08
+  },
+  {
+   "word": "mission",
+   "start": 26.08,
+   "end": 26.4
+  },
+  {
+   "word": "?",
+   "start": 26.4,
+   "end": 26.64
+  },
+  {
+   "word": "T'aider",
+   "start": 26.64,
+   "end": 27.12
+  },
+  {
+   "word": "à",
+   "start": 27.12,
+   "end": 27.2
+  },
+  {
+   "word": "développer",
+   "start": 27.2,
+   "end": 27.6
+  },
+  {
+   "word": "ton",
+   "start": 27.6,
+   "end": 27.76
+  },
+  {
+   "word": "mindset",
+   "start": 27.76,
+   "end": 28.32
+  },
+  {
+   "word": "et",
+   "start": 28.32,
+   "end": 28.48
+  },
+  {
+   "word": "à",
+   "start": 28.48,
+   "end": 28.56
+  },
+  {
+   "word": "construire",
+   "start": 28.56,
+   "end": 28.96
+  },
+  {
+   "word": "un",
+   "start": 28.96,
+   "end": 29.04
+  },
+  {
+   "word": "business",
+   "start": 29.04,
+   "end": 29.44
+  },
+  {
+   "word": "aligné",
+   "start": 29.44,
+   "end": 30.08
+  },
+  {
+   "word": "avec",
+   "start": 30.08,
+   "end": 30.24
+  },
+  {
+   "word": "toi.",
+   "start": 30.24,
+   "end": 30.64
+  },
+  {
+   "word": "Ton",
+   "start": 30.64,
+   "end": 30.88
+  },
+  {
+   "word": "évolution",
+   "start": 30.88,
+   "end": 31.44
+  },
+  {
+   "word": "commence",
+   "start": 31.44,
+   "end": 31.92
+  },
+  {
+   "word": "ici.",
+   "start": 31.92,
+   "end": 32.4
+  },
+  {
+   "word": "Clique",
+   "start": 32.4,
+   "end": 32.72
+  },
+  {
+   "word": "sur",
+   "start": 32.72,
+   "end": 32.88
+  },
+  {
+   "word": "le",
+   "start": 32.88,
+   "end": 32.96
+  },
+  {
+   "word": "lien",
+   "start": 32.96,
+   "end": 33.2
+  },
+  {
+   "word": "en",
+   "start": 33.2,
+   "end": 33.36
+  },
+  {
+   "word": "bio.",
+   "start": 33.36,
+   "end": 33.701
+  }
+ ]
+}

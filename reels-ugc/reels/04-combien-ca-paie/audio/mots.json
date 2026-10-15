@@ -1,0 +1,540 @@
+{
+ "duration": 34.03,
+ "words": [
+  {
+   "word": "Combien",
+   "start": 0.0,
+   "end": 0.32
+  },
+  {
+   "word": "on",
+   "start": 0.32,
+   "end": 0.4
+  },
+  {
+   "word": "peut",
+   "start": 0.4,
+   "end": 0.56
+  },
+  {
+   "word": "facturer",
+   "start": 0.56,
+   "end": 0.96
+  },
+  {
+   "word": "une",
+   "start": 0.96,
+   "end": 1.04
+  },
+  {
+   "word": "vidéo",
+   "start": 1.04,
+   "end": 1.36
+  },
+  {
+   "word": "UGC",
+   "start": 1.36,
+   "end": 1.92
+  },
+  {
+   "word": "?",
+   "start": 1.92,
+   "end": 2.56
+  },
+  {
+   "word": "Un",
+   "start": 2.56,
+   "end": 2.72
+  },
+  {
+   "word": "ordre",
+   "start": 2.72,
+   "end": 2.96
+  },
+  {
+   "word": "d'idée,",
+   "start": 2.96,
+   "end": 3.6
+  },
+  {
+   "word": "une",
+   "start": 3.6,
+   "end": 3.76
+  },
+  {
+   "word": "vidéo",
+   "start": 3.76,
+   "end": 4.08
+  },
+  {
+   "word": "organique,",
+   "start": 4.08,
+   "end": 4.64
+  },
+  {
+   "word": "c'est",
+   "start": 4.64,
+   "end": 4.88
+  },
+  {
+   "word": "souvent",
+   "start": 4.88,
+   "end": 5.2
+  },
+  {
+   "word": "autour",
+   "start": 5.2,
+   "end": 5.44
+  },
+  {
+   "word": "de",
+   "start": 5.44,
+   "end": 5.6
+  },
+  {
+   "word": "100",
+   "start": 5.6,
+   "end": 6.0
+  },
+  {
+   "word": "à",
+   "start": 6.0,
+   "end": 6.16
+  },
+  {
+   "word": "150€.",
+   "start": 6.16,
+   "end": 6.96
+  },
+  {
+   "word": "Une",
+   "start": 7.12,
+   "end": 7.28
+  },
+  {
+   "word": "vidéo",
+   "start": 7.28,
+   "end": 7.6
+  },
+  {
+   "word": "pour",
+   "start": 7.6,
+   "end": 7.76
+  },
+  {
+   "word": "la",
+   "start": 7.76,
+   "end": 7.92
+  },
+  {
+   "word": "publicité,",
+   "start": 7.92,
+   "end": 8.64
+  },
+  {
+   "word": "plutôt",
+   "start": 8.64,
+   "end": 9.12
+  },
+  {
+   "word": "150",
+   "start": 9.12,
+   "end": 9.84
+  },
+  {
+   "word": "à",
+   "start": 9.84,
+   "end": 9.92
+  },
+  {
+   "word": "200.",
+   "start": 9.92,
+   "end": 10.48
+  },
+  {
+   "word": "Et",
+   "start": 10.48,
+   "end": 10.64
+  },
+  {
+   "word": "ça,",
+   "start": 10.64,
+   "end": 11.04
+  },
+  {
+   "word": "c'est",
+   "start": 11.04,
+   "end": 11.28
+  },
+  {
+   "word": "seulement",
+   "start": 11.28,
+   "end": 11.68
+  },
+  {
+   "word": "la",
+   "start": 11.68,
+   "end": 11.84
+  },
+  {
+   "word": "base",
+   "start": 11.84,
+   "end": 12.16
+  },
+  {
+   "word": "!",
+   "start": 12.16,
+   "end": 12.35
+  },
+  {
+   "word": "Parce",
+   "start": 12.35,
+   "end": 12.59
+  },
+  {
+   "word": "qu'il",
+   "start": 12.59,
+   "end": 12.83
+  },
+  {
+   "word": "existe",
+   "start": 12.83,
+   "end": 13.15
+  },
+  {
+   "word": "des",
+   "start": 13.15,
+   "end": 13.23
+  },
+  {
+   "word": "leviers",
+   "start": 13.23,
+   "end": 13.79
+  },
+  {
+   "word": "pour",
+   "start": 13.79,
+   "end": 13.95
+  },
+  {
+   "word": "augmenter",
+   "start": 13.95,
+   "end": 14.43
+  },
+  {
+   "word": "ta",
+   "start": 14.43,
+   "end": 14.59
+  },
+  {
+   "word": "facture",
+   "start": 14.59,
+   "end": 15.07
+  },
+  {
+   "word": "sans",
+   "start": 15.07,
+   "end": 15.39
+  },
+  {
+   "word": "chercher",
+   "start": 15.39,
+   "end": 15.79
+  },
+  {
+   "word": "un",
+   "start": 15.79,
+   "end": 15.87
+  },
+  {
+   "word": "nouveau",
+   "start": 15.87,
+   "end": 16.11
+  },
+  {
+   "word": "client.",
+   "start": 16.11,
+   "end": 16.75
+  },
+  {
+   "word": "Des",
+   "start": 16.75,
+   "end": 16.91
+  },
+  {
+   "word": "options,",
+   "start": 16.91,
+   "end": 17.47
+  },
+  {
+   "word": "des",
+   "start": 17.47,
+   "end": 17.71
+  },
+  {
+   "word": "packs,",
+   "start": 17.71,
+   "end": 18.35
+  },
+  {
+   "word": "des",
+   "start": 18.35,
+   "end": 18.51
+  },
+  {
+   "word": "services",
+   "start": 18.51,
+   "end": 18.91
+  },
+  {
+   "word": "en",
+   "start": 18.91,
+   "end": 19.07
+  },
+  {
+   "word": "plus",
+   "start": 19.07,
+   "end": 19.31
+  },
+  {
+   "word": "que",
+   "start": 19.31,
+   "end": 19.47
+  },
+  {
+   "word": "beaucoup",
+   "start": 19.47,
+   "end": 19.71
+  },
+  {
+   "word": "de",
+   "start": 19.71,
+   "end": 19.87
+  },
+  {
+   "word": "débutantes",
+   "start": 19.87,
+   "end": 20.51
+  },
+  {
+   "word": "oublient",
+   "start": 20.51,
+   "end": 20.91
+  },
+  {
+   "word": "de",
+   "start": 20.91,
+   "end": 20.99
+  },
+  {
+   "word": "proposer.",
+   "start": 20.99,
+   "end": 21.71
+  },
+  {
+   "word": "Attention,",
+   "start": 21.71,
+   "end": 22.27
+  },
+  {
+   "word": "rien",
+   "start": 22.27,
+   "end": 22.51
+  },
+  {
+   "word": "n'est",
+   "start": 22.51,
+   "end": 22.75
+  },
+  {
+   "word": "garanti,",
+   "start": 22.75,
+   "end": 23.39
+  },
+  {
+   "word": "ça",
+   "start": 23.39,
+   "end": 23.55
+  },
+  {
+   "word": "dépend",
+   "start": 23.55,
+   "end": 23.87
+  },
+  {
+   "word": "de",
+   "start": 23.87,
+   "end": 24.03
+  },
+  {
+   "word": "ton",
+   "start": 24.03,
+   "end": 24.19
+  },
+  {
+   "word": "expérience,",
+   "start": 24.19,
+   "end": 24.83
+  },
+  {
+   "word": "de",
+   "start": 24.83,
+   "end": 24.99
+  },
+  {
+   "word": "ta",
+   "start": 24.99,
+   "end": 25.15
+  },
+  {
+   "word": "négociation,",
+   "start": 25.15,
+   "end": 25.95
+  },
+  {
+   "word": "de",
+   "start": 25.95,
+   "end": 26.11
+  },
+  {
+   "word": "la",
+   "start": 26.11,
+   "end": 26.27
+  },
+  {
+   "word": "marque.",
+   "start": 26.27,
+   "end": 26.83
+  },
+  {
+   "word": "Mais",
+   "start": 26.83,
+   "end": 27.07
+  },
+  {
+   "word": "bien",
+   "start": 27.07,
+   "end": 27.31
+  },
+  {
+   "word": "construire",
+   "start": 27.31,
+   "end": 27.71
+  },
+  {
+   "word": "ces",
+   "start": 27.71,
+   "end": 27.95
+  },
+  {
+   "word": "tarifs",
+   "start": 27.95,
+   "end": 28.35
+  },
+  {
+   "word": "dès",
+   "start": 28.35,
+   "end": 28.51
+  },
+  {
+   "word": "le",
+   "start": 28.51,
+   "end": 28.59
+  },
+  {
+   "word": "départ,",
+   "start": 28.59,
+   "end": 28.99
+  },
+  {
+   "word": "ça",
+   "start": 28.99,
+   "end": 29.23
+  },
+  {
+   "word": "change",
+   "start": 29.23,
+   "end": 29.55
+  },
+  {
+   "word": "tout.",
+   "start": 29.55,
+   "end": 29.95
+  },
+  {
+   "word": "Tu",
+   "start": 29.95,
+   "end": 30.11
+  },
+  {
+   "word": "veux",
+   "start": 30.11,
+   "end": 30.35
+  },
+  {
+   "word": "la",
+   "start": 30.35,
+   "end": 30.43
+  },
+  {
+   "word": "méthode",
+   "start": 30.43,
+   "end": 30.75
+  },
+  {
+   "word": "complète",
+   "start": 30.75,
+   "end": 30.99
+  },
+  {
+   "word": "pour",
+   "start": 30.99,
+   "end": 31.15
+  },
+  {
+   "word": "fix",
+   "start": 31.15,
+   "end": 31.47
+  },
+  {
+   "word": "tes",
+   "start": 31.47,
+   "end": 31.63
+  },
+  {
+   "word": "prix",
+   "start": 31.63,
+   "end": 31.79
+  },
+  {
+   "word": "?",
+   "start": 31.79,
+   "end": 32.03
+  },
+  {
+   "word": "Écris",
+   "start": 32.03,
+   "end": 32.59
+  },
+  {
+   "word": "tarif",
+   "start": 32.59,
+   "end": 33.07
+  },
+  {
+   "word": "en",
+   "start": 33.07,
+   "end": 33.23
+  },
+  {
+   "word": "message",
+   "start": 33.23,
+   "end": 33.55
+  },
+  {
+   "word": "privé.",
+   "start": 33.55,
+   "end": 34.03
+  }
+ ]
+}

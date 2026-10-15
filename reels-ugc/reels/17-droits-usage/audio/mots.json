@@ -1,0 +1,500 @@
+{
+ "duration": 30.76,
+ "words": [
+  {
+   "word": "Attention",
+   "start": 0.0,
+   "end": 0.48
+  },
+  {
+   "word": "à",
+   "start": 0.48,
+   "end": 0.64
+  },
+  {
+   "word": "ce",
+   "start": 0.64,
+   "end": 0.72
+  },
+  {
+   "word": "que",
+   "start": 0.72,
+   "end": 0.88
+  },
+  {
+   "word": "tu",
+   "start": 0.88,
+   "end": 1.04
+  },
+  {
+   "word": "signes.",
+   "start": 1.04,
+   "end": 1.68
+  },
+  {
+   "word": "Quand",
+   "start": 1.68,
+   "end": 1.92
+  },
+  {
+   "word": "une",
+   "start": 1.92,
+   "end": 2.08
+  },
+  {
+   "word": "marque",
+   "start": 2.08,
+   "end": 2.4
+  },
+  {
+   "word": "utilise",
+   "start": 2.4,
+   "end": 2.72
+  },
+  {
+   "word": "ta",
+   "start": 2.72,
+   "end": 2.96
+  },
+  {
+   "word": "vidéo",
+   "start": 2.96,
+   "end": 3.28
+  },
+  {
+   "word": "dans",
+   "start": 3.28,
+   "end": 3.36
+  },
+  {
+   "word": "ses",
+   "start": 3.36,
+   "end": 3.52
+  },
+  {
+   "word": "publicités,",
+   "start": 3.52,
+   "end": 4.24
+  },
+  {
+   "word": "elle",
+   "start": 4.24,
+   "end": 4.48
+  },
+  {
+   "word": "exploite",
+   "start": 4.48,
+   "end": 5.04
+  },
+  {
+   "word": "ton",
+   "start": 5.04,
+   "end": 5.2
+  },
+  {
+   "word": "contenu,",
+   "start": 5.2,
+   "end": 5.76
+  },
+  {
+   "word": "parfois",
+   "start": 5.76,
+   "end": 6.16
+  },
+  {
+   "word": "pendant",
+   "start": 6.16,
+   "end": 6.4
+  },
+  {
+   "word": "des",
+   "start": 6.4,
+   "end": 6.64
+  },
+  {
+   "word": "mois.",
+   "start": 6.64,
+   "end": 7.12
+  },
+  {
+   "word": "Ça",
+   "start": 7.12,
+   "end": 7.36
+  },
+  {
+   "word": "s'appelle",
+   "start": 7.36,
+   "end": 7.76
+  },
+  {
+   "word": "les",
+   "start": 7.76,
+   "end": 7.92
+  },
+  {
+   "word": "droits",
+   "start": 7.92,
+   "end": 8.16
+  },
+  {
+   "word": "d'usage.",
+   "start": 8.16,
+   "end": 8.8
+  },
+  {
+   "word": "Et",
+   "start": 8.8,
+   "end": 8.96
+  },
+  {
+   "word": "ça",
+   "start": 8.96,
+   "end": 9.12
+  },
+  {
+   "word": "se",
+   "start": 9.12,
+   "end": 9.28
+  },
+  {
+   "word": "négocie.",
+   "start": 9.28,
+   "end": 10.08
+  },
+  {
+   "word": "Durée,",
+   "start": 10.13,
+   "end": 10.77
+  },
+  {
+   "word": "plateforme,",
+   "start": 10.77,
+   "end": 11.57
+  },
+  {
+   "word": "publicité",
+   "start": 11.57,
+   "end": 12.21
+  },
+  {
+   "word": "depuis",
+   "start": 12.21,
+   "end": 12.45
+  },
+  {
+   "word": "ton",
+   "start": 12.45,
+   "end": 12.69
+  },
+  {
+   "word": "propre",
+   "start": 12.69,
+   "end": 13.01
+  },
+  {
+   "word": "compte.",
+   "start": 13.01,
+   "end": 13.65
+  },
+  {
+   "word": "Il",
+   "start": 13.65,
+   "end": 13.89
+  },
+  {
+   "word": "existe",
+   "start": 13.89,
+   "end": 14.37
+  },
+  {
+   "word": "même",
+   "start": 14.37,
+   "end": 14.53
+  },
+  {
+   "word": "des",
+   "start": 14.53,
+   "end": 14.69
+  },
+  {
+   "word": "formats",
+   "start": 14.69,
+   "end": 15.01
+  },
+  {
+   "word": "où",
+   "start": 15.01,
+   "end": 15.17
+  },
+  {
+   "word": "la",
+   "start": 15.17,
+   "end": 15.33
+  },
+  {
+   "word": "marque",
+   "start": 15.33,
+   "end": 15.57
+  },
+  {
+   "word": "fait",
+   "start": 15.57,
+   "end": 15.73
+  },
+  {
+   "word": "de",
+   "start": 15.73,
+   "end": 15.81
+  },
+  {
+   "word": "la",
+   "start": 15.81,
+   "end": 15.89
+  },
+  {
+   "word": "pub",
+   "start": 15.89,
+   "end": 16.29
+  },
+  {
+   "word": "directement",
+   "start": 16.29,
+   "end": 16.77
+  },
+  {
+   "word": "avec",
+   "start": 16.77,
+   "end": 16.93
+  },
+  {
+   "word": "ton",
+   "start": 16.93,
+   "end": 17.09
+  },
+  {
+   "word": "profil.",
+   "start": 17.09,
+   "end": 17.65
+  },
+  {
+   "word": "On",
+   "start": 17.65,
+   "end": 17.81
+  },
+  {
+   "word": "parle",
+   "start": 17.81,
+   "end": 18.05
+  },
+  {
+   "word": "de",
+   "start": 18.05,
+   "end": 18.21
+  },
+  {
+   "word": "whitelisting",
+   "start": 18.21,
+   "end": 19.01
+  },
+  {
+   "word": "ou",
+   "start": 19.01,
+   "end": 19.09
+  },
+  {
+   "word": "de",
+   "start": 19.09,
+   "end": 19.25
+  },
+  {
+   "word": "Spark",
+   "start": 19.25,
+   "end": 19.65
+  },
+  {
+   "word": "Ads",
+   "start": 19.65,
+   "end": 19.97
+  },
+  {
+   "word": "sur",
+   "start": 19.97,
+   "end": 20.13
+  },
+  {
+   "word": "TikTok.",
+   "start": 20.13,
+   "end": 20.77
+  },
+  {
+   "word": "Ces",
+   "start": 20.77,
+   "end": 21.01
+  },
+  {
+   "word": "options",
+   "start": 21.01,
+   "end": 21.33
+  },
+  {
+   "word": "ont",
+   "start": 21.33,
+   "end": 21.57
+  },
+  {
+   "word": "une",
+   "start": 21.57,
+   "end": 21.81
+  },
+  {
+   "word": "valeur,",
+   "start": 21.81,
+   "end": 22.29
+  },
+  {
+   "word": "et",
+   "start": 22.29,
+   "end": 22.53
+  },
+  {
+   "word": "beaucoup",
+   "start": 22.53,
+   "end": 22.77
+  },
+  {
+   "word": "de",
+   "start": 22.77,
+   "end": 22.85
+  },
+  {
+   "word": "créatrices",
+   "start": 22.85,
+   "end": 23.41
+  },
+  {
+   "word": "les",
+   "start": 23.41,
+   "end": 23.65
+  },
+  {
+   "word": "cèdent",
+   "start": 23.65,
+   "end": 24.13
+  },
+  {
+   "word": "sans",
+   "start": 24.13,
+   "end": 24.37
+  },
+  {
+   "word": "le",
+   "start": 24.37,
+   "end": 24.53
+  },
+  {
+   "word": "savoir.",
+   "start": 24.53,
+   "end": 25.09
+  },
+  {
+   "word": "Comment",
+   "start": 25.09,
+   "end": 25.41
+  },
+  {
+   "word": "protéger",
+   "start": 25.41,
+   "end": 25.89
+  },
+  {
+   "word": "ton",
+   "start": 25.89,
+   "end": 26.05
+  },
+  {
+   "word": "travail",
+   "start": 26.05,
+   "end": 26.37
+  },
+  {
+   "word": "et",
+   "start": 26.37,
+   "end": 26.53
+  },
+  {
+   "word": "factur",
+   "start": 26.53,
+   "end": 27.01
+  },
+  {
+   "word": "ce",
+   "start": 27.01,
+   "end": 27.17
+  },
+  {
+   "word": "qui",
+   "start": 27.17,
+   "end": 27.33
+  },
+  {
+   "word": "doit",
+   "start": 27.33,
+   "end": 27.49
+  },
+  {
+   "word": "l'être",
+   "start": 27.49,
+   "end": 27.73
+  },
+  {
+   "word": "?",
+   "start": 27.73,
+   "end": 27.89
+  },
+  {
+   "word": "On",
+   "start": 27.89,
+   "end": 28.05
+  },
+  {
+   "word": "t'accompagne",
+   "start": 28.05,
+   "end": 28.61
+  },
+  {
+   "word": "là-dessus",
+   "start": 28.61,
+   "end": 29.01
+  },
+  {
+   "word": "chez",
+   "start": 29.01,
+   "end": 29.17
+  },
+  {
+   "word": "Phoenix",
+   "start": 29.17,
+   "end": 29.57
+  },
+  {
+   "word": "Pro.",
+   "start": 29.57,
+   "end": 29.89
+  },
+  {
+   "word": "Lien",
+   "start": 29.89,
+   "end": 30.13
+  },
+  {
+   "word": "en",
+   "start": 30.13,
+   "end": 30.29
+  },
+  {
+   "word": "bio",
+   "start": 30.29,
+   "end": 30.53
+  }
+ ]
+}

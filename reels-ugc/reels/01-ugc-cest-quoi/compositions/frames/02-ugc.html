@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s2-cam { position: absolute; inset: 0; }
+        #s2-label { position: absolute; left: 64px; right: 120px; top: 330px; text-align: center; font-size: 52px; display: block; }
+        #s2-ugc { position: absolute; left: 64px; right: 120px; top: 470px; text-align: center; display: block; white-space: nowrap; }
+        .s2-l { display: inline-block; font-size: 320px; }
+        #s2-wave { position: absolute; left: 432px; top: 860px; width: 160px; height: 24px; display: block; }
+        .s2-row { position: absolute; left: 64px; right: 120px; text-align: center; overflow: hidden; display: block; padding-bottom: 10px; }
+        .s2-rw { display: block; font-size: 104px; }
+        #s2-r1 { top: 930px; }
+        #s2-r2 { top: 1060px; }
+        #s2-r3 { top: 1190px; }
+      </style>
+      <div id="root" data-composition-id="s2" data-width="1080" data-height="1920">
+        <div id="s2-cam" data-layout-allow-overflow>
+          <div id="s2-label" class="t-label">Ça a un nom</div>
+          <div id="s2-ugc" class="t-serif" data-layout-allow-overlap><span class="s2-l">U</span><span class="s2-l acc">G</span><span class="s2-l">C</span></div>
+          <svg id="s2-wave" viewBox="0 0 160 24" fill="none"><path id="s2-wave-p" d="M4 14 C 22 4, 34 4, 52 14 S 84 24, 104 14 S 138 4, 156 12" stroke="#DB96A1" stroke-width="4" stroke-linecap="round" stroke-dasharray="190" stroke-dashoffset="190" /></svg>
+          <div id="s2-r1" class="s2-row" data-layout-allow-occlusion><span class="s2-rw t-serif"><span class="acc">U</span>ser</span></div>
+          <div id="s2-r2" class="s2-row" data-layout-allow-occlusion><span class="s2-rw t-serif"><span class="acc">G</span>enerated</span></div>
+          <div id="s2-r3" class="s2-row" data-layout-allow-occlusion><span class="s2-rw t-serif"><span class="acc">C</span>ontent</span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 4.55, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « ça a un nom » 4.64 · « l'UGC » 5.68 · User 7.12 · Generated 7.60 · Content 8.24
+          tl.fromTo("#s2-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.35, ease: "power3.out" }, 0);
+          tl.fromTo("#s2-label", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, at(4.6));
+          gsap.utils.toArray("#s2-ugc .s2-l").forEach((el, i) =>
+            tl.fromTo(el, { scale: 2.2, opacity: 0, filter: "blur(20px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, at(5.5 + i * 0.09))
+          );
+          tl.fromTo("#s2-ugc", { scale: 1 }, { scale: 1.05, duration: 0.95, ease: "sine.out", immediateRender: false }, at(5.9));
+          tl.fromTo("#s2-wave-p", { attr: { "stroke-dashoffset": 190 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.inOut" }, at(6.2));
+          tl.to("#s2-ugc", { y: -40, scale: 0.78, duration: 0.5, ease: "power3.inOut" }, at(6.9));
+          tl.to("#s2-wave", { y: -110, duration: 0.5, ease: "power3.inOut" }, at(6.9));
+          tl.to("#s2-label", { opacity: 0, y: -20, duration: 0.3 }, at(6.9));
+          tl.fromTo("#s2-r1 .s2-rw", { yPercent: 115 }, { yPercent: 0, duration: 0.5, ease: "power4.out" }, at(6.97));
+          tl.fromTo("#s2-r2 .s2-rw", { yPercent: 115 }, { yPercent: 0, duration: 0.5, ease: "power4.out" }, at(7.45));
+          tl.fromTo("#s2-r3 .s2-rw", { yPercent: 115 }, { yPercent: 0, duration: 0.5, ease: "power4.out" }, at(8.09));
+          tl.to("#s2-cam", { scale: 1.5, opacity: 0, filter: "blur(14px)", duration: 0.3, ease: "power3.in" }, at(8.55));
+          window.__timelines["s2"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

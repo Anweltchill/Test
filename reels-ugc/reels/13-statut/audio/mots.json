@@ -1,0 +1,515 @@
+{
+ "duration": 29.71,
+ "words": [
+  {
+   "word": "Faut-il",
+   "start": 0.0,
+   "end": 0.56
+  },
+  {
+   "word": "créer",
+   "start": 0.56,
+   "end": 0.8
+  },
+  {
+   "word": "ton",
+   "start": 0.8,
+   "end": 0.96
+  },
+  {
+   "word": "statut",
+   "start": 0.96,
+   "end": 1.52
+  },
+  {
+   "word": "avant",
+   "start": 1.52,
+   "end": 1.84
+  },
+  {
+   "word": "ta",
+   "start": 1.84,
+   "end": 2.0
+  },
+  {
+   "word": "première",
+   "start": 2.0,
+   "end": 2.32
+  },
+  {
+   "word": "collaboration",
+   "start": 2.32,
+   "end": 3.12
+  },
+  {
+   "word": "?",
+   "start": 3.12,
+   "end": 3.52
+  },
+  {
+   "word": "Pas",
+   "start": 3.52,
+   "end": 3.76
+  },
+  {
+   "word": "forcément",
+   "start": 3.76,
+   "end": 4.24
+  },
+  {
+   "word": "tout",
+   "start": 4.24,
+   "end": 4.32
+  },
+  {
+   "word": "de",
+   "start": 4.32,
+   "end": 4.48
+  },
+  {
+   "word": "suite.",
+   "start": 4.48,
+   "end": 4.88
+  },
+  {
+   "word": "Quand",
+   "start": 4.88,
+   "end": 5.12
+  },
+  {
+   "word": "tu",
+   "start": 5.12,
+   "end": 5.28
+  },
+  {
+   "word": "commences",
+   "start": 5.28,
+   "end": 5.6
+  },
+  {
+   "word": "par",
+   "start": 5.6,
+   "end": 5.76
+  },
+  {
+   "word": "du",
+   "start": 5.76,
+   "end": 5.92
+  },
+  {
+   "word": "gifting,",
+   "start": 5.92,
+   "end": 6.56
+  },
+  {
+   "word": "tu",
+   "start": 6.56,
+   "end": 6.72
+  },
+  {
+   "word": "gagnes",
+   "start": 6.72,
+   "end": 6.96
+  },
+  {
+   "word": "du",
+   "start": 6.96,
+   "end": 7.12
+  },
+  {
+   "word": "temps",
+   "start": 7.12,
+   "end": 7.28
+  },
+  {
+   "word": "pour",
+   "start": 7.28,
+   "end": 7.44
+  },
+  {
+   "word": "préparer",
+   "start": 7.44,
+   "end": 7.84
+  },
+  {
+   "word": "la",
+   "start": 7.84,
+   "end": 8.0
+  },
+  {
+   "word": "suite.",
+   "start": 8.0,
+   "end": 8.48
+  },
+  {
+   "word": "Mais",
+   "start": 8.48,
+   "end": 8.64
+  },
+  {
+   "word": "dès",
+   "start": 8.64,
+   "end": 8.88
+  },
+  {
+   "word": "que",
+   "start": 8.88,
+   "end": 8.96
+  },
+  {
+   "word": "tu",
+   "start": 8.96,
+   "end": 9.12
+  },
+  {
+   "word": "factures",
+   "start": 9.12,
+   "end": 9.52
+  },
+  {
+   "word": "tes",
+   "start": 9.52,
+   "end": 9.68
+  },
+  {
+   "word": "vidéos,",
+   "start": 9.68,
+   "end": 10.16
+  },
+  {
+   "word": "il",
+   "start": 10.16,
+   "end": 10.32
+  },
+  {
+   "word": "te",
+   "start": 10.32,
+   "end": 10.48
+  },
+  {
+   "word": "faut",
+   "start": 10.48,
+   "end": 10.72
+  },
+  {
+   "word": "un",
+   "start": 10.72,
+   "end": 10.8
+  },
+  {
+   "word": "cadre.",
+   "start": 10.8,
+   "end": 11.44
+  },
+  {
+   "word": "En",
+   "start": 11.44,
+   "end": 11.6
+  },
+  {
+   "word": "France,",
+   "start": 11.6,
+   "end": 12.0
+  },
+  {
+   "word": "beaucoup",
+   "start": 12.0,
+   "end": 12.32
+  },
+  {
+   "word": "de",
+   "start": 12.32,
+   "end": 12.4
+  },
+  {
+   "word": "créatrices",
+   "start": 12.4,
+   "end": 12.96
+  },
+  {
+   "word": "choisissent",
+   "start": 12.96,
+   "end": 13.44
+  },
+  {
+   "word": "la",
+   "start": 13.44,
+   "end": 13.52
+  },
+  {
+   "word": "micro-entreprise.",
+   "start": 13.52,
+   "end": 14.32
+  },
+  {
+   "word": "La",
+   "start": 14.56,
+   "end": 14.72
+  },
+  {
+   "word": "déclaration",
+   "start": 14.72,
+   "end": 15.28
+  },
+  {
+   "word": "se",
+   "start": 15.28,
+   "end": 15.44
+  },
+  {
+   "word": "fait",
+   "start": 15.44,
+   "end": 15.68
+  },
+  {
+   "word": "en",
+   "start": 15.68,
+   "end": 15.76
+  },
+  {
+   "word": "ligne,",
+   "start": 15.76,
+   "end": 16.08
+  },
+  {
+   "word": "sur",
+   "start": 16.08,
+   "end": 16.24
+  },
+  {
+   "word": "le",
+   "start": 16.24,
+   "end": 16.32
+  },
+  {
+   "word": "guichet",
+   "start": 16.32,
+   "end": 16.88
+  },
+  {
+   "word": "unique,",
+   "start": 16.88,
+   "end": 17.28
+  },
+  {
+   "word": "en",
+   "start": 17.28,
+   "end": 17.44
+  },
+  {
+   "word": "quelques",
+   "start": 17.44,
+   "end": 17.76
+  },
+  {
+   "word": "étapes.",
+   "start": 17.76,
+   "end": 18.32
+  },
+  {
+   "word": "Pas",
+   "start": 18.32,
+   "end": 18.48
+  },
+  {
+   "word": "besoin",
+   "start": 18.48,
+   "end": 18.72
+  },
+  {
+   "word": "d'être",
+   "start": 18.72,
+   "end": 19.04
+  },
+  {
+   "word": "experte",
+   "start": 19.04,
+   "end": 19.36
+  },
+  {
+   "word": "en",
+   "start": 19.36,
+   "end": 19.6
+  },
+  {
+   "word": "administratif.",
+   "start": 19.6,
+   "end": 20.4
+  },
+  {
+   "word": "Par",
+   "start": 20.43,
+   "end": 20.75
+  },
+  {
+   "word": "contre,",
+   "start": 20.75,
+   "end": 21.15
+  },
+  {
+   "word": "il",
+   "start": 21.15,
+   "end": 21.31
+  },
+  {
+   "word": "y",
+   "start": 21.31,
+   "end": 21.39
+  },
+  {
+   "word": "a",
+   "start": 21.39,
+   "end": 21.47
+  },
+  {
+   "word": "des",
+   "start": 21.47,
+   "end": 21.55
+  },
+  {
+   "word": "cases",
+   "start": 21.55,
+   "end": 21.87
+  },
+  {
+   "word": "où",
+   "start": 21.87,
+   "end": 22.03
+  },
+  {
+   "word": "il",
+   "start": 22.03,
+   "end": 22.19
+  },
+  {
+   "word": "ne",
+   "start": 22.19,
+   "end": 22.27
+  },
+  {
+   "word": "faut",
+   "start": 22.27,
+   "end": 22.43
+  },
+  {
+   "word": "pas",
+   "start": 22.43,
+   "end": 22.59
+  },
+  {
+   "word": "se",
+   "start": 22.59,
+   "end": 22.67
+  },
+  {
+   "word": "tromper.",
+   "start": 22.67,
+   "end": 23.31
+  },
+  {
+   "word": "On",
+   "start": 23.31,
+   "end": 23.47
+  },
+  {
+   "word": "te",
+   "start": 23.47,
+   "end": 23.63
+  },
+  {
+   "word": "guide",
+   "start": 23.63,
+   "end": 24.03
+  },
+  {
+   "word": "pas",
+   "start": 24.03,
+   "end": 24.19
+  },
+  {
+   "word": "à",
+   "start": 24.19,
+   "end": 24.35
+  },
+  {
+   "word": "pas,",
+   "start": 24.35,
+   "end": 24.67
+  },
+  {
+   "word": "de",
+   "start": 24.67,
+   "end": 24.83
+  },
+  {
+   "word": "la",
+   "start": 24.83,
+   "end": 24.91
+  },
+  {
+   "word": "création",
+   "start": 24.91,
+   "end": 25.23
+  },
+  {
+   "word": "de",
+   "start": 25.23,
+   "end": 25.31
+  },
+  {
+   "word": "ton",
+   "start": 25.31,
+   "end": 25.55
+  },
+  {
+   "word": "statut",
+   "start": 25.55,
+   "end": 26.03
+  },
+  {
+   "word": "jusqu'à",
+   "start": 26.03,
+   "end": 26.43
+  },
+  {
+   "word": "ta",
+   "start": 26.43,
+   "end": 26.59
+  },
+  {
+   "word": "première",
+   "start": 26.59,
+   "end": 26.83
+  },
+  {
+   "word": "facture.",
+   "start": 26.83,
+   "end": 27.47
+  },
+  {
+   "word": "Envoie-moi",
+   "start": 27.47,
+   "end": 28.11
+  },
+  {
+   "word": "statut",
+   "start": 28.11,
+   "end": 28.51
+  },
+  {
+   "word": "en",
+   "start": 28.51,
+   "end": 28.67
+  },
+  {
+   "word": "message",
+   "start": 28.67,
+   "end": 29.07
+  },
+  {
+   "word": "privé.",
+   "start": 29.07,
+   "end": 29.55
+  }
+ ]
+}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s1-cam { position: absolute; inset: 0; }
+        .s1-line { position: absolute; left: 64px; right: 120px; text-align: center; overflow: hidden; display: block; padding: 6px 0 14px; }
+        .s1-w { display: block; }
+        #s1-l1 { top: 300px; }
+        #s1-l1 .s1-w { font-size: 112px; }
+        #s1-l2 { top: 440px; }
+        #s1-l2 .s1-w { font-size: 120px; }
+        #s1-l3 { top: 300px; }
+        #s1-l3 .s1-w { font-size: 64px; font-weight: 500; letter-spacing: 0.14em; }
+        #s1-l4 { top: 400px; }
+        #s1-l4 .s1-w { font-size: 116px; }
+        #s1-strike { position: absolute; left: 150px; top: 470px; width: 700px; height: 60px; display: block; }
+        #s1-coin { position: absolute; left: 800px; top: 420px; width: 130px; height: 130px; display: block; }
+        #s1-phone { position: absolute; left: 322px; top: 640px; width: 380px; height: 700px; border-radius: 58px;
+          background: #0E1928; padding: 16px; box-shadow: 0 30px 70px rgba(14,25,40,0.25); display: block; }
+        #s1-screen { position: absolute; inset: 16px; border-radius: 44px; background: #FDF4ED; overflow: hidden; }
+        #s1-notch { position: absolute; left: 50%; top: 18px; width: 110px; height: 26px; margin-left: -55px; border-radius: 13px; background: #0E1928; }
+        #s1-rec { position: absolute; left: 28px; top: 66px; display: flex; align-items: center; gap: 10px; background: #0E1928; color: #FDF4ED;
+          border-radius: 999px; padding: 8px 20px; font: 600 28px "PxSans", sans-serif; letter-spacing: 0.1em; }
+        #s1-dot { width: 18px; height: 18px; border-radius: 50%; background: #E2718D; display: block; }
+        #s1-prod { position: absolute; left: 50%; top: 170px; width: 200px; height: 380px; margin-left: -100px; display: block; }
+        #s1-frame { position: absolute; inset: 120px 30px 70px 30px; display: block; }
+      </style>
+      <div id="root" data-composition-id="s1" data-width="1080" data-height="1920">
+        <div id="s1-cam" data-layout-allow-overflow>
+          <div id="s1-l1" class="s1-line" data-layout-allow-overlap data-layout-allow-occlusion><span class="s1-w t-serif">Des marques</span></div>
+          <div id="s1-l2" class="s1-line" data-layout-allow-overlap data-layout-allow-occlusion><span class="s1-w t-italic">te payaient</span></div>
+          <svg id="s1-coin" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="28" fill="#E6BDC1" /><circle cx="32" cy="32" r="21" stroke="#CC7183" stroke-width="3" /><path d="M39 23.5c-1.8-1.7-4.1-2.6-6.6-2.6-5.3 0-9.4 4.6-9.4 11.1s4.1 11.1 9.4 11.1c2.5 0 4.8-.9 6.6-2.6M19.5 29h15M19.5 35h15" stroke="#0E1928" stroke-width="3" stroke-linecap="round" /></svg>
+          <div id="s1-l3" class="s1-line" data-layout-allow-overlap data-layout-allow-occlusion><span class="s1-w t-label">Sans être</span></div>
+          <div id="s1-l4" class="s1-line" data-layout-allow-overlap data-layout-allow-occlusion><span class="s1-w t-serif">influenceuse</span></div>
+          <svg id="s1-strike" viewBox="0 0 700 60" fill="none"><path id="s1-strike-p" d="M10 38 C 180 20, 420 46, 690 22" stroke="#E2718D" stroke-width="12" stroke-linecap="round" stroke-dasharray="720" stroke-dashoffset="720" /></svg>
+          <div id="s1-phone">
+            <div id="s1-screen">
+              <div id="s1-notch"></div>
+              <div id="s1-rec"><span id="s1-dot"></span>REC</div>
+              <svg id="s1-frame" viewBox="0 0 288 478" fill="none" stroke="#CC7183" stroke-width="5" stroke-linecap="round"><path d="M4 50V14a10 10 0 0 1 10-10h36M238 4h36a10 10 0 0 1 10 10v36M284 428v36a10 10 0 0 1-10 10h-36M50 474H14a10 10 0 0 1-10-10v-36" /></svg>
+              <svg id="s1-prod" viewBox="0 0 100 190" fill="none"><rect x="38" y="6" width="24" height="26" rx="5" fill="#0E1928" /><rect x="18" y="30" width="64" height="150" rx="18" fill="#E2718D" /><rect x="30" y="78" width="40" height="54" rx="6" fill="#FDF4ED" /><path d="M38 96h24M38 108h16" stroke="#CC7183" stroke-width="4" stroke-linecap="round" /></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 0, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « des marques » 0.40 · « payaient » 1.04 · « filmer » 1.68 · « sans » 2.88 · « influenceuse » 3.68
+          tl.fromTo("#s1-cam", { scale: 1.12 }, { scale: 1, duration: 4.5, ease: "power2.out" }, 0);
+          tl.fromTo("#s1-l1 .s1-w", { yPercent: 115 }, { yPercent: 0, duration: 0.55, ease: "power4.out" }, at(0.25));
+          tl.fromTo("#s1-l2 .s1-w", { yPercent: 115 }, { yPercent: 0, duration: 0.55, ease: "power4.out" }, at(0.9));
+          tl.fromTo("#s1-coin", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.6, ease: "back.out(2.4)" }, at(1.1));
+          tl.fromTo("#s1-phone", { y: 1300, rotation: 8 }, { y: 0, rotation: 0, duration: 0.75, ease: "expo.out" }, at(1.2));
+          tl.fromTo("#s1-prod", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" }, at(1.75));
+          tl.fromTo("#s1-frame", { scale: 1.15, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "power3.out" }, at(1.68));
+          tl.fromTo("#s1-dot", { opacity: 1 }, { opacity: 0.2, duration: 0.3, ease: "none", repeat: 6, yoyo: true }, at(1.9));
+          tl.fromTo("#s1-prod", { rotation: -4 }, { rotation: 4, duration: 0.9, ease: "sine.inOut", repeat: 3, yoyo: true, immediateRender: false }, at(2.3));
+          // bascule du titre
+          tl.to(["#s1-l1 .s1-w", "#s1-l2 .s1-w"], { yPercent: -115, duration: 0.35, ease: "power3.in" }, at(2.6));
+          tl.to("#s1-coin", { scale: 0, duration: 0.25, ease: "power2.in" }, at(2.6));
+          tl.fromTo("#s1-l3 .s1-w", { yPercent: 115 }, { yPercent: 0, duration: 0.45, ease: "power4.out" }, at(2.78));
+          tl.fromTo("#s1-l4 .s1-w", { yPercent: 115 }, { yPercent: 0, duration: 0.55, ease: "power4.out" }, at(3.5));
+          tl.fromTo("#s1-strike-p", { attr: { "stroke-dashoffset": 720 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.4, ease: "power2.inOut" }, at(4.0));
+          // sortie : whip vers la gauche
+          tl.to("#s1-cam", { x: -1080, filter: "blur(16px)", duration: 0.3, ease: "power3.in" }, at(4.25));
+          window.__timelines["s1"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

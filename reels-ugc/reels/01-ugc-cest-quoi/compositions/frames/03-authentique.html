@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s3-cam { position: absolute; inset: 0; }
+        #s3-pill { position: absolute; left: 0; right: 56px; top: 320px; text-align: center; display: block; }
+        #s3-word { position: absolute; left: 64px; right: 120px; top: 400px; text-align: center; font-size: 132px; display: block; padding-bottom: 20px; }
+        #s3-people { position: absolute; left: 112px; top: 640px; width: 800px; height: 200px; display: flex; justify-content: space-between; }
+        .s3-p { width: 170px; height: 170px; display: block; }
+        #s3-plab { position: absolute; left: 64px; right: 120px; top: 860px; text-align: center; font-size: 46px; font-weight: 500; display: block; }
+        #s3-lines { position: absolute; left: 112px; top: 900px; width: 800px; height: 200px; display: block; }
+        #s3-brand { position: absolute; left: 262px; top: 1100px; width: 500px; height: 190px; display: flex; align-items: center; gap: 28px; padding: 0 40px; }
+        #s3-bicon { width: 110px; height: 110px; flex: none; display: block; }
+        .s3-bt { font-size: 52px; display: block; }
+        .s3-bs { font-size: 30px; color: #CC7183; display: block; margin-top: 4px; }
+      </style>
+      <div id="root" data-composition-id="s3" data-width="1080" data-height="1920">
+        <div id="s3-cam" data-layout-allow-overflow>
+          <div id="s3-pill"><span class="pill">Du contenu</span></div>
+          <div id="s3-word" class="t-italic">authentique</div>
+          <div id="s3-people">
+            <svg class="s3-p" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#E6BDC1" /><circle cx="32" cy="25" r="9" stroke="#0E1928" stroke-width="3" /><path d="M16 50c2-9 8.5-13 16-13s14 4 16 13" stroke="#0E1928" stroke-width="3" stroke-linecap="round" /></svg>
+            <svg class="s3-p" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#C2C7DD" /><circle cx="32" cy="25" r="9" stroke="#0E1928" stroke-width="3" /><path d="M16 50c2-9 8.5-13 16-13s14 4 16 13" stroke="#0E1928" stroke-width="3" stroke-linecap="round" /></svg>
+            <svg class="s3-p" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#E6BDC1" /><circle cx="32" cy="25" r="9" stroke="#0E1928" stroke-width="3" /><path d="M16 50c2-9 8.5-13 16-13s14 4 16 13" stroke="#0E1928" stroke-width="3" stroke-linecap="round" /></svg>
+            <svg class="s3-p" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#C2C7DD" /><circle cx="32" cy="25" r="9" stroke="#0E1928" stroke-width="3" /><path d="M16 50c2-9 8.5-13 16-13s14 4 16 13" stroke="#0E1928" stroke-width="3" stroke-linecap="round" /></svg>
+          </div>
+          <div id="s3-plab">de vraies personnes</div>
+          <svg id="s3-lines" viewBox="0 0 800 200" fill="none" stroke="#DB96A1" stroke-width="4" stroke-linecap="round" stroke-dasharray="6 12">
+            <path class="s3-ln" d="M85 20 C 85 120, 400 90, 400 195" />
+            <path class="s3-ln" d="M296 20 C 296 110, 400 110, 400 195" />
+            <path class="s3-ln" d="M504 20 C 504 110, 400 110, 400 195" />
+            <path class="s3-ln" d="M715 20 C 715 120, 400 90, 400 195" />
+          </svg>
+          <div id="s3-brand" class="card">
+            <svg id="s3-bicon" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#0E1928" /><path d="M32 17l4.4 9 9.9 1.4-7.2 7 1.7 9.8L32 39.6l-8.8 4.6 1.7-9.8-7.2-7 9.9-1.4z" fill="#E2718D" /></svg>
+            <div><span class="s3-bt t-serif">Brand X</span><span class="s3-bs t-label">les marques</span></div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 8.85, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « contenu » 9.20 · « authentique » 9.60 · « vraies personnes » 10.96 · « marques » 12.72
+          tl.fromTo("#s3-cam", { scale: 0.6, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, 0);
+          tl.fromTo("#s3-pill", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(2)" }, at(9.05));
+          tl.fromTo("#s3-word", { y: 70, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.55, ease: "power4.out" }, at(9.45));
+          gsap.utils.toArray("#s3-people .s3-p").forEach((el, i) =>
+            tl.fromTo(el, { scale: 0, y: 40 }, { scale: 1, y: 0, duration: 0.5, ease: "back.out(2.2)" }, at(10.3 + i * 0.12))
+          );
+          tl.fromTo("#s3-plab", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, at(10.85));
+          tl.to("#s3-plab", { opacity: 0, duration: 0.25 }, at(11.75));
+          tl.fromTo("#s3-lines .s3-ln", { opacity: 0 }, { opacity: 1, duration: 0.3, stagger: 0.06, ease: "none" }, at(11.75));
+          tl.fromTo("#s3-lines .s3-ln", { attr: { "stroke-dashoffset": 60 } }, { attr: { "stroke-dashoffset": 0 }, duration: 1.2, ease: "none", immediateRender: false }, at(11.75));
+          tl.fromTo("#s3-brand", { scale: 0.5, opacity: 0, y: 60 }, { scale: 1, opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.8)" }, at(12.35));
+          tl.fromTo("#s3-bicon", { rotation: -120 }, { rotation: 0, duration: 0.6, ease: "back.out(2)" }, at(12.45));
+          tl.to("#s3-cam", { x: -1080, filter: "blur(16px)", duration: 0.28, ease: "power3.in" }, at(12.82));
+          window.__timelines["s3"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

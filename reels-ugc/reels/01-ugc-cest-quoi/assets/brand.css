@@ -1,0 +1,27 @@
+/* Phoenix Pro — habillage partagé des Reels (copié dans chaque Reel : assets/brand.css).
+   Couleurs relevées sur les stories de la cliente (brand/frame.md). Polices : Libre Baskerville (titres) + Jost (texte). */
+@font-face { font-family: "PxSerif"; src: url("fonts/libre-baskerville-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "PxSerif"; src: url("fonts/libre-baskerville-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+@font-face { font-family: "PxSerif"; src: url("fonts/libre-baskerville-latin-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+@font-face { font-family: "PxSans"; src: url("fonts/jost-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "PxSans"; src: url("fonts/jost-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: "PxSans"; src: url("fonts/jost-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+
+.px {
+  --nuit: #0E1928; --nuit2: #172742; --rose: #E2718D; --vieux: #CC7183; --poudre: #DB96A1;
+  --pinceau: #E6BDC1; --creme: #F0E6DD; --carte: #FDF4ED; --lav: #8F9AC3; --lavc: #C2C7DD;
+  font-family: "PxSans", sans-serif; color: #0E1928;
+}
+/* Titres serif en capitales, mot d'accent en rose */
+.px .t-serif { font-family: "PxSerif", serif; font-weight: 700; color: #0E1928; line-height: 1.04; letter-spacing: -0.01em; }
+.px .t-italic { font-family: "PxSerif", serif; font-style: italic; font-weight: 400; color: #CC7183; }
+.px .acc { color: #E2718D; }
+.px .acc2 { color: #CC7183; }
+.px .t-label { font-family: "PxSans", sans-serif; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; }
+/* Carte blanc cassé */
+.px .card { background: #FDF4ED; border-radius: 34px; box-shadow: 0 18px 50px rgba(14, 25, 40, 0.10); }
+/* Pastille capitales */
+.px .pill { display: inline-block; background: #E6BDC1; color: #0E1928; border-radius: 999px; padding: 14px 34px;
+  font-family: "PxSans", sans-serif; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; font-size: 32px; }
+/* Cercle pâle porte-icône */
+.px .bubble { border-radius: 50%; background: #E6BDC1; display: flex; align-items: center; justify-content: center; }

@@ -9,6 +9,7 @@ mkdir -p "$D"/{audio,compositions/frames,assets/fonts,assets/brand,renders}
 cp "$ROOT/assets/vendor/gsap.min.js" "$D/assets/"
 # polices et logos de la chaîne copiés dans le projet (le moteur ne sert que le dossier du Reel)
 [ -d "$ROOT/brand/fonts" ] && cp "$ROOT"/brand/fonts/*.woff2 "$D/assets/fonts/" 2>/dev/null || true
+[ -f "$ROOT/brand/brand.css" ] && cp "$ROOT/brand/brand.css" "$D/assets/"
 [ -d "$ROOT/brand/logo" ] && cp "$ROOT"/brand/logo/* "$D/assets/brand/" 2>/dev/null || true
 cat > "$D/package.json" <<JSON
 {

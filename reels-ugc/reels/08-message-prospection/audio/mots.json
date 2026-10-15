@@ -1,0 +1,570 @@
+{
+ "duration": 32.51,
+ "words": [
+  {
+   "word": "Tu",
+   "start": 0.0,
+   "end": 0.16
+  },
+  {
+   "word": "envoies",
+   "start": 0.16,
+   "end": 0.48
+  },
+  {
+   "word": "des",
+   "start": 0.48,
+   "end": 0.56
+  },
+  {
+   "word": "messages",
+   "start": 0.56,
+   "end": 0.88
+  },
+  {
+   "word": "aux",
+   "start": 0.88,
+   "end": 1.04
+  },
+  {
+   "word": "marques",
+   "start": 1.04,
+   "end": 1.52
+  },
+  {
+   "word": "et",
+   "start": 1.52,
+   "end": 1.76
+  },
+  {
+   "word": "personne",
+   "start": 1.76,
+   "end": 2.08
+  },
+  {
+   "word": "ne",
+   "start": 2.08,
+   "end": 2.24
+  },
+  {
+   "word": "répond",
+   "start": 2.24,
+   "end": 2.64
+  },
+  {
+   "word": "?",
+   "start": 2.64,
+   "end": 2.85
+  },
+  {
+   "word": "Le",
+   "start": 2.85,
+   "end": 3.09
+  },
+  {
+   "word": "problème,",
+   "start": 3.09,
+   "end": 3.49
+  },
+  {
+   "word": "ce",
+   "start": 3.49,
+   "end": 3.65
+  },
+  {
+   "word": "n'est",
+   "start": 3.65,
+   "end": 3.89
+  },
+  {
+   "word": "pas",
+   "start": 3.89,
+   "end": 4.05
+  },
+  {
+   "word": "toi,",
+   "start": 4.05,
+   "end": 4.45
+  },
+  {
+   "word": "c'est",
+   "start": 4.45,
+   "end": 4.69
+  },
+  {
+   "word": "ton",
+   "start": 4.69,
+   "end": 4.85
+  },
+  {
+   "word": "message.",
+   "start": 4.85,
+   "end": 5.49
+  },
+  {
+   "word": "Une",
+   "start": 5.49,
+   "end": 5.73
+  },
+  {
+   "word": "marque",
+   "start": 5.73,
+   "end": 6.05
+  },
+  {
+   "word": "reçoit",
+   "start": 6.05,
+   "end": 6.45
+  },
+  {
+   "word": "des",
+   "start": 6.45,
+   "end": 6.61
+  },
+  {
+   "word": "dizaines",
+   "start": 6.61,
+   "end": 7.09
+  },
+  {
+   "word": "de",
+   "start": 7.09,
+   "end": 7.17
+  },
+  {
+   "word": "demandes.",
+   "start": 7.17,
+   "end": 7.73
+  },
+  {
+   "word": "Celles",
+   "start": 7.73,
+   "end": 7.97
+  },
+  {
+   "word": "qui",
+   "start": 7.97,
+   "end": 8.13
+  },
+  {
+   "word": "ne",
+   "start": 8.13,
+   "end": 8.21
+  },
+  {
+   "word": "parlent",
+   "start": 8.21,
+   "end": 8.45
+  },
+  {
+   "word": "que",
+   "start": 8.45,
+   "end": 8.61
+  },
+  {
+   "word": "de",
+   "start": 8.61,
+   "end": 8.77
+  },
+  {
+   "word": "la",
+   "start": 8.77,
+   "end": 8.85
+  },
+  {
+   "word": "créatrice",
+   "start": 8.85,
+   "end": 9.33
+  },
+  {
+   "word": "finissent",
+   "start": 9.33,
+   "end": 9.81
+  },
+  {
+   "word": "ignorées.",
+   "start": 9.81,
+   "end": 10.45
+  },
+  {
+   "word": "Celles",
+   "start": 10.45,
+   "end": 10.77
+  },
+  {
+   "word": "qui",
+   "start": 10.77,
+   "end": 10.93
+  },
+  {
+   "word": "parlent",
+   "start": 10.93,
+   "end": 11.17
+  },
+  {
+   "word": "de",
+   "start": 11.17,
+   "end": 11.25
+  },
+  {
+   "word": "la",
+   "start": 11.25,
+   "end": 11.33
+  },
+  {
+   "word": "marque,",
+   "start": 11.33,
+   "end": 11.81
+  },
+  {
+   "word": "sont",
+   "start": 11.81,
+   "end": 12.05
+  },
+  {
+   "word": "lues.",
+   "start": 12.05,
+   "end": 12.61
+  },
+  {
+   "word": "Un",
+   "start": 12.61,
+   "end": 12.77
+  },
+  {
+   "word": "bon",
+   "start": 12.77,
+   "end": 13.01
+  },
+  {
+   "word": "message",
+   "start": 13.01,
+   "end": 13.33
+  },
+  {
+   "word": "de",
+   "start": 13.33,
+   "end": 13.49
+  },
+  {
+   "word": "prospection",
+   "start": 13.49,
+   "end": 14.13
+  },
+  {
+   "word": "est",
+   "start": 14.13,
+   "end": 14.29
+  },
+  {
+   "word": "personnalisé,",
+   "start": 14.29,
+   "end": 15.09
+  },
+  {
+   "word": "court",
+   "start": 15.25,
+   "end": 15.73
+  },
+  {
+   "word": "et",
+   "start": 15.73,
+   "end": 15.89
+  },
+  {
+   "word": "il",
+   "start": 15.89,
+   "end": 16.13
+  },
+  {
+   "word": "montre",
+   "start": 16.13,
+   "end": 16.45
+  },
+  {
+   "word": "tout",
+   "start": 16.45,
+   "end": 16.53
+  },
+  {
+   "word": "de",
+   "start": 16.53,
+   "end": 16.61
+  },
+  {
+   "word": "suite",
+   "start": 16.61,
+   "end": 16.85
+  },
+  {
+   "word": "la",
+   "start": 16.85,
+   "end": 16.93
+  },
+  {
+   "word": "valeur",
+   "start": 16.93,
+   "end": 17.17
+  },
+  {
+   "word": "que",
+   "start": 17.17,
+   "end": 17.33
+  },
+  {
+   "word": "tu",
+   "start": 17.33,
+   "end": 17.49
+  },
+  {
+   "word": "peux",
+   "start": 17.49,
+   "end": 17.73
+  },
+  {
+   "word": "apporter.",
+   "start": 17.73,
+   "end": 18.37
+  },
+  {
+   "word": "Mail,",
+   "start": 18.37,
+   "end": 18.93
+  },
+  {
+   "word": "réseau,",
+   "start": 18.93,
+   "end": 19.41
+  },
+  {
+   "word": "site",
+   "start": 19.41,
+   "end": 19.73
+  },
+  {
+   "word": "internet,",
+   "start": 19.73,
+   "end": 20.37
+  },
+  {
+   "word": "chaque",
+   "start": 20.37,
+   "end": 20.69
+  },
+  {
+   "word": "canal",
+   "start": 20.69,
+   "end": 21.01
+  },
+  {
+   "word": "a",
+   "start": 21.01,
+   "end": 21.17
+  },
+  {
+   "word": "ses",
+   "start": 21.17,
+   "end": 21.33
+  },
+  {
+   "word": "règles.",
+   "start": 21.33,
+   "end": 21.81
+  },
+  {
+   "word": "Et",
+   "start": 21.81,
+   "end": 21.97
+  },
+  {
+   "word": "il",
+   "start": 21.97,
+   "end": 22.13
+  },
+  {
+   "word": "y",
+   "start": 22.13,
+   "end": 22.29
+  },
+  {
+   "word": "a",
+   "start": 22.29,
+   "end": 22.37
+  },
+  {
+   "word": "une",
+   "start": 22.37,
+   "end": 22.53
+  },
+  {
+   "word": "phrase",
+   "start": 22.53,
+   "end": 22.93
+  },
+  {
+   "word": "que",
+   "start": 22.93,
+   "end": 23.09
+  },
+  {
+   "word": "presque",
+   "start": 23.09,
+   "end": 23.41
+  },
+  {
+   "word": "tout",
+   "start": 23.41,
+   "end": 23.57
+  },
+  {
+   "word": "le",
+   "start": 23.57,
+   "end": 23.65
+  },
+  {
+   "word": "monde",
+   "start": 23.65,
+   "end": 23.89
+  },
+  {
+   "word": "oublie,",
+   "start": 23.89,
+   "end": 24.45
+  },
+  {
+   "word": "alors",
+   "start": 24.45,
+   "end": 24.69
+  },
+  {
+   "word": "que",
+   "start": 24.69,
+   "end": 24.85
+  },
+  {
+   "word": "c'est",
+   "start": 24.85,
+   "end": 25.01
+  },
+  {
+   "word": "elle",
+   "start": 25.01,
+   "end": 25.25
+  },
+  {
+   "word": "qui",
+   "start": 25.25,
+   "end": 25.41
+  },
+  {
+   "word": "déclenche",
+   "start": 25.41,
+   "end": 25.97
+  },
+  {
+   "word": "la",
+   "start": 25.97,
+   "end": 26.05
+  },
+  {
+   "word": "réponse.",
+   "start": 26.05,
+   "end": 26.67
+  },
+  {
+   "word": "Chez",
+   "start": 26.67,
+   "end": 26.83
+  },
+  {
+   "word": "Phoenix",
+   "start": 26.83,
+   "end": 27.31
+  },
+  {
+   "word": "Pro,",
+   "start": 27.31,
+   "end": 27.63
+  },
+  {
+   "word": "on",
+   "start": 27.63,
+   "end": 27.79
+  },
+  {
+   "word": "te",
+   "start": 27.79,
+   "end": 27.87
+  },
+  {
+   "word": "donne",
+   "start": 27.87,
+   "end": 28.11
+  },
+  {
+   "word": "des",
+   "start": 28.11,
+   "end": 28.19
+  },
+  {
+   "word": "modèles",
+   "start": 28.19,
+   "end": 28.51
+  },
+  {
+   "word": "de",
+   "start": 28.51,
+   "end": 28.59
+  },
+  {
+   "word": "messages",
+   "start": 28.59,
+   "end": 28.91
+  },
+  {
+   "word": "prêt",
+   "start": 28.91,
+   "end": 29.31
+  },
+  {
+   "word": "personnaliser.",
+   "start": 29.31,
+   "end": 30.11
+  },
+  {
+   "word": "Écris",
+   "start": 30.11,
+   "end": 30.59
+  },
+  {
+   "word": "message",
+   "start": 30.59,
+   "end": 31.07
+  },
+  {
+   "word": "en",
+   "start": 31.07,
+   "end": 31.15
+  },
+  {
+   "word": "privé",
+   "start": 31.15,
+   "end": 31.47
+  },
+  {
+   "word": "et",
+   "start": 31.47,
+   "end": 31.63
+  },
+  {
+   "word": "je",
+   "start": 31.63,
+   "end": 31.79
+  },
+  {
+   "word": "t'explique.",
+   "start": 31.79,
+   "end": 32.51
+  }
+ ]
+}

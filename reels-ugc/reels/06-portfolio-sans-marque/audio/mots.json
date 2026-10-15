@@ -1,0 +1,580 @@
+{
+ "duration": 34.84,
+ "words": [
+  {
+   "word": "Comment",
+   "start": 0.0,
+   "end": 0.32
+  },
+  {
+   "word": "faire",
+   "start": 0.32,
+   "end": 0.48
+  },
+  {
+   "word": "un",
+   "start": 0.48,
+   "end": 0.64
+  },
+  {
+   "word": "portfolio",
+   "start": 0.64,
+   "end": 1.28
+  },
+  {
+   "word": "UGC",
+   "start": 1.28,
+   "end": 2.08
+  },
+  {
+   "word": "quand",
+   "start": 2.32,
+   "end": 2.64
+  },
+  {
+   "word": "aucune",
+   "start": 2.64,
+   "end": 3.04
+  },
+  {
+   "word": "marque",
+   "start": 3.04,
+   "end": 3.28
+  },
+  {
+   "word": "ne",
+   "start": 3.28,
+   "end": 3.44
+  },
+  {
+   "word": "t'a",
+   "start": 3.44,
+   "end": 3.68
+  },
+  {
+   "word": "encore",
+   "start": 3.68,
+   "end": 3.92
+  },
+  {
+   "word": "payé",
+   "start": 3.92,
+   "end": 4.48
+  },
+  {
+   "word": "?",
+   "start": 4.48,
+   "end": 4.8
+  },
+  {
+   "word": "Facile",
+   "start": 4.8,
+   "end": 5.36
+  },
+  {
+   "word": "!",
+   "start": 5.36,
+   "end": 5.6
+  },
+  {
+   "word": "Tu",
+   "start": 5.6,
+   "end": 5.84
+  },
+  {
+   "word": "n'attends",
+   "start": 5.84,
+   "end": 6.32
+  },
+  {
+   "word": "personne",
+   "start": 6.32,
+   "end": 6.72
+  },
+  {
+   "word": "!",
+   "start": 6.72,
+   "end": 7.01
+  },
+  {
+   "word": "Prends",
+   "start": 7.01,
+   "end": 7.33
+  },
+  {
+   "word": "les",
+   "start": 7.33,
+   "end": 7.41
+  },
+  {
+   "word": "produits",
+   "start": 7.41,
+   "end": 7.65
+  },
+  {
+   "word": "que",
+   "start": 7.65,
+   "end": 7.81
+  },
+  {
+   "word": "tu",
+   "start": 7.81,
+   "end": 7.97
+  },
+  {
+   "word": "as",
+   "start": 7.97,
+   "end": 8.13
+  },
+  {
+   "word": "déjà",
+   "start": 8.13,
+   "end": 8.37
+  },
+  {
+   "word": "chez",
+   "start": 8.37,
+   "end": 8.53
+  },
+  {
+   "word": "toi.",
+   "start": 8.53,
+   "end": 8.93
+  },
+  {
+   "word": "Ta",
+   "start": 8.93,
+   "end": 9.17
+  },
+  {
+   "word": "crème,",
+   "start": 9.17,
+   "end": 9.57
+  },
+  {
+   "word": "ta",
+   "start": 9.57,
+   "end": 9.81
+  },
+  {
+   "word": "gourde,",
+   "start": 9.81,
+   "end": 10.29
+  },
+  {
+   "word": "ton",
+   "start": 10.29,
+   "end": 10.53
+  },
+  {
+   "word": "café.",
+   "start": 10.53,
+   "end": 11.09
+  },
+  {
+   "word": "Et",
+   "start": 11.09,
+   "end": 11.25
+  },
+  {
+   "word": "crée",
+   "start": 11.25,
+   "end": 11.65
+  },
+  {
+   "word": "les",
+   "start": 11.65,
+   "end": 11.81
+  },
+  {
+   "word": "vidéos",
+   "start": 11.81,
+   "end": 12.13
+  },
+  {
+   "word": "comme",
+   "start": 12.13,
+   "end": 12.29
+  },
+  {
+   "word": "si",
+   "start": 12.29,
+   "end": 12.53
+  },
+  {
+   "word": "la",
+   "start": 12.53,
+   "end": 12.61
+  },
+  {
+   "word": "marque",
+   "start": 12.61,
+   "end": 12.93
+  },
+  {
+   "word": "te",
+   "start": 12.93,
+   "end": 13.01
+  },
+  {
+   "word": "les",
+   "start": 13.01,
+   "end": 13.17
+  },
+  {
+   "word": "avait",
+   "start": 13.17,
+   "end": 13.41
+  },
+  {
+   "word": "commandées.",
+   "start": 13.41,
+   "end": 14.05
+  },
+  {
+   "word": "Une",
+   "start": 14.05,
+   "end": 14.21
+  },
+  {
+   "word": "accroche,",
+   "start": 14.21,
+   "end": 14.85
+  },
+  {
+   "word": "une",
+   "start": 14.85,
+   "end": 15.01
+  },
+  {
+   "word": "démonstration,",
+   "start": 15.01,
+   "end": 15.81
+  },
+  {
+   "word": "un",
+   "start": 15.81,
+   "end": 15.97
+  },
+  {
+   "word": "appel",
+   "start": 15.97,
+   "end": 16.21
+  },
+  {
+   "word": "à",
+   "start": 16.21,
+   "end": 16.37
+  },
+  {
+   "word": "l'action.",
+   "start": 16.37,
+   "end": 16.93
+  },
+  {
+   "word": "Ensuite,",
+   "start": 16.93,
+   "end": 17.49
+  },
+  {
+   "word": "tu",
+   "start": 17.49,
+   "end": 17.73
+  },
+  {
+   "word": "rassembles",
+   "start": 17.73,
+   "end": 18.29
+  },
+  {
+   "word": "tout",
+   "start": 18.29,
+   "end": 18.53
+  },
+  {
+   "word": "sur",
+   "start": 18.53,
+   "end": 18.61
+  },
+  {
+   "word": "une",
+   "start": 18.61,
+   "end": 18.77
+  },
+  {
+   "word": "page",
+   "start": 18.77,
+   "end": 19.01
+  },
+  {
+   "word": "simple,",
+   "start": 19.01,
+   "end": 19.41
+  },
+  {
+   "word": "avec",
+   "start": 19.41,
+   "end": 19.57
+  },
+  {
+   "word": "un",
+   "start": 19.57,
+   "end": 19.73
+  },
+  {
+   "word": "lien",
+   "start": 19.73,
+   "end": 19.97
+  },
+  {
+   "word": "que",
+   "start": 19.97,
+   "end": 20.13
+  },
+  {
+   "word": "tu",
+   "start": 20.13,
+   "end": 20.29
+  },
+  {
+   "word": "peux",
+   "start": 20.29,
+   "end": 20.45
+  },
+  {
+   "word": "envoyer",
+   "start": 20.45,
+   "end": 20.85
+  },
+  {
+   "word": "à",
+   "start": 20.85,
+   "end": 21.01
+  },
+  {
+   "word": "n'importe",
+   "start": 21.01,
+   "end": 21.41
+  },
+  {
+   "word": "quelle",
+   "start": 21.41,
+   "end": 21.65
+  },
+  {
+   "word": "marque",
+   "start": 21.65,
+   "end": 21.97
+  },
+  {
+   "word": "en",
+   "start": 21.97,
+   "end": 22.21
+  },
+  {
+   "word": "une",
+   "start": 22.21,
+   "end": 22.45
+  },
+  {
+   "word": "seconde.",
+   "start": 22.45,
+   "end": 23.01
+  },
+  {
+   "word": "Ton",
+   "start": 23.01,
+   "end": 23.25
+  },
+  {
+   "word": "portfolio,",
+   "start": 23.25,
+   "end": 23.89
+  },
+  {
+   "word": "c'est",
+   "start": 23.89,
+   "end": 24.13
+  },
+  {
+   "word": "ta",
+   "start": 24.13,
+   "end": 24.29
+  },
+  {
+   "word": "vitrine.",
+   "start": 24.29,
+   "end": 24.93
+  },
+  {
+   "word": "Et",
+   "start": 24.93,
+   "end": 25.17
+  },
+  {
+   "word": "un",
+   "start": 25.17,
+   "end": 25.25
+  },
+  {
+   "word": "portfolio",
+   "start": 25.25,
+   "end": 25.73
+  },
+  {
+   "word": "qui",
+   "start": 25.73,
+   "end": 25.89
+  },
+  {
+   "word": "n'évolue",
+   "start": 25.89,
+   "end": 26.45
+  },
+  {
+   "word": "pas,",
+   "start": 26.45,
+   "end": 26.69
+  },
+  {
+   "word": "c'est",
+   "start": 26.69,
+   "end": 26.85
+  },
+  {
+   "word": "une",
+   "start": 26.85,
+   "end": 27.01
+  },
+  {
+   "word": "vitrine",
+   "start": 27.01,
+   "end": 27.49
+  },
+  {
+   "word": "fermée.",
+   "start": 27.49,
+   "end": 28.12
+  },
+  {
+   "word": "Il",
+   "start": 28.12,
+   "end": 28.28
+  },
+  {
+   "word": "y",
+   "start": 28.28,
+   "end": 28.44
+  },
+  {
+   "word": "a",
+   "start": 28.44,
+   "end": 28.52
+  },
+  {
+   "word": "quelques",
+   "start": 28.52,
+   "end": 28.84
+  },
+  {
+   "word": "règles",
+   "start": 28.84,
+   "end": 29.16
+  },
+  {
+   "word": "pour",
+   "start": 29.16,
+   "end": 29.24
+  },
+  {
+   "word": "qu'ils",
+   "start": 29.24,
+   "end": 29.56
+  },
+  {
+   "word": "donnent",
+   "start": 29.56,
+   "end": 29.88
+  },
+  {
+   "word": "vraiment",
+   "start": 29.88,
+   "end": 30.12
+  },
+  {
+   "word": "envie",
+   "start": 30.12,
+   "end": 30.36
+  },
+  {
+   "word": "de",
+   "start": 30.36,
+   "end": 30.44
+  },
+  {
+   "word": "te",
+   "start": 30.44,
+   "end": 30.6
+  },
+  {
+   "word": "contacter.",
+   "start": 30.6,
+   "end": 31.24
+  },
+  {
+   "word": "On",
+   "start": 31.24,
+   "end": 31.4
+  },
+  {
+   "word": "les",
+   "start": 31.4,
+   "end": 31.56
+  },
+  {
+   "word": "partage",
+   "start": 31.56,
+   "end": 31.96
+  },
+  {
+   "word": "avec",
+   "start": 31.96,
+   "end": 32.12
+  },
+  {
+   "word": "nos",
+   "start": 32.12,
+   "end": 32.28
+  },
+  {
+   "word": "membres.",
+   "start": 32.28,
+   "end": 32.68
+  },
+  {
+   "word": "Envoie-moi",
+   "start": 32.68,
+   "end": 33.32
+  },
+  {
+   "word": "Portfolio",
+   "start": 33.32,
+   "end": 33.88
+  },
+  {
+   "word": "en",
+   "start": 33.88,
+   "end": 34.04
+  },
+  {
+   "word": "message",
+   "start": 34.04,
+   "end": 34.36
+  },
+  {
+   "word": "privé.",
+   "start": 34.36,
+   "end": 34.84
+  }
+ ]
+}
