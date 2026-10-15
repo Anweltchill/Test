@@ -43,13 +43,16 @@ boucle ouverte + CTA (lien en bio, ou mot-clé en message privé) ; ~45 s. Cible
    - Nombres en toutes lettres, sigles/anglicismes épelés si besoin (« U-G-C », « D-M »).
    - Réglages conseillés : stabilité ~50 %, vitesse 1.0, voix choisie par l'utilisateur.
    - + légende Instagram + 5 à 10 hashtags (dans `script.md`).
-4. L'utilisateur renvoie **un seul MP3 continu** → `audio/voix.mp3`. Ne jamais demander de découpe.
+4. L'utilisateur renvoie **un seul MP3 pour toute une série** (textes lus à la suite, document `reels/SERIE-N-VOIX-COMPLETE.txt`),
+   éventuellement en plusieurs morceaux à mettre bout à bout. Ne jamais lui demander de découper :
+   `python3 tools/split_voice.py serie.mp3 [morceau2.mp3 …]` → `reels/<NN-slug>/audio/voix.wav` + `mots.json` pour chaque Reel
+   (alignement ASR sur chaque voix-off.txt ; vérifier le rapport de couverture, ⚠ = texte lu différemment).
 
 ## 3. Fabrication
 Créer le dossier : `tools/new-reel.sh NN-slug` (copie GSAP local, polices et logo du brand dans le projet :
 le moteur ne sert que le dossier du Reel, donc **tous les chemins sont relatifs au Reel** : `assets/…`).
 
-1. **Calage** : `python3 tools/asr.py audio/voix.mp3 audio/mots.json`. Chaque mot-clé / apparition / bruitage
+1. **Calage** : `python3 tools/asr.py audio/voix.wav audio/mots.json` (déjà fait par split_voice.py). Chaque mot-clé / apparition / bruitage
    tombe sur son mot (±0,05 s) ; les entrées démarrent ~0,15 s avant le mot.
 2. **STORYBOARD.md** : scènes de 3–8 s (durée, transition, idée visuelle, mots-clés + temps locaux).
    Sujet nouveau → le montrer en 10 lignes avant de fabriquer ; sinon enchaîner.
@@ -97,7 +100,7 @@ le moteur ne sert que le dossier du Reel, donc **tous les chemins sont relatifs 
    orthographe parfaite, chaque mot-clé sur son mot. Vérifier les transitions avec `--at` serrés. Corriger avant de rendre.
 9. **Rendu** : `npx --yes hyperframes@V render -f 30 -q delivery -o renders/video.mp4 .`
    (`delivery` = qualité finale ; `draft` pour itérer vite). 4K sur demande : `--resolution portrait-4k` (3–4× plus long).
-10. **Mixage** : `tools/mix.sh renders/video.mp4 audio/voix.mp3 audio/musique.wav audio/sfx.wav renders/mix.mp4`
+10. **Mixage** : `tools/mix.sh renders/video.mp4 audio/voix.wav audio/musique.wav audio/sfx.wav renders/mix.mp4`
     — voix devant, musique en ducking (sidechaincompress, ≈ -20/-25 dB sous la voix, plus présente dans les silences),
     bruitages subtils, **-14 LUFS, crête -1 dBTP**. Passage chuchoté/faible : `VOICE_AF="volume=enable='between(t,a,b)':volume=6dB"`
     et pas d'impact/sub dessus. Réglages : `MUSIC_DB`, `DUCK_RATIO`, `SFX_DB`.
