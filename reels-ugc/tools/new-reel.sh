@@ -4,7 +4,7 @@
 set -euo pipefail
 [ $# -eq 1 ] || { sed -n 2,3p "$0"; exit 1; }
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"; D="$ROOT/reels/$1"; V=$(cat "$ROOT/tools/HYPERFRAMES_VERSION")
-[ -e "$D" ] && { echo "$D existe déjà"; exit 1; }
+[ -e "$D/index.html" ] && { echo "$D contient déjà une vidéo"; exit 1; }
 mkdir -p "$D"/{audio,compositions/frames,assets/fonts,assets/brand,renders}
 cp "$ROOT/assets/vendor/gsap.min.js" "$D/assets/"
 # polices et logos de la chaîne copiés dans le projet (le moteur ne sert que le dossier du Reel)
@@ -28,5 +28,5 @@ cat > "$D/hyperframes.json" <<'JSON'
   "media": { "autoProxy": true }
 }
 JSON
-printf "# Script — %s\n\n" "$1" > "$D/script.md"
+[ -f "$D/script.md" ] || printf "# Script — %s\n\n" "$1" > "$D/script.md"
 echo "Reel créé : $D"

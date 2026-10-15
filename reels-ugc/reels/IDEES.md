@@ -11,15 +11,6 @@ Piliers (on tourne entre eux pour varier) :
 8. **Erreurs à éviter** — travailler sans brief, sans acompte, céder les droits à vie…
 9. **Revenus récurrents** — clients fidèles, abonnements mensuels, retainers
 
-| # | Pilier | Sujet | Statut |
-|---|--------|-------|--------|
-| 01 | Contacter | Comment contacter une marque en DM | idée |
-| 02 | Trouver | 5 endroits où trouver des marques qui cherchent des créateurs UGC | idée |
-| 03 | Tarifs | Comment calculer ton prix pour une vidéo UGC | idée |
-| 04 | Contrats | Droits d'usage : ce que tu cèdes vraiment | idée |
-| 05 | Portfolio | Ton portfolio UGC sans aucune marque | idée |
-| 06 | Créer | Les 3 hooks qui marchent pour une vidéo produit | idée |
-| 07 | Erreurs | 5 erreurs qui font fuir les marques | idée |
-| 08 | Contacter | Le mail de relance qui obtient une réponse | idée |
-| 09 | Tarifs | Négocier sans baisser ton prix | idée |
-| 10 | Récurrent | Transformer un client en contrat mensuel | idée |
+Série 1 (scripts écrits, voir `reels/SERIE-1-SCRIPTS.md`) : 01 → 20, en attente des voix.
+Base d'idées : `contenu/BASE-CONNAISSANCES.md` (Notion Espace UGC).
+Stratégie : donner envie sans livrer le « comment » final ; CTA lien en bio ou mot-clé en message privé.

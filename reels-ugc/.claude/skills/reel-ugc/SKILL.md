@@ -28,6 +28,10 @@ Ne pas envoyer de rapport `hyperframes feedback` (canal public) sans accord.
 - Info manquante → la **demander**. Logo toujours en `<img>`, jamais retapé, redessiné ni recoloré.
 
 ## 2. Script (par Reel)
+Stratégie Phoenix Pro (consigne cliente) : s'appuyer sur `contenu/BASE-CONNAISSANCES.md` sans s'y limiter ;
+**donner envie sans livrer le « comment » final** (pas de modèles complets, listes de noms, tarifs détaillés) ;
+boucle ouverte + CTA (lien en bio, ou mot-clé en message privé) ; ~45 s. Cible surtout féminine (« créatrice »).
+
 1. Sujet donné → proposer **3 angles d'accroche**, attendre le choix.
 2. Script : 30–60 s (≈75–150 mots), accroche dans les 2 premières secondes, une idée par phrase, tutoiement,
    concret (étapes, exemples, ordres de grandeur), CTA final (s'abonner / commenter un mot-clé / enregistrer).
