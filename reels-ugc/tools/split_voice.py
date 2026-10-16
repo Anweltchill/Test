@@ -72,6 +72,17 @@ def align(reels, words):
     return res
 
 
+def silence_after(env, t_from, t_max, thr=-45.0, run=0.15, tail=0.12):
+    """Premier silence (≥ run s sous thr dB) après t_from ; renvoie l'instant de coupe (début du silence + tail)."""
+    i, need, cnt = int(t_from * 100), int(run * 100), 0
+    while i < min(len(env), int(t_max * 100)):
+        cnt = cnt + 1 if env[i] < thr else 0
+        if cnt >= need:
+            return min(t_max, (i - need + 1) / 100 + tail)
+        i += 1
+    return t_max
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("audio", nargs="+")
@@ -105,6 +116,11 @@ def main():
     data = json.load(open(mj, encoding="utf-8"))
     words, dur = data["words"], data["duration"]
 
+    import numpy as np
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", full, "-ac", "1", "-ar", "16000", "-f", "f32le", "-"], capture_output=True, check=True).stdout
+    sig = np.frombuffer(raw, np.float32); n = len(sig) // 160
+    env = 20 * np.log10(np.sqrt((sig[:n * 160].reshape(n, 160) ** 2).mean(1)) + 1e-9)  # dB par tranche de 10 ms
+
     res = align(reels, words)
     order = [s for s, _ in reels]
     bounds = []
@@ -125,6 +141,8 @@ def main():
         nxt = next((bounds[j] for j in range(i + 1, len(order)) if bounds[j]), None)
         if prev: t0 = max(t0, (prev[1] + bounds[i][0]) / 2)
         if nxt: t1 = min(t1, (bounds[i][1] + nxt[0]) / 2)
+        # fin : couper dans le premier vrai silence après le dernier mot (évite d'attraper le début du Reel suivant)
+        t1 = min(t1, silence_after(env, words[r[1]]["start"] + 0.2, t1))
         flag = "" if cover >= a.min_cover else "  ⚠ à vérifier (texte modifié à la lecture ?)"
         print(f"{s:32} {t0:7.2f} {t1:7.2f} {t1-t0:6.1f}  {r[2]}/{r[3]} ({cover:.0%}){flag}")
         out_dir = os.path.join(REELS, s, "audio"); os.makedirs(out_dir, exist_ok=True)
