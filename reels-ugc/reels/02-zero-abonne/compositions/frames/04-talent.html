@@ -5,33 +5,31 @@
     <template>
       <link rel="stylesheet" href="assets/brand.css" />
       <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
       <style>
         #root { position: absolute; inset: 0; overflow: hidden; }
         #s4-cam { position: absolute; inset: 0; }
-        #s4-q { position: absolute; left: 64px; right: 120px; top: 300px; text-align: center; font-size: 46px; display: block; }
-        #s4-vis { position: absolute; left: 172px; top: 400px; width: 680px; height: 300px; display: flex; align-items: center; justify-content: center; gap: 30px; }
-        #s4-eye { width: 150px; height: 150px; display: block; }
-        #s4-vt { font-size: 76px; display: block; }
-        #s4-xl { position: absolute; left: 150px; top: 520px; width: 724px; height: 60px; display: block; }
-        #s4-tal { position: absolute; left: 64px; right: 120px; top: 790px; text-align: center; font-size: 150px; display: block; padding-bottom: 14px; }
-        #s4-spk { position: absolute; left: 780px; top: 760px; width: 120px; height: 120px; display: block; }
-        #s4-spk2 { position: absolute; left: 130px; top: 940px; width: 70px; height: 70px; display: block; }
-        #s4-env { position: absolute; left: 64px; right: 120px; top: 1010px; text-align: center; font-size: 96px; display: block; padding-bottom: 12px; }
-        #s4-ul { position: absolute; left: 287px; top: 1145px; width: 450px; height: 40px; display: block; }
+        #s4-q { position: absolute; left: 64px; right: 120px; top: 280px; text-align: center; font-size: 46px; display: block; }
+        #s4-vis { position: absolute; left: 152px; top: 380px; width: 720px; height: 260px; display: flex; align-items: center; justify-content: center; gap: 30px; }
+        #s4-eyes { width: 190px; height: 190px; }
+        #s4-vt { font-size: 80px; display: block; }
+        #s4-xl { position: absolute; left: 130px; top: 480px; width: 764px; height: 70px; display: block; }
+        #s4-tal { position: absolute; left: 64px; right: 120px; top: 760px; text-align: center; font-size: 160px; white-space: nowrap; display: block; padding-bottom: 14px; }
+        #s4-starw { position: absolute; left: 400px; top: 690px; width: 230px; height: 230px; display: block; }
+        #s4-star { width: 230px; height: 230px; }
+        #s4-env { position: absolute; left: 64px; right: 120px; top: 1010px; text-align: center; font-size: 92px; display: block; padding-bottom: 12px; }
+        #s4-facew { position: absolute; left: 444px; top: 1140px; width: 140px; height: 140px; display: block; }
+        #s4-face { width: 140px; height: 140px; }
       </style>
       <div id="root" data-composition-id="s4" data-width="1080" data-height="1920">
-        <div id="s4-cam" data-layout-allow-overflow>
+        <div id="s4-cam" data-layout-allow-overflow data-layout-allow-overlap>
           <div id="s4-q" class="t-label">Ce qu'on te demande</div>
-          <div id="s4-vis" class="card">
-            <svg id="s4-eye" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#C2C7DD" /><path d="M10 32s8-13 22-13 22 13 22 13-8 13-22 13-22-13-22-13z" stroke="#0E1928" stroke-width="2.6" stroke-linejoin="round" /><circle cx="32" cy="32" r="6" fill="#0E1928" /></svg>
-            <span id="s4-vt" class="t-serif">Visibilité</span>
-          </div>
-          <svg id="s4-xl" viewBox="0 0 724 60" fill="none"><path id="s4-xp" d="M12 40 C 200 22, 480 46, 712 18" stroke="#E2718D" stroke-width="14" stroke-linecap="round" stroke-dasharray="760" stroke-dashoffset="760" /></svg>
-          <div id="s4-tal" class="t-serif">ton <span class="acc">talent</span></div>
-          <svg id="s4-spk" viewBox="0 0 64 64"><path d="M32 4l5 18 18 5-18 5-5 18-5-18-18-5 18-5z" fill="#E2718D" /></svg>
-          <svg id="s4-spk2" viewBox="0 0 64 64"><path d="M32 4l5 18 18 5-18 5-5 18-5-18-18-5 18-5z" fill="#CC7183" /></svg>
+          <div id="s4-vis" class="card"><img id="s4-eyes" class="img3d" src="assets/lib/emoji/eyes.png" alt="" /><span id="s4-vt" class="t-serif">Visibilité</span></div>
+          <svg id="s4-xl" viewBox="0 0 764 70" fill="none"><path id="s4-xp" d="M12 46 C 200 24, 500 54, 752 20" stroke="#E2718D" stroke-width="16" stroke-linecap="round" stroke-dasharray="800" stroke-dashoffset="800" /></svg>
+          <div id="s4-starw"><img id="s4-star" class="img3d" src="assets/lib/emoji/glowing-star.png" alt="" /></div>
+          <div id="s4-tal" class="t-serif">ton talent</div>
           <div id="s4-env" class="t-italic">pour donner envie</div>
-          <svg id="s4-ul" viewBox="0 0 450 40" fill="none"><path id="s4-ulp" d="M6 22 C 60 6, 96 6, 150 22 S 240 38, 300 22 S 390 6, 444 20" stroke="#DB96A1" stroke-width="5" stroke-linecap="round" stroke-dasharray="500" stroke-dashoffset="500" /></svg>
+          <div id="s4-facew"><img id="s4-face" class="img3d" src="assets/lib/emoji/smiling-face-with-heart-eyes.png" alt="" /></div>
         </div>
       </div>
       <script>
@@ -40,17 +38,20 @@
           const tl = gsap.timeline({ paused: true });
           // « demande » 14.96 · « visibilité » 15.92 · « talent » 17.12 · « donner envie » 17.68–18.00
           tl.fromTo("#s4-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.32, ease: "power3.out" }, 0);
-          tl.fromTo("#s4-q", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, at(14.4));
-          tl.fromTo("#s4-vis", { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" }, at(15.2));
-          tl.fromTo("#s4-xp", { attr: { "stroke-dashoffset": 760 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.35, ease: "power3.out" }, at(16.35));
-          tl.to("#s4-vis", { opacity: 0.4, scale: 0.92, rotation: -3, duration: 0.35 }, at(16.5));
-          tl.fromTo("#s4-tal", { y: 80, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.55, ease: "power4.out" }, at(16.85));
-          tl.fromTo("#s4-spk", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(17.15));
-          tl.fromTo("#s4-spk2", { scale: 0, rotation: 90 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(17.3));
-          tl.fromTo("#s4-env", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power4.out" }, at(17.55));
-          tl.fromTo("#s4-ulp", { attr: { "stroke-dashoffset": 500 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.inOut" }, at(17.9));
-          tl.fromTo("#s4-spk", { rotation: 0 }, { rotation: 45, duration: 1, ease: "none", immediateRender: false }, at(17.65));
-          tl.to("#s4-cam", { scale: 1.4, opacity: 0, filter: "blur(14px)", duration: 0.28, ease: "power3.in" }, at(18.12));
+          tl.fromTo("#s4-q", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, at(14.35));
+          tl.fromTo("#s4-vis", { scale: 0.5, opacity: 0, rotation: -6 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.55, ease: "back.out(2)" }, at(14.9));
+          tl.fromTo("#s4-eyes", { x: -30 }, { x: 30, duration: 0.35, ease: "sine.inOut", yoyo: true, repeat: 3, immediateRender: false }, at(15.0));
+          tl.fromTo("#s4-xp", { attr: { "stroke-dashoffset": 800 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.35, ease: "power3.out" }, at(16.3));
+          tl.to("#s4-vis", { opacity: 0.35, scale: 0.9, rotation: -4, y: -30, duration: 0.4 }, at(16.45));
+          tl.to("#s4-xl", { opacity: 0.35, y: -30, duration: 0.4 }, at(16.45));
+          tl.fromTo("#s4-star", { scale: 0, rotation: -180 }, { scale: 1, rotation: 0, duration: 0.7, ease: "back.out(2)" }, at(16.75));
+          tl.fromTo("#s4-starw", { opacity: 1 }, { opacity: 0.25, duration: 0.3, immediateRender: false }, at(17.4));
+          PX.letters(tl, "#s4-tal", at(16.9), { y: 120, stagger: 0.035 }).slice(4).forEach((c) => (c.style.color = "#E2718D"));
+          PX.burst(tl, "#s4-cam", 515, 850, at(17.15), { n: 18, r: 380, seed: 5 });
+          PX.letters(tl, "#s4-env", at(17.5), { y: 60, stagger: 0.02, dur: 0.4, ease: "power4.out" });
+          tl.fromTo("#s4-face", { scale: 0, rotation: 30 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(17.85));
+          PX.float(tl, "#s4-facew", at(18.0), 0.6, 8, 0.6, 5);
+          tl.to("#s4-cam", { scale: 1.4, opacity: 0, filter: "blur(14px)", duration: 0.26, ease: "power3.in" }, at(18.14));
           window.__timelines["s4"] = tl;
         })();
       </script>

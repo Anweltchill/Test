@@ -5,42 +5,68 @@
     <template>
       <link rel="stylesheet" href="assets/brand.css" />
       <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
       <style>
         #root { position: absolute; inset: 0; overflow: hidden; }
         #s1-cam { position: absolute; inset: 0; }
-        #s1-num { position: absolute; left: 64px; right: 120px; top: 330px; text-align: center; font-size: 300px; line-height: 1; white-space: nowrap; display: block; }
-        #s1-lab { position: absolute; left: 64px; right: 120px; top: 650px; text-align: center; font-size: 56px; display: block; }
-        #s1-stamp { position: absolute; left: 212px; top: 760px; width: 600px; height: 220px; border: 10px solid #E2718D; border-radius: 28px; display: flex; align-items: center; justify-content: center; }
-        #s1-stampt { font-size: 112px; color: #E2718D; display: block; }
-        #s1-ugc { position: absolute; left: 0; right: 56px; top: 1080px; text-align: center; display: block; }
-        #s1-pill { display: inline-flex; align-items: center; gap: 18px; background: #0E1928; color: #FDF4ED; border-radius: 999px; padding: 18px 44px; font: 600 50px "PxSans", sans-serif; letter-spacing: 0.06em; }
-        #s1-ck { width: 52px; height: 52px; display: block; }
+        #s1-prof { position: absolute; left: 112px; top: 330px; width: 800px; height: 560px; display: block; }
+        #s1-ig { position: absolute; left: 40px; top: 36px; width: 72px; height: 72px; }
+        #s1-handle { position: absolute; left: 132px; top: 50px; font: 600 40px "PxSans", sans-serif; display: block; }
+        #s1-avw { position: absolute; left: 50px; top: 150px; width: 210px; height: 210px; border-radius: 50%; padding: 6px;
+          background: linear-gradient(45deg, #F9CE34, #EE2A7B 55%, #6228D7); display: block; }
+        #s1-avin { width: 100%; height: 100%; border-radius: 50%; background: #FDF4ED; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        #s1-av { width: 170px; height: 170px; margin-top: 30px; }
+        #s1-stats { position: absolute; left: 300px; top: 165px; right: 40px; display: flex; justify-content: space-between; text-align: center; }
+        .s1-st { display: block; }
+        .s1-sn { font: 700 64px "PxSerif", serif; display: block; }
+        .s1-sl { font: 500 30px "PxSans", sans-serif; color: #6b6f78; display: block; }
+        #s1-big { position: absolute; left: 40px; right: 40px; top: 390px; text-align: center; display: flex; align-items: baseline; justify-content: center; gap: 22px; }
+        #s1-num { font: 700 150px "PxSerif", serif; display: block; white-space: nowrap; }
+        #s1-ab { font: 500 52px "PxSans", sans-serif; display: block; }
+        #s1-stamp { position: absolute; left: 240px; top: 935px; width: 560px; height: 190px; border: 10px solid #E2718D; border-radius: 28px; background: rgba(253,244,237,0.85); display: flex; align-items: center; justify-content: center; }
+        #s1-stampt { font-size: 104px; color: #E2718D; display: block; }
+        #s1-popw { position: absolute; left: 690px; top: 880px; width: 250px; height: 250px; display: block; }
+        #s1-pop { width: 250px; height: 250px; }
+        #s1-ugc { position: absolute; left: 0; right: 56px; top: 1190px; text-align: center; display: block; }
+        #s1-pill { display: inline-flex; align-items: center; gap: 18px; background: #0E1928; color: #FDF4ED; border-radius: 999px; padding: 16px 44px 16px 22px; font: 600 48px "PxSans", sans-serif; }
+        #s1-spk { width: 84px; height: 84px; }
       </style>
       <div id="root" data-composition-id="s1" data-width="1080" data-height="1920">
-        <div id="s1-cam" data-layout-allow-overflow>
-          <div id="s1-num" class="t-serif">0</div>
-          <div id="s1-lab" class="t-label">abonné</div>
+        <div id="s1-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s1-prof" class="card">
+            <img id="s1-ig" class="logo-app" src="assets/lib/logos/instagram-icon.svg" alt="" />
+            <span id="s1-handle">toi.ugc</span>
+            <div id="s1-avw"><div id="s1-avin"><img id="s1-av" src="assets/lib/emoji/woman-raising-hand.png" alt="" /></div></div>
+            <div id="s1-stats">
+              <div class="s1-st"><span class="s1-sn">3</span><span class="s1-sl">publications</span></div>
+              <div class="s1-st"><span class="s1-sn">87</span><span class="s1-sl">suivis</span></div>
+            </div>
+            <div id="s1-big"><span id="s1-num" class="t-serif">12 450</span><span id="s1-ab">abonnés</span></div>
+          </div>
+          <div id="s1-popw"><img id="s1-pop" class="img3d" src="assets/lib/emoji/party-popper.png" alt="" /></div>
           <div id="s1-stamp"><span id="s1-stampt" class="t-serif">Parfait.</span></div>
-          <div id="s1-ugc"><span id="s1-pill"><svg id="s1-ck" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="28" fill="#E2718D" /><path d="M20 33l8 8 16-17" stroke="#FDF4ED" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" /></svg>Tu peux faire de l'UGC</span></div>
+          <div id="s1-ugc"><span id="s1-pill"><img id="s1-spk" src="assets/lib/emoji/sparkles.png" alt="" />Tu peux faire de l'UGC</span></div>
         </div>
       </div>
       <script>
         (function () {
-          const T0 = 0, at = (t) => Math.max(0, t - T0);
           const tl = gsap.timeline({ paused: true });
           // « Zéro » 0.00 · « abonnés » 0.40 · « Parfait » 1.12 · « faire de l'UGC » 2.24–2.48
+          tl.fromTo("#s1-prof", { scale: 0.7, opacity: 0, rotationX: 25 }, { scale: 1, opacity: 1, rotationX: 0, duration: 0.4, ease: "back.out(1.6)", transformPerspective: 1200 }, 0);
           const el = document.querySelector("#s1-num");
           const c = { _v: 12450, get v() { return this._v; }, set v(x) { this._v = x; el.textContent = Math.round(x).toLocaleString("fr-FR").replace(/ | /g, " "); } };
-          tl.fromTo(c, { v: 12450 }, { v: 0, duration: 0.55, ease: "power3.in" }, 0);
-          tl.fromTo("#s1-num", { scale: 0.42 }, { scale: 1, duration: 0.55, ease: "power3.in" }, 0);
-          tl.fromTo("#s1-num", { scale: 1 }, { scale: 1.12, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, 0.56);
-          tl.fromTo("#s1-lab", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, at(0.35));
-          tl.fromTo("#s1-stamp", { scale: 2.4, opacity: 0, rotation: -14 }, { scale: 1, opacity: 1, rotation: -6, duration: 0.35, ease: "power4.in" }, at(0.85));
-          tl.fromTo("#s1-cam", { x: 0 }, { x: 14, duration: 0.05, yoyo: true, repeat: 3, ease: "none", immediateRender: false }, at(1.2));
-          tl.fromTo("#s1-ugc", { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(2)" }, at(1.75));
-          tl.fromTo("#s1-ck", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(2.3));
-          tl.fromTo("#s1-cam", { scale: 1 }, { scale: 1.05, duration: 2.6, ease: "none", immediateRender: false }, at(0.6));
-          tl.to("#s1-cam", { x: -1080, filter: "blur(16px)", duration: 0.28, ease: "power3.in" }, at(3.02));
+          tl.fromTo(c, { v: 12450 }, { v: 0, duration: 0.6, ease: "power3.in" }, 0.05);
+          tl.fromTo("#s1-big", { scale: 1 }, { scale: 1.25, duration: 0.14, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, 0.65);
+          tl.fromTo("#s1-av", { y: 60 }, { y: 0, duration: 0.5, ease: "back.out(2)" }, 0.15);
+          tl.fromTo("#s1-stamp", { scale: 2.6, opacity: 0, rotation: -16 }, { scale: 1, opacity: 1, rotation: -6, duration: 0.3, ease: "power4.in" }, 0.85);
+          tl.fromTo("#s1-cam", { x: 0 }, { x: 16, duration: 0.05, yoyo: true, repeat: 3, ease: "none", immediateRender: false }, 1.15);
+          PX.burst(tl, "#s1-cam", 520, 1030, 1.15, { n: 16, r: 330, seed: 3 });
+          tl.fromTo("#s1-pop", { scale: 0, rotation: -60 }, { scale: 1, rotation: 0, duration: 0.55, ease: "back.out(2.6)" }, 1.1);
+          PX.float(tl, "#s1-popw", 1.6, 1.4, 10, 1.2, 4);
+          tl.fromTo("#s1-ugc", { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(2)" }, 1.8);
+          tl.fromTo("#s1-spk", { scale: 0, rotation: -120 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, 2.2);
+          tl.fromTo("#s1-cam", { scale: 1 }, { scale: 1.06, duration: 2.4, ease: "none", immediateRender: false }, 0.6);
+          tl.to("#s1-cam", { x: -1080, filter: "blur(16px)", duration: 0.28, ease: "power3.in" }, 3.02);
           window.__timelines["s1"] = tl;
         })();
       </script>

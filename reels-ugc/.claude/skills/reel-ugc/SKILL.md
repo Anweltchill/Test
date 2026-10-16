@@ -113,6 +113,18 @@ le moteur ne sert que le dossier du Reel, donc **tous les chemins sont relatifs 
     - donner le chemin de la version pleine qualité. Pas de Google Drive pour les vidéos.
 13. Message de fin : ce qu'il y a dans la vidéo, ce qui a été adapté, les points à valider.
 
+
+## Règles visuelles validées par la cliente (à jour)
+- **Images obligatoires** dans chaque Reel : illustrations 3D (Microsoft Fluent Emoji, MIT) et **vrais logos** d'apps/marques
+  (Instagram, TikTok, Meta, YouTube, Shopify, Gmail…) — la cliente l'a demandé explicitement (remplace la règle « pas de vraies marques »).
+  `python3 tools/assets.py emoji "Mobile phone" …` / `logo instagram-icon …` / `list emoji <mot>` → `assets/lib/` (copié dans chaque Reel par new-reel.sh).
+  Réseau : seuls npm et raw.githubusercontent.com passent (pas de Google/Unsplash). Pas de logo Canva/CapCut dispo.
+  Illustrations 3D : 256 px, ne pas dépasser ~300 px à l'écran.
+- **Pas de logo Phoenix Pro systématique** : pas de carte de fin logo à chaque Reel ; finir sur l'appel à l'action animé.
+- **Plus de motion** : utiliser `assets/fx.js` (PX.float, PX.pulse, PX.burst, PX.letters), entrées 3D (rotationX/Y + transformPerspective),
+  images qui flottent (flottement sur un wrapper, entrée sur l'image), explosions de particules sur les mots forts, secousses d'impact.
+- Fin de Reel : contrôler image par image les 3 dernières secondes (`ffmpeg -ss … -vf fps=4,tile`) — pas de texte masqué coupé, sous-titre cohérent avec l'écran.
+
 ## 4. Séries
 `reels/IDEES.md` : calendrier par piliers. Même ouverture, même habillage, mêmes composants d'un Reel à l'autre.
 

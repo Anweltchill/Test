@@ -5,29 +5,31 @@
     <template>
       <link rel="stylesheet" href="assets/brand.css" />
       <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
       <style>
         #root { position: absolute; inset: 0; overflow: hidden; }
         #s7-cam { position: absolute; inset: 0; }
-        #s7-pre { position: absolute; left: 64px; right: 120px; top: 290px; text-align: center; font-size: 46px; display: block; }
-        #s7-title { position: absolute; left: 64px; right: 120px; top: 360px; text-align: center; font-size: 124px; display: block; padding-bottom: 14px; }
-        #s7-path { position: absolute; left: 172px; top: 640px; width: 120px; height: 560px; display: block; }
-        .s7-step { position: absolute; left: 132px; width: 760px; height: 150px; display: flex; align-items: center; gap: 36px; }
-        #s7-st1 { top: 600px; }
-        #s7-st2 { top: 820px; }
+        #s7-pre { position: absolute; left: 64px; right: 120px; top: 280px; text-align: center; font-size: 46px; display: block; }
+        #s7-title { position: absolute; left: 64px; right: 120px; top: 350px; text-align: center; font-size: 124px; white-space: nowrap; display: block; padding-bottom: 14px; }
+        #s7-path { position: absolute; left: 182px; top: 640px; width: 100px; height: 560px; display: block; }
+        .s7-step { position: absolute; left: 92px; width: 840px; height: 180px; display: flex; align-items: center; gap: 28px; }
+        #s7-st1 { top: 580px; }
+        #s7-st2 { top: 810px; }
         #s7-st3 { top: 1040px; }
-        .s7-num { width: 120px; height: 120px; border-radius: 50%; background: #0E1928; color: #FDF4ED; flex: none; display: flex; align-items: center; justify-content: center; font: 700 56px "PxSerif", serif; }
-        .s7-card { flex: 1; height: 130px; display: flex; align-items: center; justify-content: space-between; padding: 0 36px; }
-        .s7-lab { font-size: 54px; display: block; }
-        .s7-lock { width: 54px; height: 54px; display: block; }
+        .s7-bub { width: 180px; height: 180px; border-radius: 50%; background: #FDF4ED; box-shadow: 0 14px 34px rgba(14,25,40,0.12); flex: none; display: flex; align-items: center; justify-content: center; }
+        .s7-ic { width: 130px; height: 130px; }
+        .s7-card { flex: 1; height: 140px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px 0 36px; }
+        .s7-lab { font-size: 46px; display: block; white-space: nowrap; }
+        .s7-lock { width: 66px; height: 66px; flex: none; margin-left: 14px; }
       </style>
       <div id="root" data-composition-id="s7" data-width="1080" data-height="1920">
-        <div id="s7-cam" data-layout-allow-overflow>
+        <div id="s7-cam" data-layout-allow-overflow data-layout-allow-overlap>
           <div id="s7-pre" class="t-label">Ce qu'il te faut</div>
-          <div id="s7-title" class="t-serif">une <span class="acc">méthode</span></div>
-          <svg id="s7-path" viewBox="0 0 120 560" fill="none"><path id="s7-pp" d="M60 30 V 530" stroke="#DB96A1" stroke-width="6" stroke-linecap="round" stroke-dasharray="500" stroke-dashoffset="500" /></svg>
-          <div id="s7-st1" class="s7-step"><span class="s7-num">1</span><div class="s7-card card"><span class="s7-lab t-serif">Quoi <span class="acc">montrer</span></span><svg class="s7-lock" viewBox="0 0 64 64" fill="none"><rect x="14" y="28" width="36" height="28" rx="6" fill="#E6BDC1" /><path d="M22 28v-7a10 10 0 0 1 20 0v7" stroke="#CC7183" stroke-width="4" stroke-linecap="round" /></svg></div></div>
-          <div id="s7-st2" class="s7-step"><span class="s7-num">2</span><div class="s7-card card"><span class="s7-lab t-serif">À <span class="acc">qui</span></span><svg class="s7-lock" viewBox="0 0 64 64" fill="none"><rect x="14" y="28" width="36" height="28" rx="6" fill="#E6BDC1" /><path d="M22 28v-7a10 10 0 0 1 20 0v7" stroke="#CC7183" stroke-width="4" stroke-linecap="round" /></svg></div></div>
-          <div id="s7-st3" class="s7-step"><span class="s7-num">3</span><div class="s7-card card"><span class="s7-lab t-serif">Comment te <span class="acc">vendre</span></span><svg class="s7-lock" viewBox="0 0 64 64" fill="none"><rect x="14" y="28" width="36" height="28" rx="6" fill="#E6BDC1" /><path d="M22 28v-7a10 10 0 0 1 20 0v7" stroke="#CC7183" stroke-width="4" stroke-linecap="round" /></svg></div></div>
+          <div id="s7-title" class="t-serif">une méthode</div>
+          <svg id="s7-path" viewBox="0 0 100 560" fill="none"><path id="s7-pp" d="M50 20 V 540" stroke="#DB96A1" stroke-width="6" stroke-linecap="round" stroke-dasharray="10 14" /></svg>
+          <div id="s7-st1" class="s7-step"><div class="s7-bub"><img class="s7-ic img3d" src="assets/lib/emoji/bullseye.png" alt="" /></div><div class="s7-card card"><span class="s7-lab t-serif">Quoi <span class="acc">montrer</span></span><img class="s7-lock img3d" src="assets/lib/emoji/locked.png" alt="" /></div></div>
+          <div id="s7-st2" class="s7-step"><div class="s7-bub"><img class="s7-ic img3d" src="assets/lib/emoji/busts-in-silhouette.png" alt="" /></div><div class="s7-card card"><span class="s7-lab t-serif">À <span class="acc">qui</span></span><img class="s7-lock img3d" src="assets/lib/emoji/locked.png" alt="" /></div></div>
+          <div id="s7-st3" class="s7-step"><div class="s7-bub"><img class="s7-ic img3d" src="assets/lib/emoji/money-bag.png" alt="" /></div><div class="s7-card card"><span class="s7-lab t-serif">Comment te <span class="acc">vendre</span></span><img class="s7-lock img3d" src="assets/lib/emoji/locked.png" alt="" /></div></div>
         </div>
       </div>
       <script>
@@ -37,12 +39,15 @@
           // « faut » 27.20 · « méthode » 27.92 · « montrer » 28.80 · « qui » 29.60 · « vendre » 30.56
           tl.fromTo("#s7-cam", { scale: 0.6, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 0);
           tl.fromTo("#s7-pre", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, at(26.6));
-          tl.fromTo("#s7-title", { opacity: 0, y: 60, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "power4.out" }, at(27.45));
-          tl.fromTo("#s7-pp", { attr: { "stroke-dashoffset": 500 } }, { attr: { "stroke-dashoffset": 0 }, duration: 2.0, ease: "none" }, at(28.4));
-          [["#s7-st1", 28.55], ["#s7-st2", 29.4], ["#s7-st3", 29.95]].forEach(([s, t]) => {
-            tl.fromTo(s + " .s7-num", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, at(t));
-            tl.fromTo(s + " .s7-card", { x: 120, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, at(t + 0.08));
-            tl.fromTo(s + " .s7-lock", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(t + 0.3));
+          PX.letters(tl, "#s7-title", at(27.35), { y: 100, stagger: 0.03 }).slice(4).forEach((c) => (c.style.color = "#E2718D"));
+          tl.fromTo("#s7-path", { opacity: 0 }, { opacity: 1, duration: 0.3 }, at(28.3));
+          tl.fromTo("#s7-pp", { attr: { "stroke-dashoffset": 0 } }, { attr: { "stroke-dashoffset": -96 }, duration: 2.4, ease: "none" }, at(28.3));
+          [["#s7-st1", 28.5], ["#s7-st2", 29.3], ["#s7-st3", 29.95]].forEach(([s, t], i) => {
+            tl.fromTo(s + " .s7-bub", { scale: 0 }, { scale: 1, duration: 0.45, ease: "back.out(2.6)" }, at(t));
+            tl.fromTo(s + " .s7-ic", { scale: 0.3, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.55, ease: "back.out(2.6)" }, at(t + 0.05));
+            tl.fromTo(s + " .s7-card", { x: 160, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, at(t + 0.08));
+            tl.fromTo(s + " .s7-lock", { scale: 0, rotation: 30 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(t + 0.3));
+            tl.fromTo(s + " .s7-lock", { rotation: 0 }, { rotation: 10, duration: 0.08, yoyo: true, repeat: 3, ease: "none", immediateRender: false }, at(t + 0.75));
           });
           tl.to("#s7-cam", { x: -1080, filter: "blur(16px)", duration: 0.23, ease: "power3.in" }, at(30.62));
           window.__timelines["s7"] = tl;

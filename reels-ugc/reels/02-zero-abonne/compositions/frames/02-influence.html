@@ -5,50 +5,45 @@
     <template>
       <link rel="stylesheet" href="assets/brand.css" />
       <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
       <style>
         #root { position: absolute; inset: 0; overflow: hidden; }
         #s2-cam { position: absolute; inset: 0; }
-        #s2-head { position: absolute; left: 64px; right: 120px; top: 270px; text-align: center; font-size: 42px; display: block; }
-        .s2-row { position: absolute; left: 72px; width: 880px; height: 450px; display: block; }
-        #s2-A { top: 350px; }
+        #s2-head { position: absolute; left: 64px; right: 120px; top: 260px; text-align: center; font-size: 42px; display: block; }
+        .s2-card { position: absolute; left: 72px; width: 880px; height: 440px; display: block; }
+        #s2-A { top: 340px; }
         #s2-B { top: 850px; }
-        .s2-tag { position: absolute; left: 40px; top: 30px; font-size: 52px; display: block; }
-        .s2-av { position: absolute; left: 40px; top: 150px; width: 190px; height: 190px; display: block; }
-        .s2-arr { position: absolute; top: 215px; width: 110px; height: 60px; display: block; }
-        .s2-a1 { left: 245px; }
-        .s2-a2 { left: 535px; }
-        .s2-mid { position: absolute; left: 365px; top: 120px; width: 160px; height: 250px; display: block; }
-        .s2-end { position: absolute; left: 655px; top: 150px; width: 190px; height: 190px; display: block; }
-        .s2-cap { position: absolute; top: 385px; width: 260px; text-align: center; font-size: 32px; font-weight: 500; color: #CC7183; display: block; }
-        .s2-c1 { left: 315px; }
-        .s2-c2 { left: 620px; }
-        #s2-vs { position: absolute; left: 452px; top: 788px; width: 120px; height: 60px; border-radius: 30px; background: #0E1928; color: #FDF4ED; display: flex; align-items: center; justify-content: center; font: 600 32px "PxSans", sans-serif; letter-spacing: 0.1em; }
-        #s2-pub { position: absolute; left: 790px; top: 130px; width: 76px; height: 76px; display: block; }
+        .s2-pw { position: absolute; left: 20px; top: 120px; width: 260px; height: 260px; display: block; }
+        .s2-p { width: 260px; height: 260px; }
+        .s2-tag { position: absolute; left: 40px; top: 34px; font-size: 56px; display: block; white-space: nowrap; }
+        .s2-row { position: absolute; left: 300px; right: 30px; height: 120px; display: flex; align-items: center; gap: 24px; }
+        .s2-r1 { top: 140px; }
+        .s2-r2 { top: 285px; }
+        .s2-ic { width: 112px; height: 112px; flex: none; }
+        .s2-tx { font: 500 44px "PxSans", sans-serif; line-height: 1.15; display: block; }
+        .s2-tx b { color: #CC7183; font-weight: 600; }
+        #s2-hearts { position: absolute; left: 650px; top: 6px; width: 220px; height: 160px; display: block; }
+        .s2-h { position: absolute; width: 70px; height: 70px; }
+        #s2-vs { position: absolute; left: 447px; top: 790px; width: 130px; height: 70px; border-radius: 35px; background: #0E1928; color: #FDF4ED; display: flex; align-items: center; justify-content: center; font: 600 34px "PxSans", sans-serif; letter-spacing: 0.1em; }
+        #s2-ok { position: absolute; left: 790px; top: 290px; width: 80px; height: 80px; display: block; }
       </style>
       <div id="root" data-composition-id="s2" data-width="1080" data-height="1920">
-        <div id="s2-cam" data-layout-allow-overflow>
+        <div id="s2-cam" data-layout-allow-overflow data-layout-allow-overlap>
           <div id="s2-head" class="t-label">Je t'explique</div>
-          <div id="s2-A" class="s2-row card">
+          <div id="s2-A" class="s2-card card">
             <div class="s2-tag t-serif">L'influenceuse</div>
-            <svg class="s2-av" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#C2C7DD" /><circle cx="32" cy="25" r="9" stroke="#0E1928" stroke-width="2.6" /><path d="M16 50c2-9 8.5-13 16-13s14 4 16 13" stroke="#0E1928" stroke-width="2.6" stroke-linecap="round" /><path d="M46 8l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7z" fill="#E2718D" /></svg>
-            <svg class="s2-arr s2-a1" viewBox="0 0 110 60" fill="none" stroke="#DB96A1" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path class="s2-ap" d="M6 30h92M78 12l20 18-20 18" stroke-dasharray="140" stroke-dashoffset="140" /></svg>
-            <svg class="s2-mid" viewBox="0 0 64 100" fill="none"><rect x="4" y="2" width="56" height="96" rx="10" fill="#0E1928" /><rect x="8" y="8" width="48" height="84" rx="7" fill="#FDF4ED" /><circle cx="20" cy="22" r="6" fill="#C2C7DD" /><rect x="30" y="18" width="20" height="4" rx="2" fill="#E6BDC1" /><rect x="30" y="25" width="14" height="3" rx="1.5" fill="#E6BDC1" /><rect x="12" y="34" width="40" height="40" rx="4" fill="#E6BDC1" /><path d="M28 48v12l10-6z" fill="#E2718D" /></svg>
-            <span class="s2-cap s2-c1">son compte</span>
-            <svg class="s2-arr s2-a2" viewBox="0 0 110 60" fill="none" stroke="#DB96A1" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path class="s2-ap" d="M6 30h92M78 12l20 18-20 18" stroke-dasharray="140" stroke-dashoffset="140" /></svg>
-            <svg id="s2-hearts" class="s2-end" viewBox="0 0 64 64"><circle cx="32" cy="32" r="31" fill="#E6BDC1" /><path class="s2-h" d="M22 30s-7-4-7-8.6a3.8 3.8 0 0 1 7-1.6 3.8 3.8 0 0 1 7 1.6c0 4.6-7 8.6-7 8.6z" fill="#E2718D" /><path class="s2-h" d="M42 26s-6-3.4-6-7.4a3.2 3.2 0 0 1 6-1.4 3.2 3.2 0 0 1 6 1.4c0 4-6 7.4-6 7.4z" fill="#CC7183" /><path class="s2-h" d="M33 48s-8-4.6-8-9.8a4.3 4.3 0 0 1 8-1.8 4.3 4.3 0 0 1 8 1.8c0 5.2-8 9.8-8 9.8z" fill="#0E1928" /></svg>
-            <span class="s2-cap s2-c2">sa communauté</span>
+            <div class="s2-pw" id="s2-paw"><img class="s2-p img3d" id="s2-pa" src="assets/lib/emoji/woman-tipping-hand.png" alt="" /></div>
+            <div class="s2-row s2-r1" id="s2-a1"><img class="s2-ic logo-app" src="assets/lib/logos/instagram-icon.svg" alt="" /><span class="s2-tx">publie sur <b>son compte</b></span></div>
+            <div class="s2-row s2-r2" id="s2-a2"><img class="s2-ic img3d" src="assets/lib/emoji/busts-in-silhouette.png" alt="" /><span class="s2-tx">pour <b>sa communauté</b></span></div>
+            <div id="s2-hearts"><img class="s2-h" id="s2-h1" style="left:20px;top:60px" src="assets/lib/emoji/red-heart.png" alt="" /><img class="s2-h" id="s2-h2" style="left:90px;top:10px" src="assets/lib/emoji/red-heart.png" alt="" /><img class="s2-h" id="s2-h3" style="left:150px;top:70px" src="assets/lib/emoji/smiling-face-with-heart-eyes.png" alt="" /></div>
           </div>
           <div id="s2-vs">VS</div>
-          <div id="s2-B" class="s2-row card">
+          <div id="s2-B" class="s2-card card">
             <div class="s2-tag t-serif">La créatrice <span class="acc">UGC</span></div>
-            <svg class="s2-av" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#E6BDC1" /><circle cx="32" cy="25" r="9" stroke="#0E1928" stroke-width="2.6" /><path d="M16 50c2-9 8.5-13 16-13s14 4 16 13" stroke="#0E1928" stroke-width="2.6" stroke-linecap="round" /></svg>
-            <svg class="s2-arr s2-a1" viewBox="0 0 110 60" fill="none" stroke="#DB96A1" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path class="s2-ap" d="M6 30h92M78 12l20 18-20 18" stroke-dasharray="140" stroke-dashoffset="140" /></svg>
-            <svg id="s2-vid" class="s2-mid" viewBox="0 0 64 100" fill="none"><rect x="4" y="2" width="56" height="96" rx="10" fill="#E2718D" /><rect x="8" y="8" width="48" height="84" rx="7" fill="#FDF4ED" /><circle cx="32" cy="50" r="15" fill="#E6BDC1" /><path d="M28 43v14l11-7z" fill="#0E1928" /><circle cx="14" cy="15" r="3" fill="#E2718D" /></svg>
-            <span class="s2-cap s2-c1">crée la vidéo</span>
-            <svg class="s2-arr s2-a2" viewBox="0 0 110 60" fill="none" stroke="#DB96A1" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path class="s2-ap" d="M6 30h92M78 12l20 18-20 18" stroke-dasharray="140" stroke-dashoffset="140" /></svg>
-            <svg id="s2-brand" class="s2-end" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#0E1928" /><path d="M32 17l4.4 9 9.9 1.4-7.2 7 1.7 9.8L32 39.6l-8.8 4.6 1.7-9.8-7.2-7 9.9-1.4z" fill="#E2718D" /></svg>
-            <span class="s2-cap s2-c2">la marque publie</span>
-            <svg id="s2-pub" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" fill="#E2718D" /><path d="M20 33l8 8 16-17" stroke="#FDF4ED" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <div class="s2-pw" id="s2-pbw"><img class="s2-p img3d" id="s2-pb" src="assets/lib/emoji/woman-technologist.png" alt="" /></div>
+            <div class="s2-row s2-r1" id="s2-b1"><img class="s2-ic img3d" src="assets/lib/emoji/clapper-board.png" alt="" /><span class="s2-tx"><b>crée</b> la vidéo</span></div>
+            <div class="s2-row s2-r2" id="s2-b2"><img class="s2-ic img3d" src="assets/lib/emoji/shopping-bags.png" alt="" /><span class="s2-tx">la <b>marque</b> la publie</span></div>
+            <img id="s2-ok" class="img3d" src="assets/lib/emoji/thumbs-up.png" alt="" />
           </div>
         </div>
       </div>
@@ -56,35 +51,30 @@
         (function () {
           const T0 = 3.3, at = (t) => Math.max(0, t - T0);
           const tl = gsap.timeline({ paused: true });
-          // L'influenceuse 4.24 · publie 5.12 · compte 5.76 · communauté 6.48
-          // créatrice 7.28 · UGC 7.76 · crée 8.88 · vidéo 9.36 · marque 10.32 · publie 10.96
+          // L'influenceuse 4.24 · publie 5.12 · compte 5.76 · communauté 6.48 · créatrice 7.28 · UGC 7.76 · crée 8.88 · vidéo 9.36 · marque 10.32 · publie 10.96
           tl.fromTo("#s2-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.32, ease: "power3.out" }, 0);
           tl.fromTo("#s2-head", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35 }, at(3.35));
-          const row = (id, t) => {
-            const q = (s) => id + " " + s;
-            return q;
-          };
-          const A = row("#s2-A"), B = row("#s2-B");
-          tl.fromTo("#s2-A", { x: -900, opacity: 0 }, { x: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, at(4.0));
-          tl.fromTo(A(".s2-av"), { scale: 0 }, { scale: 1, duration: 0.45, ease: "back.out(2.4)" }, at(4.2));
-          tl.fromTo(A(".s2-a1 .s2-ap"), { attr: { "stroke-dashoffset": 140 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.35, ease: "power2.out" }, at(5.05));
-          tl.fromTo(A(".s2-mid"), { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(2)" }, at(5.45));
-          tl.fromTo(A(".s2-c1"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, at(5.7));
-          tl.fromTo(A(".s2-a2 .s2-ap"), { attr: { "stroke-dashoffset": 140 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.35, ease: "power2.out" }, at(6.1));
-          tl.fromTo(A(".s2-end"), { scale: 0 }, { scale: 1, duration: 0.45, ease: "back.out(2.4)" }, at(6.35));
-          tl.fromTo("#s2-hearts .s2-h", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.35, stagger: 0.1, ease: "back.out(3)" }, at(6.5));
-          tl.fromTo(A(".s2-c2"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, at(6.5));
-          tl.to("#s2-A", { opacity: 0.45, scale: 0.97, duration: 0.4 }, at(7.0));
-          tl.fromTo("#s2-vs", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, at(6.95));
-          tl.fromTo("#s2-B", { x: 900, opacity: 0 }, { x: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, at(7.05));
-          tl.fromTo(B(".s2-av"), { scale: 0 }, { scale: 1, duration: 0.45, ease: "back.out(2.4)" }, at(7.3));
-          tl.fromTo(B(".s2-a1 .s2-ap"), { attr: { "stroke-dashoffset": 140 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.35, ease: "power2.out" }, at(8.75));
-          tl.fromTo("#s2-vid", { scale: 0.2, opacity: 0, rotation: -15 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.55, ease: "back.out(2)" }, at(9.15));
-          tl.fromTo(B(".s2-c1"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, at(9.2));
-          tl.fromTo(B(".s2-a2 .s2-ap"), { attr: { "stroke-dashoffset": 140 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.35, ease: "power2.out" }, at(10.0));
-          tl.fromTo("#s2-brand", { scale: 0, rotation: -120 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.2)" }, at(10.2));
-          tl.fromTo(B(".s2-c2"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, at(10.4));
-          tl.fromTo("#s2-pub", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, at(10.9));
+          tl.fromTo("#s2-A", { y: 140, opacity: 0, rotationX: -30 }, { y: 0, opacity: 1, rotationX: 0, duration: 0.6, ease: "expo.out", transformPerspective: 1400 }, at(3.9));
+          tl.fromTo("#s2-pa", { scale: 0, rotation: -25 }, { scale: 1, rotation: 0, duration: 0.6, ease: "back.out(2.2)" }, at(4.1));
+          PX.float(tl, "#s2-paw", at(4.7), 6.0, 8, 1.6, 2);
+          tl.fromTo("#s2-a1", { x: 80, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power4.out" }, at(5.0));
+          tl.fromTo("#s2-a1 .s2-ic", { scale: 0.3, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(5.05));
+          tl.fromTo("#s2-a2", { x: 80, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power4.out" }, at(6.25));
+          ["#s2-h1", "#s2-h2", "#s2-h3"].forEach((h, i) => {
+            tl.fromTo(h, { scale: 0, y: 40 }, { scale: 1, y: 0, duration: 0.45, ease: "back.out(3)" }, at(6.45 + i * 0.1));
+            PX.float(tl, h, at(6.95 + i * 0.1), 4.0, 7, 1.0 + i * 0.2, 6);
+          });
+          tl.to("#s2-A", { opacity: 0.5, scale: 0.96, duration: 0.4 }, at(7.0));
+          tl.fromTo("#s2-vs", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(6.95));
+          tl.fromTo("#s2-B", { y: 200, opacity: 0, rotationX: 30 }, { y: 0, opacity: 1, rotationX: 0, duration: 0.6, ease: "expo.out", transformPerspective: 1400 }, at(7.05));
+          tl.fromTo("#s2-pb", { scale: 0, rotation: 25 }, { scale: 1, rotation: 0, duration: 0.6, ease: "back.out(2.2)" }, at(7.25));
+          PX.float(tl, "#s2-pbw", at(7.85), 3.2, 8, 1.6, 2);
+          tl.fromTo("#s2-b1", { x: 80, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power4.out" }, at(8.75));
+          tl.fromTo("#s2-b1 .s2-ic", { scale: 0.3, rotation: 40 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(8.8));
+          tl.fromTo("#s2-b2", { x: 80, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power4.out" }, at(10.15));
+          tl.fromTo("#s2-b2 .s2-ic", { scale: 0.3, y: -60 }, { scale: 1, y: 0, duration: 0.5, ease: "back.out(3)" }, at(10.2));
+          tl.fromTo("#s2-ok", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(10.9));
+          PX.burst(tl, "#s2-cam", 902, 1180, at(10.95), { n: 12, r: 170, seed: 9 });
           tl.to("#s2-cam", { y: -400, scale: 1.25, opacity: 0, filter: "blur(14px)", duration: 0.3, ease: "power3.in" }, at(11.1));
           window.__timelines["s2"] = tl;
         })();

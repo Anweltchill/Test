@@ -5,41 +5,50 @@
     <template>
       <link rel="stylesheet" href="assets/brand.css" />
       <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
       <style>
         #root { position: absolute; inset: 0; overflow: hidden; }
         #s5-cam { position: absolute; inset: 0; }
-        .s5-k { position: absolute; top: 310px; width: 420px; height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; }
+        .s5-k { position: absolute; top: 300px; width: 420px; height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; }
         #s5-k1 { left: 76px; }
         #s5-k2 { left: 528px; }
-        .s5-ic { width: 190px; height: 190px; display: block; }
-        .s5-l { font-size: 44px; text-align: center; line-height: 1.15; display: block; }
-        .s5-bar { transform-origin: 50% 100%; }
-        #s5-big { position: absolute; left: 76px; top: 750px; width: 872px; height: 560px; display: block; }
-        #s5-feed { position: absolute; left: 50px; top: 40px; width: 280px; height: 480px; border-radius: 40px; background: #0E1928; padding: 12px; display: block; }
-        #s5-scr { position: absolute; inset: 12px; border-radius: 30px; background: #FDF4ED; overflow: hidden; }
+        .s5-iw { width: 210px; height: 210px; display: block; }
+        .s5-ic { width: 210px; height: 210px; }
+        .s5-l { font-size: 46px; text-align: center; line-height: 1.12; display: block; }
+        #s5-big { position: absolute; left: 76px; top: 740px; width: 872px; height: 580px; display: block; }
+        #s5-feed { position: absolute; left: 50px; top: 40px; width: 290px; height: 500px; border-radius: 42px; background: #0E1928; padding: 12px; display: block; }
+        #s5-scr { position: absolute; inset: 12px; border-radius: 32px; background: #FDF4ED; overflow: hidden; }
+        #s5-tt { position: absolute; right: 16px; top: 14px; width: 44px; height: 44px; z-index: 2; }
         #s5-list { position: absolute; left: 14px; right: 14px; top: 14px; display: block; }
-        .s5-post { width: 100%; height: 150px; border-radius: 16px; margin-bottom: 14px; display: block; }
-        #s5-stop { position: absolute; left: 40px; right: 40px; top: 160px; height: 150px; border-radius: 18px; border: 6px solid #E2718D; opacity: 0; display: block; }
-        #s5-thumb { position: absolute; left: 230px; top: 300px; width: 140px; height: 140px; display: block; }
-        #s5-txt { position: absolute; left: 400px; top: 120px; width: 430px; display: block; }
-        #s5-t1 { font-size: 36px; display: block; margin-bottom: 14px; color: #CC7183; }
-        #s5-t2 { font-size: 68px; display: block; line-height: 1.12; }
+        .s5-post { position: relative; width: 100%; height: 160px; border-radius: 18px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; }
+        .s5-post img { width: 90px; height: 90px; display: block; }
+        #s5-stop { position: absolute; left: 6px; right: 6px; top: 150px; height: 180px; border-radius: 22px; border: 7px solid #E2718D; opacity: 0; display: block; }
+        #s5-handw { position: absolute; left: 230px; top: 300px; width: 190px; height: 190px; display: block; }
+        #s5-hand { width: 190px; height: 190px; }
+        #s5-txt { position: absolute; left: 420px; top: 150px; width: 420px; display: block; }
+        #s5-t1 { font-size: 34px; display: block; margin-bottom: 14px; color: #CC7183; }
+        #s5-t2 { font-size: 76px; display: block; line-height: 1.1; }
       </style>
       <div id="root" data-composition-id="s5" data-width="1080" data-height="1920">
-        <div id="s5-cam" data-layout-allow-overflow>
-          <div id="s5-k1" class="s5-k card">
-            <svg class="s5-ic" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#E6BDC1" /><circle id="s5-sun" cx="32" cy="32" r="9" fill="#E2718D" /><g id="s5-rays" stroke="#0E1928" stroke-width="2.6" stroke-linecap="round"><path d="M32 12v6M32 46v6M12 32h6M46 32h6M18 18l4 4M42 42l4 4M46 18l-4 4M22 42l-4 4" /></g></svg>
-            <span class="s5-l t-serif">Une bonne <span class="acc">lumière</span></span></div>
-          <div id="s5-k2" class="s5-k card">
-            <svg class="s5-ic" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#C2C7DD" /><rect class="s5-bar" x="15" y="22" width="5" height="22" rx="2.5" fill="#0E1928" /><rect class="s5-bar" x="23" y="16" width="5" height="28" rx="2.5" fill="#E2718D" /><rect class="s5-bar" x="31" y="26" width="5" height="18" rx="2.5" fill="#0E1928" /><rect class="s5-bar" x="39" y="18" width="5" height="26" rx="2.5" fill="#E2718D" /><rect class="s5-bar" x="47" y="28" width="5" height="16" rx="2.5" fill="#0E1928" /></svg>
-            <span class="s5-l t-serif">Un bon <span class="acc">rythme</span></span></div>
+        <div id="s5-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s5-k1" class="s5-k card"><div class="s5-iw" id="s5-sunw"><img id="s5-sun" class="s5-ic img3d" src="assets/lib/emoji/sun.png" alt="" /></div><span class="s5-l t-serif">Une bonne <span class="acc">lumière</span></span></div>
+          <div id="s5-k2" class="s5-k card"><div class="s5-iw" id="s5-notew"><img id="s5-note" class="s5-ic img3d" src="assets/lib/emoji/musical-notes.png" alt="" /></div><span class="s5-l t-serif">Un bon <span class="acc">rythme</span></span></div>
           <div id="s5-big" class="card">
-            <div id="s5-feed"><div id="s5-scr"><div id="s5-list">
-              <span class="s5-post" style="background:#E6BDC1"></span><span class="s5-post" style="background:#C2C7DD"></span><span class="s5-post" style="background:#F0E6DD"></span>
-              <span class="s5-post" style="background:#E6BDC1"></span><span class="s5-post" style="background:#C2C7DD"></span><span class="s5-post" style="background:#F0E6DD"></span>
-              <span class="s5-post" style="background:#E2718D"></span><span class="s5-post" style="background:#C2C7DD"></span>
-            </div><div id="s5-stop"></div></div></div>
-            <svg id="s5-thumb" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#0E1928" /><path d="M22 30h6l5-11c2.5 0 4 1.6 4 4v5h8a3 3 0 0 1 3 3.4l-1.8 11A3 3 0 0 1 43.2 45H28M22 30v15h6V30" stroke="#FDF4ED" stroke-width="2.6" stroke-linejoin="round" /></svg>
+            <div id="s5-feed"><div id="s5-scr">
+              <img id="s5-tt" src="assets/lib/logos/tiktok-icon.svg" alt="" />
+              <div id="s5-list">
+                <div class="s5-post" style="background:#C2C7DD"><img src="assets/lib/emoji/fire.png" alt="" /></div>
+                <div class="s5-post" style="background:#E6BDC1"><img src="assets/lib/emoji/gem-stone.png" alt="" /></div>
+                <div class="s5-post" style="background:#F0E6DD"><img src="assets/lib/emoji/rocket.png" alt="" /></div>
+                <div class="s5-post" style="background:#C2C7DD"><img src="assets/lib/emoji/crown.png" alt="" /></div>
+                <div class="s5-post" style="background:#E6BDC1"><img src="assets/lib/emoji/hundred-points.png" alt="" /></div>
+                <div class="s5-post" style="background:#F0E6DD"><img src="assets/lib/emoji/television.png" alt="" /></div>
+                <div class="s5-post" style="background:#E2718D"><img src="assets/lib/emoji/star-struck.png" alt="" /></div>
+                <div class="s5-post" style="background:#C2C7DD"><img src="assets/lib/emoji/laptop.png" alt="" /></div>
+              </div>
+              <div id="s5-stop"></div>
+            </div></div>
+            <div id="s5-handw"><img id="s5-hand" class="img3d" src="assets/lib/emoji/raised-hand.png" alt="" /></div>
             <div id="s5-txt"><span id="s5-t1" class="t-label">Une accroche qui</span><span id="s5-t2" class="t-serif">arrête le <span class="acc">pouce</span></span></div>
           </div>
         </div>
@@ -50,20 +59,21 @@
           const tl = gsap.timeline({ paused: true });
           // « lumière » 18.96 · « rythme » 20.00 · « accroche » 20.64 · « pouce » 21.84
           tl.fromTo("#s5-cam", { scale: 0.6, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 0);
-          tl.fromTo("#s5-k1", { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(1.8)" }, at(18.6));
-          tl.fromTo("#s5-rays", { rotation: -60, scale: 0.6, transformOrigin: "50% 50%" }, { rotation: 0, scale: 1, duration: 0.7, ease: "back.out(2)" }, at(18.85));
-          tl.fromTo("#s5-sun", { scale: 0.4, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.5, ease: "back.out(3)" }, at(18.95));
-          tl.fromTo("#s5-k2", { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(1.8)" }, at(19.7));
-          gsap.utils.toArray("#s5-k2 .s5-bar").forEach((b, i) =>
-            tl.fromTo(b, { scaleY: 1, transformOrigin: "50% 100%" }, { scaleY: 0.35, duration: 0.18, ease: "sine.inOut", yoyo: true, repeat: 7, immediateRender: false }, at(19.95 + i * 0.07))
-          );
-          tl.fromTo("#s5-big", { y: 500, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, at(20.4));
-          tl.fromTo("#s5-t1", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.4 }, at(20.6));
-          tl.fromTo("#s5-list", { y: 0 }, { y: -660, duration: 1.0, ease: "power1.in" }, at(20.6));
-          tl.to("#s5-list", { y: -820, duration: 0.25, ease: "back.out(3)" }, at(21.6));
-          tl.fromTo("#s5-stop", { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, at(21.7));
-          tl.fromTo("#s5-thumb", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(21.62));
-          tl.fromTo("#s5-t2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: "power4.out" }, at(21.15));
+          tl.fromTo("#s5-k1", { y: 160, opacity: 0, rotation: -5 }, { y: 0, opacity: 1, rotation: 0, duration: 0.5, ease: "back.out(1.8)" }, at(18.55));
+          tl.fromTo("#s5-sun", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.6, ease: "back.out(2.4)" }, at(18.8));
+          tl.fromTo("#s5-sunw", { rotation: 0 }, { rotation: 60, duration: 3.2, ease: "none" }, at(19.2));
+          PX.burst(tl, "#s5-cam", 286, 410, at(18.95), { n: 10, r: 170, size: 16, seed: 31 });
+          tl.fromTo("#s5-k2", { y: 160, opacity: 0, rotation: 5 }, { y: 0, opacity: 1, rotation: 0, duration: 0.5, ease: "back.out(1.8)" }, at(19.65));
+          tl.fromTo("#s5-note", { scale: 0 }, { scale: 1, duration: 0.45, ease: "back.out(2.4)" }, at(19.85));
+          tl.fromTo("#s5-notew", { y: 0, rotation: -8 }, { y: -22, rotation: 8, duration: 0.26, ease: "power2.out", yoyo: true, repeat: 7, immediateRender: false }, at(20.0));
+          tl.fromTo("#s5-big", { y: 600, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, at(20.35));
+          tl.fromTo("#s5-t1", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.4 }, at(20.55));
+          tl.fromTo("#s5-list", { y: 0 }, { y: -870, duration: 1.0, ease: "power1.in" }, at(20.6));
+          tl.to("#s5-list", { y: -1044, duration: 0.3, ease: "back.out(3)" }, at(21.6));
+          tl.fromTo("#s5-stop", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, at(21.7));
+          tl.fromTo("#s5-hand", { scale: 0, rotation: -40, x: 120 }, { scale: 1, rotation: 0, x: 0, duration: 0.4, ease: "back.out(3)" }, at(21.6));
+          tl.fromTo("#s5-big", { x: 0 }, { x: 12, duration: 0.05, yoyo: true, repeat: 3, ease: "none", immediateRender: false }, at(21.75));
+          tl.fromTo("#s5-t2", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.45, ease: "power4.out" }, at(21.1));
           tl.to("#s5-cam", { x: -1080, filter: "blur(16px)", duration: 0.24, ease: "power3.in" }, at(22.06));
           window.__timelines["s5"] = tl;
         })();

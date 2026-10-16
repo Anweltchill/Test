@@ -5,39 +5,34 @@
     <template>
       <link rel="stylesheet" href="assets/brand.css" />
       <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
       <style>
         #root { position: absolute; inset: 0; overflow: hidden; }
         #s6-cam { position: absolute; inset: 0; }
-        .s6-line { position: absolute; left: 64px; right: 120px; text-align: center; overflow: hidden; display: block; padding-bottom: 14px; }
-        .s6-w { display: block; }
-        #s6-l1 { top: 290px; }
-        #s6-l1 .s6-w { font-size: 50px; }
-        #s6-l2 { top: 360px; }
-        #s6-l2 .s6-w { font-size: 120px; }
-        #s6-phone { position: absolute; left: 342px; top: 560px; width: 340px; height: 640px; border-radius: 54px; background: #0E1928; display: block; box-shadow: 0 30px 70px rgba(14,25,40,0.25); }
-        #s6-scr { position: absolute; inset: 14px; border-radius: 42px; background: #E6BDC1; overflow: hidden; }
-        #s6-notch { position: absolute; left: 50%; top: 16px; width: 100px; height: 24px; margin-left: -50px; border-radius: 12px; background: #0E1928; }
-        #s6-face { position: absolute; left: 50%; top: 120px; width: 200px; height: 260px; margin-left: -100px; display: block; }
-        #s6-rec { position: absolute; left: 50%; bottom: 46px; width: 110px; height: 110px; margin-left: -55px; border-radius: 50%; border: 8px solid #FDF4ED; display: flex; align-items: center; justify-content: center; }
-        #s6-dot { width: 70px; height: 70px; border-radius: 50%; background: #E2718D; display: block; }
-        #s6-time { position: absolute; left: 50%; top: 60px; margin-left: -70px; width: 140px; text-align: center; background: #0E1928; color: #FDF4ED; border-radius: 999px; font: 600 28px "PxSans", sans-serif; padding: 6px 0; opacity: 0; display: block; }
-        #s6-pill { position: absolute; left: 0; right: 56px; top: 1240px; text-align: center; display: block; }
-        #s6-pin { display: inline-flex; align-items: center; gap: 16px; background: #FDF4ED; border-radius: 999px; padding: 14px 36px; font: 500 40px "PxSans", sans-serif; box-shadow: 0 10px 30px rgba(14,25,40,0.1); }
-        #s6-pck { width: 46px; height: 46px; display: block; }
+        #s6-l1 { position: absolute; left: 64px; right: 120px; top: 280px; text-align: center; font-size: 50px; display: block; }
+        #s6-l2 { position: absolute; left: 64px; right: 120px; top: 350px; text-align: center; font-size: 128px; white-space: nowrap; color: #E2718D; display: block; padding-bottom: 14px; }
+        #s6-ring { position: absolute; left: 262px; top: 560px; width: 500px; height: 500px; border-radius: 50%; background: #FDF4ED; box-shadow: 0 30px 70px rgba(14,25,40,0.12); display: block; }
+        #s6-selw { position: absolute; left: 312px; top: 590px; width: 400px; height: 400px; display: block; }
+        #s6-sel { width: 400px; height: 400px; }
+        #s6-rec { position: absolute; left: 640px; top: 600px; display: flex; align-items: center; gap: 12px; background: #0E1928; color: #FDF4ED; border-radius: 999px; padding: 12px 26px; font: 600 34px "PxSans", sans-serif; letter-spacing: 0.08em; }
+        #s6-dot { width: 22px; height: 22px; border-radius: 50%; background: #E2718D; display: block; }
+        #s6-phw { position: absolute; left: 150px; top: 860px; width: 200px; height: 200px; display: block; }
+        #s6-ph { width: 200px; height: 200px; }
+        #s6-pill { position: absolute; left: 0; right: 56px; top: 1150px; text-align: center; display: block; }
+        #s6-pin { display: inline-flex; align-items: center; gap: 18px; background: #FDF4ED; border-radius: 999px; padding: 12px 34px 12px 18px; font: 500 44px "PxSans", sans-serif; box-shadow: 0 10px 30px rgba(14,25,40,0.12); }
+        #s6-ig { width: 66px; height: 66px; }
+        #s6-thumb { width: 74px; height: 74px; }
+        #s6-pin b { color: #CC7183; font-weight: 600; }
       </style>
       <div id="root" data-composition-id="s6" data-width="1080" data-height="1920">
-        <div id="s6-cam" data-layout-allow-overflow>
-          <div id="s6-l1" class="s6-line"><span class="s6-w t-label">Tu peux</span></div>
-          <div id="s6-l2" class="s6-line"><span class="s6-w t-serif"><span class="acc">commencer</span></span></div>
-          <div id="s6-phone">
-            <div id="s6-scr">
-              <div id="s6-notch"></div>
-              <span id="s6-time">● 00:03</span>
-              <svg id="s6-face" viewBox="0 0 64 84" fill="none"><circle cx="32" cy="28" r="16" fill="#FDF4ED" /><path d="M4 84c3-20 14-30 28-30s25 10 28 30" fill="#FDF4ED" /><path d="M25 31c2 3 12 3 14 0" stroke="#CC7183" stroke-width="2.4" stroke-linecap="round" /></svg>
-              <div id="s6-rec"><span id="s6-dot"></span></div>
-            </div>
-          </div>
-          <div id="s6-pill"><span id="s6-pin">0 abonné ? <svg id="s6-pck" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="28" fill="#E2718D" /><path d="M20 33l8 8 16-17" stroke="#FDF4ED" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" /></svg> Pas grave</span></div>
+        <div id="s6-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s6-l1" class="t-label">Tu peux</div>
+          <div id="s6-l2" class="t-serif">commencer</div>
+          <div id="s6-ring"></div>
+          <div id="s6-selw"><img id="s6-sel" class="img3d" src="assets/lib/emoji/selfie.png" alt="" /></div>
+          <div id="s6-rec"><span id="s6-dot"></span>REC</div>
+          <div id="s6-phw"><img id="s6-ph" class="img3d" src="assets/lib/emoji/mobile-phone.png" alt="" /></div>
+          <div id="s6-pill"><span id="s6-pin"><img id="s6-ig" src="assets/lib/logos/instagram-icon.svg" alt="" />0 abonné ? <b>Pas grave</b><img id="s6-thumb" src="assets/lib/emoji/thumbs-up.png" alt="" /></span></div>
         </div>
       </div>
       <script>
@@ -46,16 +41,19 @@
           const tl = gsap.timeline({ paused: true });
           // « tu peux » 22.96 · « commencer » 23.28 · « téléphone » 24.16 · « personne » 25.28 · « encore » 26.24
           tl.fromTo("#s6-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.32, ease: "power3.out" }, 0);
-          tl.fromTo("#s6-l1 .s6-w", { yPercent: 115 }, { yPercent: 0, duration: 0.45, ease: "power4.out" }, at(22.6));
-          tl.fromTo("#s6-l2 .s6-w", { yPercent: 115 }, { yPercent: 0, duration: 0.5, ease: "power4.out" }, at(23.1));
-          tl.fromTo("#s6-phone", { y: 900, rotation: -8 }, { y: 0, rotation: 0, duration: 0.65, ease: "expo.out" }, at(23.6));
-          tl.fromTo("#s6-face", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, at(23.9));
-          tl.fromTo("#s6-rec", { scale: 1 }, { scale: 0.85, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.in" }, at(24.2));
-          tl.fromTo("#s6-dot", { scale: 1 }, { scale: 0.55, duration: 0.25, ease: "back.out(2)" }, at(24.25));
-          tl.fromTo("#s6-time", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.25 }, at(24.3));
-          tl.fromTo("#s6-phone", { scale: 1 }, { scale: 1.04, duration: 1.8, ease: "sine.out", immediateRender: false }, at(24.4));
-          tl.fromTo("#s6-pill", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(2)" }, at(25.15));
-          tl.fromTo("#s6-pck", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, at(25.9));
+          tl.fromTo("#s6-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4 }, at(22.55));
+          PX.letters(tl, "#s6-l2", at(23.0), { y: 110, stagger: 0.03 });
+          tl.fromTo("#s6-ring", { scale: 0 }, { scale: 1, duration: 0.55, ease: "back.out(1.8)" }, at(23.3));
+          tl.fromTo("#s6-sel", { scale: 0.2, rotation: -30, y: 200 }, { scale: 1, rotation: 0, y: 0, duration: 0.7, ease: "back.out(1.8)" }, at(23.4));
+          PX.float(tl, "#s6-selw", at(24.1), 2.2, 12, 1.4, 3);
+          tl.fromTo("#s6-ph", { scale: 0, rotation: 40 }, { scale: 1, rotation: -10, duration: 0.5, ease: "back.out(3)" }, at(24.05));
+          PX.float(tl, "#s6-phw", at(24.55), 1.8, 10, 1.1, 5);
+          tl.fromTo("#s6-rec", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(3)" }, at(24.2));
+          tl.fromTo("#s6-dot", { opacity: 1 }, { opacity: 0.2, duration: 0.3, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, at(24.5));
+          tl.fromTo("#s6-ring", { scale: 1 }, { scale: 1.05, duration: 0.5, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, at(24.3));
+          tl.fromTo("#s6-pill", { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(2)" }, at(25.1));
+          tl.fromTo("#s6-thumb", { scale: 0, rotation: -60 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(25.8));
+          PX.burst(tl, "#s6-cam", 760, 1190, at(25.85), { n: 10, r: 150, size: 16, seed: 41 });
           tl.to("#s6-cam", { scale: 1.4, opacity: 0, filter: "blur(14px)", duration: 0.26, ease: "power3.in" }, at(26.24));
           window.__timelines["s6"] = tl;
         })();
