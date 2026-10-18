@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s5-cam { position: absolute; inset: 0; }
+        #s5-head { position: absolute; left: 90px; top: 280px; display: flex; align-items: center; gap: 28px; }
+        #s5-num { width: 140px; height: 140px; border-radius: 50%; background: #0E1928; color: #FDF4ED; display: flex; align-items: center; justify-content: center; font: 700 72px "PxSerif", serif; flex: none; }
+        #s5-title { font-size: 86px; display: block; white-space: nowrap; }
+        #s5-ph { position: absolute; left: 112px; top: 480px; width: 400px; height: 760px; border-radius: 58px; background: #0E1928; display: block; box-shadow: 0 30px 70px rgba(14,25,40,0.25); }
+        #s5-scr { position: absolute; inset: 14px; border-radius: 46px; background: linear-gradient(170deg, #C2C7DD, #E6BDC1 60%, #F0E6DD); overflow: hidden; }
+        .s5-pb { position: absolute; top: 22px; height: 7px; border-radius: 4px; background: rgba(253,244,237,0.5); overflow: hidden; }
+        .s5-pf { width: 100%; height: 100%; background: #FDF4ED; transform-origin: left center; }
+        #s5-pb1 { left: 22px; width: 104px; }
+        #s5-pb2 { left: 136px; width: 104px; }
+        #s5-pb3 { left: 250px; width: 100px; }
+        #s5-who { position: absolute; left: 22px; top: 46px; display: flex; align-items: center; gap: 12px; font: 600 28px "PxSans", sans-serif; color: #0E1928; }
+        #s5-whoi { width: 54px; height: 54px; border-radius: 50%; background: #FDF4ED; }
+        #s5-selw { position: absolute; left: 50px; top: 200px; width: 270px; height: 270px; display: block; }
+        #s5-sel { width: 270px; height: 270px; }
+        #s5-ig { position: absolute; left: 470px; top: 470px; width: 120px; height: 120px; }
+        #s5-tt { position: absolute; left: 30px; top: 1150px; width: 110px; height: 110px; }
+        .s5-tag { position: absolute; left: 560px; height: 120px; display: flex; align-items: center; gap: 18px; padding: 0 30px 0 18px; }
+        #s5-t1 { top: 640px; }
+        #s5-t2 { top: 800px; }
+        #s5-t3 { top: 960px; }
+        .s5-ti { width: 84px; height: 84px; }
+        .s5-tt { font-size: 50px; display: block; white-space: nowrap; }
+        .s5-h { position: absolute; left: 380px; top: 1100px; width: 70px; height: 70px; opacity: 0; }
+      </style>
+      <div id="root" data-composition-id="s5" data-width="1080" data-height="1920">
+        <div id="s5-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s5-head"><span id="s5-num">4</span><span id="s5-title" class="t-serif">Stories &amp; <span class="acc">réels</span></span></div>
+          <div id="s5-ph"><div id="s5-scr">
+            <div id="s5-pb1" class="s5-pb"><div class="s5-pf"></div></div><div id="s5-pb2" class="s5-pb"><div class="s5-pf"></div></div><div id="s5-pb3" class="s5-pb"><div class="s5-pf"></div></div>
+            <div id="s5-who"><img id="s5-whoi" src="assets/lib/emoji/woman-raising-hand.png" alt="" />toi.ugc</div>
+            <div id="s5-selw"><img id="s5-sel" class="img3d" src="assets/lib/emoji/selfie.png" alt="" /></div>
+          </div></div>
+          <img id="s5-ig" class="logo-app" src="assets/lib/logos/instagram-icon.svg" alt="" />
+          <img id="s5-tt" class="logo-app" src="assets/lib/logos/tiktok-icon.svg" alt="" />
+          <div id="s5-t1" class="s5-tag card"><img class="s5-ti img3d" src="assets/lib/emoji/sparkles.png" alt="" /><span class="s5-tt t-serif">Spontané</span></div>
+          <div id="s5-t2" class="s5-tag card"><img class="s5-ti img3d" src="assets/lib/emoji/cherry-blossom.png" alt="" /><span class="s5-tt t-serif">Naturel</span></div>
+          <div id="s5-t3" class="s5-tag card"><img class="s5-ti img3d" src="assets/lib/emoji/fire.png" alt="" /><span class="s5-tt t-serif">Engageant</span></div>
+          <img class="s5-h" id="s5-h1" src="assets/lib/emoji/red-heart.png" alt="" />
+          <img class="s5-h" id="s5-h2" src="assets/lib/emoji/smiling-face-with-heart-eyes.png" alt="" />
+          <img class="s5-h" id="s5-h3" src="assets/lib/emoji/red-heart.png" alt="" />
+          <img class="s5-h" id="s5-h4" src="assets/lib/emoji/fire.png" alt="" />
+          <img class="s5-h" id="s5-h5" src="assets/lib/emoji/red-heart.png" alt="" />
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 16.1, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « Quatre » 16.22 · « stories » 17.02 · « réels » 17.82 · « spontané » 18.94 · « naturel » 19.74 · « engageant » 20.46
+          tl.fromTo("#s5-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0);
+          tl.fromTo("#s5-num", { scale: 0, rotation: 180 }, { scale: 1, rotation: 0, duration: 0.55, ease: "back.out(2.4)" }, at(16.15));
+          tl.fromTo("#s5-title", { x: 120, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power4.out" }, at(16.85));
+          tl.fromTo("#s5-ph", { y: 900, rotation: 8 }, { y: 0, rotation: -2, duration: 0.7, ease: "expo.out" }, at(16.9));
+          tl.fromTo("#s5-sel", { scale: 0.3, rotation: -20 }, { scale: 1, rotation: 0, duration: 0.6, ease: "back.out(2)" }, at(17.35));
+          PX.float(tl, "#s5-selw", at(17.95), 3.0, 12, 1.2, 5);
+          gsap.utils.toArray("#s5-ph .s5-pf").forEach((f, i) => tl.fromTo(f, { scaleX: 0 }, { scaleX: 1, duration: 1.2, ease: "none" }, at(17.4 + i * 1.2)));
+          tl.fromTo("#s5-ig", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(17.0));
+          tl.fromTo("#s5-tt", { scale: 0, rotation: 90 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(17.7));
+          PX.float(tl, "#s5-ig", at(17.6), 3.2, 8, 1.1, 8);
+          PX.float(tl, "#s5-tt", at(18.3), 2.6, 8, 1.3, 8);
+          [["#s5-t1", 18.8], ["#s5-t2", 19.6], ["#s5-t3", 20.3]].forEach(([t, s]) => {
+            tl.fromTo(t, { x: 500, opacity: 0, rotation: 6 }, { x: 0, opacity: 1, rotation: 0, duration: 0.45, ease: "back.out(1.6)" }, at(s));
+            tl.fromTo(t + " .s5-ti", { scale: 0, rotation: -60 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(s + 0.08));
+          });
+          ["#s5-h1", "#s5-h2", "#s5-h3", "#s5-h4", "#s5-h5"].forEach((h, i) => {
+            const t = at(18.9 + i * 0.32);
+            tl.fromTo(h, { y: 0, x: 0, opacity: 0, scale: 0.4 }, { y: -560, x: (i % 2 ? 40 : -40), opacity: 1, scale: 1, duration: 1.3, ease: "power1.out" }, t);
+            tl.to(h, { opacity: 0, duration: 0.35 }, t + 1.0);
+          });
+          tl.to("#s5-cam", { scale: 1.4, opacity: 0, filter: "blur(14px)", duration: 0.26, ease: "power3.in" }, at(20.74));
+          window.__timelines["s5"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

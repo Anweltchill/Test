@@ -83,6 +83,17 @@ def silence_after(env, t_from, t_max, thr=-45.0, run=0.15, tail=0.12):
     return t_max
 
 
+def silence_before(env, t_word, t_min, thr=-45.0, run=0.12, lead=0.1):
+    """Dernier silence (≥ run s sous thr dB) avant t_word ; renvoie l'instant de début (fin du silence − lead)."""
+    i, need, cnt = int(t_word * 100) - 1, int(run * 100), 0
+    while i > int(t_min * 100):
+        cnt = cnt + 1 if env[i] < thr else 0
+        if cnt >= need:
+            return max(t_min, (i + need) / 100 - lead)
+        i -= 1
+    return t_min
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("audio", nargs="+")
@@ -140,6 +151,8 @@ def main():
         prev = next((bounds[j] for j in range(i - 1, -1, -1) if bounds[j]), None)
         nxt = next((bounds[j] for j in range(i + 1, len(order)) if bounds[j]), None)
         if prev: t0 = max(t0, (prev[1] + bounds[i][0]) / 2)
+        # début : remonter jusqu'au vrai silence (un 1er mot raté par l'ASR ne doit pas être coupé)
+        t0 = min(t0, silence_before(env, words[r[0]]["start"], (prev[1] if prev else 0.0)))
         if nxt: t1 = min(t1, (bounds[i][1] + nxt[0]) / 2)
         # fin : couper dans le premier vrai silence après le dernier mot (évite d'attraper le début du Reel suivant)
         t1 = min(t1, silence_after(env, words[r[1]]["start"] + 0.2, t1))

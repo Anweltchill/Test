@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s7-cam { position: absolute; inset: 0; }
+        .s7-c { position: absolute; left: 112px; width: 800px; height: 200px; display: flex; align-items: center; gap: 28px; padding: 0 34px; }
+        #s7-c1 { top: 300px; }
+        #s7-c2 { top: 540px; }
+        #s7-c3 { top: 780px; }
+        .s7-i { width: 140px; height: 140px; flex: none; }
+        .s7-t { font-size: 52px; line-height: 1.1; display: block; flex: 1; }
+        .s7-lock { width: 90px; height: 90px; flex: none; }
+        #s7-ex { position: absolute; left: 64px; right: 120px; top: 1040px; text-align: center; display: block; }
+        #s7-ext { font-size: 44px; display: block; }
+        #s7-pp { font-size: 112px; display: block; white-space: nowrap; margin-top: 8px; }
+      </style>
+      <div id="root" data-composition-id="s7" data-width="1080" data-height="1920">
+        <div id="s7-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s7-c1" class="s7-c card"><img class="s7-i img3d" src="assets/lib/emoji/bullseye.png" alt="" /><span class="s7-t t-serif">Le format qui te <span class="acc">correspond</span></span><img class="s7-lock img3d" src="assets/lib/emoji/locked.png" alt="" /></div>
+          <div id="s7-c2" class="s7-c card"><img class="s7-i img3d" src="assets/lib/emoji/money-bag.png" alt="" /><span class="s7-t t-serif">Celui qui se vend le <span class="acc">mieux</span></span><img class="s7-lock img3d" src="assets/lib/emoji/locked.png" alt="" /></div>
+          <div id="s7-c3" class="s7-c card"><img class="s7-i img3d" src="assets/lib/emoji/handshake.png" alt="" /><span class="s7-t t-serif">Comment le <span class="acc">présenter</span> à une marque</span><img class="s7-lock img3d" src="assets/lib/emoji/locked.png" alt="" /></div>
+          <div id="s7-ex"><span id="s7-ext" class="t-label">On t'explique tout chez</span><span id="s7-pp" class="t-serif">PHOENIX <span class="acc">PRO</span></span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 29.8, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « correspond » 30.71 · « mieux » 32.15 · « présenter… marque » 33.03–33.67 · « t'explique tout » 34.15 · « Phoenix Pro » 34.95–35.43
+          tl.fromTo("#s7-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0);
+          [["#s7-c1", 29.85], ["#s7-c2", 31.45], ["#s7-c3", 32.55]].forEach(([c, t], i) => {
+            tl.fromTo(c, { x: i % 2 ? 900 : -900, rotation: i % 2 ? 4 : -4 }, { x: 0, rotation: 0, duration: 0.55, ease: "back.out(1.4)" }, at(t));
+            tl.fromTo(c + " .s7-i", { scale: 0, rotation: -60 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(t + 0.1));
+            tl.fromTo(c + " .s7-lock", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, at(t + 0.35));
+            tl.fromTo(c + " .s7-lock", { rotation: 0 }, { rotation: 12, duration: 0.07, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, at(t + 0.8));
+          });
+          tl.fromTo("#s7-ext", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4 }, at(34.0));
+          PX.letters(tl, "#s7-pp", at(34.75), { y: 100, stagger: 0.035 }).slice(8).forEach((c) => (c.style.color = "#E2718D"));
+          PX.burst(tl, "#s7-cam", 512, 1160, at(35.2), { n: 18, r: 380, seed: 91 });
+          tl.fromTo("#s7-cam", { scale: 1 }, { scale: 1.03, duration: 5.4, ease: "none", immediateRender: false }, at(30.1));
+          tl.to("#s7-cam", { y: -500, opacity: 0, filter: "blur(14px)", duration: 0.26, ease: "power3.in" }, at(35.56));
+          window.__timelines["s7"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

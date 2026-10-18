@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s6-cam { position: absolute; inset: 0; }
+        #s6-warnw { position: absolute; left: 90px; top: 270px; width: 170px; height: 170px; display: block; }
+        #s6-warn { width: 170px; height: 170px; }
+        #s6-att { position: absolute; left: 290px; top: 290px; font-size: 44px; color: #CC7183; display: block; }
+        #s6-codes { position: absolute; left: 290px; top: 345px; width: 660px; font-size: 64px; line-height: 1.08; display: block; }
+        .s6-k { position: absolute; top: 560px; width: 400px; height: 470px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+        #s6-kA { left: 72px; }
+        #s6-kB { left: 552px; }
+        .s6-imgs { position: relative; width: 260px; height: 230px; display: block; }
+        .s6-a { position: absolute; left: 10px; top: 0; width: 210px; height: 210px; }
+        .s6-b { position: absolute; left: 170px; top: 120px; width: 100px; height: 100px; }
+        .s6-kt { font-size: 48px; text-align: center; line-height: 1.1; display: block; }
+        .s6-kl { font-size: 26px; color: #CC7183; display: block; }
+        #s6-neq { position: absolute; left: 452px; top: 715px; width: 120px; height: 120px; border-radius: 50%; background: #E2718D; color: #FDF4ED; display: flex; align-items: center; justify-content: center; font: 700 80px "PxSerif", serif; }
+        #s6-price { position: absolute; left: 112px; top: 1080px; width: 800px; height: 210px; display: flex; align-items: center; gap: 30px; padding: 0 36px; }
+        #s6-tagw { width: 160px; height: 160px; flex: none; display: block; }
+        #s6-tag { width: 160px; height: 160px; }
+        #s6-pt { font-size: 74px; display: block; white-space: nowrap; }
+        #s6-q { width: 110px; height: 110px; margin-left: auto; }
+      </style>
+      <div id="root" data-composition-id="s6" data-width="1080" data-height="1920">
+        <div id="s6-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s6-warnw"><img id="s6-warn" class="img3d" src="assets/lib/emoji/warning.png" alt="" /></div>
+          <span id="s6-att" class="t-label">Attention</span>
+          <span id="s6-codes" class="t-serif">chaque format a ses <span class="acc">codes</span></span>
+          <div id="s6-kA" class="s6-k card"><span class="s6-kl t-label">Vidéo pensée pour</span><div class="s6-imgs"><img class="s6-a img3d" src="assets/lib/emoji/megaphone.png" alt="" /><img class="s6-b logo-app" src="assets/lib/logos/meta-icon.svg" alt="" /></div><span class="s6-kt t-serif">la <span class="acc">publicité</span></span></div>
+          <div id="s6-kB" class="s6-k card"><span class="s6-kl t-label">Vidéo pour</span><div class="s6-imgs"><img class="s6-a img3d" src="assets/lib/emoji/mobile-phone.png" alt="" /><img class="s6-b logo-app" src="assets/lib/logos/instagram-icon.svg" alt="" /></div><span class="s6-kt t-serif">un compte <span class="acc">Instagram</span></span></div>
+          <div id="s6-neq">≠</div>
+          <div id="s6-price" class="card"><div id="s6-tagw"><img id="s6-tag" class="img3d" src="assets/lib/emoji/money-bag.png" alt="" /></div><span id="s6-pt" class="t-serif">jusqu'à ton <span class="acc">prix</span></span><img id="s6-q" class="img3d" src="assets/lib/emoji/exclamation-question-mark.png" alt="" /></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 21.0, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « attention » 21.42 · « codes » 23.02 · « publicité » 24.62 · « pas comme » 25.90 · « Instagram » 27.18 · « change tout » 28.14–28.54 · « prix » 29.50
+          tl.fromTo("#s6-cam", { scale: 0.5, opacity: 0, filter: "blur(16px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.32, ease: "expo.out" }, 0);
+          tl.fromTo("#s6-warn", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(21.2));
+          tl.fromTo("#s6-warnw", { rotation: -8 }, { rotation: 8, duration: 0.12, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, at(21.6));
+          tl.fromTo("#s6-att", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.35 }, at(21.3));
+          tl.fromTo("#s6-codes", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, at(21.85));
+          tl.fromTo("#s6-kA", { y: 300, opacity: 0, rotationY: 50 }, { y: 0, opacity: 1, rotationY: 0, duration: 0.6, ease: "expo.out", transformPerspective: 1400 }, at(23.35));
+          tl.fromTo("#s6-kA .s6-a", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.6)" }, at(24.4));
+          tl.fromTo("#s6-kA .s6-b", { scale: 0, rotation: 90 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(24.6));
+          tl.fromTo("#s6-neq", { scale: 0, rotation: -180 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(25.8));
+          tl.fromTo("#s6-kB", { y: 300, opacity: 0, rotationY: -50 }, { y: 0, opacity: 1, rotationY: 0, duration: 0.6, ease: "expo.out", transformPerspective: 1400 }, at(26.05));
+          tl.fromTo("#s6-kB .s6-a", { scale: 0, rotation: 30 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.6)" }, at(26.8));
+          tl.fromTo("#s6-kB .s6-b", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(27.05));
+          PX.float(tl, "#s6-kA .s6-imgs", at(25.0), 4.4, 8, 1.4, 3);
+          PX.float(tl, "#s6-kB .s6-imgs", at(27.4), 2.2, 8, 1.2, 3);
+          // « Et ça change tout » : impact
+          tl.fromTo("#s6-cam", { x: 0 }, { x: 16, duration: 0.05, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, at(28.4));
+          tl.fromTo("#s6-neq", { scale: 1 }, { scale: 1.35, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at(28.4));
+          PX.burst(tl, "#s6-cam", 512, 775, at(28.45), { n: 16, r: 330, seed: 81 });
+          tl.fromTo("#s6-price", { y: 300, opacity: 0, scale: 0.8 }, { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, at(28.75));
+          tl.fromTo("#s6-tag", { scale: 0, rotation: -60 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(28.95));
+          tl.fromTo("#s6-q", { scale: 0, rotation: 60 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(29.45));
+          tl.fromTo("#s6-tagw", { rotation: -10 }, { rotation: 10, duration: 0.15, yoyo: true, repeat: 1, ease: "sine.inOut", immediateRender: false }, at(29.5));
+          tl.to("#s6-cam", { x: -1080, filter: "blur(16px)", duration: 0.26, ease: "power3.in" }, at(29.54));
+          window.__timelines["s6"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

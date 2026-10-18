@@ -1,465 +1,465 @@
 {
- "duration": 27.06,
+ "duration": 27.22,
  "words": [
   {
    "word": "erreurs",
-   "start": 0.16,
-   "end": 0.56
-  },
-  {
-   "word": "qui",
-   "start": 0.56,
+   "start": 0.32,
    "end": 0.72
   },
   {
-   "word": "font",
+   "word": "qui",
    "start": 0.72,
-   "end": 0.96
+   "end": 0.88
+  },
+  {
+   "word": "font",
+   "start": 0.88,
+   "end": 1.12
   },
   {
    "word": "fuir",
-   "start": 0.96,
-   "end": 1.28
-  },
-  {
-   "word": "les",
-   "start": 1.28,
+   "start": 1.12,
    "end": 1.44
   },
   {
-   "word": "marques.",
+   "word": "les",
    "start": 1.44,
-   "end": 1.92
+   "end": 1.6
+  },
+  {
+   "word": "marques.",
+   "start": 1.6,
+   "end": 2.08
   },
   {
    "word": "1",
-   "start": 1.92,
-   "end": 2.48
-  },
-  {
-   "word": "Une",
-   "start": 2.48,
+   "start": 2.08,
    "end": 2.64
   },
   {
-   "word": "bio",
+   "word": "Une",
    "start": 2.64,
-   "end": 3.04
+   "end": 2.8
   },
   {
-   "word": "où",
-   "start": 3.04,
+   "word": "bio",
+   "start": 2.8,
    "end": 3.2
   },
   {
-   "word": "on",
+   "word": "où",
    "start": 3.2,
    "end": 3.36
   },
   {
-   "word": "ne",
+   "word": "on",
    "start": 3.36,
    "end": 3.52
   },
   {
-   "word": "comprend",
+   "word": "ne",
    "start": 3.52,
-   "end": 3.76
+   "end": 3.68
   },
   {
-   "word": "pas",
-   "start": 3.76,
+   "word": "comprend",
+   "start": 3.68,
    "end": 3.92
   },
   {
-   "word": "ce",
+   "word": "pas",
    "start": 3.92,
-   "end": 4.0
-  },
-  {
-   "word": "que",
-   "start": 4.0,
    "end": 4.08
   },
   {
-   "word": "tu",
+   "word": "ce",
    "start": 4.08,
+   "end": 4.16
+  },
+  {
+   "word": "que",
+   "start": 4.16,
    "end": 4.24
   },
   {
-   "word": "fais.",
+   "word": "tu",
    "start": 4.24,
-   "end": 4.72
+   "end": 4.4
+  },
+  {
+   "word": "fais.",
+   "start": 4.4,
+   "end": 4.88
   },
   {
    "word": "2",
-   "start": 4.72,
-   "end": 5.28
+   "start": 4.88,
+   "end": 5.44
   },
   {
    "word": "Pas",
-   "start": 5.28,
-   "end": 5.52
+   "start": 5.44,
+   "end": 5.68
   },
   {
    "word": "de",
-   "start": 5.52,
-   "end": 5.6
+   "start": 5.68,
+   "end": 5.76
   },
   {
    "word": "portfolio",
-   "start": 5.6,
-   "end": 6.32
+   "start": 5.76,
+   "end": 6.48
   },
   {
    "word": "ou",
-   "start": 6.32,
-   "end": 6.56
-  },
-  {
-   "word": "un",
-   "start": 6.56,
+   "start": 6.48,
    "end": 6.72
   },
   {
-   "word": "portfolio",
+   "word": "un",
    "start": 6.72,
-   "end": 7.28
+   "end": 6.88
+  },
+  {
+   "word": "portfolio",
+   "start": 6.88,
+   "end": 7.44
   },
   {
    "word": "jamais",
-   "start": 7.28,
-   "end": 7.6
-  },
-  {
-   "word": "mis",
-   "start": 7.6,
+   "start": 7.44,
    "end": 7.76
   },
   {
-   "word": "à",
+   "word": "mis",
    "start": 7.76,
    "end": 7.92
   },
   {
-   "word": "jour.",
+   "word": "à",
    "start": 7.92,
-   "end": 8.32
+   "end": 8.08
+  },
+  {
+   "word": "jour.",
+   "start": 8.08,
+   "end": 8.48
   },
   {
    "word": "3.",
-   "start": 8.32,
-   "end": 8.88
+   "start": 8.48,
+   "end": 9.04
   },
   {
    "word": "Un",
-   "start": 8.88,
-   "end": 8.96
+   "start": 9.04,
+   "end": 9.12
   },
   {
    "word": "message",
-   "start": 8.96,
-   "end": 9.28
+   "start": 9.12,
+   "end": 9.44
   },
   {
    "word": "copier-coller",
-   "start": 9.28,
-   "end": 10.08
+   "start": 9.44,
+   "end": 10.24
   },
   {
    "word": "envoyé",
-   "start": 10.24,
-   "end": 10.64
-  },
-  {
-   "word": "à",
-   "start": 10.64,
+   "start": 10.4,
    "end": 10.8
   },
   {
-   "word": "100",
+   "word": "à",
    "start": 10.8,
-   "end": 11.12
+   "end": 10.96
+  },
+  {
+   "word": "100",
+   "start": 10.96,
+   "end": 11.28
   },
   {
    "word": "marques.",
-   "start": 11.12,
-   "end": 11.7
+   "start": 11.28,
+   "end": 11.86
   },
   {
    "word": "4.",
-   "start": 11.7,
-   "end": 12.18
+   "start": 11.86,
+   "end": 12.34
   },
   {
    "word": "Rester",
-   "start": 12.18,
-   "end": 12.58
-  },
-  {
-   "word": "sur",
-   "start": 12.58,
+   "start": 12.34,
    "end": 12.74
   },
   {
-   "word": "ce",
+   "word": "sur",
    "start": 12.74,
-   "end": 12.82
-  },
-  {
-   "word": "que",
-   "start": 12.82,
    "end": 12.9
   },
   {
-   "word": "tu",
+   "word": "ce",
    "start": 12.9,
+   "end": 12.98
+  },
+  {
+   "word": "que",
+   "start": 12.98,
    "end": 13.06
   },
   {
-   "word": "sais",
+   "word": "tu",
    "start": 13.06,
-   "end": 13.38
+   "end": 13.22
+  },
+  {
+   "word": "sais",
+   "start": 13.22,
+   "end": 13.54
   },
   {
    "word": "faire",
-   "start": 13.38,
-   "end": 13.7
+   "start": 13.54,
+   "end": 13.86
   },
   {
    "word": "sans",
-   "start": 13.7,
-   "end": 13.94
+   "start": 13.86,
+   "end": 14.1
   },
   {
    "word": "jamais",
-   "start": 13.94,
-   "end": 14.18
+   "start": 14.1,
+   "end": 14.34
   },
   {
    "word": "tester",
-   "start": 14.18,
-   "end": 14.58
+   "start": 14.34,
+   "end": 14.74
   },
   {
    "word": "de",
-   "start": 14.58,
-   "end": 14.66
+   "start": 14.74,
+   "end": 14.82
   },
   {
    "word": "nouveaux",
-   "start": 14.66,
-   "end": 14.98
+   "start": 14.82,
+   "end": 15.14
   },
   {
    "word": "formats.",
-   "start": 14.98,
-   "end": 15.38
-  },
-  {
-   "word": "Et",
-   "start": 15.38,
+   "start": 15.14,
    "end": 15.54
   },
   {
-   "word": "la",
+   "word": "Et",
    "start": 15.54,
-   "end": 15.78
+   "end": 15.7
+  },
+  {
+   "word": "la",
+   "start": 15.7,
+   "end": 15.94
   },
   {
    "word": "5ème,",
-   "start": 15.78,
-   "end": 16.34
+   "start": 15.94,
+   "end": 16.5
   },
   {
    "word": "c'est",
-   "start": 16.34,
-   "end": 16.58
-  },
-  {
-   "word": "la",
-   "start": 16.58,
+   "start": 16.5,
    "end": 16.74
   },
   {
-   "word": "plus",
+   "word": "la",
    "start": 16.74,
    "end": 16.9
   },
   {
-   "word": "fréquente.",
+   "word": "plus",
    "start": 16.9,
-   "end": 17.62
+   "end": 17.06
+  },
+  {
+   "word": "fréquente.",
+   "start": 17.06,
+   "end": 17.78
   },
   {
    "word": "Souvent,",
-   "start": 17.62,
-   "end": 18.02
-  },
-  {
-   "word": "on",
-   "start": 18.02,
-   "end": 18.1
-  },
-  {
-   "word": "ne",
-   "start": 18.1,
+   "start": 17.78,
    "end": 18.18
   },
   {
-   "word": "s'en",
+   "word": "on",
    "start": 18.18,
-   "end": 18.42
+   "end": 18.26
+  },
+  {
+   "word": "ne",
+   "start": 18.26,
+   "end": 18.34
+  },
+  {
+   "word": "s'en",
+   "start": 18.34,
+   "end": 18.58
   },
   {
    "word": "rend",
-   "start": 18.42,
-   "end": 18.66
-  },
-  {
-   "word": "même",
-   "start": 18.66,
+   "start": 18.58,
    "end": 18.82
   },
   {
-   "word": "pas",
+   "word": "même",
    "start": 18.82,
    "end": 18.98
   },
   {
-   "word": "compte.",
+   "word": "pas",
    "start": 18.98,
-   "end": 19.38
+   "end": 19.14
   },
   {
-   "word": "Elle",
-   "start": 19.38,
+   "word": "compte.",
+   "start": 19.14,
    "end": 19.54
   },
   {
-   "word": "te",
+   "word": "Elle",
    "start": 19.54,
    "end": 19.7
   },
   {
-   "word": "coûte",
+   "word": "te",
    "start": 19.7,
-   "end": 20.02
+   "end": 19.86
   },
   {
-   "word": "des",
-   "start": 20.02,
+   "word": "coûte",
+   "start": 19.86,
    "end": 20.18
   },
   {
-   "word": "collaborations",
+   "word": "des",
    "start": 20.18,
-   "end": 20.9
+   "end": 20.34
   },
   {
-   "word": "et",
-   "start": 20.9,
+   "word": "collaborations",
+   "start": 20.34,
    "end": 21.06
   },
   {
-   "word": "de",
+   "word": "et",
    "start": 21.06,
    "end": 21.22
   },
   {
-   "word": "l'argent.",
+   "word": "de",
    "start": 21.22,
-   "end": 21.78
+   "end": 21.38
   },
   {
-   "word": "Si",
-   "start": 21.78,
+   "word": "l'argent.",
+   "start": 21.38,
    "end": 21.94
   },
   {
-   "word": "tu",
+   "word": "Si",
    "start": 21.94,
    "end": 22.1
   },
   {
-   "word": "veux",
+   "word": "tu",
    "start": 22.1,
    "end": 22.26
   },
   {
-   "word": "la",
+   "word": "veux",
    "start": 22.26,
    "end": 22.42
   },
   {
-   "word": "connaître",
+   "word": "la",
    "start": 22.42,
-   "end": 22.82
+   "end": 22.58
+  },
+  {
+   "word": "connaître",
+   "start": 22.58,
+   "end": 22.98
   },
   {
    "word": "et",
-   "start": 22.82,
-   "end": 23.06
+   "start": 22.98,
+   "end": 23.22
   },
   {
    "word": "surtout",
-   "start": 23.06,
-   "end": 23.38
+   "start": 23.22,
+   "end": 23.54
   },
   {
    "word": "savoir",
-   "start": 23.38,
-   "end": 23.7
+   "start": 23.54,
+   "end": 23.86
   },
   {
    "word": "comment",
-   "start": 23.7,
-   "end": 23.94
+   "start": 23.86,
+   "end": 24.1
   },
   {
    "word": "l'éviter,",
-   "start": 23.94,
-   "end": 24.66
+   "start": 24.1,
+   "end": 24.82
   },
   {
    "word": "écris",
-   "start": 24.66,
-   "end": 25.14
+   "start": 24.82,
+   "end": 25.3
   },
   {
    "word": "erreur",
-   "start": 25.14,
-   "end": 25.54
+   "start": 25.3,
+   "end": 25.7
   },
   {
    "word": "en",
-   "start": 25.54,
-   "end": 25.62
+   "start": 25.7,
+   "end": 25.78
   },
   {
    "word": "message",
-   "start": 25.62,
-   "end": 26.02
+   "start": 25.78,
+   "end": 26.18
   },
   {
    "word": "privé.",
-   "start": 26.02,
-   "end": 26.42
-  },
-  {
-   "word": "On",
-   "start": 26.42,
+   "start": 26.18,
    "end": 26.58
   },
   {
-   "word": "en",
+   "word": "On",
    "start": 26.58,
    "end": 26.74
   },
   {
-   "word": "parle.",
+   "word": "en",
    "start": 26.74,
-   "end": 27.14
+   "end": 26.9
+  },
+  {
+   "word": "parle.",
+   "start": 26.9,
+   "end": 27.3
   }
  ]
 }
