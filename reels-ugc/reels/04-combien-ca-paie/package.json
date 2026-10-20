@@ -1,0 +1,10 @@
+{
+  "name": "reel-04-combien-ca-paie",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.159 preview",
+    "check": "npx --yes hyperframes@0.8.159 check",
+    "render": "npx --yes hyperframes@0.8.159 render -f 30 -q delivery -o renders/master.mp4"
+  }
+}

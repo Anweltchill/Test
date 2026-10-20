@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s4-cam { position: absolute; inset: 0; }
+        #s4-title { position: absolute; left: 90px; top: 270px; font-size: 104px; display: block; white-space: nowrap; }
+        #s4-sub { position: absolute; left: 92px; top: 395px; font-size: 40px; display: block; color: #CC7183; }
+        #s4-chartw { position: absolute; left: 740px; top: 240px; width: 200px; height: 200px; display: block; }
+        #s4-chart { width: 200px; height: 200px; }
+        #s4-inv { position: absolute; left: 112px; top: 480px; width: 800px; height: 820px; display: block; padding: 40px; }
+        #s4-head { display: flex; align-items: center; justify-content: space-between; height: 90px; }
+        #s4-ft { font-size: 30px; letter-spacing: 0.2em; display: block; }
+        #s4-rec { width: 90px; height: 90px; }
+        #s4-client { position: absolute; left: 40px; right: 40px; top: 150px; height: 100px; display: flex; align-items: center; gap: 18px; border-bottom: 2px dashed #E6BDC1; }
+        #s4-cli { width: 80px; height: 80px; }
+        #s4-clt { font: 500 38px "PxSans", sans-serif; display: block; }
+        #s4-same { margin-left: auto; background: #0E1928; color: #FDF4ED; border-radius: 999px; padding: 8px 22px; font: 600 28px "PxSans", sans-serif; }
+        .s4-row { position: absolute; left: 40px; right: 40px; height: 100px; display: flex; align-items: center; gap: 18px; }
+        #s4-r0 { top: 260px; }
+        #s4-r1 { top: 360px; }
+        #s4-r2 { top: 460px; }
+        #s4-r3 { top: 560px; }
+        .s4-ri { width: 76px; height: 76px; flex: none; }
+        .s4-rt { font-size: 46px; display: block; white-space: nowrap; }
+        .s4-rp { margin-left: auto; font: 700 44px "PxSerif", serif; filter: blur(9px); color: #CC7183; display: block; }
+        .s4-lock { width: 56px; height: 56px; flex: none; }
+        #s4-total { position: absolute; left: 40px; right: 40px; top: 680px; height: 100px; border-top: 3px solid #0E1928; display: flex; align-items: center; justify-content: space-between; }
+        #s4-tl { font-size: 40px; display: block; }
+        #s4-tv { font: 700 64px "PxSerif", serif; color: #E2718D; display: flex; align-items: center; gap: 10px; }
+        #s4-up { width: 70px; height: 70px; }
+        #s4-oopsw { position: absolute; left: 60px; top: 1150px; width: 150px; height: 150px; display: block; }
+        #s4-oops { width: 150px; height: 150px; }
+      </style>
+      <div id="root" data-composition-id="s4" data-width="1080" data-height="1920">
+        <div id="s4-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s4-title" class="t-serif">des <span class="acc">leviers</span></div>
+          <div id="s4-sub" class="t-italic">pour augmenter ta facture</div>
+          <div id="s4-chartw"><img id="s4-chart" class="img3d" src="assets/lib/emoji/chart-increasing.png" alt="" /></div>
+          <div id="s4-inv" class="card">
+            <div id="s4-head"><span id="s4-ft" class="t-label">Facture</span><img id="s4-rec" src="assets/lib/emoji/receipt.png" alt="" /></div>
+            <div id="s4-client"><img id="s4-cli" src="assets/lib/emoji/person-standing.png" alt="" /><span id="s4-clt">Même client</span><span id="s4-same">×1</span></div>
+            <div id="s4-r0" class="s4-row"><img class="s4-ri" src="assets/lib/emoji/clapper-board.png" alt="" /><span class="s4-rt t-serif">Vidéo UGC</span><span class="s4-rp" style="filter:none;color:#0E1928">✓</span></div>
+            <div id="s4-r1" class="s4-row"><img class="s4-ri" src="assets/lib/emoji/puzzle-piece.png" alt="" /><span class="s4-rt t-serif">+ <span class="acc">Options</span></span><span class="s4-rp">00 €</span><img class="s4-lock" src="assets/lib/emoji/locked.png" alt="" /></div>
+            <div id="s4-r2" class="s4-row"><img class="s4-ri" src="assets/lib/emoji/wrapped-gift.png" alt="" /><span class="s4-rt t-serif">+ <span class="acc">Packs</span></span><span class="s4-rp">000 €</span><img class="s4-lock" src="assets/lib/emoji/locked.png" alt="" /></div>
+            <div id="s4-r3" class="s4-row"><img class="s4-ri" src="assets/lib/emoji/plus.png" alt="" /><span class="s4-rt t-serif">+ <span class="acc">Services</span></span><span class="s4-rp">00 €</span><img class="s4-lock" src="assets/lib/emoji/locked.png" alt="" /></div>
+            <div id="s4-total"><span id="s4-tl" class="t-serif">Total</span><span id="s4-tv"><img id="s4-up" src="assets/lib/emoji/upwards-button.png" alt="" />en hausse</span></div>
+          </div>
+          <div id="s4-oopsw"><img id="s4-oops" class="img3d" src="assets/lib/emoji/face-with-open-eyes-and-hand-over-mouth.png" alt="" /></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 12.3, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « leviers » 13.23 · « augmenter ta facture » 13.95–14.59 · « sans… nouveau client » 15.07–16.11 · « options » 16.91 · « packs » 17.71 · « services » 18.51 · « oublient » 20.51
+          tl.fromTo("#s4-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0);
+          PX.letters(tl, "#s4-title", at(12.9), { y: 90, stagger: 0.03, dur: 0.4 }).slice(4).forEach((c) => (c.style.color = "#E2718D"));
+          tl.fromTo("#s4-chart", { scale: 0, rotation: -30, y: 80 }, { scale: 1, rotation: 0, y: 0, duration: 0.5, ease: "back.out(2.6)" }, at(13.2));
+          PX.float(tl, "#s4-chartw", at(13.7), 7.4, 10, 1.4, 4);
+          tl.fromTo("#s4-sub", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.4 }, at(13.85));
+          tl.fromTo("#s4-inv", { y: 900, rotation: 4 }, { y: 0, rotation: 0, duration: 0.6, ease: "expo.out" }, at(13.95));
+          tl.fromTo("#s4-rec", { scale: 0, rotation: -60 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(14.3));
+          tl.fromTo("#s4-r0", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4 }, at(14.45));
+          tl.fromTo("#s4-client", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4 }, at(14.95));
+          tl.fromTo("#s4-same", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, at(15.75));
+          PX.pulse(tl, "#s4-same", at(16.15), 0.6, 1.12, 0.3);
+          [["#s4-r1", 16.75], ["#s4-r2", 17.55], ["#s4-r3", 18.35]].forEach(([r, t], i) => {
+            tl.fromTo(r, { x: 300, opacity: 0, rotationX: -60 }, { x: 0, opacity: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.6)", transformPerspective: 1000 }, at(t));
+            tl.fromTo(r + " .s4-ri", { scale: 0, rotation: -60 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(t + 0.08));
+            tl.fromTo(r + " .s4-lock", { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(3)" }, at(t + 0.3));
+            PX.burst(tl, "#s4-cam", 650, [890, 990, 1090][i], at(t + 0.2), { n: 8, r: 140, size: 14, seed: 40 + i });
+          });
+          tl.fromTo("#s4-total", { opacity: 0 }, { opacity: 1, duration: 0.3 }, at(19.0));
+          tl.fromTo("#s4-up", { y: 40 }, { y: -10, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut" }, at(19.2));
+          tl.fromTo("#s4-inv", { scale: 1 }, { scale: 1.03, duration: 0.2, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at(19.3));
+          tl.fromTo("#s4-oops", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(20.35));
+          PX.float(tl, "#s4-oopsw", at(20.8), 0.4, 8, 0.4, 6);
+          tl.to("#s4-cam", { x: -1080, filter: "blur(16px)", duration: 0.24, ease: "power3.in" }, at(21.15));
+          window.__timelines["s4"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

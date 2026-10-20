@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s2-cam { position: absolute; inset: 0; }
+        #s2-lab { position: absolute; left: 0; right: 56px; top: 270px; text-align: center; display: block; }
+        .s2-k { position: absolute; left: 92px; width: 840px; height: 420px; display: block; }
+        #s2-A { top: 360px; }
+        #s2-B { top: 840px; }
+        .s2-logos { position: absolute; left: 40px; top: 40px; display: flex; gap: 14px; }
+        .s2-lg { width: 84px; height: 84px; }
+        .s2-t { position: absolute; left: 40px; top: 150px; font-size: 64px; display: block; white-space: nowrap; }
+        .s2-p { position: absolute; left: 40px; top: 240px; font: 700 128px "PxSerif", serif; display: flex; align-items: baseline; gap: 14px; white-space: nowrap; }
+        .s2-p .acc { color: #E2718D; }
+        .s2-dash { color: #DB96A1; }
+        .s2-imgw { position: absolute; right: 30px; top: 30px; width: 200px; height: 200px; display: block; }
+        .s2-img { width: 200px; height: 200px; }
+        .s2-coin { position: absolute; width: 90px; height: 90px; opacity: 0; }
+      </style>
+      <div id="root" data-composition-id="s2" data-width="1080" data-height="1920">
+        <div id="s2-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s2-lab"><span class="pill">Un ordre d'idée</span></div>
+          <div id="s2-A" class="s2-k card">
+            <div class="s2-logos"><img class="s2-lg logo-app" src="assets/lib/logos/instagram-icon.svg" alt="" /><img class="s2-lg logo-app" src="assets/lib/logos/tiktok-icon.svg" alt="" /></div>
+            <span class="s2-t t-serif">Vidéo <span class="acc">organique</span></span>
+            <div class="s2-p"><span id="s2-a1">0</span><span class="s2-dash">–</span><span id="s2-a2" class="acc">0</span><span>€</span></div>
+            <div class="s2-imgw" id="s2-iaw"><img class="s2-img img3d" id="s2-ia" src="assets/lib/emoji/coin.png" alt="" /></div>
+          </div>
+          <div id="s2-B" class="s2-k card">
+            <div class="s2-logos"><img class="s2-lg logo-app" src="assets/lib/logos/meta-icon.svg" alt="" /><img class="s2-lg logo-app" src="assets/lib/logos/youtube-icon.svg" alt="" /></div>
+            <span class="s2-t t-serif">Vidéo <span class="acc">publicité</span></span>
+            <div class="s2-p"><span id="s2-b1">0</span><span class="s2-dash">–</span><span id="s2-b2" class="acc">0</span><span>€</span></div>
+            <div class="s2-imgw" id="s2-ibw"><img class="s2-img img3d" id="s2-ib" src="assets/lib/emoji/euro-banknote.png" alt="" /></div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 2.4, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « ordre d'idée » 2.72 · « organique » 4.08 · « 100 » 5.60 · « 150 € » 6.16 · « publicité » 7.92 · « 150 » 9.12 · « 200 » 9.92
+          tl.fromTo("#s2-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0);
+          tl.fromTo("#s2-lab", { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(2)" }, at(2.5));
+          const counter = (id, from, to, t, d) => {
+            const el = document.querySelector(id);
+            const o = { _v: from, get v() { return this._v; }, set v(x) { this._v = x; el.textContent = Math.round(x); } };
+            tl.fromTo(o, { v: from }, { v: to, duration: d, ease: "power2.out" }, t);
+          };
+          tl.fromTo("#s2-A", { x: -1000, rotation: -6 }, { x: 0, rotation: 0, duration: 0.6, ease: "back.out(1.3)" }, at(2.95));
+          gsap.utils.toArray("#s2-A .s2-lg").forEach((l, i) => tl.fromTo(l, { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(3.25 + i * 0.12)));
+          tl.fromTo("#s2-ia", { scale: 0, rotationY: 0 }, { scale: 1, duration: 0.5, ease: "back.out(2.4)" }, at(4.0));
+          tl.fromTo("#s2-iaw", { rotationY: 0 }, { rotationY: 720, duration: 1.6, ease: "power2.inOut", transformPerspective: 800 }, at(5.3));
+          counter("#s2-a1", 0, 100, at(5.45), 0.5);
+          counter("#s2-a2", 0, 150, at(5.95), 0.6);
+          tl.fromTo("#s2-A .s2-p", { scale: 1 }, { scale: 1.08, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at(6.6));
+          PX.burst(tl, "#s2-cam", 380, 680, at(6.6), { n: 14, r: 260, seed: 21 });
+          tl.to("#s2-A", { scale: 0.96, opacity: 0.7, duration: 0.4 }, at(7.0));
+          tl.fromTo("#s2-B", { x: 1000, rotation: 6 }, { x: 0, rotation: 0, duration: 0.6, ease: "back.out(1.3)" }, at(7.2));
+          gsap.utils.toArray("#s2-B .s2-lg").forEach((l, i) => tl.fromTo(l, { scale: 0, rotation: 90 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(7.5 + i * 0.12)));
+          tl.fromTo("#s2-ib", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.4)" }, at(7.8));
+          PX.float(tl, "#s2-ibw", at(8.3), 1.8, 10, 0.9, 8);
+          counter("#s2-b1", 0, 150, at(8.95), 0.55);
+          counter("#s2-b2", 0, 200, at(9.75), 0.45);
+          tl.fromTo("#s2-B .s2-p", { scale: 1 }, { scale: 1.08, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at(10.0));
+          // pluie de pièces
+          for (let i = 0; i < 9; i++) {
+            const c = document.createElement("img"); c.className = "s2-coin"; c.src = "assets/lib/emoji/coin.png";
+            c.style.left = (90 + i * 95) + "px"; c.style.top = "-120px"; document.querySelector("#s2-cam").appendChild(c);
+            const t = at(9.7) + (i % 3) * 0.06;
+            tl.fromTo(c, { y: 0, opacity: 1, rotation: 0 }, { y: 1500 + (i % 4) * 80, rotation: 360 * (i % 2 ? 1 : -1), duration: 0.9, ease: "power2.in", immediateRender: false }, t);
+          }
+          tl.to("#s2-cam", { scale: 1.4, opacity: 0, filter: "blur(14px)", duration: 0.22, ease: "power3.in" }, at(10.1));
+          window.__timelines["s2"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

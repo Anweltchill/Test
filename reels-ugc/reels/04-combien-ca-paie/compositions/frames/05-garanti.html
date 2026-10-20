@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s5-cam { position: absolute; inset: 0; }
+        #s5-a { position: absolute; inset: 0; }
+        #s5-warnw { position: absolute; left: 90px; top: 270px; width: 160px; height: 160px; display: block; }
+        #s5-warn { width: 160px; height: 160px; }
+        #s5-att { position: absolute; left: 280px; top: 285px; font-size: 40px; color: #CC7183; display: block; }
+        #s5-ng { position: absolute; left: 280px; top: 335px; font-size: 72px; display: block; white-space: nowrap; }
+        #s5-dep { position: absolute; left: 64px; right: 120px; top: 520px; text-align: center; font-size: 44px; display: block; }
+        .s5-f { position: absolute; left: 152px; width: 720px; height: 170px; display: flex; align-items: center; gap: 30px; padding: 0 36px; }
+        #s5-f1 { top: 600px; }
+        #s5-f2 { top: 800px; }
+        #s5-f3 { top: 1000px; }
+        .s5-fi { width: 120px; height: 120px; flex: none; }
+        .s5-ft { font-size: 58px; display: block; white-space: nowrap; }
+        #s5-b { position: absolute; inset: 0; opacity: 0; }
+        #s5-l1 { position: absolute; left: 64px; right: 120px; top: 290px; text-align: center; font-size: 52px; display: block; }
+        #s5-l2 { position: absolute; left: 64px; right: 120px; top: 370px; text-align: center; font-size: 104px; line-height: 1.08; display: block; }
+        #s5-wall { position: absolute; left: 212px; top: 680px; width: 600px; height: 420px; display: block; }
+        .s5-br { position: absolute; width: 190px; height: 120px; }
+        #s5-ch { position: absolute; left: 64px; right: 120px; top: 1140px; text-align: center; font-size: 96px; display: block; white-space: nowrap; }
+        #s5-flexw { position: absolute; left: 770px; top: 560px; width: 170px; height: 170px; display: block; }
+        #s5-flex { width: 170px; height: 170px; }
+      </style>
+      <div id="root" data-composition-id="s5" data-width="1080" data-height="1920">
+        <div id="s5-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s5-a">
+            <div id="s5-warnw"><img id="s5-warn" class="img3d" src="assets/lib/emoji/warning.png" alt="" /></div>
+            <span id="s5-att" class="t-label">Attention</span>
+            <span id="s5-ng" class="t-serif">rien n'est <span class="acc">garanti</span></span>
+            <span id="s5-dep" class="t-label">Ça dépend</span>
+            <div id="s5-f1" class="s5-f card"><img class="s5-fi img3d" src="assets/lib/emoji/graduation-cap.png" alt="" /><span class="s5-ft t-serif">de ton <span class="acc">expérience</span></span></div>
+            <div id="s5-f2" class="s5-f card"><img class="s5-fi img3d" src="assets/lib/emoji/handshake.png" alt="" /><span class="s5-ft t-serif">de ta <span class="acc">négociation</span></span></div>
+            <div id="s5-f3" class="s5-f card"><img class="s5-fi img3d" src="assets/lib/emoji/shopping-bags.png" alt="" /><span class="s5-ft t-serif">de la <span class="acc">marque</span></span></div>
+          </div>
+          <div id="s5-b">
+            <span id="s5-l1" class="t-label">Mais bien construire</span>
+            <span id="s5-l2" class="t-serif">ses tarifs dès le <span class="acc">départ</span></span>
+            <div id="s5-wall"></div>
+            <div id="s5-flexw"><img id="s5-flex" class="img3d" src="assets/lib/emoji/flexed-biceps.png" alt="" /></div>
+            <span id="s5-ch" class="t-serif">ça change <span class="acc">tout</span></span>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 21.4, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « attention » 21.71 · « garanti » 22.75 · « dépend » 23.55 · « expérience » 24.19 · « négociation » 25.15 · « marque » 26.27
+          // « construire » 27.31 · « tarifs » 27.95 · « départ » 28.59 · « change tout » 29.23–29.55
+          tl.fromTo("#s5-cam", { y: 800, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 0);
+          tl.fromTo("#s5-warn", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(21.55));
+          tl.fromTo("#s5-warnw", { rotation: -8 }, { rotation: 8, duration: 0.1, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, at(22.0));
+          tl.fromTo("#s5-att", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.35 }, at(21.6));
+          tl.fromTo("#s5-ng", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power4.in" }, at(22.45));
+          tl.fromTo("#s5-a", { x: 0 }, { x: 12, duration: 0.05, yoyo: true, repeat: 3, ease: "none", immediateRender: false }, at(22.8));
+          tl.fromTo("#s5-dep", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35 }, at(23.4));
+          [["#s5-f1", 24.0], ["#s5-f2", 24.95], ["#s5-f3", 26.05]].forEach(([f, t], i) => {
+            tl.fromTo(f, { x: i % 2 ? 900 : -900, rotation: i % 2 ? 5 : -5 }, { x: 0, rotation: 0, duration: 0.5, ease: "back.out(1.4)" }, at(t));
+            tl.fromTo(f + " .s5-fi", { scale: 0, rotation: -60 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(t + 0.1));
+          });
+          // phase B : construire
+          tl.to("#s5-a", { y: -300, opacity: 0, filter: "blur(10px)", duration: 0.4, ease: "power3.in" }, at(26.75));
+          tl.fromTo("#s5-b", { opacity: 0 }, { opacity: 1, duration: 0.2 }, at(27.0));
+          tl.fromTo("#s5-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35 }, at(27.05));
+          tl.fromTo("#s5-l2", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.45, ease: "power4.out" }, at(27.75));
+          const wall = document.querySelector("#s5-wall");
+          const pos = [[0, 300], [205, 300], [410, 300], [100, 170], [305, 170], [205, 40]];
+          pos.forEach(([x, y], i) => {
+            const b = document.createElement("img"); b.className = "s5-br"; b.src = "assets/lib/emoji/brick.png";
+            b.style.left = x + "px"; b.style.top = y + "px"; wall.appendChild(b);
+            tl.fromTo(b, { y: -700, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "bounce.out" }, at(27.3 + i * 0.2));
+          });
+          tl.fromTo("#s5-flex", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(29.0));
+          tl.fromTo("#s5-ch", { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.in" }, at(29.1));
+          PX.burst(tl, "#s5-cam", 512, 1190, at(29.4), { n: 18, r: 380, seed: 55 });
+          tl.to("#s5-cam", { x: -1080, filter: "blur(16px)", duration: 0.22, ease: "power3.in" }, at(29.58));
+          window.__timelines["s5"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

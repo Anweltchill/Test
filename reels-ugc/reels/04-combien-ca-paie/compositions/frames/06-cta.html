@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s6-cam { position: absolute; inset: 0; }
+        #s6-l1 { position: absolute; left: 64px; right: 120px; top: 270px; text-align: center; font-size: 44px; display: block; }
+        #s6-l2 { position: absolute; left: 64px; right: 120px; top: 330px; text-align: center; font-size: 76px; display: block; white-space: nowrap; }
+        #s6-dm { position: absolute; left: 112px; top: 500px; width: 800px; height: 560px; display: block; overflow: hidden; }
+        #s6-head { position: absolute; left: 0; right: 0; top: 0; height: 130px; border-bottom: 2px solid #E6BDC1; display: flex; align-items: center; gap: 22px; padding: 0 34px; }
+        #s6-ig { width: 76px; height: 76px; flex: none; }
+        #s6-name { font-size: 42px; display: block; }
+        #s6-st { font-size: 24px; color: #CC7183; display: block; }
+        #s6-me { position: absolute; right: 34px; top: 180px; background: linear-gradient(135deg, #E2718D, #CC7183); color: #FDF4ED; border-radius: 34px 34px 8px 34px; padding: 20px 40px; font: 600 54px "PxSans", sans-serif; letter-spacing: 0.08em; display: block; }
+        #s6-rep { position: absolute; left: 34px; top: 320px; background: #F0E6DD; border-radius: 34px 34px 34px 8px; padding: 20px 30px; font: 500 40px "PxSans", sans-serif; display: flex; align-items: center; gap: 12px; }
+        #s6-repi { width: 60px; height: 60px; }
+        #s6-in { position: absolute; left: 26px; right: 26px; bottom: 26px; height: 108px; border-radius: 54px; border: 3px solid #E6BDC1; display: flex; align-items: center; padding: 0 16px 0 38px; justify-content: space-between; }
+        #s6-txt { font: 600 50px "PxSans", sans-serif; letter-spacing: 0.08em; display: block; min-width: 10px; }
+        #s6-ph { font: 400 38px "PxSans", sans-serif; color: #8E8A86; display: block; }
+        #s6-send { width: 80px; height: 80px; border-radius: 50%; background: #0E1928; display: flex; align-items: center; justify-content: center; flex: none; }
+        #s6-cta { position: absolute; left: 0; right: 56px; top: 1120px; text-align: center; display: block; }
+        #s6-btn { display: inline-flex; align-items: center; gap: 18px; background: #0E1928; color: #FDF4ED; border-radius: 999px; padding: 18px 44px 18px 22px; font: 600 46px "PxSans", sans-serif; }
+        #s6-btn b { color: #E6BDC1; }
+        #s6-env { width: 84px; height: 84px; }
+        #s6-bagw { position: absolute; left: 800px; top: 420px; width: 160px; height: 160px; display: block; }
+        #s6-bag { width: 160px; height: 160px; }
+      </style>
+      <div id="root" data-composition-id="s6" data-width="1080" data-height="1920">
+        <div id="s6-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s6-l1" class="t-label">Tu veux la méthode</span>
+          <span id="s6-l2" class="t-serif">pour fixer tes <span class="acc">prix</span> ?</span>
+          <div id="s6-bagw"><img id="s6-bag" class="img3d" src="assets/lib/emoji/money-bag.png" alt="" /></div>
+          <div id="s6-dm" class="card">
+            <div id="s6-head"><img id="s6-ig" src="assets/lib/logos/instagram-icon.svg" alt="" /><div><span id="s6-name" class="t-serif">Phoenix Pro</span><span id="s6-st" class="t-label">message privé</span></div></div>
+            <div id="s6-me">TARIFS</div>
+            <div id="s6-rep"><img id="s6-repi" src="assets/lib/emoji/money-with-wings.png" alt="" />Je t'envoie la méthode !</div>
+            <div id="s6-in"><span id="s6-txt"></span><span id="s6-ph">Message…</span><span id="s6-send"><svg width="40" height="40" viewBox="0 0 64 64" fill="none"><path d="M10 32l44-20-14 44-8-18z" fill="#FDF4ED" /></svg></span></div>
+          </div>
+          <div id="s6-cta"><span id="s6-btn"><img id="s6-env" src="assets/lib/emoji/envelope-with-arrow.png" alt="" />Écris <b>« TARIFS »</b> en privé</span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 29.8, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « méthode complète » 30.43–30.75 · « prix » 31.63 · « Écris » 32.03 · « tarif » 32.59 · « message privé » 33.23–33.55
+          tl.fromTo("#s6-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0);
+          tl.fromTo("#s6-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4 }, at(30.1));
+          PX.letters(tl, "#s6-l2", at(30.9), { y: 80, stagger: 0.025, dur: 0.4 }).slice(15, 19).forEach((c) => (c.style.color = "#E2718D"));
+          tl.fromTo("#s6-bag", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(31.5));
+          PX.float(tl, "#s6-bagw", at(32.0), 3.5, 10, 1.1, 8);
+          tl.fromTo("#s6-dm", { y: 200, opacity: 0, rotationX: -25 }, { y: 0, opacity: 1, rotationX: 0, duration: 0.5, ease: "expo.out", transformPerspective: 1400 }, at(30.3));
+          const txt = document.querySelector("#s6-txt"), ph = document.querySelector("#s6-ph"), W = "TARIFS";
+          const ty = { _v: 0, get v() { return this._v; }, set v(x) { this._v = x; const n = Math.round(x); txt.textContent = W.slice(0, n); ph.style.display = n > 0 ? "none" : "block"; } };
+          tl.fromTo(ty, { v: 0 }, { v: 6, duration: 0.55, ease: "none" }, at(32.05));
+          tl.fromTo("#s6-send", { scale: 1 }, { scale: 0.82, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.in", immediateRender: false }, at(32.75));
+          tl.to(ty, { v: 0, duration: 0.01 }, at(32.9));
+          tl.fromTo("#s6-me", { y: 300, scale: 0.5, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.8)" }, at(32.88));
+          PX.burst(tl, "#s6-cam", 760, 720, at(33.2), { n: 12, r: 170, size: 16, seed: 63 });
+          tl.fromTo("#s6-rep", { opacity: 0, y: 30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(2)" }, at(33.6));
+          tl.fromTo("#s6-cta", { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(2)" }, at(33.3));
+          tl.fromTo("#s6-env", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(33.5));
+          PX.pulse(tl, "#s6-btn", at(33.9), 1.6, 1.06, 0.75);
+          window.__timelines["s6"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
