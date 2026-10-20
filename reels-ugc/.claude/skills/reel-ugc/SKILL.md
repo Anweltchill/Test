@@ -103,7 +103,8 @@ le moteur ne sert que le dossier du Reel, donc **tous les chemins sont relatifs 
 10. **Mixage** : `tools/mix.sh renders/video.mp4 audio/voix.wav audio/musique.wav audio/sfx.wav renders/mix.mp4`
     — voix devant, musique en ducking (sidechaincompress, ≈ -20/-25 dB sous la voix, plus présente dans les silences),
     bruitages subtils, **-14 LUFS, crête -1 dBTP**. Passage chuchoté/faible : `VOICE_AF="volume=enable='between(t,a,b)':volume=6dB"`
-    et pas d'impact/sub dessus. Réglages : `MUSIC_DB`, `DUCK_RATIO`, `SFX_DB`.
+    (+ `lowpass=f=9000` sur la même plage) et **sur un chuchotement : AUCUN glitch / error / impact / sub**, seulement
+    pop / click-soft / whoosh-short à vol ≤ 0.12 (sinon « grésillement » perçu, retour utilisateur reel 05). Réglages : `MUSIC_DB`, `DUCK_RATIO`, `SFX_DB`.
 11. **Étalonnage doux** : `tools/grade.sh renders/mix.mp4 renders/master.mp4` (image clé toutes les 2 s pour la découpe ; contraste léger, oranges/jaunes calmés,
     pas de boost de saturation). Changement de réglage (`GRADE_VF`) → montrer un avant/après sur 3 images.
 12. **Livraison** (limite chat 30 Mo/fichier) :

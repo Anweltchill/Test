@@ -7,7 +7,8 @@
 #   SFX_DB=-8      niveau des bruitages
 #   VOICE_AF=""    filtre en plus sur la voix, ex. remonter un passage chuchoté :
 #                  VOICE_AF="volume=enable='between(t,12.3,14.1)':volume=6dB"
-# Normalisation finale : -14 LUFS intégrés, crête vraie -1 dBTP (deux passes loudnorm).
+# Limiteur doux sur le mélange (pas d'écrêtage = pas de grésillement), puis
+# normalisation finale : -14 LUFS intégrés, crête vraie -1 dBTP (deux passes loudnorm).
 set -euo pipefail
 [ $# -eq 5 ] || { sed -n 2,10p "$0"; exit 1; }
 VIDEO=$1; VOICE=$2; MUSIC=$3; SFX=$4; OUT=$5
@@ -39,7 +40,7 @@ if [ "$SFX" != "-" ]; then
   mixin+="[sfx]"
 fi
 k=$(grep -o '\[' <<<"$mixin" | wc -l)
-graph+="${mixin}amix=inputs=$k:normalize=0:duration=longest,apad,atrim=0:$DUR[pre]"
+graph+="${mixin}amix=inputs=$k:normalize=0:duration=longest,alimiter=limit=0.7:attack=5:release=60:level=false,apad,atrim=0:$DUR[pre]"
 
 ffmpeg -v error -y "${inputs[@]}" -filter_complex "$graph" -map "[pre]" -c:a pcm_s24le "$TMP/pre.wav"
 # passe 1 : mesure
