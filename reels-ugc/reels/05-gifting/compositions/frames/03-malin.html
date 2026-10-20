@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s3-cam { position: absolute; inset: 0; }
+        #s3-bulbw { position: absolute; left: 90px; top: 250px; width: 190px; height: 190px; display: block; }
+        #s3-bulb { width: 190px; height: 190px; }
+        #s3-glow { position: absolute; left: 60px; top: 220px; width: 250px; height: 250px; border-radius: 50%; background: radial-gradient(circle, rgba(249,206,52,0.55), rgba(249,206,52,0)); opacity: 0; display: block; }
+        #s3-q1 { position: absolute; left: 300px; top: 280px; font-size: 44px; color: #CC7183; display: block; }
+        #s3-q2 { position: absolute; left: 300px; top: 330px; font-size: 104px; display: block; white-space: nowrap; }
+        .s3-c { position: absolute; left: 92px; width: 840px; height: 230px; display: flex; align-items: center; gap: 30px; padding: 0 36px; }
+        #s3-c1 { top: 520px; }
+        #s3-c2 { top: 790px; }
+        #s3-c3 { top: 1060px; }
+        .s3-i { width: 160px; height: 160px; flex: none; }
+        .s3-t { font-size: 54px; line-height: 1.12; display: block; flex: 1; }
+        .s3-ok { width: 80px; height: 80px; flex: none; }
+      </style>
+      <div id="root" data-composition-id="s3" data-width="1080" data-height="1920">
+        <div id="s3-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s3-glow"></div>
+          <div id="s3-bulbw"><img id="s3-bulb" class="img3d" src="assets/lib/emoji/light-bulb.png" alt="" /></div>
+          <span id="s3-q1" class="t-label">Pourquoi c'est</span>
+          <span id="s3-q2" class="t-serif"><span class="acc">malin</span> ?</span>
+          <div id="s3-c1" class="s3-c card"><img class="s3-i img3d" src="assets/lib/emoji/graduation-cap.png" alt="" /><span class="s3-t t-serif">De l'<span class="acc">expérience</span></span><img class="s3-ok" src="assets/lib/emoji/check-mark-button.png" alt="" /></div>
+          <div id="s3-c2" class="s3-c card"><img class="s3-i img3d" src="assets/lib/emoji/framed-picture.png" alt="" /><span class="s3-t t-serif">Des vidéos pour ton <span class="acc">portfolio</span></span><img class="s3-ok" src="assets/lib/emoji/check-mark-button.png" alt="" /></div>
+          <div id="s3-c3" class="s3-c card"><img class="s3-i img3d" src="assets/lib/emoji/handshake.png" alt="" /><span class="s3-t t-serif">Une vraie <span class="acc">relation</span> avec une marque</span><img class="s3-ok" src="assets/lib/emoji/check-mark-button.png" alt="" /></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 7.9, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « malin » 8.64 · « expérience » 9.92 · « portfolio » 11.52 · « relation » 12.80
+          tl.fromTo("#s3-cam", { scale: 0.6, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "expo.out" }, 0);
+          tl.fromTo("#s3-bulb", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(8.0));
+          tl.fromTo("#s3-glow", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1.3, duration: 0.35, ease: "power2.out" }, at(8.6));
+          tl.fromTo("#s3-glow", { scale: 1.3 }, { scale: 1.05, duration: 0.5, yoyo: true, repeat: 7, ease: "sine.inOut", immediateRender: false }, at(8.95));
+          PX.float(tl, "#s3-bulbw", at(8.5), 5.2, 8, 1.4, 6);
+          tl.fromTo("#s3-q1", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.35 }, at(8.1));
+          tl.fromTo("#s3-q2", { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power4.out" }, at(8.5));
+          [["#s3-c1", 9.75], ["#s3-c2", 11.1], ["#s3-c3", 12.45]].forEach(([c, t], i) => {
+            tl.fromTo(c, { y: 160, opacity: 0, rotationX: -45 }, { y: 0, opacity: 1, rotationX: 0, duration: 0.5, ease: "expo.out", transformPerspective: 1200 }, at(t));
+            tl.fromTo(c + " .s3-i", { scale: 0, rotation: -50 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(t + 0.1));
+            tl.fromTo(c + " .s3-ok", { scale: 0, rotation: 90 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(t + 0.45));
+            PX.burst(tl, "#s3-cam", 860, [635, 905, 1175][i], at(t + 0.5), { n: 8, r: 120, size: 14, seed: 30 + i });
+          });
+          tl.to("#s3-cam", { x: -1080, filter: "blur(16px)", duration: 0.24, ease: "power3.in" }, at(13.66));
+          window.__timelines["s3"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

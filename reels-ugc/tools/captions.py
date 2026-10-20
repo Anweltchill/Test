@@ -20,7 +20,10 @@ for w in d["words"]:
     if re.fullmatch(r"[?!.,;:]+", t):
         if ws: ws[-1][0] += (" " + t) if t in "?!" else t
         continue
-    ws.append([fix.get(t, t), w["start"]])
+    nt = fix.get(t, t)
+    if nt == "":
+        continue  # mot ASR parasite supprimé (--fix "mot=")
+    ws.append([nt, w["start"]])
 for ins in a.insert:  # "nom :@5.36:l'UGC."
     word, rest = ins.split("@", 1); tm, before = rest.split(":", 1)
     i = next(k for k, w in enumerate(ws) if w[0] == before)

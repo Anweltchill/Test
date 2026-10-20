@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s6-cam { position: absolute; inset: 0; }
+        #s6-dark { position: absolute; left: 50px; right: 50px; top: 240px; height: 1090px; border-radius: 48px; background: #0E1928; opacity: 0; display: block; }
+        #s6-l1 { position: absolute; left: 64px; right: 120px; top: 290px; text-align: center; font-size: 50px; color: #E6BDC1; display: block; }
+        #s6-l2 { position: absolute; left: 64px; right: 120px; top: 360px; text-align: center; font-size: 150px; color: #FDF4ED; display: block; white-space: nowrap; }
+        #s6-trapw { position: absolute; left: 352px; top: 600px; width: 320px; height: 320px; display: block; }
+        #s6-trap { width: 320px; height: 320px; }
+        .s6-g { position: absolute; width: 130px; height: 130px; opacity: 0; }
+        #s6-lockw { position: absolute; left: 640px; top: 760px; width: 150px; height: 150px; display: block; }
+        #s6-lock { width: 150px; height: 150px; }
+        #s6-sand { position: absolute; left: 240px; top: 760px; width: 150px; height: 150px; }
+        #s6-l3 { position: absolute; left: 90px; right: 120px; top: 1110px; text-align: center; font-size: 66px; color: #FDF4ED; line-height: 1.15; display: block; }
+      </style>
+      <div id="root" data-composition-id="s6" data-width="1080" data-height="1920">
+        <div id="s6-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s6-dark"></div>
+          <span id="s6-l1" class="t-label">Mais il y a</span>
+          <span id="s6-l2" class="t-serif">un <span class="acc">piège</span></span>
+          <div id="s6-trapw"><img id="s6-trap" class="img3d" src="assets/lib/emoji/mouse-trap.png" alt="" /></div>
+          <img id="s6-sand" class="img3d" src="assets/lib/emoji/hourglass-not-done.png" alt="" />
+          <div id="s6-lockw"><img id="s6-lock" class="img3d" src="assets/lib/emoji/chains.png" alt="" /></div>
+          <span id="s6-l3" class="t-serif">rester bloquée au gifting <span class="acc">trop longtemps</span></span>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 23.4, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « piège » 24.10 · « rester bloquée » 24.74–25.06 · « gifting » 25.54 · « trop longtemps » 26.26–26.42
+          tl.fromTo("#s6-dark", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, 0);
+          tl.fromTo("#s6-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35 }, at(23.5));
+          tl.fromTo("#s6-l2", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.in" }, at(23.85));
+          tl.fromTo("#s6-cam", { x: 0 }, { x: 16, duration: 0.05, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, at(24.15));
+          tl.fromTo("#s6-trap", { scale: 0, rotation: -20 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(24.0));
+          // cadeaux qui s'accumulent autour
+          const pos = [[100, 560], [790, 580], [110, 900], [790, 920], [460, 930]];
+          pos.forEach(([x, y], i) => {
+            const g = document.createElement("img"); g.className = "s6-g img3d"; g.src = "assets/lib/emoji/wrapped-gift.png";
+            g.style.left = x + "px"; g.style.top = y + "px"; document.querySelector("#s6-cam").appendChild(g);
+            tl.fromTo(g, { y: -700, opacity: 1, rotation: (i % 2 ? 20 : -20) }, { y: 0, rotation: 0, duration: 0.4, ease: "bounce.out", immediateRender: false }, at(24.7 + i * 0.15));
+          });
+          tl.fromTo("#s6-lock", { scale: 0, rotation: 40 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(25.0));
+          tl.fromTo("#s6-sand", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, at(26.1));
+          tl.fromTo("#s6-sand", { rotation: 0 }, { rotation: 180, duration: 0.5, ease: "power2.inOut", immediateRender: false }, at(26.35));
+          tl.fromTo("#s6-l3", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: "power4.out" }, at(24.75));
+          tl.to("#s6-cam", { x: -1080, filter: "blur(16px)", duration: 0.22, ease: "power3.in" }, at(26.68));
+          window.__timelines["s6"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

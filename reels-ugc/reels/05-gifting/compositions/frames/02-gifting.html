@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s2-cam { position: absolute; inset: 0; }
+        #s2-stamp { position: absolute; left: 332px; top: 270px; width: 360px; height: 120px; border: 8px solid #E2718D; border-radius: 22px; display: flex; align-items: center; justify-content: center; font: 700 70px "PxSerif", serif; color: #E2718D; }
+        #s2-title { position: absolute; left: 64px; right: 120px; top: 430px; text-align: center; font-size: 150px; display: block; white-space: nowrap; }
+        .s2-node { position: absolute; top: 720px; width: 320px; height: 420px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
+        #s2-n1 { left: 72px; }
+        #s2-n2 { left: 632px; }
+        .s2-ni { width: 210px; height: 210px; }
+        .s2-nl { font-size: 44px; text-align: center; line-height: 1.1; display: block; }
+        #s2-path { position: absolute; left: 300px; top: 720px; width: 420px; height: 240px; display: block; }
+        #s2-pkgw { position: absolute; left: 150px; top: 760px; width: 150px; height: 150px; display: block; }
+        #s2-pkg { width: 150px; height: 150px; }
+        #s2-cntw { position: absolute; left: 690px; top: 590px; width: 200px; height: 200px; display: block; }
+        #s2-cnt { width: 200px; height: 200px; }
+      </style>
+      <div id="root" data-composition-id="s2" data-width="1080" data-height="1920">
+        <div id="s2-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s2-stamp">Presque !</div>
+          <div id="s2-title" class="t-serif">le gifting</div>
+          <svg id="s2-path" viewBox="0 0 420 240" fill="none"><path id="s2-pp" d="M10 200 C 120 10, 300 10, 410 200" stroke="#DB96A1" stroke-width="5" stroke-linecap="round" stroke-dasharray="12 14" /></svg>
+          <div id="s2-n1" class="s2-node card"><img class="s2-ni img3d" src="assets/lib/emoji/shopping-bags.png" alt="" /><span class="s2-nl t-serif">La <span class="acc">marque</span> t'envoie son produit</span></div>
+          <div id="s2-n2" class="s2-node card"><img class="s2-ni img3d" src="assets/lib/emoji/woman-technologist.png" alt="" /><span class="s2-nl t-serif">Toi, tu crées le <span class="acc">contenu</span></span></div>
+          <div id="s2-pkgw"><img id="s2-pkg" class="img3d" src="assets/lib/emoji/package.png" alt="" /></div>
+          <div id="s2-cntw"><img id="s2-cnt" class="img3d" src="assets/lib/emoji/clapper-board.png" alt="" /></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 2.9, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « Presque » 2.96 · « gifting » 4.40 · « marque t'envoie » 5.36–5.60 · « produit » 6.24 · « tu crées » 7.20 · « contenu » 7.60
+          tl.fromTo("#s2-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.28, ease: "power3.out" }, 0);
+          tl.fromTo("#s2-stamp", { scale: 2.6, opacity: 0, rotation: -18 }, { scale: 1, opacity: 1, rotation: -5, duration: 0.3, ease: "power4.in" }, at(2.95));
+          tl.fromTo("#s2-cam", { y: 0 }, { y: 12, duration: 0.05, yoyo: true, repeat: 3, ease: "none", immediateRender: false }, at(3.25));
+          PX.letters(tl, "#s2-title", at(4.15), { y: 120, stagger: 0.04 }).slice(3).forEach((c) => (c.style.color = "#E2718D"));
+          PX.burst(tl, "#s2-cam", 512, 520, at(4.6), { n: 16, r: 380, seed: 17 });
+          tl.fromTo("#s2-n1", { x: -500, opacity: 0, rotation: -6 }, { x: 0, opacity: 1, rotation: 0, duration: 0.5, ease: "back.out(1.6)" }, at(5.0));
+          tl.fromTo("#s2-n1 .s2-ni", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(5.1));
+          tl.fromTo("#s2-path", { opacity: 0 }, { opacity: 1, duration: 0.3 }, at(5.5));
+          tl.fromTo("#s2-pp", { attr: { "stroke-dashoffset": 0 } }, { attr: { "stroke-dashoffset": -78 }, duration: 2.2, ease: "none" }, at(5.5));
+          tl.fromTo("#s2-pkg", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, at(5.55));
+          // le colis vole le long de l'arc (x linéaire, y en cloche)
+          tl.fromTo("#s2-pkgw", { x: 0 }, { x: 560, duration: 0.9, ease: "power1.inOut" }, at(5.85));
+          tl.fromTo("#s2-pkgw", { y: 0 }, { y: -240, duration: 0.45, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, at(5.85));
+          tl.fromTo("#s2-pkgw", { rotation: 0 }, { rotation: 360, duration: 0.9, ease: "none", immediateRender: false }, at(5.85));
+          tl.to("#s2-pkgw", { scale: 0, opacity: 0, duration: 0.2 }, at(6.75));
+          tl.fromTo("#s2-n2", { x: 500, opacity: 0, rotation: 6 }, { x: 0, opacity: 1, rotation: 0, duration: 0.5, ease: "back.out(1.6)" }, at(6.2));
+          tl.fromTo("#s2-n2 .s2-ni", { scale: 0, rotation: 40 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(6.3));
+          tl.fromTo("#s2-n2", { scale: 1 }, { scale: 1.05, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at(6.8));
+          tl.fromTo("#s2-cnt", { scale: 0, rotation: -40, y: 80 }, { scale: 1, rotation: 0, y: 0, duration: 0.5, ease: "back.out(3)" }, at(7.3));
+          PX.burst(tl, "#s2-cam", 790, 690, at(7.5), { n: 12, r: 200, seed: 19 });
+          tl.to("#s2-cam", { scale: 1.4, opacity: 0, filter: "blur(14px)", duration: 0.24, ease: "power3.in" }, at(7.66));
+          window.__timelines["s2"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

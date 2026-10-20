@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s8-cam { position: absolute; inset: 0; }
+        #s8-q { position: absolute; left: 64px; right: 120px; top: 280px; text-align: center; font-size: 96px; display: block; white-space: nowrap; }
+        #s8-prof { position: absolute; left: 112px; top: 460px; width: 800px; height: 600px; display: block; }
+        #s8-ig { position: absolute; left: 40px; top: 36px; width: 70px; height: 70px; }
+        #s8-handle { position: absolute; left: 130px; top: 50px; font: 600 38px "PxSans", sans-serif; display: block; }
+        #s8-avw { position: absolute; left: 40px; top: 140px; width: 190px; height: 190px; border-radius: 50%; padding: 6px; background: linear-gradient(45deg, #F9CE34, #EE2A7B 55%, #6228D7); display: block; }
+        #s8-avin { width: 100%; height: 100%; border-radius: 50%; background: #FDF4ED; display: flex; align-items: center; justify-content: center; }
+        #s8-av { width: 130px; height: 130px; }
+        #s8-name { position: absolute; left: 270px; top: 160px; font-size: 54px; display: block; }
+        #s8-bio { position: absolute; left: 270px; top: 240px; right: 40px; font: 400 34px/1.35 "PxSans", sans-serif; display: block; }
+        #s8-link { position: absolute; left: 40px; top: 400px; display: flex; align-items: center; gap: 16px; background: #E2718D; color: #FDF4ED; border-radius: 999px; padding: 20px 40px; font: 600 46px "PxSans", sans-serif; }
+        #s8-chain { width: 48px; height: 48px; }
+        #s8-ripple { position: absolute; left: 330px; top: 905px; width: 200px; height: 200px; margin: -100px 0 0 -100px; border-radius: 50%; border: 7px solid #0E1928; opacity: 0; display: block; }
+        #s8-handw { position: absolute; left: 270px; top: 900px; width: 170px; height: 170px; display: block; }
+        #s8-hand { width: 170px; height: 170px; }
+        #s8-spk { position: absolute; left: 700px; top: 820px; width: 130px; height: 130px; }
+      </style>
+      <div id="root" data-composition-id="s8" data-width="1080" data-height="1920">
+        <div id="s8-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s8-q" class="t-serif">Le lien en <span class="acc">bio</span></div>
+          <div id="s8-prof" class="card">
+            <img id="s8-ig" src="assets/lib/logos/instagram-icon.svg" alt="" />
+            <span id="s8-handle">Instagram</span>
+            <div id="s8-avw"><div id="s8-avin"><img id="s8-av" src="assets/lib/emoji/sparkles.png" alt="" /></div></div>
+            <span id="s8-name" class="t-serif">Phoenix Pro</span>
+            <span id="s8-bio">Formation UGC · Apprendre. Passer à l'action. Obtenir des résultats.</span>
+            <div id="s8-link"><svg id="s8-chain" viewBox="0 0 64 64" fill="none" stroke="#FDF4ED" stroke-width="5" stroke-linecap="round"><path d="M28 36a10 10 0 0 0 14 0l9-9a10 10 0 0 0-14-14l-4 4" /><path d="M36 28a10 10 0 0 0-14 0l-9 9a10 10 0 0 0 14 14l4-4" /></svg>Lien en bio</div>
+          </div>
+          <img id="s8-spk" class="img3d" src="assets/lib/emoji/sparkles.png" alt="" />
+          <div id="s8-ripple"></div>
+          <div id="s8-handw"><img id="s8-hand" class="img3d" src="assets/lib/emoji/backhand-index-pointing-up.png" alt="" /></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 31.9, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « lien » 32.10 · « bio » 32.50
+          tl.fromTo("#s8-cam", { y: 700, opacity: 0 }, { y: 0, opacity: 1, duration: 0.32, ease: "power3.out" }, 0);
+          PX.letters(tl, "#s8-q", at(31.95), { y: 80, stagger: 0.025, dur: 0.4 }).slice(12).forEach((c) => (c.style.color = "#E2718D"));
+          tl.fromTo("#s8-prof", { scale: 0.85, opacity: 0, rotationX: -25 }, { scale: 1, opacity: 1, rotationX: 0, duration: 0.5, ease: "expo.out", transformPerspective: 1400 }, at(32.00));
+          tl.fromTo("#s8-link", { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2.6)" }, at(32.25));
+          tl.fromTo("#s8-hand", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, at(32.45));
+          tl.fromTo("#s8-handw", { scale: 1 }, { scale: 0.85, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.in", immediateRender: false }, at(32.55));
+          tl.fromTo("#s8-link", { scale: 1 }, { scale: 0.93, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.in", immediateRender: false }, at(32.55));
+          tl.fromTo("#s8-ripple", { scale: 0.3, opacity: 1 }, { scale: 1.8, opacity: 0, duration: 0.55, ease: "power2.out", immediateRender: false }, at(32.6));
+          PX.burst(tl, "#s8-cam", 330, 905, at(32.6), { n: 14, r: 260, seed: 99 });
+          tl.fromTo("#s8-spk", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(32.65));
+          PX.pulse(tl, "#s8-link", at(32.95), 1.4, 1.06, 0.7);
+          PX.float(tl, "#s8-handw", at(32.95), 1.4, 10, 0.7, 4);
+          window.__timelines["s8"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
