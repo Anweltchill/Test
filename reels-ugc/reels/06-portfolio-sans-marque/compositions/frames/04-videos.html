@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s4-cam { position: absolute; inset: 0; }
+        #s4-ph { position: absolute; left: 302px; top: 270px; width: 420px; height: 720px; border-radius: 56px; background: #0E1928; padding: 16px; display: block; }
+        #s4-scr { position: relative; width: 100%; height: 100%; border-radius: 42px; background: linear-gradient(170deg, #FDF4ED, #E6BDC1); overflow: hidden; display: block; }
+        #s4-rec { position: absolute; left: 26px; top: 26px; display: flex; align-items: center; gap: 10px; font: 600 28px "PxSans", sans-serif; color: #0E1928; }
+        #s4-dot { width: 22px; height: 22px; border-radius: 50%; background: #E2718D; display: block; }
+        #s4-prodw { position: absolute; left: 104px; top: 190px; width: 180px; height: 180px; display: block; }
+        #s4-prod { width: 180px; height: 180px; }
+        #s4-eyes { position: absolute; left: 124px; top: 120px; width: 140px; height: 140px; opacity: 0; }
+        #s4-hook { position: absolute; left: 20px; right: 20px; top: 250px; text-align: center; font-size: 46px; display: block; opacity: 0; }
+        #s4-buy { position: absolute; left: 64px; right: 64px; top: 460px; text-align: center; background: #E2718D; color: #FDF4ED; border-radius: 999px; padding: 18px 0; font: 600 34px "PxSans", sans-serif; display: block; opacity: 0; }
+        #s4-bar { position: absolute; left: 26px; right: 26px; bottom: 28px; height: 12px; border-radius: 6px; background: rgba(14, 25, 40, 0.15); overflow: hidden; display: block; }
+        #s4-fill { width: 100%; height: 100%; background: #E2718D; display: block; transform-origin: 0 50%; }
+        #s4-ord { position: absolute; left: 742px; top: 320px; width: 210px; height: 250px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; }
+        #s4-rc { width: 90px; height: 90px; flex: none; }
+        #s4-ordt { font-size: 36px; line-height: 1.15; display: block; }
+        .s4-st { position: absolute; top: 1050px; width: 272px; height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+        #s4-st1 { left: 72px; }
+        #s4-st2 { left: 376px; }
+        #s4-st3 { left: 680px; }
+        .s4-si { width: 110px; height: 110px; }
+        .s4-sn { font: 600 22px "PxSans", sans-serif; letter-spacing: 0.12em; color: #CC7183; display: block; }
+        .s4-sl { font-size: 36px; line-height: 1.05; text-align: center; display: block; padding: 0 10px; }
+        .s4-on { position: absolute; inset: 0; border-radius: inherit; border: 6px solid #E2718D; opacity: 0; display: block; }
+      </style>
+      <div id="root" data-composition-id="s4" data-width="1080" data-height="1920">
+        <div id="s4-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s4-ph">
+            <div id="s4-scr">
+              <div id="s4-rec"><span id="s4-dot"></span>REC</div>
+              <img id="s4-eyes" class="img3d" src="assets/lib/emoji/eyes.png" alt="" />
+              <div id="s4-prodw"><img id="s4-prod" class="img3d" src="assets/lib/emoji/lotion-bottle.png" alt="" /></div>
+              <span id="s4-hook" class="t-serif">Stop <span class="acc">!</span></span>
+              <span id="s4-buy">Je le veux</span>
+              <div id="s4-bar"><div id="s4-fill"></div></div>
+            </div>
+          </div>
+          <div id="s4-ord" class="card"><img id="s4-rc" class="img3d" src="assets/lib/emoji/receipt.png" alt="" /><span id="s4-ordt" class="t-serif">Commande <span class="acc">Brand X</span></span></div>
+          <div id="s4-st1" class="s4-st card"><span class="s4-on"></span><img class="s4-si img3d" src="assets/lib/emoji/fishing-pole.png" alt="" /><span class="s4-sn">ÉTAPE 1</span><span class="s4-sl t-serif">Accroche</span></div>
+          <div id="s4-st2" class="s4-st card"><span class="s4-on"></span><img class="s4-si img3d" src="assets/lib/emoji/clapper-board.png" alt="" /><span class="s4-sn">ÉTAPE 2</span><span class="s4-sl t-serif">Démo</span></div>
+          <div id="s4-st3" class="s4-st card"><span class="s4-on"></span><img class="s4-si img3d" src="assets/lib/emoji/megaphone.png" alt="" /><span class="s4-sn">ÉTAPE 3</span><span class="s4-sl t-serif">Appel à l'action</span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 10.95, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « crée les vidéos » 11.25–11.81 · « marque » 12.61 · « commandées » 13.41 · « accroche » 14.21 · « démonstration » 15.01 · « l'action » 16.37
+          tl.fromTo("#s4-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.26, ease: "power3.out" }, 0);
+          tl.fromTo("#s4-ph", { y: 700, rotation: -8 }, { y: 0, rotation: 0, duration: 0.6, ease: "expo.out" }, at(11.1));
+          tl.fromTo("#s4-prod", { scale: 0 }, { scale: 1, duration: 0.45, ease: "back.out(3)" }, at(11.6));
+          tl.fromTo("#s4-dot", { opacity: 1 }, { opacity: 0.2, duration: 0.3, yoyo: true, repeat: 15, ease: "steps(1)", immediateRender: false }, at(11.7));
+          tl.fromTo("#s4-ord", { x: 300, opacity: 0, rotation: 8 }, { x: 0, opacity: 1, rotation: 0, duration: 0.5, ease: "back.out(1.8)" }, at(12.55));
+          tl.fromTo("#s4-rc", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(12.7));
+          tl.fromTo("#s4-ord", { scale: 1 }, { scale: 1.1, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at(13.4));
+          PX.burst(tl, "#s4-cam", 847, 445, at(13.45), { n: 10, r: 160, size: 14, seed: 41 });
+          tl.fromTo("#s4-fill", { scaleX: 0 }, { scaleX: 0.33, duration: 0.4, ease: "power2.out" }, at(14.1));
+          tl.to("#s4-fill", { scaleX: 0.66, duration: 0.4, ease: "power2.out" }, at(14.9));
+          tl.to("#s4-fill", { scaleX: 1, duration: 0.4, ease: "power2.out" }, at(16.25));
+          [["#s4-st1", 13.9], ["#s4-st2", 14.0], ["#s4-st3", 14.1]].forEach(([s, t]) => tl.fromTo(s, { y: 400, opacity: 0 }, { y: 0, opacity: 0.45, duration: 0.45, ease: "expo.out" }, at(t)));
+          [["#s4-st1", 14.15], ["#s4-st2", 14.95], ["#s4-st3", 16.3]].forEach(([s, t]) => {
+            tl.to(s, { opacity: 1, y: -20, duration: 0.3, ease: "back.out(2)" }, at(t));
+            tl.fromTo(s + " .s4-on", { opacity: 0 }, { opacity: 1, duration: 0.2 }, at(t));
+            tl.fromTo(s + " .s4-si", { scale: 1, rotation: 0 }, { scale: 1.25, rotation: -12, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at(t + 0.05));
+          });
+          tl.to("#s4-st1 .s4-on", { opacity: 0, duration: 0.2 }, at(14.95));
+          tl.to("#s4-st2 .s4-on", { opacity: 0, duration: 0.2 }, at(16.3));
+          // l'écran du téléphone suit les 3 étapes
+          tl.fromTo("#s4-eyes", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)" }, at(14.2));
+          tl.fromTo("#s4-hook", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.in" }, at(14.25));
+          tl.to("#s4-prodw", { y: 170, duration: 0.3 }, at(14.2));
+          tl.to(["#s4-eyes", "#s4-hook"], { opacity: 0, duration: 0.2 }, at(14.95));
+          tl.to("#s4-prodw", { y: 40, scale: 1.3, duration: 0.35, ease: "back.out(2)" }, at(15.0));
+          tl.fromTo("#s4-prod", { rotation: 0 }, { rotation: 360, duration: 1.0, ease: "power2.inOut", immediateRender: false }, at(15.1));
+          tl.to("#s4-prodw", { y: 0, scale: 1, duration: 0.3 }, at(16.3));
+          tl.fromTo("#s4-buy", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.5)" }, at(16.35));
+          PX.burst(tl, "#s4-cam", 512, 800, at(16.45), { n: 10, r: 180, size: 14, seed: 47 });
+          tl.to("#s4-cam", { y: -500, opacity: 0, filter: "blur(14px)", duration: 0.2, ease: "power3.in" }, at(16.65));
+          window.__timelines["s4"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

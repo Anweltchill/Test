@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s1-cam { position: absolute; inset: 0; }
+        #s1-l1 { position: absolute; left: 64px; right: 120px; top: 280px; text-align: center; font-size: 40px; display: block; }
+        #s1-l2 { position: absolute; left: 64px; right: 120px; top: 340px; text-align: center; font-size: 118px; display: block; white-space: nowrap; }
+        .s1-fr { position: absolute; top: 560px; width: 250px; height: 330px; border-radius: 28px; border: 5px dashed #DB96A1; background: rgba(253, 244, 237, 0.6); display: flex; align-items: center; justify-content: center; }
+        #s1-f1 { left: 92px; }
+        #s1-f2 { left: 387px; }
+        #s1-f3 { left: 682px; }
+        .s1-q { font-size: 150px; color: #DB96A1; display: block; }
+        #s1-pay { position: absolute; left: 152px; top: 970px; width: 720px; height: 250px; display: flex; align-items: center; gap: 30px; padding: 0 40px; }
+        #s1-payi { width: 150px; height: 150px; flex: none; }
+        #s1-payt { font-size: 40px; line-height: 1.2; display: block; flex: 1; }
+        #s1-zero { font-size: 150px; color: #E2718D; display: block; flex: none; }
+      </style>
+      <div id="root" data-composition-id="s1" data-width="1080" data-height="1920">
+        <div id="s1-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s1-l1" class="t-label">Comment faire un</span>
+          <span id="s1-l2" class="t-serif">portfolio UGC</span>
+          <div id="s1-f1" class="s1-fr"><span class="s1-q t-serif">?</span></div>
+          <div id="s1-f2" class="s1-fr"><span class="s1-q t-serif">?</span></div>
+          <div id="s1-f3" class="s1-fr"><span class="s1-q t-serif">?</span></div>
+          <div id="s1-pay" class="card">
+            <img id="s1-payi" class="img3d" src="assets/lib/emoji/money-with-wings.png" alt="" />
+            <span id="s1-payt" class="t-serif">Marques qui t'ont <span class="acc">payée</span></span>
+            <span id="s1-zero" class="t-serif">0</span>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          // « portfolio » 0.64 · « UGC » 1.28 · « aucune marque » 2.64–3.04 · « payée » 3.92
+          tl.fromTo("#s1-l1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35 }, 0.0);
+          PX.letters(tl, "#s1-l2", 0.5, { y: 90, stagger: 0.03, dur: 0.4 }).slice(10).forEach((c) => (c.style.color = "#E2718D"));
+          ["#s1-f1", "#s1-f2", "#s1-f3"].forEach((f, i) => {
+            tl.fromTo(f, { y: 500, opacity: 0, rotation: [-10, 4, 10][i] }, { y: 0, opacity: 1, rotation: 0, duration: 0.55, ease: "back.out(1.6)" }, 1.2 + i * 0.12);
+            tl.fromTo(f + " .s1-q", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, 1.5 + i * 0.12);
+            tl.fromTo(f + " .s1-q", { rotation: 0 }, { rotation: 14, duration: 0.3, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, 2.0 + i * 0.1);
+          });
+          tl.fromTo("#s1-pay", { y: 260, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, 2.6);
+          tl.fromTo("#s1-payi", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, 2.75);
+          tl.fromTo("#s1-zero", { scale: 3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "power4.in" }, 3.75);
+          tl.fromTo("#s1-pay", { x: 0 }, { x: 14, duration: 0.05, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, 4.1);
+          tl.to("#s1-payi", { x: 500, y: -300, rotation: 30, opacity: 0, duration: 0.6, ease: "power2.in" }, 4.0);
+          tl.to("#s1-cam", { x: -1080, filter: "blur(16px)", duration: 0.24, ease: "power3.in" }, 4.5);
+          window.__timelines["s1"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

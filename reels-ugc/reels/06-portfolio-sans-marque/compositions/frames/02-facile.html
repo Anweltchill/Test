@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s2-cam { position: absolute; inset: 0; }
+        #s2-f { position: absolute; left: 64px; right: 120px; top: 300px; text-align: center; font-size: 170px; display: block; white-space: nowrap; }
+        #s2-hgw { position: absolute; left: 392px; top: 560px; width: 240px; height: 240px; display: block; }
+        #s2-hg { width: 240px; height: 240px; }
+        #s2-runw { position: absolute; left: 400px; top: 600px; width: 220px; height: 220px; display: block; }
+        #s2-run { width: 220px; height: 220px; }
+        #s2-t { position: absolute; left: 64px; right: 120px; top: 900px; text-align: center; font-size: 84px; line-height: 1.1; display: block; }
+      </style>
+      <div id="root" data-composition-id="s2" data-width="1080" data-height="1920">
+        <div id="s2-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s2-f" class="t-serif acc">Facile.</span>
+          <div id="s2-hgw"><img id="s2-hg" class="img3d" src="assets/lib/emoji/hourglass-not-done.png" alt="" /></div>
+          <div id="s2-runw"><img id="s2-run" class="img3d" src="assets/lib/emoji/woman-running.png" alt="" /></div>
+          <span id="s2-t" class="t-serif">Tu n'attends <span class="t-italic acc">personne.</span></span>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 4.75, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « Facile » 4.80 · « n'attends » 5.84 · « personne » 6.32
+          tl.fromTo("#s2-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.26, ease: "power3.out" }, 0);
+          tl.fromTo("#s2-f", { scale: 1.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.in" }, at(4.8));
+          PX.burst(tl, "#s2-cam", 512, 400, at(5.1), { n: 14, r: 320, seed: 21 });
+          tl.fromTo("#s2-hg", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(5.0));
+          tl.fromTo("#s2-hgw", { rotation: 0 }, { rotation: 180, duration: 0.5, ease: "power2.inOut" }, at(5.45));
+          tl.to("#s2-hgw", { scale: 0, rotation: 320, opacity: 0, duration: 0.3, ease: "back.in(2)" }, at(6.0));
+          tl.fromTo("#s2-t", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, at(5.6));
+          tl.fromTo("#s2-runw", { x: -800 }, { x: 0, duration: 0.4, ease: "power3.out" }, at(6.15));
+          tl.to("#s2-runw", { x: 900, duration: 0.4, ease: "power3.in" }, at(6.6));
+          tl.to("#s2-cam", { x: -1080, filter: "blur(16px)", duration: 0.22, ease: "power3.in" }, at(6.75));
+          window.__timelines["s2"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

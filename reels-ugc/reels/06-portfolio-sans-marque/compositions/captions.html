@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .cap-g { position: absolute; left: 64px; right: 120px; top: 1400px; text-align: center; opacity: 0; display: block; }
+        .cap-w { position: relative; display: inline-block; margin: 0 6px; font: 600 58px "PxSans", sans-serif; color: #0E1928; padding: 4px 14px; }
+        .cap-bg { position: absolute; inset: 0; border-radius: 16px; background: #E6BDC1; opacity: 0; display: block; }
+        .cap-t { position: relative; display: inline-block; }
+      </style>
+      <div id="root" data-composition-id="cap" data-width="1080" data-height="1920">
+        <div id="cap-box"></div>
+      </div>
+      <script>
+        (function () {
+          const G = [[["Comment", 0.0], ["faire", 0.32], ["un", 0.48]], [["portfolio", 0.64], ["UGC", 1.28], ["quand", 2.32]], [["aucune", 2.64], ["marque", 3.04], ["ne", 3.28]], [["t'a", 3.44], ["encore", 3.68], ["payée ?", 3.92]], [["Facile !", 4.8]], [["Tu", 5.6], ["n'attends", 5.84], ["personne !", 6.32]], [["Prends", 7.01], ["les", 7.33], ["produits", 7.41]], [["que", 7.65], ["tu", 7.81], ["as", 7.97]], [["déjà", 8.13], ["chez", 8.37], ["toi.", 8.53]], [["Ta", 8.93], ["crème,", 9.17]], [["ta", 9.57], ["gourde,", 9.81]], [["ton", 10.29], ["café.", 10.53]], [["Et", 11.09], ["crée", 11.25], ["les", 11.65]], [["vidéos", 11.81], ["comme", 12.13], ["si", 12.29]], [["la", 12.53], ["marque", 12.61], ["te", 12.93]], [["les", 13.01], ["avait", 13.17], ["commandées.", 13.41]], [["Une", 14.05], ["accroche,", 14.21]], [["une", 14.85], ["démonstration,", 15.01]], [["un", 15.81], ["appel", 15.97], ["à", 16.21], ["l'action.", 16.37]], [["Ensuite,", 16.93]], [["tu", 17.49], ["rassembles", 17.73], ["tout", 18.29]], [["sur", 18.53], ["une", 18.61]], [["page", 18.77], ["simple,", 19.01]], [["avec", 19.41], ["un", 19.57], ["lien", 19.73]], [["que", 19.97], ["tu", 20.13], ["peux", 20.29]], [["envoyer", 20.45], ["à", 20.85], ["n'importe", 21.01]], [["quelle", 21.41], ["marque", 21.65], ["en", 21.97]], [["une", 22.21], ["seconde.", 22.45]], [["Ton", 23.01], ["portfolio,", 23.25]], [["c'est", 23.89], ["ta", 24.13], ["vitrine.", 24.29]], [["Et", 24.93], ["un", 25.17], ["portfolio", 25.25]], [["qui", 25.73], ["n'évolue", 25.89], ["pas,", 26.45]], [["c'est", 26.69], ["une", 26.85]], [["vitrine", 27.01], ["fermée.", 27.49]], [["Il", 28.12], ["y", 28.28], ["a", 28.44]], [["quelques", 28.52], ["règles", 28.84], ["pour", 29.16]], [["qu'il", 29.24], ["donne", 29.56], ["vraiment", 29.88]], [["envie", 30.12], ["de", 30.36]], [["te", 30.44], ["contacter.", 30.6]], [["On", 31.24], ["les", 31.4], ["partage", 31.56]], [["avec", 31.96], ["nos", 32.12], ["membres.", 32.28]], [["Envoie-moi", 32.68], ["PORTFOLIO", 33.32], ["en", 33.88]], [["message", 34.04], ["privé.", 34.36]]];
+          const END = 36.2;
+          const box = document.querySelector("#cap-box");
+          const tl = gsap.timeline({ paused: true });
+          G.forEach((g, gi) => {
+            const el = document.createElement("div");
+            el.className = "cap-g";
+            el.id = "cap-g" + gi;
+            g.forEach((w, wi) => {
+              const s = document.createElement("span");
+              s.className = "cap-w";
+              s.innerHTML = '<span class="cap-bg"></span><span class="cap-t"></span>';
+              s.querySelector(".cap-t").textContent = w[0];
+              el.appendChild(s);
+            });
+            box.appendChild(el);
+            const t0 = Math.max(0, g[0][1] - 0.06);
+            const t1 = gi + 1 < G.length ? Math.max(t0 + 0.2, G[gi + 1][0][1] - 0.06) : END;
+            tl.fromTo(el, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.14, ease: "power2.out" }, t0);
+            if (gi + 1 < G.length) tl.to(el, { opacity: 0, duration: 0.06 }, t1 - 0.06);
+            const words = el.querySelectorAll(".cap-w");
+            g.forEach((w, wi) => {
+              const bg = words[wi].querySelector(".cap-bg");
+              const wEnd = wi + 1 < g.length ? g[wi + 1][1] : t1;
+              tl.fromTo(bg, { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.1, ease: "back.out(2)" }, Math.max(t0, w[1] - 0.03));
+              if (wi + 1 < g.length) tl.to(bg, { opacity: 0, duration: 0.08 }, Math.max(t0 + 0.05, wEnd - 0.03));
+            });
+          });
+          window.__timelines["cap"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

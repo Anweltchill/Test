@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s5-cam { position: absolute; inset: 0; }
+        #s5-pg { position: absolute; left: 112px; top: 280px; width: 800px; height: 620px; overflow: hidden; display: block; }
+        #s5-top { position: absolute; left: 0; right: 0; top: 0; height: 80px; background: #F0E6DD; display: flex; align-items: center; gap: 14px; padding: 0 30px; }
+        .s5-d { width: 20px; height: 20px; border-radius: 50%; background: #DB96A1; display: block; }
+        #s5-url { margin-left: 20px; flex: 1; height: 44px; border-radius: 22px; background: #FDF4ED; display: block; }
+        #s5-ttl { position: absolute; left: 0; right: 0; top: 120px; text-align: center; font-size: 62px; display: block; white-space: nowrap; }
+        .s5-th { position: absolute; top: 240px; width: 220px; height: 330px; border-radius: 24px; display: flex; align-items: center; justify-content: center; }
+        #s5-t1 { left: 40px; background: #E6BDC1; }
+        #s5-t2 { left: 290px; background: #C2C7DD; }
+        #s5-t3 { left: 540px; background: #DB96A1; }
+        .s5-ti { width: 130px; height: 130px; }
+        .s5-pl { position: absolute; right: 14px; bottom: 14px; width: 56px; height: 56px; }
+        #s5-lk { position: absolute; left: 0; right: 56px; top: 950px; text-align: center; display: block; }
+        #s5-lkb { display: inline-flex; align-items: center; gap: 16px; background: #0E1928; color: #FDF4ED; border-radius: 999px; padding: 16px 44px 16px 22px; font: 600 44px "PxSans", sans-serif; }
+        #s5-lki { width: 74px; height: 74px; }
+        #s5-env { position: absolute; left: 440px; top: 960px; width: 110px; height: 110px; opacity: 0; }
+        .s5-b { position: absolute; top: 1130px; width: 150px; height: 150px; border-radius: 50%; background: #FDF4ED; display: flex; align-items: center; justify-content: center; box-shadow: 0 16px 40px rgba(14, 25, 40, 0.14); }
+        #s5-b1 { left: 112px; }
+        #s5-b2 { left: 302px; }
+        #s5-b3 { left: 492px; }
+        .s5-bl { width: 84px; height: 84px; }
+        #s5-clk { position: absolute; left: 660px; top: 1105px; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; }
+        #s5-clki { width: 150px; height: 150px; }
+        #s5-one { position: absolute; left: 820px; top: 1170px; font-size: 60px; color: #FDF4ED; background: #E2718D; border-radius: 999px; padding: 4px 26px; display: block; opacity: 0; }
+      </style>
+      <div id="root" data-composition-id="s5" data-width="1080" data-height="1920">
+        <div id="s5-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s5-pg" class="card">
+            <div id="s5-top"><span class="s5-d"></span><span class="s5-d"></span><span class="s5-d"></span><span id="s5-url"></span></div>
+            <span id="s5-ttl" class="t-serif">Mon <span class="acc">portfolio</span></span>
+            <div id="s5-t1" class="s5-th"><img class="s5-ti img3d" src="assets/lib/emoji/lotion-bottle.png" alt="" /><img class="s5-pl" src="assets/lib/emoji/play-button.png" alt="" /></div>
+            <div id="s5-t2" class="s5-th"><img class="s5-ti img3d" src="assets/lib/emoji/cup-with-straw.png" alt="" /><img class="s5-pl" src="assets/lib/emoji/play-button.png" alt="" /></div>
+            <div id="s5-t3" class="s5-th"><img class="s5-ti img3d" src="assets/lib/emoji/hot-beverage.png" alt="" /><img class="s5-pl" src="assets/lib/emoji/play-button.png" alt="" /></div>
+          </div>
+          <div id="s5-lk"><span id="s5-lkb"><img id="s5-lki" class="img3d" src="assets/lib/emoji/link.png" alt="" />Un seul lien</span></div>
+          <img id="s5-env" class="img3d" src="assets/lib/emoji/envelope-with-arrow.png" alt="" />
+          <div id="s5-b1" class="s5-b"><img class="s5-bl" src="assets/lib/logos/gmail.svg" alt="" /></div>
+          <div id="s5-b2" class="s5-b"><img class="s5-bl" src="assets/lib/logos/instagram-icon.svg" alt="" /></div>
+          <div id="s5-b3" class="s5-b"><img class="s5-bl" src="assets/lib/logos/linkedin-icon.svg" alt="" /></div>
+          <div id="s5-clk"><img id="s5-clki" class="img3d" src="assets/lib/emoji/alarm-clock.png" alt="" /></div>
+          <span id="s5-one" class="t-serif">1 s</span>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 16.85, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « rassembles tout » 17.73–18.29 · « page simple » 18.77–19.01 · « lien » 19.73 · « envoyer » 20.45 · « marque » 21.65 · « seconde » 22.45
+          tl.fromTo("#s5-cam", { y: 900, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 0);
+          tl.fromTo("#s5-pg", { scale: 0.8, opacity: 0, rotationX: -30 }, { scale: 1, opacity: 1, rotationX: 0, duration: 0.55, ease: "expo.out", transformPerspective: 1400 }, at(16.95));
+          tl.fromTo("#s5-url", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, at(17.2));
+          tl.fromTo("#s5-ttl", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4 }, at(17.4));
+          [["#s5-t1", -300], ["#s5-t2", 0], ["#s5-t3", 300]].forEach(([t, dx], i) => {
+            tl.fromTo(t, { x: dx, y: 700, rotation: dx / 20, scale: 0.6 }, { x: 0, y: 0, rotation: 0, scale: 1, duration: 0.5, ease: "back.out(1.5)" }, at(17.75 + i * 0.15));
+            tl.fromTo(t + " .s5-pl", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, at(18.25 + i * 0.1));
+          });
+          tl.fromTo("#s5-pg", { scale: 1 }, { scale: 1.04, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at(18.95));
+          tl.fromTo("#s5-lk", { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(2)" }, at(19.6));
+          tl.fromTo("#s5-lki", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(19.7));
+          // le lien part vers n'importe quelle marque
+          tl.fromTo("#s5-env", { opacity: 1, scale: 0, x: 0, y: 0 }, { scale: 1, duration: 0.25, ease: "back.out(3)", immediateRender: false }, at(20.4));
+          [["#s5-b1", -260], ["#s5-b2", -70], ["#s5-b3", 120]].forEach(([b, dx], i) => {
+            tl.fromTo(b, { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, at(20.5 + i * 0.12));
+          });
+          tl.to("#s5-env", { x: -260, y: 200, rotation: -20, duration: 0.3, ease: "power2.in" }, at(20.7));
+          tl.to("#s5-env", { x: -70, y: 200, rotation: 0, duration: 0.25, ease: "power2.inOut" }, at(21.05));
+          tl.to("#s5-env", { x: 120, y: 200, rotation: 20, duration: 0.25, ease: "power2.inOut" }, at(21.35));
+          tl.to("#s5-env", { scale: 0, opacity: 0, duration: 0.15 }, at(21.65));
+          [["#s5-b1", 20.95], ["#s5-b2", 21.3], ["#s5-b3", 21.6]].forEach(([b, t]) => tl.fromTo(b, { scale: 1 }, { scale: 1.18, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at(t)));
+          tl.fromTo("#s5-clki", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(21.9));
+          tl.fromTo("#s5-clk", { rotation: -8 }, { rotation: 8, duration: 0.06, yoyo: true, repeat: 7, ease: "none", immediateRender: false }, at(22.3));
+          tl.fromTo("#s5-one", { opacity: 0, scale: 2 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.in" }, at(22.35));
+          PX.burst(tl, "#s5-cam", 760, 1205, at(22.6), { n: 12, r: 200, size: 14, seed: 52 });
+          tl.to("#s5-cam", { x: -1080, filter: "blur(16px)", duration: 0.22, ease: "power3.in" }, at(22.75));
+          window.__timelines["s5"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

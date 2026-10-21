@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s8-cam { position: absolute; inset: 0; }
+        #s8-mb { position: absolute; left: 0; right: 56px; top: 280px; text-align: center; display: block; }
+        #s8-mbc { display: inline-flex; align-items: center; gap: 18px; background: #FDF4ED; border-radius: 999px; padding: 12px 40px 12px 16px; font-size: 48px; box-shadow: 0 14px 34px rgba(14, 25, 40, 0.12); }
+        #s8-mbi { width: 84px; height: 84px; }
+        #s8-dm { position: absolute; left: 112px; top: 430px; width: 800px; height: 620px; display: block; overflow: hidden; }
+        #s8-head { position: absolute; left: 0; right: 0; top: 0; height: 140px; border-bottom: 2px solid #E6BDC1; display: flex; align-items: center; gap: 24px; padding: 0 36px; }
+        #s8-ig { width: 80px; height: 80px; flex: none; }
+        #s8-name { font-size: 44px; display: block; }
+        #s8-st { font-size: 24px; color: #CC7183; display: block; margin-top: 2px; }
+        #s8-me { position: absolute; right: 36px; top: 200px; background: linear-gradient(135deg, #E2718D, #CC7183); color: #FDF4ED; border-radius: 34px 34px 8px 34px; padding: 20px 40px; font: 600 54px "PxSans", sans-serif; letter-spacing: 0.08em; display: block; }
+        #s8-dots { position: absolute; left: 36px; top: 330px; background: #F0E6DD; border-radius: 34px 34px 34px 8px; padding: 26px 34px; display: flex; gap: 12px; }
+        .s8-d { width: 18px; height: 18px; border-radius: 50%; background: #0E1928; display: block; }
+        #s8-in { position: absolute; left: 28px; right: 28px; bottom: 28px; height: 116px; border-radius: 58px; border: 3px solid #E6BDC1; display: flex; align-items: center; padding: 0 18px 0 40px; justify-content: space-between; }
+        #s8-txt { font: 600 52px "PxSans", sans-serif; letter-spacing: 0.08em; color: #0E1928; display: block; min-width: 10px; }
+        #s8-ph { font: 400 40px "PxSans", sans-serif; color: #8E8A86; display: block; }
+        #s8-send { width: 84px; height: 84px; border-radius: 50%; background: #0E1928; display: flex; align-items: center; justify-content: center; flex: none; }
+        #s8-arr { width: 42px; height: 42px; display: block; }
+        #s8-cta { position: absolute; left: 0; right: 56px; top: 1120px; text-align: center; display: block; }
+        #s8-btn { display: inline-flex; align-items: center; gap: 18px; background: #0E1928; color: #FDF4ED; border-radius: 999px; padding: 18px 44px 18px 22px; font: 600 44px "PxSans", sans-serif; }
+        #s8-btn b { color: #E6BDC1; }
+        #s8-env { width: 84px; height: 84px; }
+        #s8-handw { position: absolute; left: 800px; top: 975px; width: 150px; height: 150px; display: block; }
+        #s8-hand { width: 150px; height: 150px; }
+      </style>
+      <div id="root" data-composition-id="s8" data-width="1080" data-height="1920">
+        <div id="s8-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s8-mb"><span id="s8-mbc" class="t-serif"><img id="s8-mbi" class="img3d" src="assets/lib/emoji/busts-in-silhouette.png" alt="" />Pour nos <span class="acc">membres</span></span></div>
+          <div id="s8-dm" class="card">
+            <div id="s8-head"><img id="s8-ig" src="assets/lib/logos/instagram-icon.svg" alt="" /><div><span id="s8-name" class="t-serif">Phoenix Pro</span><span id="s8-st" class="t-label">message privé</span></div></div>
+            <div id="s8-me">PORTFOLIO</div>
+            <div id="s8-dots"><span class="s8-d"></span><span class="s8-d"></span><span class="s8-d"></span></div>
+            <div id="s8-in"><span id="s8-txt"></span><span id="s8-ph">Message…</span><span id="s8-send"><svg id="s8-arr" viewBox="0 0 64 64" fill="none"><path d="M10 32l44-20-14 44-8-18z" fill="#FDF4ED" /></svg></span></div>
+          </div>
+          <div id="s8-cta"><span id="s8-btn"><img id="s8-env" src="assets/lib/emoji/envelope-with-arrow.png" alt="" />Écris <b>« PORTFOLIO »</b> en privé</span></div>
+          <div id="s8-handw"><img id="s8-hand" class="img3d" src="assets/lib/emoji/backhand-index-pointing-down.png" alt="" /></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 31.1, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « partage » 31.56 · « membres » 32.28 · « Envoie-moi » 32.68 · « Portfolio » 33.32 · « message privé » 34.04–34.36
+          tl.fromTo("#s8-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0);
+          tl.fromTo("#s8-mb", { y: -120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(2)" }, at(31.3));
+          tl.fromTo("#s8-mbi", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(32.2));
+          tl.fromTo("#s8-mbc", { scale: 1 }, { scale: 1.08, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at(32.3));
+          tl.fromTo("#s8-dm", { y: 160, opacity: 0, rotationX: -25 }, { y: 0, opacity: 1, rotationX: 0, duration: 0.55, ease: "expo.out", transformPerspective: 1400 }, at(31.55));
+          tl.fromTo("#s8-ig", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, at(31.75));
+          const txt = document.querySelector("#s8-txt"), ph = document.querySelector("#s8-ph"), W = "PORTFOLIO";
+          const ty = { _v: 0, get v() { return this._v; }, set v(x) { this._v = x; const n = Math.round(x); txt.textContent = W.slice(0, n); ph.style.display = n > 0 ? "none" : "block"; } };
+          tl.fromTo(ty, { v: 0 }, { v: 9, duration: 0.7, ease: "none" }, at(32.85));
+          tl.fromTo("#s8-send", { scale: 1 }, { scale: 0.82, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.in", immediateRender: false }, at(33.75));
+          tl.to(ty, { v: 0, duration: 0.01 }, at(33.9));
+          tl.fromTo("#s8-me", { y: 360, scale: 0.5, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.8)" }, at(33.88));
+          PX.burst(tl, "#s8-cam", 720, 675, at(34.2), { n: 10, r: 150, size: 16, seed: 81 });
+          tl.fromTo("#s8-dots", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, at(34.5));
+          gsap.utils.toArray("#s8-dots .s8-d").forEach((d, i) => tl.fromTo(d, { y: 0 }, { y: -10, duration: 0.15, yoyo: true, repeat: 9, ease: "sine.inOut", immediateRender: false }, at(34.6 + i * 0.08)));
+          // appel à l'action final : bouton qui pulse jusqu'à la fin
+          tl.fromTo("#s8-cta", { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(2)" }, at(34.4));
+          tl.fromTo("#s8-env", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(34.6));
+          PX.pulse(tl, "#s8-btn", at(34.95), 1.2, 1.06, 0.6);
+          tl.fromTo("#s8-hand", { scale: 0, y: -80 }, { scale: 1, y: 0, duration: 0.45, ease: "back.out(3)" }, at(34.7));
+          tl.fromTo("#s8-handw", { y: 0 }, { y: 24, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, at(35.1));
+          tl.fromTo("#s8-dm", { scale: 1 }, { scale: 0.97, duration: 1.8, ease: "sine.out", immediateRender: false }, at(34.4));
+          window.__timelines["s8"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

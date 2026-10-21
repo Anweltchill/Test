@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s7-cam { position: absolute; inset: 0; }
+        #s7-dark { position: absolute; left: 50px; right: 50px; top: 240px; height: 1090px; border-radius: 48px; background: #0E1928; opacity: 0; display: block; }
+        #s7-shw { position: absolute; left: 432px; top: 290px; width: 160px; height: 160px; display: block; }
+        #s7-sh { width: 160px; height: 160px; }
+        #s7-l1 { position: absolute; left: 64px; right: 120px; top: 480px; text-align: center; font-size: 84px; color: #FDF4ED; display: block; white-space: nowrap; }
+        .s7-r { position: absolute; left: 132px; width: 760px; height: 130px; border-radius: 30px; background: #172742; display: flex; align-items: center; gap: 26px; padding: 0 30px; }
+        #s7-r1 { top: 640px; }
+        #s7-r2 { top: 800px; }
+        #s7-r3 { top: 960px; }
+        .s7-n { font-size: 46px; color: #E6BDC1; display: block; flex: none; }
+        .s7-blur { flex: 1; height: 26px; border-radius: 13px; background: linear-gradient(90deg, #8F9AC3, #C2C7DD); filter: blur(6px); display: block; }
+        .s7-lk { width: 72px; height: 72px; flex: none; }
+        #s7-l3 { position: absolute; left: 64px; right: 120px; top: 1140px; text-align: center; font-size: 52px; color: #FDF4ED; line-height: 1.15; display: block; }
+      </style>
+      <div id="root" data-composition-id="s7" data-width="1080" data-height="1920">
+        <div id="s7-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s7-dark"></div>
+          <div id="s7-shw"><img id="s7-sh" class="img3d" src="assets/lib/emoji/shushing-face.png" alt="" /></div>
+          <span id="s7-l1" class="t-serif">Quelques <span class="acc">règles</span></span>
+          <div id="s7-r1" class="s7-r"><span class="s7-n t-serif">N°1</span><span class="s7-blur"></span><img class="s7-lk img3d" src="assets/lib/emoji/locked.png" alt="" /></div>
+          <div id="s7-r2" class="s7-r"><span class="s7-n t-serif">N°2</span><span class="s7-blur"></span><img class="s7-lk img3d" src="assets/lib/emoji/locked.png" alt="" /></div>
+          <div id="s7-r3" class="s7-r"><span class="s7-n t-serif">N°3</span><span class="s7-blur"></span><img class="s7-lk img3d" src="assets/lib/emoji/locked.png" alt="" /></div>
+          <span id="s7-l3" class="t-serif">pour donner <span class="acc">envie</span> de te contacter</span>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 28.0, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // chuchoté : « quelques règles » 28.52–28.84 · « envie » 30.12 · « contacter » 30.60
+          tl.fromTo("#s7-dark", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power3.out" }, 0);
+          tl.fromTo("#s7-sh", { scale: 0, rotation: -20 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.5)" }, at(28.1));
+          PX.float(tl, "#s7-shw", at(28.55), 2.4, 6, 1.2, 4);
+          tl.fromTo("#s7-l1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4 }, at(28.45));
+          ["#s7-r1", "#s7-r2", "#s7-r3"].forEach((r, i) => {
+            tl.fromTo(r, { x: i % 2 ? 900 : -900, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, at(28.85 + i * 0.18));
+            tl.fromTo(r + " .s7-lk", { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(3)" }, at(29.15 + i * 0.18));
+            tl.fromTo(r + " .s7-blur", { opacity: 0.5 }, { opacity: 1, duration: 0.6, yoyo: true, repeat: 2, ease: "sine.inOut", immediateRender: false }, at(29.3 + i * 0.1));
+          });
+          tl.fromTo("#s7-l3", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, at(29.9));
+          tl.to("#s7-cam", { x: -1080, filter: "blur(16px)", duration: 0.22, ease: "power3.in" }, at(30.9));
+          window.__timelines["s7"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

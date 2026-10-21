@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s6-cam { position: absolute; inset: 0; }
+        #s6-l1 { position: absolute; left: 64px; right: 120px; top: 280px; text-align: center; font-size: 40px; display: block; }
+        #s6-l2 { position: absolute; left: 64px; right: 120px; top: 330px; text-align: center; font-size: 120px; display: block; white-space: nowrap; }
+        #s6-shop { position: absolute; left: 132px; top: 540px; width: 760px; height: 720px; display: block; }
+        #s6-awn { position: absolute; left: -20px; right: -20px; top: 0; height: 130px; border-radius: 26px 26px 60px 60px; background: repeating-linear-gradient(90deg, #E2718D 0 80px, #FDF4ED 80px 160px); box-shadow: 0 14px 30px rgba(14, 25, 40, 0.18); display: block; }
+        #s6-body { position: absolute; left: 0; right: 0; top: 110px; bottom: 0; border-radius: 0 0 30px 30px; background: #0E1928; padding: 30px; display: block; }
+        #s6-win { position: relative; width: 100%; height: 100%; border-radius: 18px; background: #172742; overflow: hidden; display: block; }
+        #s6-glow { position: absolute; inset: 0; background: radial-gradient(circle at 50% 40%, rgba(253, 244, 237, 0.85), rgba(230, 189, 193, 0.35) 60%, rgba(23, 39, 66, 0) 100%); opacity: 0; display: block; }
+        #s6-items { position: absolute; left: 0; right: 0; top: 120px; display: flex; justify-content: center; gap: 30px; }
+        .s6-it { width: 180px; height: 260px; border-radius: 22px; background: #FDF4ED; display: flex; align-items: center; justify-content: center; }
+        .s6-ii { width: 120px; height: 120px; }
+        #s6-web { position: absolute; left: 20px; top: 10px; width: 180px; height: 180px; opacity: 0; }
+        #s6-web2 { position: absolute; right: 20px; bottom: 20px; width: 150px; height: 150px; opacity: 0; }
+        #s6-shut { position: absolute; left: 0; right: 0; top: 0; height: 100%; background: repeating-linear-gradient(180deg, #8F9AC3 0 34px, #6D78A3 34px 40px); display: block; }
+        #s6-sign { position: absolute; left: 230px; top: 260px; width: 340px; display: flex; align-items: center; justify-content: center; gap: 14px; background: #FDF4ED; border-radius: 20px; padding: 18px 0; font-size: 62px; color: #0E1928; box-shadow: 0 16px 40px rgba(14, 25, 40, 0.3); }
+        #s6-lock { width: 70px; height: 70px; }
+      </style>
+      <div id="root" data-composition-id="s6" data-width="1080" data-height="1920">
+        <div id="s6-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s6-l1" class="t-label">Ton portfolio, c'est ta</span>
+          <span id="s6-l2" class="t-serif acc">vitrine</span>
+          <div id="s6-shop">
+            <div id="s6-body">
+              <div id="s6-win">
+                <div id="s6-glow"></div>
+                <div id="s6-items">
+                  <div class="s6-it"><img class="s6-ii img3d" src="assets/lib/emoji/lotion-bottle.png" alt="" /></div>
+                  <div class="s6-it"><img class="s6-ii img3d" src="assets/lib/emoji/cup-with-straw.png" alt="" /></div>
+                  <div class="s6-it"><img class="s6-ii img3d" src="assets/lib/emoji/hot-beverage.png" alt="" /></div>
+                </div>
+                <img id="s6-web" src="assets/lib/emoji/spider-web.png" alt="" />
+                <img id="s6-web2" src="assets/lib/emoji/spider-web.png" alt="" />
+                <div id="s6-shut"></div>
+              </div>
+            </div>
+            <div id="s6-awn"></div>
+            <div id="s6-sign" class="t-serif"><img id="s6-lock" class="img3d" src="assets/lib/emoji/locked.png" alt="" />Fermé</div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 22.9, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « portfolio » 23.25 · « vitrine » 24.29 · « n'évolue pas » 25.89–26.45 · « vitrine fermée » 27.01–27.49
+          tl.fromTo("#s6-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.26, ease: "power3.out" }, 0);
+          tl.fromTo("#s6-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35 }, at(23.0));
+          PX.letters(tl, "#s6-l2", at(24.15), { y: 90, stagger: 0.04, dur: 0.4 });
+          tl.fromTo("#s6-body", { y: 600, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, at(23.1));
+          tl.fromTo("#s6-awn", { scaleY: 0, transformOrigin: "50% 0%" }, { scaleY: 1, duration: 0.45, ease: "back.out(2)" }, at(23.45));
+          tl.fromTo("#s6-shut", { scaleY: 1, transformOrigin: "50% 0%" }, { scaleY: 0, duration: 0.5, ease: "power3.inOut" }, at(23.7));
+          gsap.utils.toArray("#s6-items .s6-it").forEach((it, i) => tl.fromTo(it, { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.8)" }, at(23.9 + i * 0.1)));
+          // « vitrine » : la lumière s'allume
+          tl.fromTo("#s6-glow", { opacity: 0 }, { opacity: 1, duration: 0.3 }, at(24.3));
+          PX.burst(tl, "#s6-cam", 512, 900, at(24.35), { n: 16, r: 360, seed: 63 });
+          gsap.utils.toArray("#s6-items .s6-ii").forEach((im, i) => tl.fromTo(im, { y: 0 }, { y: -18, duration: 0.4, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, at(24.5 + i * 0.12)));
+          // « n'évolue pas » : tout se ternit, toiles d'araignée
+          tl.to("#s6-glow", { opacity: 0, duration: 0.6 }, at(25.8));
+          tl.to("#s6-items", { filter: "grayscale(1) brightness(0.6)", duration: 0.6 }, at(25.8));
+          tl.fromTo("#s6-web", { opacity: 0, scale: 0.3 }, { opacity: 0.9, scale: 1, duration: 0.5, ease: "back.out(2)" }, at(26.0));
+          tl.fromTo("#s6-web2", { opacity: 0, scale: 0.3 }, { opacity: 0.8, scale: 1, duration: 0.5, ease: "back.out(2)" }, at(26.3));
+          // « fermée » : le rideau tombe
+          tl.to("#s6-shut", { scaleY: 1, duration: 0.45, ease: "bounce.out" }, at(27.05));
+          tl.fromTo("#s6-shop", { y: 0 }, { y: 10, duration: 0.06, yoyo: true, repeat: 3, ease: "none", immediateRender: false }, at(27.45));
+          tl.fromTo("#s6-sign", { scale: 0, rotation: -25, opacity: 0 }, { scale: 1, rotation: -6, opacity: 1, duration: 0.45, ease: "back.out(3)" }, at(27.45));
+          tl.to("#s6-cam", { opacity: 0, filter: "blur(14px)", scale: 0.9, duration: 0.25, ease: "power2.in" }, at(27.85));
+          window.__timelines["s6"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
