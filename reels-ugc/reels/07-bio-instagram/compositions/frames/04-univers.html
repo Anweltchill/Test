@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s4-cam { position: absolute; inset: 0; }
+        #s4-prof { position: absolute; left: 112px; top: 290px; width: 800px; height: 420px; display: block; }
+        #s4-avw { position: absolute; left: 36px; top: 36px; width: 140px; height: 140px; border-radius: 50%; padding: 5px; background: linear-gradient(45deg, #F9CE34, #EE2A7B 55%, #6228D7); display: block; }
+        #s4-avin { width: 100%; height: 100%; border-radius: 50%; background: #FDF4ED; display: flex; align-items: center; justify-content: center; }
+        #s4-av { width: 96px; height: 96px; }
+        #s4-ps { position: absolute; left: 210px; top: 52px; font: 600 44px "PxSans", sans-serif; display: block; }
+        #s4-ps b { color: #E2718D; }
+        #s4-ex { position: absolute; left: 210px; top: 112px; font-size: 24px; color: #CC7183; display: block; }
+        #s4-penw { position: absolute; left: 690px; top: 30px; width: 90px; height: 90px; display: block; }
+        #s4-pen { width: 90px; height: 90px; }
+        .s4-bl { position: absolute; left: 36px; right: 36px; font-size: 46px; line-height: 1.2; display: block; white-space: nowrap; overflow: hidden; }
+        #s4-b1 { top: 210px; }
+        #s4-b2 { top: 290px; }
+        .s4-ch { position: absolute; width: 380px; height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+        #s4-c1 { left: 112px; top: 790px; }
+        #s4-c2 { left: 532px; top: 790px; }
+        #s4-c3 { left: 112px; top: 1050px; }
+        #s4-c4 { left: 532px; top: 1050px; }
+        .s4-ci { width: 120px; height: 120px; }
+        .s4-cn { font-size: 46px; display: block; }
+      </style>
+      <div id="root" data-composition-id="s4" data-width="1080" data-height="1920">
+        <div id="s4-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s4-prof" class="card">
+            <div id="s4-avw"><div id="s4-avin"><img id="s4-av" class="img3d" src="assets/lib/emoji/woman-raising-hand.png" alt="" /></div></div>
+            <span id="s4-ps">prenom<b>.ugc</b></span>
+            <span id="s4-ex" class="t-label">Exemple de bio</span>
+            <div id="s4-penw"><img id="s4-pen" class="img3d" src="assets/lib/emoji/pen.png" alt="" /></div>
+            <span id="s4-b1" class="s4-bl t-serif">Créatrice de contenu <span class="acc">UGC</span></span>
+            <span id="s4-b2" class="s4-bl t-serif">Mon univers : <span class="acc">skincare · food</span></span>
+          </div>
+          <div id="s4-c1" class="s4-ch card"><img class="s4-ci img3d" src="assets/lib/emoji/lotion-bottle.png" alt="" /><span class="s4-cn t-serif">Skincare</span></div>
+          <div id="s4-c2" class="s4-ch card"><img class="s4-ci img3d" src="assets/lib/emoji/shortcake.png" alt="" /><span class="s4-cn t-serif">Food</span></div>
+          <div id="s4-c3" class="s4-ch card"><img class="s4-ci img3d" src="assets/lib/emoji/dress.png" alt="" /><span class="s4-cn t-serif">Mode</span></div>
+          <div id="s4-c4" class="s4-ch card"><img class="s4-ci img3d" src="assets/lib/emoji/airplane.png" alt="" /><span class="s4-cn t-serif">Voyage</span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 14.3, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « clairement » 15.20 · « univers » 16.72 · « skincare » 17.36 · « food » 18.32 · « mode » 18.72 · « voyage » 19.20
+          tl.fromTo("#s4-cam", { y: 900, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 0);
+          tl.fromTo("#s4-pen", { scale: 0, rotation: -60 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(14.6));
+          // la bio s'écrit ligne par ligne, le stylo suit
+          tl.fromTo("#s4-b1", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.8, ease: "power1.inOut" }, at(15.05));
+          tl.fromTo("#s4-penw", { x: 0, y: 0 }, { x: -650, y: 170, duration: 0.01 }, at(15.0));
+          tl.to("#s4-penw", { x: -60, y: 170, duration: 0.8, ease: "power1.inOut" }, at(15.05));
+          tl.fromTo("#s4-b2", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 1.0, ease: "power1.inOut" }, at(16.5));
+          tl.to("#s4-penw", { x: -650, y: 250, duration: 0.15 }, at(16.35));
+          tl.to("#s4-penw", { x: -20, y: 250, duration: 1.0, ease: "power1.inOut" }, at(16.5));
+          tl.to("#s4-penw", { x: 0, y: 0, rotation: 20, duration: 0.4, ease: "power2.out" }, at(17.6));
+          [["#s4-c1", 17.3], ["#s4-c2", 18.25], ["#s4-c3", 18.65], ["#s4-c4", 19.1]].forEach(([c, t], i) => {
+            tl.fromTo(c, { scale: 0, rotation: i % 2 ? 10 : -10 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2.2)" }, at(t));
+            tl.fromTo(c + " .s4-ci", { y: 40 }, { y: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" }, at(t + 0.1));
+          });
+          tl.fromTo("#s4-c4 .s4-ci", { x: 0 }, { x: 40, duration: 0.25, yoyo: true, repeat: 1, ease: "sine.inOut", immediateRender: false }, at(19.3));
+          tl.to("#s4-cam", { x: -1080, filter: "blur(16px)", duration: 0.22, ease: "power3.in" }, at(19.6));
+          window.__timelines["s4"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

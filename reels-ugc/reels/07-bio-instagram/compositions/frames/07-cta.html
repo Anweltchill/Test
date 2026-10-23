@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s7-cam { position: absolute; inset: 0; }
+        #s7-q { position: absolute; left: 64px; right: 120px; top: 280px; text-align: center; font-size: 72px; display: block; white-space: nowrap; }
+        #s7-cl { position: absolute; left: 112px; top: 410px; width: 800px; height: 430px; display: block; }
+        #s7-clipw { position: absolute; left: 30px; top: 30px; width: 130px; height: 130px; display: block; }
+        #s7-clip { width: 130px; height: 130px; }
+        .s7-it { position: absolute; left: 190px; right: 40px; height: 80px; display: flex; align-items: center; gap: 20px; }
+        #s7-i1 { top: 40px; }
+        #s7-i2 { top: 135px; }
+        #s7-i3 { top: 230px; }
+        #s7-i4 { top: 325px; }
+        .s7-ck { width: 64px; height: 64px; flex: none; }
+        .s7-bl { height: 24px; border-radius: 12px; background: #DB96A1; filter: blur(5px); display: block; }
+        #s7-sp { position: absolute; left: 820px; top: 360px; width: 120px; height: 120px; }
+        #s7-prof { position: absolute; left: 112px; top: 900px; width: 800px; height: 380px; display: block; }
+        #s7-ig { position: absolute; left: 36px; top: 34px; width: 66px; height: 66px; }
+        #s7-name { position: absolute; left: 124px; top: 40px; font-size: 48px; display: block; }
+        #s7-bio { position: absolute; left: 36px; top: 130px; right: 36px; font: 400 32px/1.35 "PxSans", sans-serif; display: block; }
+        #s7-link { position: absolute; left: 36px; top: 240px; display: flex; align-items: center; gap: 16px; background: #E2718D; color: #FDF4ED; border-radius: 999px; padding: 18px 40px; font: 600 46px "PxSans", sans-serif; }
+        #s7-chain { width: 48px; height: 48px; }
+        #s7-ripple { position: absolute; left: 520px; top: 1200px; width: 200px; height: 200px; margin: -100px 0 0 -100px; border-radius: 50%; border: 7px solid #0E1928; opacity: 0; display: block; }
+        #s7-handw { position: absolute; left: 450px; top: 1205px; width: 150px; height: 150px; display: block; }
+        #s7-hand { width: 150px; height: 150px; }
+      </style>
+      <div id="root" data-composition-id="s7" data-width="1080" data-height="1920">
+        <div id="s7-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s7-q" class="t-serif">La <span class="acc">checklist</span> complète</div>
+          <div id="s7-cl" class="card">
+            <div id="s7-clipw"><img id="s7-clip" class="img3d" src="assets/lib/emoji/clipboard.png" alt="" /></div>
+            <div id="s7-i1" class="s7-it"><img class="s7-ck" src="assets/lib/emoji/check-mark-button.png" alt="" /><span class="s7-bl" style="width:420px"></span></div>
+            <div id="s7-i2" class="s7-it"><img class="s7-ck" src="assets/lib/emoji/check-mark-button.png" alt="" /><span class="s7-bl" style="width:340px"></span></div>
+            <div id="s7-i3" class="s7-it"><img class="s7-ck" src="assets/lib/emoji/check-mark-button.png" alt="" /><span class="s7-bl" style="width:460px"></span></div>
+            <div id="s7-i4" class="s7-it"><img class="s7-ck" src="assets/lib/emoji/check-mark-button.png" alt="" /><span class="s7-bl" style="width:300px"></span></div>
+          </div>
+          <img id="s7-sp" class="img3d" src="assets/lib/emoji/sparkles.png" alt="" />
+          <div id="s7-prof" class="card">
+            <img id="s7-ig" src="assets/lib/logos/instagram-icon.svg" alt="" />
+            <span id="s7-name" class="t-serif">Phoenix Pro</span>
+            <span id="s7-bio">Formation UGC · Apprendre. Passer à l'action. Obtenir des résultats.</span>
+            <div id="s7-link"><svg id="s7-chain" viewBox="0 0 64 64" fill="none" stroke="#FDF4ED" stroke-width="5" stroke-linecap="round"><path d="M28 36a10 10 0 0 0 14 0l9-9a10 10 0 0 0-14-14l-4 4" /><path d="M36 28a10 10 0 0 0-14 0l-9 9a10 10 0 0 0 14 14l4-4" /></svg>Lien en bio</div>
+          </div>
+          <div id="s7-ripple"></div>
+          <div id="s7-handw"><img id="s7-hand" class="img3d" src="assets/lib/emoji/backhand-index-pointing-up.png" alt="" /></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 29.1, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « checklist complète » 29.68–30.16 · « transformer » 30.56 · « vitrine » 31.44 · « lien » 32.56 · « bio » 32.88
+          tl.fromTo("#s7-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.28, ease: "power3.out" }, 0);
+          PX.letters(tl, "#s7-q", at(29.55), { y: 80, stagger: 0.025, dur: 0.4 });
+          tl.fromTo("#s7-cl", { y: 260, opacity: 0, rotationX: -25 }, { y: 0, opacity: 1, rotationX: 0, duration: 0.5, ease: "expo.out", transformPerspective: 1400 }, at(29.3));
+          tl.fromTo("#s7-clip", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(29.45));
+          ["#s7-i1", "#s7-i2", "#s7-i3", "#s7-i4"].forEach((it, i) => {
+            tl.fromTo(it, { x: 300, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, at(29.7 + i * 0.1));
+            tl.fromTo(it + " .s7-ck", { scale: 0, rotation: 90 }, { scale: 1, rotation: 0, duration: 0.35, ease: "back.out(3)" }, at(30.2 + i * 0.3));
+          });
+          tl.fromTo("#s7-sp", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(31.35));
+          PX.burst(tl, "#s7-cam", 880, 420, at(31.45), { n: 12, r: 200, size: 14, seed: 72 });
+          tl.fromTo("#s7-prof", { y: 400, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, at(31.8));
+          tl.fromTo("#s7-ig", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(31.95));
+          tl.fromTo("#s7-link", { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2.6)" }, at(32.2));
+          tl.fromTo("#s7-hand", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, at(32.45));
+          tl.fromTo("#s7-handw", { scale: 1 }, { scale: 0.85, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.in", immediateRender: false }, at(32.85));
+          tl.fromTo("#s7-link", { scale: 1 }, { scale: 0.93, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.in", immediateRender: false }, at(32.85));
+          tl.fromTo("#s7-ripple", { scale: 0.3, opacity: 1 }, { scale: 1.8, opacity: 0, duration: 0.55, ease: "power2.out", immediateRender: false }, at(32.9));
+          PX.burst(tl, "#s7-cam", 520, 1200, at(32.9), { n: 14, r: 240, seed: 77 });
+          PX.pulse(tl, "#s7-link", at(33.3), 1.5, 1.06, 0.75);
+          PX.float(tl, "#s7-handw", at(33.3), 1.5, 10, 0.75, 4);
+          tl.fromTo("#s7-cl", { scale: 1 }, { scale: 0.97, duration: 2.5, ease: "sine.out", immediateRender: false }, at(32.3));
+          window.__timelines["s7"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s3-cam { position: absolute; inset: 0; }
+        #s3-l1 { position: absolute; left: 64px; right: 120px; top: 280px; text-align: center; font-size: 76px; display: block; white-space: nowrap; }
+        #s3-prof { position: absolute; left: 112px; top: 410px; width: 800px; height: 280px; display: block; }
+        #s3-avw { position: absolute; left: 36px; top: 50px; width: 170px; height: 170px; border-radius: 50%; padding: 6px; background: linear-gradient(45deg, #F9CE34, #EE2A7B 55%, #6228D7); display: block; }
+        #s3-avin { width: 100%; height: 100%; border-radius: 50%; background: #FDF4ED; display: flex; align-items: center; justify-content: center; }
+        #s3-av { width: 120px; height: 120px; }
+        #s3-psl { position: absolute; left: 240px; top: 66px; font: 600 26px "PxSans", sans-serif; letter-spacing: 0.12em; color: #CC7183; display: block; }
+        #s3-ps { position: absolute; left: 240px; top: 100px; font: 600 58px "PxSans", sans-serif; display: block; white-space: nowrap; }
+        #s3-ugc { color: #E2718D; }
+        #s3-cur { display: inline-block; width: 5px; height: 56px; background: #0E1928; margin-left: 4px; vertical-align: -8px; }
+        #s3-nm { position: absolute; left: 240px; top: 180px; font-size: 40px; display: block; white-space: nowrap; opacity: 0; }
+        #s3-srch { position: absolute; left: 112px; top: 780px; width: 800px; height: 130px; display: flex; align-items: center; gap: 24px; padding: 0 36px; }
+        #s3-mg { width: 80px; height: 80px; flex: none; }
+        #s3-q { font: 600 48px "PxSans", sans-serif; color: #0E1928; display: block; }
+        .s3-res { position: absolute; left: 112px; width: 800px; height: 150px; display: flex; align-items: center; gap: 26px; padding: 0 36px; }
+        #s3-r1 { top: 950px; }
+        #s3-r2 { top: 1130px; }
+        .s3-lg { width: 90px; height: 90px; flex: none; }
+        .s3-rt { font: 600 44px "PxSans", sans-serif; display: block; flex: 1; }
+        .s3-rt b { color: #E2718D; }
+        .s3-up { width: 80px; height: 80px; flex: none; }
+      </style>
+      <div id="root" data-composition-id="s3" data-width="1080" data-height="1920">
+        <div id="s3-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s3-l1" class="t-serif">Réflexe <span class="acc">n°1</span></span>
+          <div id="s3-prof" class="card">
+            <div id="s3-avw"><div id="s3-avin"><img id="s3-av" class="img3d" src="assets/lib/emoji/woman-raising-hand.png" alt="" /></div></div>
+            <span id="s3-psl">PSEUDO</span>
+            <span id="s3-ps">prenom<span id="s3-ugc"></span><span id="s3-cur"></span></span>
+            <span id="s3-nm" class="t-serif">Prénom · <span class="acc">UGC</span></span>
+          </div>
+          <div id="s3-srch" class="card"><img id="s3-mg" class="img3d" src="assets/lib/emoji/magnifying-glass-tilted-left.png" alt="" /><span id="s3-q"></span></div>
+          <div id="s3-r1" class="s3-res card"><img class="s3-lg" src="assets/lib/logos/instagram-icon.svg" alt="" /><span class="s3-rt">prenom<b>.ugc</b></span><img class="s3-up img3d" src="assets/lib/emoji/upwards-button.png" alt="" /></div>
+          <div id="s3-r2" class="s3-res card"><img class="s3-lg" src="assets/lib/logos/tiktok-icon.svg" alt="" /><span class="s3-rt">prenom<b>.ugc</b></span><img class="s3-up img3d" src="assets/lib/emoji/upwards-button.png" alt="" /></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 8.1, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « Premier réflexe » 8.24–8.56 · « UGC » 9.52 · « pseudo » 10.48 · « nom » 11.28 · « référencée » 12.32 · « Instagram » 13.04 · « TikTok » 13.60
+          tl.fromTo("#s3-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.26, ease: "power3.out" }, 0);
+          tl.fromTo("#s3-l1", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power4.out" }, at(8.25));
+          tl.fromTo("#s3-prof", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, at(8.5));
+          tl.fromTo("#s3-av", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, at(8.7));
+          tl.fromTo("#s3-cur", { opacity: 1 }, { opacity: 0, duration: 0.25, yoyo: true, repeat: 5, ease: "steps(1)", immediateRender: false }, at(8.8));
+          const u = document.querySelector("#s3-ugc"), W = ".ugc";
+          const ty = { _v: 0, get v() { return this._v; }, set v(x) { this._v = x; u.textContent = W.slice(0, Math.round(x)); } };
+          tl.fromTo(ty, { v: 0 }, { v: 4, duration: 0.4, ease: "none" }, at(9.45));
+          tl.fromTo("#s3-ps", { scale: 1 }, { scale: 1.1, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out", transformOrigin: "0% 50%", immediateRender: false }, at(9.9));
+          PX.burst(tl, "#s3-cam", 700, 540, at(9.95), { n: 12, r: 200, size: 14, seed: 33 });
+          tl.to("#s3-cur", { opacity: 0, duration: 0.05 }, at(10.4));
+          tl.fromTo("#s3-nm", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35 }, at(11.15));
+          tl.fromTo("#s3-srch", { y: 200, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, at(11.7));
+          tl.fromTo("#s3-mg", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(11.85));
+          const q = document.querySelector("#s3-q"), Q = "ugc";
+          const tq = { _v: 0, get v() { return this._v; }, set v(x) { this._v = x; q.textContent = Q.slice(0, Math.round(x)); } };
+          tl.fromTo(tq, { v: 0 }, { v: 3, duration: 0.35, ease: "none" }, at(12.2));
+          tl.fromTo("#s3-r1", { x: -1100 }, { x: 0, duration: 0.45, ease: "back.out(1.4)" }, at(12.9));
+          tl.fromTo("#s3-r2", { x: 1100 }, { x: 0, duration: 0.45, ease: "back.out(1.4)" }, at(13.45));
+          tl.fromTo("#s3-r1 .s3-up", { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(3)" }, at(13.3));
+          tl.fromTo("#s3-r2 .s3-up", { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(3)" }, at(13.85));
+          tl.fromTo(".s3-up", { y: 0 }, { y: -14, duration: 0.2, yoyo: true, repeat: 1, ease: "sine.inOut", immediateRender: false }, at(13.95));
+          tl.to("#s3-cam", { y: -500, opacity: 0, filter: "blur(14px)", duration: 0.2, ease: "power3.in" }, at(14.1));
+          window.__timelines["s3"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

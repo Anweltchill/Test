@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s5-cam { position: absolute; inset: 0; }
+        #s5-l1 { position: absolute; left: 64px; right: 120px; top: 280px; text-align: center; font-size: 40px; display: block; }
+        #s5-l2 { position: absolute; left: 64px; right: 120px; top: 340px; text-align: center; font-size: 100px; display: block; white-space: nowrap; }
+        #s5-card { position: absolute; left: 112px; top: 520px; width: 800px; height: 360px; display: block; }
+        .s5-row { position: absolute; left: 36px; right: 36px; height: 120px; border-radius: 26px; background: #F0E6DD; display: flex; align-items: center; gap: 24px; padding: 0 28px; }
+        #s5-r1 { top: 50px; }
+        #s5-r2 { top: 190px; }
+        .s5-n { font-size: 50px; color: #E2718D; display: block; flex: none; }
+        .s5-blur { flex: 1; height: 28px; border-radius: 14px; background: linear-gradient(90deg, #DB96A1, #E6BDC1); filter: blur(7px); display: block; }
+        .s5-lk { width: 80px; height: 80px; flex: none; }
+        #s5-stamp { position: absolute; left: 470px; top: 830px; font: 600 34px "PxSans", sans-serif; letter-spacing: 0.12em; color: #FDF4ED; background: #0E1928; border-radius: 14px; padding: 12px 26px; display: block; }
+        #s5-lane { position: absolute; left: 112px; top: 980px; width: 800px; height: 290px; display: block; overflow: hidden; }
+        #s5-brw { position: absolute; left: 40px; top: 50px; width: 190px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+        #s5-bri { width: 150px; height: 150px; }
+        #s5-brt { font: 600 32px "PxSans", sans-serif; display: block; }
+        #s5-door { position: absolute; left: 600px; top: 50px; width: 170px; height: 170px; }
+        #s5-x { position: absolute; left: 330px; top: 60px; width: 160px; height: 160px; opacity: 0; }
+      </style>
+      <div id="root" data-composition-id="s5" data-width="1080" data-height="1920">
+        <div id="s5-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s5-l1" class="t-label">Il reste</span>
+          <span id="s5-l2" class="t-serif"><span class="acc">2</span> éléments</span>
+          <div id="s5-card" class="card">
+            <div id="s5-r1" class="s5-row"><span class="s5-n t-serif">1</span><span class="s5-blur"></span><img class="s5-lk img3d" src="assets/lib/emoji/locked.png" alt="" /></div>
+            <div id="s5-r2" class="s5-row"><span class="s5-n t-serif">2</span><span class="s5-blur"></span><img class="s5-lk img3d" src="assets/lib/emoji/locked.png" alt="" /></div>
+          </div>
+          <span id="s5-stamp">INDISPENSABLES</span>
+          <div id="s5-lane" class="card">
+            <img id="s5-door" class="img3d" src="assets/lib/emoji/door.png" alt="" />
+            <div id="s5-brw"><img id="s5-bri" class="img3d" src="assets/lib/emoji/shopping-bags.png" alt="" /><span id="s5-brt">Brand X</span></div>
+            <img id="s5-x" class="img3d" src="assets/lib/emoji/cross-mark.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 19.8, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « deux éléments » 20.72–20.96 · « indispensables » 21.36 · « Sans eux » 22.40 · « repart » 23.52 · « jamais » 24.80
+          tl.fromTo("#s5-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.26, ease: "power3.out" }, 0);
+          tl.fromTo("#s5-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35 }, at(20.0));
+          PX.letters(tl, "#s5-l2", at(20.6), { y: 90, stagger: 0.03, dur: 0.4 });
+          tl.fromTo("#s5-card", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, at(20.7));
+          ["#s5-r1", "#s5-r2"].forEach((r, i) => {
+            tl.fromTo(r, { x: i ? 700 : -700 }, { x: 0, duration: 0.45, ease: "back.out(1.4)" }, at(20.85 + i * 0.15));
+            tl.fromTo(r + " .s5-lk", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(21.2 + i * 0.15));
+          });
+          tl.fromTo("#s5-stamp", { scale: 2.5, opacity: 0, rotation: -12 }, { scale: 1, opacity: 1, rotation: -6, duration: 0.3, ease: "power4.in" }, at(21.3));
+          tl.fromTo("#s5-card", { x: 0 }, { x: 12, duration: 0.05, yoyo: true, repeat: 3, ease: "none", immediateRender: false }, at(21.6));
+          // la marque arrive… puis repart
+          tl.fromTo("#s5-lane", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, at(22.2));
+          tl.fromTo("#s5-door", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, at(22.4));
+          tl.fromTo("#s5-brw", { x: -300 }, { x: 0, duration: 0.45, ease: "back.out(1.6)" }, at(22.35));
+          tl.fromTo("#s5-bri", { rotation: 0 }, { rotation: -10, duration: 0.2, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, at(22.9));
+          tl.to("#s5-brw", { x: 560, duration: 0.6, ease: "power2.in" }, at(23.5));
+          tl.to("#s5-brw", { opacity: 0, scale: 0.5, duration: 0.2 }, at(24.0));
+          tl.fromTo("#s5-door", { scaleX: 1 }, { scaleX: 0.85, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at(24.1));
+          tl.fromTo("#s5-x", { opacity: 0, scale: 2.5, rotation: -30 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.3, ease: "power4.in" }, at(24.7));
+          tl.fromTo("#s5-lane", { x: 0 }, { x: 14, duration: 0.05, yoyo: true, repeat: 3, ease: "none", immediateRender: false }, at(25.0));
+          tl.to("#s5-cam", { x: -1080, filter: "blur(16px)", duration: 0.2, ease: "power3.in" }, at(25.05));
+          window.__timelines["s5"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
