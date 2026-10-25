@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s2-cam { position: absolute; inset: 0; }
+        #s2-t { position: absolute; left: 64px; right: 120px; top: 300px; text-align: center; font-size: 110px; display: block; white-space: nowrap; }
+        .s2-c { position: absolute; top: 520px; width: 380px; height: 560px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; text-align: center; }
+        #s2-c1 { left: 112px; }
+        #s2-c2 { left: 532px; }
+        .s2-i { width: 190px; height: 190px; }
+        .s2-l { font-size: 54px; line-height: 1.1; display: block; }
+        .s2-b { position: absolute; top: 40px; right: 40px; width: 90px; height: 90px; }
+      </style>
+      <div id="root" data-composition-id="s2" data-width="1080" data-height="1920">
+        <div id="s2-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s2-t" class="t-serif">Le <span class="acc">problème</span></span>
+          <div id="s2-c1" class="s2-c card"><img class="s2-i img3d" src="assets/lib/emoji/woman-raising-hand.png" alt="" /><span class="s2-l t-serif">Pas <span class="acc">toi</span></span><img class="s2-b" src="assets/lib/emoji/check-mark-button.png" alt="" /></div>
+          <div id="s2-c2" class="s2-c card"><img class="s2-i img3d" src="assets/lib/emoji/speech-balloon.png" alt="" /><span class="s2-l t-serif">Ton <span class="acc">message</span></span><img class="s2-b img3d" src="assets/lib/emoji/warning.png" alt="" /></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 2.85, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « problème » 3.09 · « pas toi » 3.89–4.05 · « ton message » 4.69–4.85
+          tl.fromTo("#s2-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.24, ease: "power3.out" }, 0);
+          PX.letters(tl, "#s2-t", at(2.95), { y: 90, stagger: 0.03, dur: 0.4 });
+          tl.fromTo("#s2-c1", { y: 500, rotation: -8, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.45, ease: "back.out(1.5)" }, at(3.6));
+          tl.fromTo("#s2-c1 .s2-b", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.35, ease: "back.out(3)" }, at(4.0));
+          tl.fromTo("#s2-c2", { y: 500, rotation: 8, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.45, ease: "back.out(1.5)" }, at(4.45));
+          tl.fromTo("#s2-c2 .s2-b", { scale: 0, rotation: 90 }, { scale: 1, rotation: 0, duration: 0.35, ease: "back.out(3)" }, at(4.85));
+          tl.fromTo("#s2-c2", { x: 0 }, { x: 12, duration: 0.05, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, at(4.95));
+          tl.fromTo("#s2-c1", { opacity: 1 }, { opacity: 0.45, duration: 0.3, immediateRender: false }, at(4.7));
+          tl.to("#s2-cam", { x: -1080, filter: "blur(16px)", duration: 0.2, ease: "power3.in" }, at(5.3));
+          window.__timelines["s2"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

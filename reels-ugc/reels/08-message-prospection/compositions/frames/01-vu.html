@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s1-cam { position: absolute; inset: 0; }
+        #s1-box { position: absolute; left: 112px; top: 290px; width: 800px; height: 760px; display: block; overflow: hidden; }
+        #s1-head { position: absolute; left: 0; right: 0; top: 0; height: 120px; border-bottom: 2px solid #E6BDC1; display: flex; align-items: center; justify-content: space-between; padding: 0 36px; }
+        #s1-ht { font-size: 44px; display: block; }
+        #s1-cnt { background: #0E1928; color: #FDF4ED; border-radius: 999px; padding: 8px 26px; font: 600 34px "PxSans", sans-serif; display: block; }
+        .s1-m { position: absolute; right: 36px; height: 70px; border-radius: 30px 30px 8px 30px; background: linear-gradient(135deg, #E2718D, #CC7183); display: block; }
+        .s1-m::after { content: ""; position: absolute; left: 30px; right: 30px; top: 28px; height: 14px; border-radius: 7px; background: rgba(253, 244, 237, 0.55); }
+        .s1-vu { position: absolute; right: 40px; font: 500 22px "PxSans", sans-serif; color: #5E5A57; display: block; }
+        #s1-zero { position: absolute; left: 212px; top: 1080px; width: 600px; height: 190px; display: flex; align-items: center; justify-content: center; gap: 24px; background: #0E1928; color: #FDF4ED; border-radius: 36px; font-size: 76px; }
+        #s1-x { width: 110px; height: 110px; }
+      </style>
+      <div id="root" data-composition-id="s1" data-width="1080" data-height="1920">
+        <div id="s1-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s1-box" class="card">
+            <div id="s1-head"><span id="s1-ht" class="t-serif">Messages <span class="acc">envoyés</span></span><span id="s1-cnt">0</span></div>
+          </div>
+          <div id="s1-zero" class="t-serif"><img id="s1-x" class="img3d" src="assets/lib/emoji/cross-mark.png" alt="" />0 réponse</div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          // « messages » 0.56 · « marques » 1.04 · « personne » 1.76 · « répond » 2.24
+          tl.fromTo("#s1-box", { y: 300, opacity: 0, rotationX: -25 }, { y: 0, opacity: 1, rotationX: 0, duration: 0.45, ease: "expo.out", transformPerspective: 1400 }, 0.0);
+          const box = document.querySelector("#s1-box"), W = [520, 400, 600, 460, 360, 540];
+          W.forEach((w, i) => {
+            const m = document.createElement("div"); m.className = "s1-m"; m.style.width = w + "px"; m.style.top = 150 + i * 100 + "px"; box.appendChild(m);
+            const v = document.createElement("span"); v.className = "s1-vu"; v.textContent = "Vu"; v.style.top = 222 + i * 100 + "px"; box.appendChild(v);
+            tl.fromTo(m, { x: 500, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, 0.25 + i * 0.2);
+            tl.fromTo(v, { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.5 + i * 0.2);
+          });
+          const n = document.querySelector("#s1-cnt");
+          const c = { _v: 0, get v() { return this._v; }, set v(x) { this._v = x; n.textContent = Math.round(x) + " envoyés"; } };
+          tl.fromTo(c, { v: 0 }, { v: 10, duration: 1.5, ease: "none" }, 0.25);
+          tl.fromTo("#s1-zero", { scale: 2.2, opacity: 0, rotation: -6 }, { scale: 1, opacity: 1, rotation: -3, duration: 0.3, ease: "power4.in" }, 2.05);
+          tl.fromTo("#s1-x", { rotation: -90, scale: 0 }, { rotation: 0, scale: 1, duration: 0.4, ease: "back.out(3)" }, 2.2);
+          tl.fromTo("#s1-box", { x: 0 }, { x: 12, duration: 0.05, yoyo: true, repeat: 3, ease: "none", immediateRender: false }, 2.35);
+          tl.to("#s1-cam", { x: -1080, filter: "blur(16px)", duration: 0.22, ease: "power3.in" }, 2.65);
+          window.__timelines["s1"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s7-cam { position: absolute; inset: 0; }
+        #s7-dark { position: absolute; left: 50px; right: 50px; top: 240px; height: 1090px; border-radius: 48px; background: #0E1928; opacity: 0; display: block; }
+        #s7-l1 { position: absolute; left: 64px; right: 120px; top: 300px; text-align: center; font-size: 40px; color: #E6BDC1; display: block; }
+        #s7-l2 { position: absolute; left: 64px; right: 120px; top: 360px; text-align: center; font-size: 100px; color: #FDF4ED; display: block; white-space: nowrap; }
+        #s7-msg { position: absolute; left: 132px; top: 530px; width: 760px; height: 420px; border-radius: 34px; background: #172742; display: block; }
+        .s7-ln { position: absolute; left: 40px; height: 24px; border-radius: 12px; background: #8F9AC3; opacity: 0.6; display: block; }
+        #s7-a { top: 50px; width: 600px; }
+        #s7-b { top: 110px; width: 520px; }
+        #s7-c { top: 170px; width: 640px; }
+        #s7-d { top: 230px; width: 380px; }
+        #s7-hi { position: absolute; left: 30px; top: 300px; width: 690px; height: 80px; border-radius: 18px; background: #E2718D; display: block; }
+        #s7-kw { position: absolute; left: 610px; top: 260px; width: 150px; height: 150px; display: block; }
+        #s7-key { width: 150px; height: 150px; }
+        #s7-rep { position: absolute; left: 212px; top: 1030px; width: 600px; height: 150px; border-radius: 34px; background: #FDF4ED; display: flex; align-items: center; gap: 24px; padding: 0 30px; }
+        #s7-bell { width: 100px; height: 100px; flex: none; }
+        #s7-rt { font-size: 50px; color: #0E1928; display: block; }
+      </style>
+      <div id="root" data-composition-id="s7" data-width="1080" data-height="1920">
+        <div id="s7-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s7-dark"></div>
+          <span id="s7-l1" class="t-label">La phrase que tout le monde</span>
+          <span id="s7-l2" class="t-serif t-italic">oublie<span class="acc">…</span></span>
+          <div id="s7-msg">
+            <span id="s7-a" class="s7-ln"></span><span id="s7-b" class="s7-ln"></span><span id="s7-c" class="s7-ln"></span><span id="s7-d" class="s7-ln"></span>
+            <span id="s7-hi"></span>
+            <div id="s7-kw"><img id="s7-key" class="img3d" src="assets/lib/emoji/key.png" alt="" /></div>
+          </div>
+          <div id="s7-rep"><img id="s7-bell" class="img3d" src="assets/lib/emoji/bell.png" alt="" /><span id="s7-rt" class="t-serif">Nouvelle <span class="acc">réponse</span></span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 21.81, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // chuchoté : « phrase » 22.53 · « oublie » 23.89 · « déclenche » 25.41 · « réponse » 26.05
+          tl.fromTo("#s7-dark", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power3.out" }, 0);
+          tl.fromTo("#s7-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4 }, at(22.4));
+          tl.fromTo("#s7-l2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, at(23.8));
+          tl.fromTo("#s7-msg", { y: 200, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, at(22.2));
+          gsap.utils.toArray("#s7-msg .s7-ln").forEach((l, i) => tl.fromTo(l, { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.35, ease: "power2.out" }, at(22.5 + i * 0.12)));
+          // la dernière phrase reste cachée sous le surligneur
+          tl.fromTo("#s7-hi", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "power2.inOut" }, at(23.1));
+          tl.fromTo("#s7-hi", { opacity: 1 }, { opacity: 0.75, duration: 0.5, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, at(23.8));
+          tl.fromTo("#s7-key", { scale: 0, rotation: -60 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.5)" }, at(25.3));
+          tl.fromTo("#s7-kw", { rotation: 0 }, { rotation: 90, duration: 0.35, ease: "power2.inOut" }, at(25.6));
+          tl.fromTo("#s7-rep", { y: 200, opacity: 0, scale: 0.8 }, { y: 0, opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, at(25.95));
+          tl.fromTo("#s7-bell", { rotation: -20 }, { rotation: 20, duration: 0.08, yoyo: true, repeat: 5, ease: "sine.inOut" }, at(26.1));
+          tl.to("#s7-cam", { x: -1080, filter: "blur(16px)", duration: 0.2, ease: "power3.in" }, at(26.48));
+          window.__timelines["s7"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

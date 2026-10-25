@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s6-cam { position: absolute; inset: 0; }
+        .s6-col { position: absolute; top: 300px; width: 260px; height: 440px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; }
+        #s6-k1 { left: 92px; }
+        #s6-k2 { left: 382px; }
+        #s6-k3 { left: 672px; }
+        .s6-lg { width: 130px; height: 130px; }
+        .s6-two { display: flex; gap: 12px; }
+        .s6-sm { width: 96px; height: 96px; }
+        .s6-n { font-size: 50px; display: block; }
+        .s6-r { position: absolute; top: 790px; width: 260px; height: 130px; border-radius: 26px; background: #0E1928; display: flex; align-items: center; justify-content: center; gap: 14px; }
+        #s6-r1 { left: 92px; }
+        #s6-r2 { left: 382px; }
+        #s6-r3 { left: 672px; }
+        .s6-bl { width: 120px; height: 20px; border-radius: 10px; background: #8F9AC3; filter: blur(5px); display: block; }
+        .s6-lk { width: 64px; height: 64px; }
+        #s6-t { position: absolute; left: 64px; right: 120px; top: 1010px; text-align: center; font-size: 80px; line-height: 1.1; display: block; }
+      </style>
+      <div id="root" data-composition-id="s6" data-width="1080" data-height="1920">
+        <div id="s6-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s6-k1" class="s6-col card"><img class="s6-lg" src="assets/lib/logos/gmail.svg" alt="" /><span class="s6-n t-serif">Mail</span></div>
+          <div id="s6-k2" class="s6-col card"><div class="s6-two"><img class="s6-sm" src="assets/lib/logos/instagram-icon.svg" alt="" /><img class="s6-sm" src="assets/lib/logos/tiktok-icon.svg" alt="" /></div><span class="s6-n t-serif">Réseaux</span></div>
+          <div id="s6-k3" class="s6-col card"><img class="s6-lg img3d" src="assets/lib/emoji/globe-with-meridians.png" alt="" /><span class="s6-n t-serif">Site</span></div>
+          <div id="s6-r1" class="s6-r"><span class="s6-bl"></span><img class="s6-lk img3d" src="assets/lib/emoji/locked.png" alt="" /></div>
+          <div id="s6-r2" class="s6-r"><span class="s6-bl"></span><img class="s6-lk img3d" src="assets/lib/emoji/locked.png" alt="" /></div>
+          <div id="s6-r3" class="s6-r"><span class="s6-bl"></span><img class="s6-lk img3d" src="assets/lib/emoji/locked.png" alt="" /></div>
+          <span id="s6-t" class="t-serif">Chaque canal a ses <span class="acc">règles</span></span>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 18.37, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « Mail » 18.37 · « réseau » 18.93 · « site internet » 19.41–19.73 · « chaque canal » 20.37–20.69 · « règles » 21.33
+          tl.fromTo("#s6-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 0);
+          [["#s6-k1", 18.4], ["#s6-k2", 18.9], ["#s6-k3", 19.4]].forEach(([k, t]) => {
+            tl.fromTo(k, { y: -600, opacity: 0, rotation: -6 }, { y: 0, opacity: 1, rotation: 0, duration: 0.45, ease: "bounce.out" }, at(t));
+            tl.fromTo(k + " img", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)", stagger: 0.08 }, at(t + 0.15));
+          });
+          tl.fromTo("#s6-t", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, at(20.3));
+          ["#s6-r1", "#s6-r2", "#s6-r3"].forEach((r, i) => {
+            tl.fromTo(r, { y: 200, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(2)" }, at(20.6 + i * 0.12));
+            tl.fromTo(r + " .s6-lk", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.3, ease: "back.out(3)" }, at(21.2 + i * 0.08));
+          });
+          tl.to("#s6-cam", { opacity: 0, scale: 0.92, filter: "blur(14px)", duration: 0.25, ease: "power2.in" }, at(21.58));
+          window.__timelines["s6"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
