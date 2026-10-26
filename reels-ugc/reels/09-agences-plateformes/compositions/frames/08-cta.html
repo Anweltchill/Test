@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s8-cam { position: absolute; inset: 0; }
+        #s8-list { position: absolute; left: 112px; top: 280px; width: 800px; height: 500px; display: block; overflow: hidden; }
+        #s8-lh { position: absolute; left: 34px; top: 30px; display: flex; align-items: center; gap: 18px; }
+        #s8-bk { width: 80px; height: 80px; }
+        #s8-lt { font-size: 52px; display: block; }
+        .s8-tab { position: absolute; top: 140px; width: 340px; height: 64px; border-radius: 32px; display: flex; align-items: center; justify-content: center; font: 600 32px "PxSans", sans-serif; }
+        #s8-ta { left: 34px; background: #0E1928; color: #FDF4ED; }
+        #s8-tp { left: 410px; background: #F0E6DD; color: #0E1928; }
+        .s8-row { position: absolute; left: 34px; right: 34px; height: 54px; display: flex; align-items: center; gap: 18px; }
+        .s8-dot { width: 22px; height: 22px; border-radius: 50%; background: #E2718D; display: block; flex: none; }
+        .s8-bl { height: 22px; border-radius: 11px; background: #C2C7DD; filter: blur(5px); display: block; }
+        .s8-tg { margin-left: auto; font: 600 22px "PxSans", sans-serif; color: #A85068; letter-spacing: 0.1em; display: block; }
+        #s8-stamp { position: absolute; left: 330px; top: 640px; font: 600 34px "PxSans", sans-serif; letter-spacing: 0.1em; color: #FDF4ED; background: #E2718D; border-radius: 14px; padding: 12px 26px; display: block; }
+        #s8-dm { position: absolute; left: 112px; top: 820px; width: 800px; height: 330px; display: block; overflow: hidden; }
+        #s8-head { position: absolute; left: 0; right: 0; top: 0; height: 100px; border-bottom: 2px solid #E6BDC1; display: flex; align-items: center; gap: 20px; padding: 0 30px; }
+        #s8-ig { width: 62px; height: 62px; flex: none; }
+        #s8-name { font-size: 38px; display: block; }
+        #s8-me { position: absolute; right: 30px; top: 118px; background: linear-gradient(135deg, #E2718D, #CC7183); color: #FDF4ED; border-radius: 30px 30px 8px 30px; padding: 10px 34px; font: 600 44px "PxSans", sans-serif; letter-spacing: 0.08em; display: block; }
+        #s8-in { position: absolute; left: 24px; right: 24px; bottom: 20px; height: 92px; border-radius: 46px; border: 3px solid #E6BDC1; display: flex; align-items: center; padding: 0 12px 0 34px; justify-content: space-between; }
+        #s8-txt { font: 600 44px "PxSans", sans-serif; letter-spacing: 0.08em; color: #0E1928; display: block; min-width: 10px; }
+        #s8-ph { font: 400 34px "PxSans", sans-serif; color: #8E8A86; display: block; }
+        #s8-send { width: 68px; height: 68px; border-radius: 50%; background: #0E1928; display: flex; align-items: center; justify-content: center; flex: none; }
+        #s8-arr { width: 34px; height: 34px; display: block; }
+        #s8-cta { position: absolute; left: 0; right: 56px; top: 1190px; text-align: center; display: block; }
+        #s8-btn { display: inline-flex; align-items: center; gap: 16px; background: #0E1928; color: #FDF4ED; border-radius: 999px; padding: 14px 40px 14px 20px; font: 600 44px "PxSans", sans-serif; }
+        #s8-btn b { color: #E6BDC1; }
+        #s8-env { width: 76px; height: 76px; }
+      </style>
+      <div id="root" data-composition-id="s8" data-width="1080" data-height="1920">
+        <div id="s8-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s8-list" class="card">
+            <div id="s8-lh"><img id="s8-bk" class="img3d" src="assets/lib/emoji/bookmark-tabs.png" alt="" /><span id="s8-lt" class="t-serif">Notre <span class="acc">liste</span></span></div>
+            <div id="s8-ta" class="s8-tab">Agences</div>
+            <div id="s8-tp" class="s8-tab">Plateformes</div>
+          </div>
+          <span id="s8-stamp">RÉSERVÉE AUX MEMBRES</span>
+          <div id="s8-dm" class="card">
+            <div id="s8-head"><img id="s8-ig" src="assets/lib/logos/instagram-icon.svg" alt="" /><span id="s8-name" class="t-serif">Phoenix Pro</span></div>
+            <div id="s8-me">LISTE</div>
+            <div id="s8-in"><span id="s8-txt"></span><span id="s8-ph">Message…</span><span id="s8-send"><svg id="s8-arr" viewBox="0 0 64 64" fill="none"><path d="M10 32l44-20-14 44-8-18z" fill="#FDF4ED" /></svg></span></div>
+          </div>
+          <div id="s8-cta"><span id="s8-btn"><img id="s8-env" src="assets/lib/emoji/envelope-with-arrow.png" alt="" />Écris <b>« LISTE »</b> en privé</span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 28.21, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « listé » 28.45 · « agences » 28.93 · « plateformes » 29.57 · « conseils » 31.17 · « Envoie-moi » 32.21 · « liste » 32.85 · « privé » 33.65
+          tl.fromTo("#s8-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.24, ease: "power3.out" }, 0);
+          tl.fromTo("#s8-list", { y: 300, opacity: 0, rotationX: -25 }, { y: 0, opacity: 1, rotationX: 0, duration: 0.5, ease: "expo.out", transformPerspective: 1400 }, at(28.25));
+          tl.fromTo("#s8-bk", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(28.4));
+          tl.fromTo("#s8-ta", { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(2.5)" }, at(28.9));
+          tl.fromTo("#s8-tp", { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(2.5)" }, at(29.5));
+          const L = document.querySelector("#s8-list"), W = [360, 300, 420, 340];
+          W.forEach((w, i) => {
+            const r = document.createElement("div"); r.className = "s8-row"; r.style.top = 240 + i * 60 + "px";
+            r.innerHTML = '<span class="s8-dot"></span><span class="s8-bl" style="width:' + w + 'px"></span><span class="s8-tg">+ CONSEIL</span>';
+            L.appendChild(r);
+            tl.fromTo(r, { x: 300, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, at(29.9 + i * 0.12));
+            tl.fromTo(r.querySelector(".s8-tg"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, at(31.1 + i * 0.08));
+          });
+          // la liste défile : on ne lit rien
+          tl.fromTo(".s8-bl", { x: 0 }, { x: -20, duration: 0.5, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, at(30.4));
+          tl.fromTo("#s8-stamp", { scale: 2.4, opacity: 0, rotation: -12 }, { scale: 1, opacity: 1, rotation: -5, duration: 0.3, ease: "power4.in" }, at(31.5));
+          tl.fromTo("#s8-list", { x: 0 }, { x: 10, duration: 0.05, yoyo: true, repeat: 3, ease: "none", immediateRender: false }, at(31.8));
+          tl.fromTo("#s8-dm", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, at(32.0));
+          tl.fromTo("#s8-ig", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(32.15));
+          const txt = document.querySelector("#s8-txt"), ph = document.querySelector("#s8-ph"), M = "LISTE";
+          const ty = { _v: 0, get v() { return this._v; }, set v(x) { this._v = x; const n = Math.round(x); txt.textContent = M.slice(0, n); ph.style.display = n > 0 ? "none" : "block"; } };
+          tl.fromTo(ty, { v: 0 }, { v: 5, duration: 0.4, ease: "none" }, at(32.6));
+          tl.fromTo("#s8-send", { scale: 1 }, { scale: 0.82, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.in", immediateRender: false }, at(33.15));
+          tl.to(ty, { v: 0, duration: 0.01 }, at(33.3));
+          tl.fromTo("#s8-me", { y: 230, scale: 0.5, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.8)" }, at(33.28));
+          PX.burst(tl, "#s8-cam", 800, 960, at(33.55), { n: 10, r: 150, size: 16, seed: 91 });
+          tl.fromTo("#s8-cta", { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(2)" }, at(33.6));
+          tl.fromTo("#s8-env", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(33.8));
+          PX.pulse(tl, "#s8-btn", at(34.15), 1.4, 1.06, 0.7);
+          window.__timelines["s8"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

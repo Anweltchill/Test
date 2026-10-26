@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s6-cam { position: absolute; inset: 0; }
+        #s6-dark { position: absolute; left: 50px; right: 50px; top: 240px; height: 1090px; border-radius: 48px; background: #0E1928; opacity: 0; display: block; }
+        #s6-l1 { position: absolute; left: 64px; right: 120px; top: 300px; text-align: center; font-size: 40px; color: #E6BDC1; display: block; }
+        #s6-l2 { position: absolute; left: 64px; right: 120px; top: 360px; text-align: center; font-size: 110px; color: #FDF4ED; display: block; white-space: nowrap; }
+        .s6-r { position: absolute; left: 132px; width: 760px; height: 200px; border-radius: 34px; background: #172742; display: flex; align-items: center; gap: 26px; padding: 0 30px; }
+        #s6-r1 { top: 560px; }
+        #s6-r2 { top: 800px; }
+        #s6-r3 { top: 1040px; }
+        .s6-m { width: 70px; height: 70px; flex: none; border-radius: 50%; background: #E2718D; color: #FDF4ED; font: 600 56px/1 "PxSans", sans-serif; display: flex; align-items: center; justify-content: center; }
+        .s6-i { width: 130px; height: 130px; flex: none; }
+        #root .s6-t { font-size: 54px; color: #FDF4ED; display: block; line-height: 1.1; }
+      </style>
+      <div id="root" data-composition-id="s6" data-width="1080" data-height="1920">
+        <div id="s6-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s6-dark"></div>
+          <span id="s6-l1" class="t-label">Mais il y a</span>
+          <span id="s6-l2" class="t-serif">un <span class="acc">revers</span></span>
+          <div id="s6-r1" class="s6-r"><span class="s6-m">−</span><img class="s6-i img3d" src="assets/lib/emoji/busts-in-silhouette.png" alt="" /><span class="s6-t t-serif">Beaucoup de <span class="acc">concurrence</span></span></div>
+          <div id="s6-r2" class="s6-r"><span class="s6-m">−</span><img class="s6-i img3d" src="assets/lib/emoji/straight-ruler.png" alt="" /><span class="s6-t t-serif">Des briefs très <span class="acc">cadrés</span></span></div>
+          <div id="s6-r3" class="s6-r"><span class="s6-m">−</span><img class="s6-i img3d" src="assets/lib/emoji/money-with-wings.png" alt="" /><span class="s6-t t-serif">Parfois une <span class="acc">commission</span></span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 19.09, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // chuchoté : « revers » 19.73 · « concurrence » 20.93 · « cadrés » 22.45 · « commission » 23.65
+          tl.fromTo("#s6-dark", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power3.out" }, 0);
+          tl.fromTo("#s6-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4 }, at(19.15));
+          tl.fromTo("#s6-l2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, at(19.6));
+          [["#s6-r1", 20.4], ["#s6-r2", 21.7], ["#s6-r3", 23.05]].forEach(([r, t], i) => {
+            tl.fromTo(r, { x: i % 2 ? 900 : -900, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, at(t));
+            tl.fromTo(r + " .s6-m", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2.5)" }, at(t + 0.2));
+            tl.fromTo(r + " .s6-i", { scale: 0 }, { scale: 1, duration: 0.45, ease: "back.out(2)" }, at(t + 0.3));
+          });
+          tl.fromTo("#s6-r1 .s6-i", { x: 0 }, { x: 14, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, at(21.0));
+          tl.fromTo("#s6-r2 .s6-i", { rotation: 0 }, { rotation: -20, duration: 0.4, yoyo: true, repeat: 1, ease: "sine.inOut", immediateRender: false }, at(22.5));
+          tl.fromTo("#s6-r3 .s6-i", { y: 0 }, { y: -40, opacity: 0.4, duration: 0.6, ease: "power1.in", immediateRender: false }, at(23.8));
+          tl.to("#s6-cam", { x: -1080, filter: "blur(16px)", duration: 0.2, ease: "power3.in" }, at(24.41));
+          window.__timelines["s6"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

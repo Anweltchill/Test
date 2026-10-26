@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s5-cam { position: absolute; inset: 0; }
+        #s5-l1 { position: absolute; left: 64px; right: 120px; top: 290px; text-align: center; font-size: 40px; display: block; }
+        #s5-l2 { position: absolute; left: 64px; right: 120px; top: 350px; text-align: center; font-size: 100px; display: block; white-space: nowrap; }
+        #s5-lapw { position: absolute; left: 362px; top: 520px; width: 300px; height: 300px; display: block; }
+        #s5-lap { width: 300px; height: 300px; }
+        .s5-p { position: absolute; top: 900px; width: 250px; height: 290px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+        #s5-pc { left: 112px; }
+        #s5-pm { left: 662px; }
+        .s5-pi { width: 140px; height: 140px; }
+        .s5-pn { font-size: 42px; display: block; }
+        #s5-link { position: absolute; left: 362px; top: 1035px; width: 300px; height: 20px; display: block; }
+        #s5-hsw { position: absolute; left: 437px; top: 970px; width: 150px; height: 150px; display: block; }
+        #s5-hs { width: 150px; height: 150px; }
+      </style>
+      <div id="root" data-composition-id="s5" data-width="1080" data-height="1920">
+        <div id="s5-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s5-l1" class="t-label">Les plateformes</span>
+          <span id="s5-l2" class="t-serif">mettent en <span class="acc">relation</span></span>
+          <div id="s5-lapw"><img id="s5-lap" class="img3d" src="assets/lib/emoji/laptop.png" alt="" /></div>
+          <div id="s5-pc" class="s5-p card"><img class="s5-pi img3d" src="assets/lib/emoji/woman-raising-hand.png" alt="" /><span class="s5-pn t-serif">Créatrice</span></div>
+          <div id="s5-pm" class="s5-p card"><img class="s5-pi img3d" src="assets/lib/emoji/shopping-bags.png" alt="" /><span class="s5-pn t-serif">Marque</span></div>
+          <svg id="s5-link" viewBox="0 0 300 20"><line id="s5-ln" x1="0" y1="10" x2="300" y2="10" stroke="#E2718D" stroke-width="8" stroke-linecap="round" stroke-dasharray="300" stroke-dashoffset="300" /></svg>
+          <div id="s5-hsw"><img id="s5-hs" class="img3d" src="assets/lib/emoji/handshake.png" alt="" /></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 14.77, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « plateformes » 15.01 · « simplifient » 16.05 · « relation » 17.09 · « créateur » 17.81 · « marque » 18.53
+          tl.fromTo("#s5-cam", { y: 900, opacity: 0 }, { y: 0, opacity: 1, duration: 0.26, ease: "power3.out" }, 0);
+          tl.fromTo("#s5-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35 }, at(14.9));
+          tl.fromTo("#s5-lap", { scale: 0, rotation: -20 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.5)" }, at(15.05));
+          PX.float(tl, "#s5-lapw", at(15.6), 3.3, 8, 1.1, 3);
+          tl.fromTo("#s5-l2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: "power4.out" }, at(16.0));
+          tl.fromTo("#s5-pc", { x: -500, rotation: -8 }, { x: 0, rotation: 0, duration: 0.45, ease: "back.out(1.6)" }, at(16.3));
+          tl.fromTo("#s5-pm", { x: 500, rotation: 8 }, { x: 0, rotation: 0, duration: 0.45, ease: "back.out(1.6)" }, at(16.45));
+          tl.fromTo("#s5-ln", { attr: { "stroke-dashoffset": 300 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.inOut" }, at(17.0));
+          tl.fromTo("#s5-pc", { scale: 1 }, { scale: 1.08, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at(17.8));
+          tl.fromTo("#s5-pm", { scale: 1 }, { scale: 1.08, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at(18.5));
+          tl.fromTo("#s5-hs", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(18.5));
+          PX.burst(tl, "#s5-cam", 512, 1045, at(18.6), { n: 14, r: 240, seed: 55 });
+          tl.to("#s5-cam", { opacity: 0, scale: 0.92, filter: "blur(14px)", duration: 0.2, ease: "power2.in" }, at(18.89));
+          window.__timelines["s5"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

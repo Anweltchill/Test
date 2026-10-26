@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s3-cam { position: absolute; inset: 0; }
+        #s3-l1 { position: absolute; left: 64px; right: 120px; top: 290px; text-align: center; font-size: 40px; display: block; }
+        #s3-l2 { position: absolute; left: 64px; right: 120px; top: 350px; text-align: center; font-size: 104px; display: block; white-space: nowrap; }
+        .s3-b { position: absolute; width: 170px; height: 170px; }
+        #s3-up { position: absolute; left: 820px; top: 1150px; width: 170px; height: 170px; }
+      </style>
+      <div id="root" data-composition-id="s3" data-width="1080" data-height="1920">
+        <div id="s3-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s3-l1" class="t-label">Les agences UGC</span>
+          <span id="s3-l2" class="t-serif">se <span class="acc">multiplient</span></span>
+          <img id="s3-up" class="img3d" src="assets/lib/emoji/chart-increasing.png" alt="" />
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 5.44, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « agences UGC » 5.60–6.00 · « multiplient » 6.80
+          tl.fromTo("#s3-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 0);
+          tl.fromTo("#s3-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35 }, at(5.55));
+          PX.letters(tl, "#s3-l2", at(6.7), { y: 90, stagger: 0.03, dur: 0.4 });
+          const cam = document.querySelector("#s3-cam");
+          // 1 agence au centre, puis elles se multiplient en grille
+          const G = [[332, 760]];
+          [137, 332, 527, 722].forEach((x) => [560, 760, 960].forEach((y) => { if (!(x === 332 && y === 760)) G.push([x, y]); }));
+          G.forEach(([x, y], i) => {
+            const b = document.createElement("img"); b.className = "s3-b img3d"; b.src = "assets/lib/emoji/office-building.png";
+            b.style.left = x + "px"; b.style.top = y + "px"; cam.appendChild(b);
+            if (i === 0) tl.fromTo(b, { scale: 0, y: 100 }, { scale: 1, y: 0, duration: 0.45, ease: "back.out(2.5)" }, at(5.7));
+            else tl.fromTo(b, { scale: 0, x: 332 - x, y: 760 - y }, { scale: 1, x: 0, y: 0, duration: 0.4, ease: "back.out(1.8)" }, at(6.75 + i * 0.04));
+          });
+          tl.fromTo("#s3-up", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(7.0));
+          tl.to("#s3-cam", { x: -1080, filter: "blur(16px)", duration: 0.18, ease: "power3.in" }, at(7.42));
+          window.__timelines["s3"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
