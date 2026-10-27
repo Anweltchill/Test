@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s1-cam { position: absolute; inset: 0; }
+        #s1-l1 { position: absolute; left: 64px; right: 120px; top: 290px; text-align: center; font-size: 110px; display: block; white-space: nowrap; }
+        #s1-bagw { position: absolute; left: 362px; top: 470px; width: 300px; height: 300px; display: block; }
+        #s1-bag { width: 300px; height: 300px; }
+        #s1-cl { position: absolute; left: 212px; top: 880px; width: 600px; height: 260px; display: flex; align-items: center; gap: 30px; padding: 0 40px; }
+        #s1-cli { width: 150px; height: 150px; flex: none; }
+        #s1-clt { display: block; }
+        #s1-cll { font-size: 28px; display: block; white-space: nowrap; }
+        #s1-cln { font-size: 64px; display: block; white-space: nowrap; }
+        #s1-lk { width: 90px; height: 90px; flex: none; }
+      </style>
+      <div id="root" data-composition-id="s1" data-width="1080" data-height="1920">
+        <div id="s1-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s1-l1" class="t-serif">Gagner <span class="acc">plus</span></span>
+          <div id="s1-bagw"><img id="s1-bag" class="img3d" src="assets/lib/emoji/money-bag.png" alt="" /></div>
+          <div id="s1-cl" class="card"><img id="s1-cli" class="img3d" src="assets/lib/emoji/bust-in-silhouette.png" alt="" /><span id="s1-clt"><span id="s1-cll" class="t-label">Clients en plus</span><span id="s1-cln" class="t-serif acc">0</span></span><img id="s1-lk" class="img3d" src="assets/lib/emoji/locked.png" alt="" /></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          // « gagner plus » 0.40–0.72 · « sans trouver un seul client » 1.12–2.16 · « de plus » 2.48–2.64
+          PX.letters(tl, "#s1-l1", 0.05, { y: 100, stagger: 0.035, dur: 0.4 });
+          tl.fromTo("#s1-bag", { scale: 0, rotation: -20 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.5)" }, 0.35);
+          tl.fromTo("#s1-bagw", { scale: 1 }, { scale: 1.25, duration: 0.6, ease: "elastic.out(1, 0.5)" }, 0.75);
+          PX.burst(tl, "#s1-cam", 512, 620, 0.8, { n: 18, r: 360, seed: 3 });
+          PX.float(tl, "#s1-bagw", 1.4, 1.5, 10, 0.75, 4);
+          tl.fromTo("#s1-cl", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, 1.15);
+          tl.fromTo("#s1-cli", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, 1.3);
+          tl.fromTo("#s1-cln", { scale: 2.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.in" }, 2.0);
+          tl.fromTo("#s1-lk", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.35, ease: "back.out(3)" }, 2.45);
+          tl.to("#s1-cam", { x: -1080, filter: "blur(16px)", duration: 0.2, ease: "power3.in" }, 2.82);
+          window.__timelines["s1"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

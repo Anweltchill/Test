@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s5-cam { position: absolute; inset: 0; }
+        #s5-n { position: absolute; left: 64px; right: 120px; top: 270px; text-align: center; font-size: 34px; display: block; }
+        #s5-l1 { position: absolute; left: 64px; right: 120px; top: 320px; text-align: center; font-size: 130px; display: block; white-space: nowrap; }
+        #s5-cartw { position: absolute; left: 372px; top: 1040px; width: 280px; height: 280px; display: block; }
+        #s5-cart { width: 280px; height: 280px; }
+        #s5-plus { position: absolute; left: 640px; top: 1050px; width: 110px; height: 110px; }
+        .s5-o { position: absolute; left: 152px; width: 720px; height: 92px; white-space: nowrap; border-radius: 46px; background: #FDF4ED; box-shadow: 0 12px 30px rgba(14, 25, 40, 0.12); display: flex; align-items: center; gap: 18px; padding: 0 30px 0 14px; font-size: 44px; }
+        .s5-oi { width: 72px; height: 72px; flex: none; }
+      </style>
+      <div id="root" data-composition-id="s5" data-width="1080" data-height="1920">
+        <div id="s5-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s5-n" class="t-label">Mot n°2</span>
+          <span id="s5-l1" class="t-serif">L'<span class="acc">upsell</span></span>
+          <div id="s5-cartw"><img id="s5-cart" class="img3d" src="assets/lib/emoji/shopping-cart.png" alt="" /></div>
+          <img id="s5-plus" class="img3d" src="assets/lib/emoji/plus.png" alt="" />
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 15.66, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « upsell » 15.66 · « service en plus » 17.26–17.74 · accroches 18.38 · voix off 19.82 · montage 20.70 · script 21.34 · rushs bruts 21.98
+          tl.fromTo("#s5-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 0);
+          tl.fromTo("#s5-n", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3 }, at(15.7));
+          PX.letters(tl, "#s5-l1", at(15.75), { y: 110, stagger: 0.035, dur: 0.4 });
+          tl.fromTo("#s5-cart", { x: -700 }, { x: 0, duration: 0.5, ease: "back.out(1.4)" }, at(16.6));
+          tl.fromTo("#s5-plus", { scale: 0, rotation: -180 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.5)" }, at(17.6));
+          // les options s'empilent au-dessus du panier
+          const cam = document.querySelector("#s5-cam");
+          const O = [["Des accroches en plus", "fishing-pole", 18.3], ["Une voix off", "studio-microphone", 19.75], ["Le montage", "scissors", 20.6], ["Le script", "memo", 21.25], ["Les rushs bruts", "movie-camera", 21.9]];
+          O.forEach(([t, ic, at0], i) => {
+            const o = document.createElement("div"); o.className = "s5-o t-serif"; o.style.top = 920 - i * 104 + "px";
+            o.innerHTML = '<img class="s5-oi img3d" src="assets/lib/emoji/' + ic + '.png" alt="" />' + t; cam.appendChild(o);
+            tl.fromTo(o, { y: -600, opacity: 0, rotation: i % 2 ? 4 : -4 }, { y: 0, opacity: 1, rotation: 0, duration: 0.4, ease: "bounce.out" }, at(at0));
+            tl.fromTo("#s5-cartw", { scaleY: 1 }, { scaleY: 0.9, duration: 0.08, yoyo: true, repeat: 1, ease: "power2.out", transformOrigin: "50% 100%", immediateRender: false }, at(at0 + 0.35));
+          });
+          PX.burst(tl, "#s5-cam", 512, 760, at(22.4), { n: 16, r: 380, seed: 52 });
+          tl.to("#s5-cam", { y: -500, opacity: 0, filter: "blur(14px)", duration: 0.2, ease: "power3.in" }, at(22.7));
+          window.__timelines["s5"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

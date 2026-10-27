@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s7-cam { position: absolute; inset: 0; }
+        .s7-c { position: absolute; left: 112px; width: 800px; height: 220px; display: flex; align-items: center; gap: 30px; padding: 0 36px; }
+        #s7-c1 { top: 290px; }
+        #s7-c2 { top: 540px; }
+        #s7-c3 { top: 790px; }
+        .s7-i { width: 140px; height: 140px; flex: none; }
+        .s7-t { font-size: 56px; display: block; flex: 1; white-space: nowrap; }
+        .s7-q { font-size: 90px; color: #E2718D; display: block; flex: none; }
+        #s7-pp { position: absolute; left: 0; right: 56px; top: 1080px; text-align: center; display: block; }
+        #s7-ppb { display: inline-block; background: #0E1928; color: #FDF4ED; border-radius: 999px; padding: 18px 36px; font-size: 38px; white-space: nowrap; }
+      </style>
+      <div id="root" data-composition-id="s7" data-width="1080" data-height="1920">
+        <div id="s7-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s7-c1" class="s7-c card"><img class="s7-i img3d" src="assets/lib/emoji/package.png" alt="" /><span class="s7-t t-serif">Quoi <span class="acc">proposer</span></span><span class="s7-q t-serif">?</span></div>
+          <div id="s7-c2" class="s7-c card"><img class="s7-i img3d" src="assets/lib/emoji/alarm-clock.png" alt="" /><span class="s7-t t-serif">À quel <span class="acc">moment</span></span><span class="s7-q t-serif">?</span></div>
+          <div id="s7-c3" class="s7-c card"><img class="s7-i img3d" src="assets/lib/emoji/label.png" alt="" /><span class="s7-t t-serif">À quel <span class="acc">tarif</span></span><span class="s7-q t-serif">?</span></div>
+          <div id="s7-pp"><span id="s7-ppb" class="t-serif">On t'explique tout chez <span style="color:#E6BDC1">Phoenix Pro</span></span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 26.9, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « quoi proposer » 26.98–27.30 · « moment » 28.34 · « tarif » 29.14 · « t'explique » 29.86 · « Phoenix Pro » 30.66–31.06
+          tl.fromTo("#s7-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 0);
+          [["#s7-c1", 26.95], ["#s7-c2", 28.15], ["#s7-c3", 28.95]].forEach(([c, t], i) => {
+            tl.fromTo(c, { x: i % 2 ? 900 : -900, rotation: i % 2 ? 4 : -4 }, { x: 0, rotation: 0, duration: 0.45, ease: "back.out(1.4)" }, at(t));
+            tl.fromTo(c + " .s7-i", { scale: 0, rotation: -60 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(t + 0.1));
+            tl.fromTo(c + " .s7-q", { scale: 0, rotation: 60 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(t + 0.3));
+          });
+          tl.fromTo("#s7-c2 .s7-i", { rotation: -12 }, { rotation: 12, duration: 0.07, yoyo: true, repeat: 7, ease: "none", immediateRender: false }, at(28.6));
+          tl.fromTo("#s7-pp", { y: 120, opacity: 0, scale: 0.8 }, { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, at(29.8));
+          PX.burst(tl, "#s7-cam", 512, 1130, at(30.7), { n: 16, r: 380, seed: 70 });
+          tl.to("#s7-cam", { x: -1080, filter: "blur(16px)", duration: 0.2, ease: "power3.in" }, at(31.2));
+          window.__timelines["s7"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
