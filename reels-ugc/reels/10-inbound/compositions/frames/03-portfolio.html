@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s3-cam { position: absolute; inset: 0; }
+        #s3-prof { position: absolute; left: 112px; top: 280px; width: 800px; height: 860px; display: block; overflow: hidden; }
+        #s3-avw { position: absolute; left: 30px; top: 26px; width: 110px; height: 110px; border-radius: 50%; padding: 5px; background: linear-gradient(45deg, #F9CE34, #EE2A7B 55%, #6228D7); display: block; }
+        #s3-avin { width: 100%; height: 100%; border-radius: 50%; background: #FDF4ED; display: flex; align-items: center; justify-content: center; }
+        #s3-av { width: 76px; height: 76px; }
+        #s3-ps { position: absolute; left: 165px; top: 40px; font: 600 40px "PxSans", sans-serif; display: block; }
+        #s3-ps b { color: #E2718D; }
+        #s3-tag { position: absolute; left: 165px; top: 92px; font-size: 26px; color: #CC7183; display: block; }
+        .s3-t { position: absolute; width: 236px; height: 220px; border-radius: 18px; display: flex; align-items: center; justify-content: center; }
+        .s3-ti { width: 110px; height: 110px; }
+        .s3-pl { position: absolute; right: 10px; bottom: 10px; width: 48px; height: 48px; }
+        .s3-ch { position: absolute; top: 1170px; height: 100px; display: flex; align-items: center; gap: 12px; padding: 0 26px 0 14px; border-radius: 999px; background: #0E1928; color: #FDF4ED; font: 600 32px "PxSans", sans-serif; }
+        .s3-chi { width: 70px; height: 70px; }
+        #s3-c1 { left: 64px; }
+        #s3-c2 { left: 342px; }
+        #s3-c3 { left: 654px; }
+      </style>
+      <div id="root" data-composition-id="s3" data-width="1080" data-height="1920">
+        <div id="s3-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s3-prof" class="card">
+            <div id="s3-avw"><div id="s3-avin"><img id="s3-av" class="img3d" src="assets/lib/emoji/woman-raising-hand.png" alt="" /></div></div>
+            <span id="s3-ps">prenom<b>.ugc</b></span>
+            <span id="s3-tag" class="t-serif">ton compte = ton <span class="acc">portfolio</span></span>
+          </div>
+          <div id="s3-c1" class="s3-ch"><img class="s3-chi img3d" src="assets/lib/emoji/spiral-calendar.png" alt="" />Régulier</div>
+          <div id="s3-c2" class="s3-ch"><img class="s3-chi img3d" src="assets/lib/emoji/clapper-board.png" alt="" />Vidéos UGC</div>
+          <div id="s3-c3" class="s3-ch"><img class="s3-chi img3d" src="assets/lib/emoji/sun.png" alt="" />Quotidien</div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 8.56, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « portfolio » 10.56 · « régulièrement » 11.84 · « exemples de vidéos UGC » 13.28–14.24 · « quotidien » 15.76
+          tl.fromTo("#s3-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.24, ease: "power3.out" }, 0);
+          tl.fromTo("#s3-prof", { y: 400, opacity: 0, rotationX: -25 }, { y: 0, opacity: 1, rotationX: 0, duration: 0.5, ease: "expo.out", transformPerspective: 1400 }, at(8.7));
+          tl.fromTo("#s3-av", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, at(8.9));
+          tl.fromTo("#s3-tag", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.35 }, at(10.4));
+          // grille 3×3 : ligne 1 publications régulières, ligne 2 vidéos UGC, ligne 3 quotidien
+          const P = document.querySelector("#s3-prof");
+          const R = [
+            { t: 11.7, bg: ["#E6BDC1", "#C2C7DD", "#DB96A1"], ic: ["sparkles", "red-heart", "camera-with-flash"], play: false },
+            { t: 13.25, bg: ["#DB96A1", "#E6BDC1", "#C2C7DD"], ic: ["lotion-bottle", "lipstick", "cup-with-straw"], play: true },
+            { t: 15.6, bg: ["#C2C7DD", "#DB96A1", "#E6BDC1"], ic: ["hot-beverage", "sun", "selfie"], play: false },
+          ];
+          R.forEach((r, row) => r.ic.forEach((ic, col) => {
+            const d = document.createElement("div"); d.className = "s3-t";
+            d.style.left = 22 + col * 256 + "px"; d.style.top = 160 + row * 232 + "px"; d.style.background = r.bg[col];
+            d.innerHTML = '<img class="s3-ti img3d" src="assets/lib/emoji/' + ic + '.png" alt="" />' + (r.play ? '<img class="s3-pl" src="assets/lib/emoji/play-button.png" alt="" />' : "");
+            P.appendChild(d);
+            tl.fromTo(d, { scale: 0, rotation: col % 2 ? 8 : -8 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2)" }, at(r.t + col * 0.12));
+          }));
+          [["#s3-c1", 11.8], ["#s3-c2", 13.6], ["#s3-c3", 15.7]].forEach(([c, t]) => {
+            tl.fromTo(c, { y: 200, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(2)" }, at(t));
+            tl.fromTo(c + " .s3-chi", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(t + 0.15));
+          });
+          PX.burst(tl, "#s3-cam", 512, 700, at(16.35), { n: 14, r: 340, seed: 37 });
+          tl.to("#s3-cam", { x: -1080, filter: "blur(16px)", duration: 0.2, ease: "power3.in" }, at(16.7));
+          window.__timelines["s3"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

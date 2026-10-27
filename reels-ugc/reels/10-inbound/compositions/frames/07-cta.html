@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s7-cam { position: absolute; inset: 0; }
+        #s7-l1 { position: absolute; left: 64px; right: 120px; top: 280px; text-align: center; font-size: 36px; display: block; }
+        #s7-l2 { position: absolute; left: 64px; right: 120px; top: 330px; text-align: center; font-size: 84px; display: block; white-space: nowrap; }
+        #s7-mgw { position: absolute; left: 392px; top: 480px; width: 240px; height: 240px; display: block; }
+        #s7-mg { width: 240px; height: 240px; }
+        .s7-b { position: absolute; top: 520px; width: 130px; height: 130px; border-radius: 50%; background: #FDF4ED; box-shadow: 0 14px 34px rgba(14, 25, 40, 0.14); display: flex; align-items: center; justify-content: center; }
+        .s7-bi { width: 84px; height: 84px; }
+        #s7-b1 { left: 90px; }
+        #s7-b2 { left: 230px; top: 640px; }
+        #s7-b3 { left: 680px; top: 640px; }
+        #s7-b4 { left: 820px; }
+        #s7-prof { position: absolute; left: 112px; top: 830px; width: 800px; height: 340px; display: block; }
+        #s7-ig { position: absolute; left: 36px; top: 34px; width: 66px; height: 66px; }
+        #s7-name { position: absolute; left: 124px; top: 40px; font-size: 48px; display: block; }
+        #s7-bio { position: absolute; left: 36px; top: 124px; right: 36px; font: 400 32px/1.35 "PxSans", sans-serif; display: block; }
+        #s7-link { position: absolute; left: 36px; top: 220px; display: flex; align-items: center; gap: 16px; background: #E2718D; color: #FDF4ED; border-radius: 999px; padding: 16px 40px; font: 600 46px "PxSans", sans-serif; }
+        #s7-chain { width: 48px; height: 48px; }
+        #s7-ripple { position: absolute; left: 520px; top: 1100px; width: 200px; height: 200px; margin: -100px 0 0 -100px; border-radius: 50%; border: 7px solid #0E1928; opacity: 0; display: block; }
+        #s7-handw { position: absolute; left: 450px; top: 1115px; width: 150px; height: 150px; display: block; }
+        #s7-hand { width: 150px; height: 150px; }
+      </style>
+      <div id="root" data-composition-id="s7" data-width="1080" data-height="1920">
+        <div id="s7-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s7-l1" class="t-label">Notre méthode pour</span>
+          <span id="s7-l2" class="t-serif"><span class="acc">attirer</span> les marques</span>
+          <div id="s7-b1" class="s7-b"><img class="s7-bi img3d" src="assets/lib/emoji/shopping-bags.png" alt="" /></div>
+          <div id="s7-b2" class="s7-b"><img class="s7-bi img3d" src="assets/lib/emoji/lotion-bottle.png" alt="" /></div>
+          <div id="s7-b3" class="s7-b"><img class="s7-bi img3d" src="assets/lib/emoji/lipstick.png" alt="" /></div>
+          <div id="s7-b4" class="s7-b"><img class="s7-bi img3d" src="assets/lib/emoji/hot-beverage.png" alt="" /></div>
+          <div id="s7-mgw"><img id="s7-mg" class="img3d" src="assets/lib/emoji/magnet.png" alt="" /></div>
+          <div id="s7-prof" class="card">
+            <img id="s7-ig" src="assets/lib/logos/instagram-icon.svg" alt="" />
+            <span id="s7-name" class="t-serif">Phoenix Pro</span>
+            <span id="s7-bio">Formation UGC · Apprendre. Passer à l'action. Obtenir des résultats.</span>
+            <div id="s7-link"><svg id="s7-chain" viewBox="0 0 64 64" fill="none" stroke="#FDF4ED" stroke-width="5" stroke-linecap="round"><path d="M28 36a10 10 0 0 0 14 0l9-9a10 10 0 0 0-14-14l-4 4" /><path d="M36 28a10 10 0 0 0-14 0l-9 9a10 10 0 0 0 14 14l4-4" /></svg>Lien en bio</div>
+          </div>
+          <div id="s7-ripple"></div>
+          <div id="s7-handw"><img id="s7-hand" class="img3d" src="assets/lib/emoji/backhand-index-pointing-up.png" alt="" /></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 29.4, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « méthode » 29.84 · « attirer » 30.40 · « sans les démarcher » 31.12–31.52 · « clique » 32.24 · « lien » 32.72 · « bio » 33.04
+          tl.fromTo("#s7-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.24, ease: "power3.out" }, 0);
+          tl.fromTo("#s7-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3 }, at(29.5));
+          PX.letters(tl, "#s7-l2", at(30.3), { y: 80, stagger: 0.025, dur: 0.4 });
+          tl.fromTo("#s7-mg", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.5)" }, at(29.7));
+          ["#s7-b1", "#s7-b2", "#s7-b3", "#s7-b4"].forEach((b, i) => tl.fromTo(b, { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, at(29.9 + i * 0.08)));
+          // l'aimant attire les marques
+          [["#s7-b1", 120], ["#s7-b2", 60], ["#s7-b3", -60], ["#s7-b4", -120]].forEach(([b, dx], i) => {
+            tl.to(b, { x: dx, duration: 0.5, ease: "power3.in" }, at(30.6 + i * 0.05));
+            tl.to(b, { x: dx * 0.8, duration: 0.15, ease: "power2.out" }, at(31.1 + i * 0.05));
+          });
+          tl.fromTo("#s7-mgw", { rotation: -6 }, { rotation: 6, duration: 0.08, yoyo: true, repeat: 7, ease: "none", immediateRender: false }, at(30.6));
+          tl.fromTo("#s7-prof", { y: 400, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, at(31.6));
+          tl.fromTo("#s7-ig", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(31.75));
+          tl.fromTo("#s7-link", { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2.6)" }, at(32.0));
+          tl.fromTo("#s7-hand", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, at(32.25));
+          tl.fromTo("#s7-handw", { scale: 1 }, { scale: 0.85, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.in", immediateRender: false }, at(32.7));
+          tl.fromTo("#s7-link", { scale: 1 }, { scale: 0.93, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.in", immediateRender: false }, at(32.7));
+          tl.fromTo("#s7-ripple", { scale: 0.3, opacity: 1 }, { scale: 1.8, opacity: 0, duration: 0.55, ease: "power2.out", immediateRender: false }, at(32.75));
+          PX.burst(tl, "#s7-cam", 520, 1100, at(32.75), { n: 14, r: 240, seed: 79 });
+          PX.pulse(tl, "#s7-link", at(33.2), 1.8, 1.06, 0.75);
+          PX.float(tl, "#s7-handw", at(33.2), 1.8, 10, 0.75, 4);
+          PX.float(tl, "#s7-mgw", at(31.4), 3.6, 8, 1.2, 3);
+          window.__timelines["s7"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s6-cam { position: absolute; inset: 0; }
+        #s6-l1 { position: absolute; left: 64px; right: 120px; top: 290px; text-align: center; font-size: 40px; display: block; }
+        #s6-l2 { position: absolute; left: 64px; right: 120px; top: 350px; text-align: center; font-size: 96px; display: block; white-space: nowrap; }
+        .s6-br { position: absolute; width: 150px; height: 150px; }
+        #s6-starw { position: absolute; left: 437px; top: 520px; width: 150px; height: 150px; display: block; }
+        #s6-star { width: 150px; height: 150px; }
+      </style>
+      <div id="root" data-composition-id="s6" data-width="1080" data-height="1920">
+        <div id="s6-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s6-l1" class="t-label">Le personal branding</span>
+          <span id="s6-l2" class="t-serif">ça se <span class="acc">construit</span></span>
+          <div id="s6-starw"><img id="s6-star" class="img3d" src="assets/lib/emoji/glowing-star.png" alt="" /></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 27.1, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « personal branding » 27.44–27.92 · « construit » 28.88
+          tl.fromTo("#s6-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 0);
+          tl.fromTo("#s6-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3 }, at(27.3));
+          tl.fromTo("#s6-l2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, at(28.75));
+          // une pyramide de briques qui se monte
+          const cam = document.querySelector("#s6-cam"), rows = [[4, 1130], [3, 990], [2, 850], [1, 710]];
+          let k = 0;
+          rows.forEach(([n, y]) => {
+            const x0 = 512 - (n * 150) / 2;
+            for (let i = 0; i < n; i++) {
+              const b = document.createElement("img"); b.className = "s6-br img3d"; b.src = "assets/lib/emoji/brick.png";
+              b.style.left = x0 + i * 150 + "px"; b.style.top = y + "px"; cam.appendChild(b);
+              tl.fromTo(b, { y: -900, opacity: 1 }, { y: 0, duration: 0.3, ease: "bounce.out" }, at(27.5 + k * 0.12)); k++;
+            }
+          });
+          tl.fromTo("#s6-star", { scale: 0, rotation: -90 }, { scale: 1.15, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(28.85));
+          PX.burst(tl, "#s6-cam", 512, 595, at(29.0), { n: 16, r: 300, seed: 66 });
+          tl.to("#s6-cam", { x: -1080, filter: "blur(16px)", duration: 0.18, ease: "power3.in" }, at(29.22));
+          window.__timelines["s6"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

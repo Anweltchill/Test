@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s1-cam { position: absolute; inset: 0; }
+        #s1-l1 { position: absolute; left: 64px; right: 120px; top: 290px; text-align: center; font-size: 40px; display: block; }
+        #s1-l2 { position: absolute; left: 64px; right: 120px; top: 350px; text-align: center; font-size: 78px; display: block; white-space: nowrap; }
+        #s1-mew { position: absolute; left: 412px; top: 760px; width: 200px; height: 200px; display: block; }
+        #s1-me { width: 200px; height: 200px; }
+        .s1-bw { position: absolute; width: 170px; height: 170px; border-radius: 50%; background: #FDF4ED; box-shadow: 0 16px 40px rgba(14, 25, 40, 0.14); display: flex; align-items: center; justify-content: center; }
+        .s1-bi { width: 110px; height: 110px; }
+        #s1-b1 { left: 112px; top: 540px; }
+        #s1-b2 { left: 742px; top: 560px; }
+        #s1-b3 { left: 112px; top: 1060px; }
+        #s1-b4 { left: 742px; top: 1060px; }
+        #s1-q { position: absolute; left: 64px; right: 120px; top: 1220px; text-align: center; font-size: 76px; display: block; white-space: nowrap; opacity: 0; }
+      </style>
+      <div id="root" data-composition-id="s1" data-width="1080" data-height="1920">
+        <div id="s1-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s1-l1" class="t-label">Et si, au lieu de</span>
+          <span id="s1-l2" class="t-serif">courir <span class="acc">après</span> les marques</span>
+          <div id="s1-b1" class="s1-bw"><img class="s1-bi img3d" src="assets/lib/emoji/shopping-bags.png" alt="" /></div>
+          <div id="s1-b2" class="s1-bw"><img class="s1-bi img3d" src="assets/lib/emoji/lotion-bottle.png" alt="" /></div>
+          <div id="s1-b3" class="s1-bw"><img class="s1-bi img3d" src="assets/lib/emoji/lipstick.png" alt="" /></div>
+          <div id="s1-b4" class="s1-bw"><img class="s1-bi img3d" src="assets/lib/emoji/hot-beverage.png" alt="" /></div>
+          <div id="s1-mew"><img id="s1-me" class="img3d" src="assets/lib/emoji/woman-running.png" alt="" /></div>
+          <span id="s1-q" class="t-serif">elles viennent <span class="acc">à toi</span> ?</span>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          // « courir après » 1.04–1.44 · « marques » 1.84 · « c'étaient elles » 2.32–2.72 · « chercher » 3.52
+          tl.fromTo("#s1-l1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35 }, 0.0);
+          tl.fromTo("#s1-l2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 0.9);
+          tl.fromTo("#s1-me", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, 0.2);
+          ["#s1-b1", "#s1-b2", "#s1-b3", "#s1-b4"].forEach((b, i) => tl.fromTo(b, { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(3)" }, 0.5 + i * 0.1));
+          // elle court d'une marque à l'autre… qui s'enfuient
+          tl.to("#s1-mew", { x: -230, y: -180, duration: 0.35, ease: "power2.inOut" }, 1.0);
+          tl.to("#s1-b1", { x: -300, opacity: 0.2, duration: 0.3, ease: "power2.in" }, 1.15);
+          tl.to("#s1-mew", { x: 230, y: -180, scaleX: -1, duration: 0.4, ease: "power2.inOut" }, 1.4);
+          tl.to("#s1-b2", { x: 300, opacity: 0.2, duration: 0.3, ease: "power2.in" }, 1.6);
+          tl.to("#s1-mew", { x: 0, y: 0, scaleX: 1, duration: 0.35, ease: "power2.inOut" }, 1.9);
+          // inversion : ce sont elles qui viennent
+          tl.to(["#s1-b1", "#s1-b2"], { x: 0, opacity: 1, duration: 0.01 }, 2.25);
+          [["#s1-b1", 300, 220], ["#s1-b2", -330, 200], ["#s1-b3", 300, -300], ["#s1-b4", -330, -300]].forEach(([b, x, y], i) => {
+            tl.fromTo(b, { x: 0, y: 0 }, { x: x * 0.5, y: y * 0.5, duration: 0.5, ease: "back.out(1.6)", immediateRender: false }, 2.35 + i * 0.08);
+          });
+          tl.to("#s1-me", { scale: 1.2, duration: 0.3, ease: "back.out(3)" }, 2.7);
+          tl.fromTo("#s1-q", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 2.75);
+          PX.burst(tl, "#s1-cam", 512, 860, 3.0, { n: 16, r: 320, seed: 11 });
+          tl.to("#s1-cam", { x: -1080, filter: "blur(16px)", duration: 0.2, ease: "power3.in" }, 3.8);
+          window.__timelines["s1"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

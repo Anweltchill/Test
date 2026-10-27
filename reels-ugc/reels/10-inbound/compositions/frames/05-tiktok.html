@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s5-cam { position: absolute; inset: 0; }
+        #s5-tkw { position: absolute; left: 402px; top: 300px; width: 220px; height: 220px; border-radius: 50px; background: #0E1928; display: flex; align-items: center; justify-content: center; }
+        #s5-tk { width: 140px; height: 140px; }
+        #s5-l1 { position: absolute; left: 64px; right: 120px; top: 560px; text-align: center; font-size: 86px; display: block; white-space: nowrap; }
+        #s5-chart { position: absolute; left: 172px; top: 700px; width: 680px; height: 330px; display: block; }
+        #s5-fire { position: absolute; left: 770px; top: 640px; width: 130px; height: 130px; }
+        .s5-op { position: absolute; top: 1110px; width: 150px; height: 150px; border-radius: 50%; background: #FDF4ED; box-shadow: 0 16px 40px rgba(14, 25, 40, 0.14); display: flex; align-items: center; justify-content: center; }
+        .s5-opi { width: 96px; height: 96px; }
+        #s5-o1 { left: 152px; }
+        #s5-o2 { left: 352px; }
+        #s5-o3 { left: 552px; }
+        #s5-o4 { left: 752px; }
+      </style>
+      <div id="root" data-composition-id="s5" data-width="1080" data-height="1920">
+        <div id="s5-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s5-tkw"><img id="s5-tk" src="assets/lib/logos/tiktok-icon.svg" alt="" /></div>
+          <span id="s5-l1" class="t-serif">Joue les <span class="acc">tendances</span></span>
+          <svg id="s5-chart" viewBox="0 0 680 330" fill="none"><path id="s5-cl" d="M20 300 L140 250 L250 270 L370 180 L470 200 L560 90 L660 30" stroke="#E2718D" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="900" stroke-dashoffset="900" /></svg>
+          <img id="s5-fire" class="img3d" src="assets/lib/emoji/fire.png" alt="" />
+          <div id="s5-o1" class="s5-op"><img class="s5-opi img3d" src="assets/lib/emoji/incoming-envelope.png" alt="" /></div>
+          <div id="s5-o2" class="s5-op"><img class="s5-opi img3d" src="assets/lib/emoji/handshake.png" alt="" /></div>
+          <div id="s5-o3" class="s5-op"><img class="s5-opi img3d" src="assets/lib/emoji/package.png" alt="" /></div>
+          <div id="s5-o4" class="s5-op"><img class="s5-opi img3d" src="assets/lib/emoji/money-bag.png" alt="" /></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 22.5, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « TikTok » 22.96 · « tendances » 24.40 · « opportunités » 25.84 · « émergent » 26.56
+          tl.fromTo("#s5-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.24, ease: "power3.out" }, 0);
+          tl.fromTo("#s5-tkw", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.5)" }, at(22.85));
+          tl.fromTo("#s5-tkw", { x: 0 }, { x: 8, duration: 0.05, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, at(23.3));
+          tl.fromTo("#s5-l1", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, at(24.25));
+          tl.fromTo("#s5-cl", { attr: { "stroke-dashoffset": 900 } }, { attr: { "stroke-dashoffset": 0 }, duration: 1.0, ease: "power2.inOut" }, at(24.3));
+          tl.fromTo("#s5-fire", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(25.25));
+          [["#s5-o1", 25.75], ["#s5-o2", 25.9], ["#s5-o3", 26.05], ["#s5-o4", 26.45]].forEach(([o, t], i) => {
+            tl.fromTo(o, { y: 300, scale: 0 }, { y: 0, scale: 1, duration: 0.4, ease: "back.out(2.2)" }, at(t));
+          });
+          PX.burst(tl, "#s5-cam", 512, 1185, at(26.55), { n: 16, r: 360, seed: 58 });
+          tl.to("#s5-cam", { y: -500, opacity: 0, filter: "blur(14px)", duration: 0.2, ease: "power3.in" }, at(26.9));
+          window.__timelines["s5"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
