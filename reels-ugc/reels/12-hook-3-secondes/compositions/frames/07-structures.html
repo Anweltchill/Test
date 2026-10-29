@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s7-cam { position: absolute; inset: 0; }
+        #s7-l1 { position: absolute; left: 64px; right: 120px; top: 280px; text-align: center; font-size: 40px; display: block; }
+        #s7-l2 { position: absolute; left: 64px; right: 120px; top: 330px; text-align: center; font-size: 96px; display: block; white-space: nowrap; }
+        .s7-m { position: absolute; top: 500px; width: 250px; height: 330px; display: flex; flex-direction: column; align-items: center; gap: 14px; padding-top: 30px; }
+        #s7-m1 { left: 112px; }
+        #s7-m2 { left: 387px; }
+        #s7-m3 { left: 662px; }
+        .s7-mi { width: 90px; height: 90px; }
+        .s7-ml { width: 170px; height: 18px; border-radius: 9px; background: #E6BDC1; filter: blur(4px); display: block; }
+        .s7-ml.s { width: 120px; }
+        .s7-lk { width: 70px; height: 70px; margin-top: 6px; }
+        #s7-fac { position: absolute; left: 212px; top: 880px; width: 600px; height: 150px; display: flex; align-items: center; gap: 22px; padding: 0 30px; }
+        #s7-fci { width: 100px; height: 100px; flex: none; }
+        #s7-fct { font-size: 48px; display: block; }
+        #s7-pp { position: absolute; left: 0; right: 56px; top: 1100px; text-align: center; display: block; }
+        #s7-ppb { display: inline-block; background: #0E1928; color: #FDF4ED; border-radius: 999px; padding: 16px 34px; font-size: 36px; white-space: nowrap; }
+      </style>
+      <div id="root" data-composition-id="s7" data-width="1080" data-height="1920">
+        <div id="s7-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s7-l1" class="t-label">Nos structures de</span>
+          <span id="s7-l2" class="t-serif"><span class="acc">hooks</span> prêtes</span>
+          <div id="s7-m1" class="s7-m card"><img class="s7-mi img3d" src="assets/lib/emoji/memo.png" alt="" /><span class="s7-ml"></span><span class="s7-ml s"></span><span class="s7-ml"></span><img class="s7-lk img3d" src="assets/lib/emoji/locked.png" alt="" /></div>
+          <div id="s7-m2" class="s7-m card"><img class="s7-mi img3d" src="assets/lib/emoji/memo.png" alt="" /><span class="s7-ml"></span><span class="s7-ml s"></span><span class="s7-ml"></span><img class="s7-lk img3d" src="assets/lib/emoji/locked.png" alt="" /></div>
+          <div id="s7-m3" class="s7-m card"><img class="s7-mi img3d" src="assets/lib/emoji/memo.png" alt="" /><span class="s7-ml"></span><span class="s7-ml s"></span><span class="s7-ml"></span><img class="s7-lk img3d" src="assets/lib/emoji/locked.png" alt="" /></div>
+          <div id="s7-fac" class="card"><img id="s7-fci" class="img3d" src="assets/lib/emoji/receipt.png" alt="" /><span id="s7-fct" class="t-serif">+ comment les <span class="acc">facturer</span></span></div>
+          <div id="s7-pp"><span id="s7-ppb" class="t-serif">Dans l'accompagnement <span style="color:#E6BDC1">Phoenix Pro</span></span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 24.9, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « structures » 25.35 · « hooks » 25.91 · « facturer » 27.03 · « accompagnement » 27.99 · « Phoenix Pro » 28.71–29.19
+          tl.fromTo("#s7-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 0);
+          tl.fromTo("#s7-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3 }, at(25.0));
+          tl.fromTo("#s7-l2", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power4.out" }, at(25.8));
+          ["#s7-m1", "#s7-m2", "#s7-m3"].forEach((m, i) => {
+            tl.fromTo(m, { y: 500, rotation: [-8, 0, 8][i], opacity: 0 }, { y: 0, rotation: [-4, 0, 4][i], opacity: 1, duration: 0.45, ease: "back.out(1.6)" }, at(25.3 + i * 0.12));
+            tl.fromTo(m + " .s7-lk", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.35, ease: "back.out(3)" }, at(25.95 + i * 0.1));
+          });
+          tl.fromTo("#s7-fac", { y: 200, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(2)" }, at(26.85));
+          tl.fromTo("#s7-fci", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(27.0));
+          tl.fromTo("#s7-pp", { y: 120, opacity: 0, scale: 0.8 }, { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, at(27.9));
+          PX.burst(tl, "#s7-cam", 512, 1150, at(28.8), { n: 16, r: 380, seed: 72 });
+          tl.to("#s7-cam", { x: -1080, filter: "blur(16px)", duration: 0.2, ease: "power3.in" }, at(29.4));
+          window.__timelines["s7"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

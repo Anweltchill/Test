@@ -1,525 +1,525 @@
 {
- "duration": 30.72,
+ "duration": 30.886,
  "words": [
   {
    "word": "secondes.",
-   "start": 0.24,
-   "end": 0.8
+   "start": 0.41,
+   "end": 0.97
   },
   {
    "word": "C'est",
-   "start": 0.8,
-   "end": 0.96
+   "start": 0.97,
+   "end": 1.13
   },
   {
    "word": "le",
-   "start": 0.96,
-   "end": 1.04
+   "start": 1.13,
+   "end": 1.21
   },
   {
    "word": "temps",
-   "start": 1.04,
-   "end": 1.2
+   "start": 1.21,
+   "end": 1.37
   },
   {
    "word": "que",
-   "start": 1.2,
-   "end": 1.36
+   "start": 1.37,
+   "end": 1.53
   },
   {
    "word": "tu",
-   "start": 1.36,
-   "end": 1.52
+   "start": 1.53,
+   "end": 1.69
   },
   {
    "word": "as",
-   "start": 1.52,
-   "end": 1.6
+   "start": 1.69,
+   "end": 1.77
   },
   {
    "word": "pour",
-   "start": 1.6,
-   "end": 1.76
+   "start": 1.77,
+   "end": 1.93
   },
   {
    "word": "qu'on",
-   "start": 1.76,
-   "end": 2.0
+   "start": 1.93,
+   "end": 2.17
   },
   {
    "word": "arrête",
-   "start": 2.0,
-   "end": 2.32
+   "start": 2.17,
+   "end": 2.49
   },
   {
    "word": "de",
-   "start": 2.32,
-   "end": 2.4
+   "start": 2.49,
+   "end": 2.57
   },
   {
    "word": "scroller.",
-   "start": 2.4,
-   "end": 2.96
+   "start": 2.57,
+   "end": 3.13
   },
   {
    "word": "Ces",
-   "start": 2.96,
-   "end": 3.28
+   "start": 3.13,
+   "end": 3.45
   },
   {
    "word": "3",
-   "start": 3.28,
-   "end": 3.52
+   "start": 3.45,
+   "end": 3.69
   },
   {
    "word": "secondes,",
-   "start": 3.52,
-   "end": 3.92
+   "start": 3.69,
+   "end": 4.09
   },
   {
    "word": "c'est",
-   "start": 3.92,
-   "end": 4.16
+   "start": 4.09,
+   "end": 4.33
   },
   {
    "word": "le",
-   "start": 4.16,
-   "end": 4.32
+   "start": 4.33,
+   "end": 4.49
   },
   {
    "word": "hook.",
-   "start": 4.32,
-   "end": 4.8
+   "start": 4.49,
+   "end": 4.97
   },
   {
    "word": "Et",
-   "start": 4.8,
-   "end": 4.96
+   "start": 4.97,
+   "end": 5.13
   },
   {
    "word": "en",
-   "start": 4.96,
-   "end": 5.12
+   "start": 5.13,
+   "end": 5.29
   },
   {
    "word": "UGC,",
-   "start": 5.12,
-   "end": 5.76
+   "start": 5.29,
+   "end": 5.93
   },
   {
    "word": "c'est",
-   "start": 5.76,
-   "end": 5.92
+   "start": 5.93,
+   "end": 6.09
   },
   {
    "word": "ce",
-   "start": 5.92,
-   "end": 6.0
+   "start": 6.09,
+   "end": 6.17
   },
   {
    "word": "que",
-   "start": 6.0,
-   "end": 6.16
+   "start": 6.17,
+   "end": 6.33
   },
   {
    "word": "les",
-   "start": 6.16,
-   "end": 6.24
+   "start": 6.33,
+   "end": 6.41
   },
   {
    "word": "marques",
-   "start": 6.24,
-   "end": 6.48
+   "start": 6.41,
+   "end": 6.65
   },
   {
    "word": "regardent",
-   "start": 6.48,
-   "end": 6.88
+   "start": 6.65,
+   "end": 7.05
   },
   {
    "word": "en",
-   "start": 6.88,
-   "end": 6.96
+   "start": 7.05,
+   "end": 7.13
   },
   {
    "word": "premier.",
-   "start": 6.96,
-   "end": 7.5
+   "start": 7.13,
+   "end": 7.67
   },
   {
    "word": "Un",
-   "start": 7.5,
-   "end": 7.66
+   "start": 7.67,
+   "end": 7.83
   },
   {
    "word": "bon",
-   "start": 7.66,
-   "end": 7.9
+   "start": 7.83,
+   "end": 8.07
   },
   {
    "word": "hook,",
-   "start": 7.9,
-   "end": 8.38
+   "start": 8.07,
+   "end": 8.55
   },
   {
    "word": "c'est",
-   "start": 8.38,
-   "end": 8.62
+   "start": 8.55,
+   "end": 8.79
   },
   {
    "word": "une",
-   "start": 8.62,
-   "end": 8.7
+   "start": 8.79,
+   "end": 8.87
   },
   {
    "word": "question",
-   "start": 8.7,
-   "end": 8.94
+   "start": 8.87,
+   "end": 9.11
   },
   {
    "word": "qui",
-   "start": 8.94,
-   "end": 9.18
+   "start": 9.11,
+   "end": 9.35
   },
   {
    "word": "intrigue,",
-   "start": 9.18,
-   "end": 9.82
+   "start": 9.35,
+   "end": 9.99
   },
   {
    "word": "un",
-   "start": 9.82,
-   "end": 9.98
+   "start": 9.99,
+   "end": 10.15
   },
   {
    "word": "problème",
-   "start": 9.98,
-   "end": 10.22
+   "start": 10.15,
+   "end": 10.39
   },
   {
    "word": "que",
-   "start": 10.22,
-   "end": 10.38
+   "start": 10.39,
+   "end": 10.55
   },
   {
    "word": "ta",
-   "start": 10.38,
-   "end": 10.62
+   "start": 10.55,
+   "end": 10.79
   },
   {
    "word": "cible",
-   "start": 10.62,
-   "end": 11.02
+   "start": 10.79,
+   "end": 11.19
   },
   {
    "word": "connaît",
-   "start": 11.02,
-   "end": 11.34
+   "start": 11.19,
+   "end": 11.51
   },
   {
    "word": "par",
-   "start": 11.34,
-   "end": 11.5
+   "start": 11.51,
+   "end": 11.67
   },
   {
    "word": "cœur,",
-   "start": 11.5,
-   "end": 11.9
+   "start": 11.67,
+   "end": 12.07
   },
   {
    "word": "ou",
-   "start": 11.9,
-   "end": 12.06
+   "start": 12.07,
+   "end": 12.23
   },
   {
    "word": "un",
-   "start": 12.06,
-   "end": 12.14
+   "start": 12.23,
+   "end": 12.31
   },
   {
    "word": "geste",
-   "start": 12.14,
-   "end": 12.46
+   "start": 12.31,
+   "end": 12.63
   },
   {
    "word": "inattendu",
-   "start": 12.46,
-   "end": 13.1
+   "start": 12.63,
+   "end": 13.27
   },
   {
    "word": "à",
-   "start": 13.1,
-   "end": 13.18
+   "start": 13.27,
+   "end": 13.35
   },
   {
    "word": "l'image.",
-   "start": 13.18,
-   "end": 13.74
+   "start": 13.35,
+   "end": 13.91
   },
   {
    "word": "Et",
-   "start": 13.74,
-   "end": 13.9
+   "start": 13.91,
+   "end": 14.07
   },
   {
    "word": "voilà",
-   "start": 13.9,
-   "end": 14.3
+   "start": 14.07,
+   "end": 14.47
   },
   {
    "word": "le",
-   "start": 14.3,
-   "end": 14.38
+   "start": 14.47,
+   "end": 14.55
   },
   {
    "word": "secret,",
-   "start": 14.38,
-   "end": 14.94
+   "start": 14.55,
+   "end": 15.11
   },
   {
    "word": "les",
-   "start": 14.94,
-   "end": 15.1
+   "start": 15.11,
+   "end": 15.27
   },
   {
    "word": "marques",
-   "start": 15.1,
-   "end": 15.5
+   "start": 15.27,
+   "end": 15.67
   },
   {
    "word": "testent",
-   "start": 15.5,
-   "end": 15.9
+   "start": 15.67,
+   "end": 16.07
   },
   {
    "word": "souvent",
-   "start": 15.9,
-   "end": 16.22
+   "start": 16.07,
+   "end": 16.39
   },
   {
    "word": "plusieurs",
-   "start": 16.22,
-   "end": 16.54
+   "start": 16.39,
+   "end": 16.71
   },
   {
    "word": "hooks",
-   "start": 16.54,
-   "end": 16.94
+   "start": 16.71,
+   "end": 17.11
   },
   {
    "word": "sur",
-   "start": 16.94,
-   "end": 17.1
+   "start": 17.11,
+   "end": 17.27
   },
   {
    "word": "la",
-   "start": 17.1,
-   "end": 17.18
+   "start": 17.27,
+   "end": 17.35
   },
   {
    "word": "même",
-   "start": 17.18,
-   "end": 17.42
+   "start": 17.35,
+   "end": 17.59
   },
   {
    "word": "vidéo",
-   "start": 17.42,
-   "end": 17.82
+   "start": 17.59,
+   "end": 17.99
   },
   {
    "word": "pour",
-   "start": 17.82,
-   "end": 17.98
+   "start": 17.99,
+   "end": 18.15
   },
   {
    "word": "voir",
-   "start": 17.98,
-   "end": 18.22
+   "start": 18.15,
+   "end": 18.39
   },
   {
    "word": "lequel",
-   "start": 18.22,
-   "end": 18.62
+   "start": 18.39,
+   "end": 18.79
   },
   {
    "word": "fonctionne",
-   "start": 18.62,
-   "end": 19.02
+   "start": 18.79,
+   "end": 19.19
   },
   {
    "word": "le",
-   "start": 19.02,
-   "end": 19.1
+   "start": 19.19,
+   "end": 19.27
   },
   {
    "word": "mieux.",
-   "start": 19.1,
-   "end": 19.5
+   "start": 19.27,
+   "end": 19.67
   },
   {
    "word": "Donc",
-   "start": 19.5,
-   "end": 19.74
+   "start": 19.67,
+   "end": 19.91
   },
   {
    "word": "un",
-   "start": 19.74,
-   "end": 19.9
+   "start": 19.91,
+   "end": 20.07
   },
   {
    "word": "hook,",
-   "start": 19.9,
-   "end": 20.54
+   "start": 20.07,
+   "end": 20.71
   },
   {
    "word": "ça",
-   "start": 20.54,
-   "end": 20.7
+   "start": 20.71,
+   "end": 20.87
   },
   {
    "word": "peut",
-   "start": 20.7,
-   "end": 20.94
+   "start": 20.87,
+   "end": 21.11
   },
   {
    "word": "se",
-   "start": 20.94,
-   "end": 21.1
+   "start": 21.11,
+   "end": 21.27
   },
   {
    "word": "vendre",
-   "start": 21.1,
-   "end": 21.9
+   "start": 21.27,
+   "end": 22.07
   },
   {
    "word": "à",
-   "start": 21.98,
-   "end": 22.22
+   "start": 22.15,
+   "end": 22.39
   },
   {
    "word": "part.",
-   "start": 22.22,
-   "end": 22.86
+   "start": 22.39,
+   "end": 23.03
   },
   {
    "word": "Oui,",
-   "start": 22.86,
-   "end": 23.34
+   "start": 23.03,
+   "end": 23.51
   },
   {
    "word": "tu",
-   "start": 23.34,
-   "end": 23.58
+   "start": 23.51,
+   "end": 23.75
   },
   {
    "word": "as",
-   "start": 23.58,
-   "end": 23.74
+   "start": 23.75,
+   "end": 23.91
   },
   {
    "word": "bien",
-   "start": 23.74,
-   "end": 24.06
+   "start": 23.91,
+   "end": 24.23
   },
   {
    "word": "entendu.",
-   "start": 24.06,
-   "end": 24.86
+   "start": 24.23,
+   "end": 25.03
   },
   {
    "word": "Nos",
-   "start": 24.86,
-   "end": 25.18
+   "start": 25.03,
+   "end": 25.35
   },
   {
    "word": "structures",
-   "start": 25.18,
-   "end": 25.58
+   "start": 25.35,
+   "end": 25.75
   },
   {
    "word": "de",
-   "start": 25.58,
-   "end": 25.74
+   "start": 25.75,
+   "end": 25.91
   },
   {
    "word": "hooks",
-   "start": 25.74,
-   "end": 26.22
+   "start": 25.91,
+   "end": 26.39
   },
   {
    "word": "et",
-   "start": 26.22,
-   "end": 26.38
+   "start": 26.39,
+   "end": 26.55
   },
   {
    "word": "comment",
-   "start": 26.38,
-   "end": 26.7
+   "start": 26.55,
+   "end": 26.87
   },
   {
    "word": "les",
-   "start": 26.7,
-   "end": 26.86
+   "start": 26.87,
+   "end": 27.03
   },
   {
    "word": "facturer,",
-   "start": 26.86,
-   "end": 27.5
+   "start": 27.03,
+   "end": 27.67
   },
   {
    "word": "c'est",
-   "start": 27.5,
-   "end": 27.66
+   "start": 27.67,
+   "end": 27.83
   },
   {
    "word": "dans",
-   "start": 27.66,
-   "end": 27.82
+   "start": 27.83,
+   "end": 27.99
   },
   {
    "word": "l'accompagnement",
-   "start": 27.82,
-   "end": 28.54
+   "start": 27.99,
+   "end": 28.71
   },
   {
    "word": "Phoenix",
-   "start": 28.54,
-   "end": 29.02
+   "start": 28.71,
+   "end": 29.19
   },
   {
    "word": "Pro.",
-   "start": 29.02,
-   "end": 29.5
+   "start": 29.19,
+   "end": 29.67
   },
   {
    "word": "Le",
-   "start": 29.5,
-   "end": 29.66
+   "start": 29.67,
+   "end": 29.83
   },
   {
    "word": "lien",
-   "start": 29.66,
-   "end": 29.9
+   "start": 29.83,
+   "end": 30.07
   },
   {
    "word": "est",
-   "start": 29.9,
-   "end": 30.06
+   "start": 30.07,
+   "end": 30.23
   },
   {
    "word": "dans",
-   "start": 30.06,
-   "end": 30.22
+   "start": 30.23,
+   "end": 30.39
   },
   {
    "word": "ma",
-   "start": 30.22,
-   "end": 30.38
+   "start": 30.39,
+   "end": 30.55
   },
   {
    "word": "bio.",
-   "start": 30.38,
-   "end": 30.8
+   "start": 30.55,
+   "end": 30.97
   }
  ]
 }
