@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fr" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/brand.css" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #F0E6DD; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #F0E6DD; }
+      #bg { position: absolute; inset: 0; overflow: hidden; }
+      .bg-blob { position: absolute; border-radius: 50%; filter: blur(60px); display: block; }
+      #bg-b1 { width: 760px; height: 760px; right: -300px; top: -220px; background: #E6BDC1; opacity: 0.55; }
+      #bg-b2 { width: 680px; height: 680px; left: -320px; bottom: -180px; background: #E6BDC1; opacity: 0.45; }
+      #bg-b3 { width: 420px; height: 420px; left: -200px; top: 360px; background: #C2C7DD; opacity: 0.35; }
+      .bg-wave { position: absolute; left: -100px; width: 1300px; height: 400px; display: block; }
+      #bg-w1 { top: 60px; }
+      #bg-w2 { top: 1560px; }
+      #bg-grain { position: absolute; inset: 0; opacity: 0.05;
+        background-image: radial-gradient(#0E1928 1px, transparent 1px); background-size: 6px 6px; }
+    </style>
+  </head>
+  <body class="px">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="31.0" data-width="1080" data-height="1920">
+      <div id="bg" data-layout-allow-overflow>
+        <div id="bg-b1" class="bg-blob"></div>
+        <div id="bg-b2" class="bg-blob"></div>
+        <div id="bg-b3" class="bg-blob"></div>
+        <svg id="bg-w1" class="bg-wave" viewBox="0 0 1300 400" fill="none"><path d="M0 220 C 220 80, 420 360, 650 200 S 1080 60, 1300 180" stroke="#DB96A1" stroke-width="3" /></svg>
+        <svg id="bg-w2" class="bg-wave" viewBox="0 0 1300 400" fill="none"><path d="M0 120 C 260 300, 480 20, 720 160 S 1120 320, 1300 140" stroke="#0E1928" stroke-opacity="0.35" stroke-width="2.5" /></svg>
+        <div id="bg-grain"></div>
+      </div>
+
+      <div id="s1" data-composition-id="s1" data-composition-src="compositions/frames/01-question.html" data-start="0" data-duration="3.5" data-track-index="1" data-width="1080" data-height="1920"></div>
+      <div id="s2" data-composition-id="s2" data-composition-src="compositions/frames/02-pas-forcement.html" data-start="3.5" data-duration="1.38" data-track-index="1" data-width="1080" data-height="1920"></div>
+      <div id="s3" data-composition-id="s3" data-composition-src="compositions/frames/03-gifting.html" data-start="4.88" data-duration="3.6" data-track-index="1" data-width="1080" data-height="1920"></div>
+      <div id="s4" data-composition-id="s4" data-composition-src="compositions/frames/04-cadre.html" data-start="8.48" data-duration="6.08" data-track-index="1" data-width="1080" data-height="1920"></div>
+      <div id="s5" data-composition-id="s5" data-composition-src="compositions/frames/05-formulaire.html" data-start="14.56" data-duration="5.87" data-track-index="1" data-width="1080" data-height="1920"></div>
+      <div id="s6" data-composition-id="s6" data-composition-src="compositions/frames/06-cases.html" data-start="20.43" data-duration="2.88" data-track-index="1" data-width="1080" data-height="1920"></div>
+      <div id="s7" data-composition-id="s7" data-composition-src="compositions/frames/07-guide.html" data-start="23.31" data-duration="4.16" data-track-index="1" data-width="1080" data-height="1920"></div>
+      <div id="s8" data-composition-id="s8" data-composition-src="compositions/frames/08-cta.html" data-start="27.47" data-duration="3.53" data-track-index="1" data-width="1080" data-height="1920"></div>
+
+      <div id="cap" data-composition-id="cap" data-composition-src="compositions/captions.html" data-start="0" data-duration="31.0" data-track-index="2" data-width="1080" data-height="1920"></div>
+
+      <audio id="voix" src="audio/voix.wav" data-start="0" data-duration="29.39" data-track-index="3"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#bg-b1", { x: 0, y: 0 }, { x: -120, y: 160, duration: 31.0, ease: "sine.inOut" }, 0);
+      tl.fromTo("#bg-b2", { x: 0, y: 0 }, { x: 140, y: -120, duration: 31.0, ease: "sine.inOut" }, 0);
+      tl.fromTo("#bg-b3", { x: 0, y: 0 }, { x: 90, y: 260, duration: 31.0, ease: "sine.inOut" }, 0);
+      tl.fromTo("#bg-w1", { x: 0 }, { x: -180, duration: 31.0, ease: "none" }, 0);
+      tl.fromTo("#bg-w2", { x: -160 }, { x: 40, duration: 31.0, ease: "none" }, 0);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

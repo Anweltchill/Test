@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s7-cam { position: absolute; inset: 0; }
+        #s7-l1 { position: absolute; left: 64px; right: 120px; top: 280px; text-align: center; font-size: 40px; display: block; }
+        #s7-l2 { position: absolute; left: 64px; right: 120px; top: 330px; text-align: center; font-size: 104px; display: block; white-space: nowrap; }
+        .s7-st { position: absolute; width: 270px; height: 250px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; }
+        #s7-a { left: 92px; top: 520px; }
+        #s7-b { left: 662px; top: 1020px; }
+        .s7-i { width: 120px; height: 120px; }
+        .s7-t { font-size: 40px; line-height: 1.1; display: block; }
+        #s7-path { position: absolute; left: 200px; top: 760px; width: 620px; height: 280px; display: block; }
+        .s7-fp { position: absolute; width: 80px; height: 80px; opacity: 0; }
+        #s7-num { font: 600 26px "PxSans", sans-serif; color: #CC7183; letter-spacing: 0.08em; display: block; }
+      </style>
+      <div id="root" data-composition-id="s7" data-width="1080" data-height="1920">
+        <div id="s7-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s7-l1" class="t-label">On te guide</span>
+          <span id="s7-l2" class="t-serif"><span class="acc">pas à pas</span></span>
+          <div id="s7-a" class="s7-st card"><img class="s7-i img3d" src="assets/lib/emoji/card-file-box.png" alt="" /><span class="s7-t t-serif">Ton <span class="acc">statut</span></span></div>
+          <svg id="s7-path" viewBox="0 0 620 280" fill="none"><path id="s7-pl" d="M10 10 C 200 40, 380 240, 600 260" stroke="#DB96A1" stroke-width="8" stroke-dasharray="14 16" stroke-linecap="round" /></svg>
+          <div id="s7-b" class="s7-st card"><img class="s7-i img3d" src="assets/lib/emoji/receipt.png" alt="" /><span class="s7-t t-serif">1<sup>re</sup> <span class="acc">facture</span></span><span id="s7-num">N° 001</span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 23.31, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « guide » 23.63 · « pas à pas » 24.03–24.35 · « création » 24.91 · « statut » 25.55 · « première facture » 26.59–26.83
+          tl.fromTo("#s7-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 0);
+          tl.fromTo("#s7-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3 }, at(23.4));
+          PX.letters(tl, "#s7-l2", at(23.95), { y: 100, stagger: 0.04, dur: 0.4 });
+          tl.fromTo("#s7-a", { scale: 0, rotation: -8 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2)" }, at(24.85));
+          tl.fromTo("#s7-pl", { opacity: 0 }, { opacity: 1, duration: 0.3 }, at(25.4));
+          // des pas qui avancent sur le chemin
+          const cam = document.querySelector("#s7-cam"), P = [[230, 760, -10], [340, 790, 20], [440, 850, 40], [530, 920, 50], [620, 980, 60]];
+          P.forEach(([x, y, r], i) => {
+            const f = document.createElement("img"); f.className = "s7-fp img3d"; f.src = "assets/lib/emoji/footprints.png";
+            f.style.left = x + "px"; f.style.top = y + "px"; cam.appendChild(f);
+            tl.fromTo(f, { opacity: 0, scale: 0.4, rotation: r }, { opacity: 1, scale: 1, rotation: r, duration: 0.25, ease: "back.out(3)" }, at(25.6 + i * 0.18));
+          });
+          tl.fromTo("#s7-b", { scale: 0, rotation: 8 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2)" }, at(26.5));
+          tl.fromTo("#s7-num", { opacity: 0, scale: 2 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.in" }, at(26.8));
+          PX.burst(tl, "#s7-cam", 797, 1145, at(26.95), { n: 16, r: 300, seed: 77 });
+          tl.to("#s7-cam", { x: -1080, filter: "blur(16px)", duration: 0.2, ease: "power3.in" }, at(27.27));
+          window.__timelines["s7"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

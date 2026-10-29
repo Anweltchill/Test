@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s4-cam { position: absolute; inset: 0; }
+        #s4-l1 { position: absolute; left: 64px; right: 120px; top: 290px; text-align: center; font-size: 40px; display: block; }
+        #s4-l2 { position: absolute; left: 64px; right: 120px; top: 350px; text-align: center; font-size: 84px; display: block; white-space: nowrap; }
+        #s4-rcw { position: absolute; left: 392px; top: 520px; width: 240px; height: 240px; display: block; }
+        #s4-rc { width: 240px; height: 240px; }
+        #s4-frame { position: absolute; left: 362px; top: 490px; width: 300px; height: 300px; border-radius: 30px; border: 10px solid #E2718D; opacity: 0; display: block; }
+        #s4-me { position: absolute; left: 112px; top: 880px; width: 800px; height: 330px; display: flex; align-items: center; gap: 30px; padding: 0 40px; }
+        #s4-fl { width: 150px; height: 104px; flex: none; border-radius: 14px; overflow: hidden; display: flex; box-shadow: 0 8px 20px rgba(14, 25, 40, 0.15); }
+        #s4-fl span { flex: 1; display: block; }
+        #s4-mt { display: block; flex: 1; }
+        #s4-ml { font-size: 30px; display: block; }
+        #s4-mn { font-size: 64px; line-height: 1.05; display: block; }
+        #s4-bc { width: 110px; height: 110px; flex: none; }
+      </style>
+      <div id="root" data-composition-id="s4" data-width="1080" data-height="1920">
+        <div id="s4-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s4-l1" class="t-label">Dès que tu factures</span>
+          <span id="s4-l2" class="t-serif">il te faut un <span class="acc">cadre</span></span>
+          <div id="s4-rcw"><img id="s4-rc" class="img3d" src="assets/lib/emoji/receipt.png" alt="" /></div>
+          <div id="s4-frame"></div>
+          <div id="s4-me" class="card">
+            <div id="s4-fl"><span style="background:#2B4C9B"></span><span style="background:#FDF4ED"></span><span style="background:#D8394B"></span></div>
+            <span id="s4-mt"><span id="s4-ml" class="t-label">En France, souvent</span><span id="s4-mn" class="t-serif">la <span class="acc">micro-entreprise</span></span></span>
+          </div>
+          <img id="s4-bc" class="img3d" style="position:absolute;left:800px;top:1150px" src="assets/lib/emoji/briefcase.png" alt="" />
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 8.48, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « factures » 9.12 · « vidéos » 9.68 · « cadre » 10.80 · « France » 11.60 · « créatrices » 12.40 · « micro-entreprise » 13.52
+          tl.fromTo("#s4-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 0);
+          tl.fromTo("#s4-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3 }, at(8.9));
+          tl.fromTo("#s4-rc", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.5)" }, at(9.05));
+          tl.fromTo("#s4-l2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, at(10.3));
+          // le cadre se referme autour de la facture
+          tl.fromTo("#s4-frame", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power4.in" }, at(10.6));
+          tl.fromTo("#s4-rcw", { scale: 1 }, { scale: 0.92, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at(10.95));
+          PX.burst(tl, "#s4-cam", 512, 640, at(10.95), { n: 14, r: 260, seed: 41 });
+          tl.fromTo("#s4-me", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, at(11.45));
+          tl.fromTo("#s4-fl", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, at(11.6));
+          tl.fromTo("#s4-mn", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, at(13.4));
+          tl.fromTo("#s4-bc", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, at(13.6));
+          tl.to("#s4-cam", { x: -1080, filter: "blur(16px)", duration: 0.2, ease: "power3.in" }, at(14.36));
+          window.__timelines["s4"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
