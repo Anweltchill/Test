@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s7-cam { position: absolute; inset: 0; }
+        #s7-l1 { position: absolute; left: 64px; right: 120px; top: 300px; text-align: center; font-size: 100px; display: block; white-space: nowrap; }
+        .s7-c { position: absolute; top: 520px; width: 380px; height: 480px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; text-align: center; }
+        #s7-c1 { left: 112px; }
+        #s7-c2 { left: 532px; }
+        .s7-i { width: 180px; height: 180px; }
+        .s7-t { font-size: 50px; display: block; }
+      </style>
+      <div id="root" data-composition-id="s7" data-width="1080" data-height="1920">
+        <div id="s7-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s7-l1" class="t-serif">Elle te <span class="acc">coûte</span></span>
+          <div id="s7-c1" class="s7-c card"><img class="s7-i img3d" src="assets/lib/emoji/broken-heart.png" alt="" /><span class="s7-t t-serif">Des <span class="acc">collabs</span></span></div>
+          <div id="s7-c2" class="s7-c card"><img class="s7-i img3d" src="assets/lib/emoji/money-with-wings.png" alt="" /><span class="s7-t t-serif">De l'<span class="acc">argent</span></span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 19.5, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « coûte » 19.86 · « collaborations » 20.34 · « argent » 21.38
+          tl.fromTo("#s7-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 0);
+          tl.fromTo("#s7-l1", { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.out" }, at(19.65));
+          tl.fromTo("#s7-c1", { y: 500, rotation: -8 }, { y: 0, rotation: 0, duration: 0.45, ease: "back.out(1.5)" }, at(20.2));
+          tl.fromTo("#s7-c1 .s7-i", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, at(20.35));
+          tl.fromTo("#s7-c2", { y: 500, rotation: 8 }, { y: 0, rotation: 0, duration: 0.45, ease: "back.out(1.5)" }, at(21.2));
+          tl.fromTo("#s7-c2 .s7-i", { scale: 0, y: 0 }, { scale: 1, y: -40, duration: 0.5, ease: "back.out(2)" }, at(21.35));
+          tl.to("#s7-cam", { x: -1080, filter: "blur(16px)", duration: 0.18, ease: "power3.in" }, at(21.72));
+          window.__timelines["s7"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

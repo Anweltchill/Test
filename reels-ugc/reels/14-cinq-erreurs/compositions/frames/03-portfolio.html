@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s3-cam { position: absolute; inset: 0; }
+        #s3-num { position: absolute; left: 112px; top: 290px; width: 150px; height: 150px; border-radius: 50%; background: #E2718D; color: #FDF4ED; font-size: 96px; display: flex; align-items: center; justify-content: center; }
+        #s3-tw { position: absolute; left: 290px; right: 120px; top: 290px; height: 150px; display: flex; align-items: center; }
+        #s3-t { position: relative; font-size: 46px; line-height: 1.1; display: block; white-space: nowrap; }
+        #s3-st { position: absolute; left: -6px; right: -6px; top: 50%; height: 10px; margin-top: -5px; border-radius: 5px; background: #E2718D; display: block; transform-origin: 0% 50%; }
+        #s3-x { position: absolute; left: 820px; top: 270px; width: 100px; height: 100px; opacity: 0; }
+        #s3-pg { position: absolute; left: 112px; top: 520px; width: 800px; height: 560px; display: block; overflow: hidden; }
+        #s3-top { position: absolute; left: 0; right: 0; top: 0; height: 70px; background: #F0E6DD; display: flex; align-items: center; gap: 12px; padding: 0 26px; }
+        .s3-d { width: 18px; height: 18px; border-radius: 50%; background: #DB96A1; display: block; }
+        #s3-404 { position: absolute; left: 0; right: 0; top: 150px; text-align: center; font-size: 140px; color: #E6BDC1; display: block; }
+        #s3-404t { position: absolute; left: 0; right: 0; top: 330px; text-align: center; font-size: 34px; display: block; }
+        #s3-old { position: absolute; inset: 70px 0 0 0; background: #FDF4ED; display: block; opacity: 0; }
+        .s3-th { position: absolute; top: 60px; width: 220px; height: 300px; border-radius: 20px; background: #C2C7DD; filter: grayscale(1) brightness(0.85); display: block; }
+        #s3-date { position: absolute; left: 0; right: 0; top: 390px; text-align: center; font: 600 34px "PxSans", sans-serif; color: #5E5A57; display: block; }
+        #s3-web { position: absolute; left: 20px; top: 10px; width: 150px; height: 150px; }
+        #s3-web2 { position: absolute; right: 20px; bottom: 30px; width: 130px; height: 130px; }
+      </style>
+      <div id="root" data-composition-id="s3" data-width="1080" data-height="1920">
+        <div id="s3-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s3-num" class="t-serif">2</div>
+          <div id="s3-tw"><span id="s3-t" class="t-serif">Portfolio <span class="acc">absent</span> ou <span class="acc">pas à jour</span><span id="s3-st"></span></span></div>
+          <img id="s3-x" class="img3d" src="assets/lib/emoji/cross-mark.png" alt="" />
+          <div id="s3-pg" class="card">
+            <div id="s3-top"><span class="s3-d"></span><span class="s3-d"></span><span class="s3-d"></span></div>
+            <span id="s3-404" class="t-serif">404</span>
+            <span id="s3-404t" class="t-label">Portfolio introuvable</span>
+            <div id="s3-old">
+              <span class="s3-th" style="left:40px"></span><span class="s3-th" style="left:290px"></span><span class="s3-th" style="left:540px"></span>
+              <span id="s3-date">Dernière mise à jour : il y a 1 an</span>
+              <img id="s3-web" src="assets/lib/emoji/spider-web.png" alt="" />
+              <img id="s3-web2" src="assets/lib/emoji/spider-web.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 4.8, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#s3-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 0);
+          tl.fromTo("#s3-num", { scale: 0, rotation: -120 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.5)" }, at(4.85));
+          tl.fromTo("#s3-t", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, at(5.4));
+          tl.fromTo("#s3-st", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.out" }, at(7.9));
+          tl.fromTo("#s3-x", { opacity: 0, scale: 2.4, rotation: -30 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.3, ease: "power4.in" }, at(7.9 + 0.1));
+          tl.fromTo("#s3-pg", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, at(5.3));
+          tl.fromTo("#s3-404", { scale: 2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.in" }, at(5.7));
+          tl.fromTo("#s3-pg", { x: 0 }, { x: 10, duration: 0.05, yoyo: true, repeat: 3, ease: "none", immediateRender: false }, at(6.0));
+          tl.fromTo("#s3-old", { opacity: 0 }, { opacity: 1, duration: 0.3 }, at(6.75));
+          tl.fromTo(".s3-th", { y: 200, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.6)", stagger: 0.08 }, at(6.8));
+          tl.fromTo("#s3-date", { opacity: 0 }, { opacity: 1, duration: 0.3 }, at(7.45));
+          tl.fromTo(["#s3-web", "#s3-web2"], { scale: 0, opacity: 0 }, { scale: 1, opacity: 0.9, duration: 0.4, ease: "back.out(2)", stagger: 0.15 }, at(7.5));
+          tl.to("#s3-cam", { x: -1080, filter: "blur(16px)", duration: 0.2, ease: "power3.in" }, at(8.2));
+          window.__timelines["s3"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

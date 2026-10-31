@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .cap-g { position: absolute; left: 64px; right: 120px; top: 1400px; text-align: center; opacity: 0; display: block; }
+        .cap-w { position: relative; display: inline-block; margin: 0 6px; font: 600 58px "PxSans", sans-serif; color: #0E1928; padding: 4px 14px; }
+        .cap-bg { position: absolute; inset: 0; border-radius: 16px; background: #E6BDC1; opacity: 0; display: block; }
+        .cap-t { position: relative; display: inline-block; }
+      </style>
+      <div id="root" data-composition-id="cap" data-width="1080" data-height="1920">
+        <div id="cap-box"></div>
+      </div>
+      <script>
+        (function () {
+          const G = [[["Cinq", 0.05], ["erreurs", 0.32], ["qui", 0.72]], [["font", 0.88], ["fuir", 1.12]], [["les", 1.44], ["marques.", 1.6]], [["Un :", 2.08]], [["Une", 2.64], ["bio", 2.8], ["où", 3.2]], [["on", 3.36], ["ne", 3.52], ["comprend", 3.68]], [["pas", 3.92], ["ce", 4.08], ["que", 4.16]], [["tu", 4.24], ["fais.", 4.4]], [["Deux :", 4.88]], [["Pas", 5.44], ["de", 5.68], ["portfolio", 5.76]], [["ou", 6.48], ["un", 6.72], ["portfolio", 6.88]], [["jamais", 7.44], ["mis", 7.76]], [["à", 7.92], ["jour.", 8.08]], [["Trois :", 8.48]], [["Un", 9.04], ["message", 9.12], ["copié-collé,", 9.44]], [["envoyé", 10.4], ["à", 10.8], ["100", 10.96], ["marques.", 11.28]], [["Quatre :", 11.86]], [["Rester", 12.34], ["sur", 12.74], ["ce", 12.9]], [["que", 12.98], ["tu", 13.06], ["sais", 13.22]], [["faire", 13.54], ["sans", 13.86], ["jamais", 14.1]], [["tester", 14.34], ["de", 14.74]], [["nouveaux", 14.82], ["formats.", 15.14]], [["Et", 15.54], ["la", 15.7], ["cinquième,", 15.94]], [["c'est", 16.5], ["la", 16.74], ["plus", 16.9], ["fréquente.", 17.06]], [["Souvent,", 17.78]], [["on", 18.18], ["ne", 18.26], ["s'en", 18.34]], [["rend", 18.58], ["même", 18.82]], [["pas", 18.98], ["compte.", 19.14]], [["Elle", 19.54], ["te", 19.7], ["coûte", 19.86]], [["des", 20.18], ["collaborations", 20.34], ["et", 21.06]], [["de", 21.22], ["l'argent.", 21.38]], [["Si", 21.94], ["tu", 22.1], ["veux", 22.26]], [["la", 22.42], ["connaître", 22.58], ["et", 22.98]], [["surtout", 23.22], ["savoir", 23.54]], [["comment", 23.86], ["l'éviter,", 24.1]], [["écris", 24.82], ["ERREUR", 25.3], ["en", 25.7]], [["message", 25.78], ["privé.", 26.18]], [["On", 26.58], ["en", 26.74], ["parle.", 26.9]]];
+          const END = 28.8;
+          const box = document.querySelector("#cap-box");
+          const tl = gsap.timeline({ paused: true });
+          G.forEach((g, gi) => {
+            const el = document.createElement("div");
+            el.className = "cap-g";
+            el.id = "cap-g" + gi;
+            g.forEach((w, wi) => {
+              const s = document.createElement("span");
+              s.className = "cap-w";
+              s.innerHTML = '<span class="cap-bg"></span><span class="cap-t"></span>';
+              s.querySelector(".cap-t").textContent = w[0];
+              el.appendChild(s);
+            });
+            box.appendChild(el);
+            const t0 = Math.max(0, g[0][1] - 0.06);
+            const t1 = gi + 1 < G.length ? Math.max(t0 + 0.2, G[gi + 1][0][1] - 0.06) : END;
+            tl.fromTo(el, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.14, ease: "power2.out" }, t0);
+            if (gi + 1 < G.length) tl.to(el, { opacity: 0, duration: 0.06 }, t1 - 0.06);
+            const words = el.querySelectorAll(".cap-w");
+            g.forEach((w, wi) => {
+              const bg = words[wi].querySelector(".cap-bg");
+              const wEnd = wi + 1 < g.length ? g[wi + 1][1] : t1;
+              tl.fromTo(bg, { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.1, ease: "back.out(2)" }, Math.max(t0, w[1] - 0.03));
+              if (wi + 1 < g.length) tl.to(bg, { opacity: 0, duration: 0.08 }, Math.max(t0 + 0.05, wEnd - 0.03));
+            });
+          });
+          window.__timelines["cap"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

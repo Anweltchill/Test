@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s2-cam { position: absolute; inset: 0; }
+        #s2-num { position: absolute; left: 112px; top: 290px; width: 150px; height: 150px; border-radius: 50%; background: #E2718D; color: #FDF4ED; font-size: 96px; display: flex; align-items: center; justify-content: center; }
+        #s2-tw { position: absolute; left: 290px; right: 120px; top: 290px; height: 150px; display: flex; align-items: center; }
+        #s2-t { position: relative; font-size: 46px; line-height: 1.1; display: block; white-space: nowrap; }
+        #s2-st { position: absolute; left: -6px; right: -6px; top: 50%; height: 10px; margin-top: -5px; border-radius: 5px; background: #E2718D; display: block; transform-origin: 0% 50%; }
+        #s2-x { position: absolute; left: 820px; top: 270px; width: 100px; height: 100px; opacity: 0; }
+        #s2-prof { position: absolute; left: 112px; top: 520px; width: 800px; height: 500px; display: block; }
+        #s2-avw { position: absolute; left: 40px; top: 40px; width: 170px; height: 170px; border-radius: 50%; padding: 6px; background: linear-gradient(45deg, #F9CE34, #EE2A7B 55%, #6228D7); display: block; }
+        #s2-avin { width: 100%; height: 100%; border-radius: 50%; background: #FDF4ED; display: flex; align-items: center; justify-content: center; }
+        #s2-av { width: 110px; height: 110px; }
+        #s2-ps { position: absolute; left: 250px; top: 70px; font: 600 42px "PxSans", sans-serif; display: block; }
+        #s2-bio { position: absolute; left: 40px; right: 40px; top: 260px; font: 400 40px/1.35 "PxSans", sans-serif; display: block; filter: blur(0px); }
+        #s2-q { position: absolute; left: 700px; top: 980px; width: 170px; height: 170px; opacity: 0; }
+      </style>
+      <div id="root" data-composition-id="s2" data-width="1080" data-height="1920">
+        <div id="s2-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s2-num" class="t-serif">1</div>
+          <div id="s2-tw"><span id="s2-t" class="t-serif">Une bio <span class="acc">floue</span><span id="s2-st"></span></span></div>
+          <img id="s2-x" class="img3d" src="assets/lib/emoji/cross-mark.png" alt="" />
+          <div id="s2-prof" class="card">
+            <div id="s2-avw"><div id="s2-avin"><img id="s2-av" class="img3d" src="assets/lib/emoji/woman-raising-hand.png" alt="" /></div></div>
+            <span id="s2-ps">ton.profil</span>
+            <span id="s2-bio">vibes · lifestyle · un peu de tout · rêveuse · DM ouverts</span>
+          </div>
+          <img id="s2-q" class="img3d" src="assets/lib/emoji/thinking-face.png" alt="" />
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 2.0, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#s2-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 0);
+          tl.fromTo("#s2-num", { scale: 0, rotation: -120 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.5)" }, at(2.05));
+          tl.fromTo("#s2-t", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, at(2.6));
+          tl.fromTo("#s2-st", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.out" }, at(4.35));
+          tl.fromTo("#s2-x", { opacity: 0, scale: 2.4, rotation: -30 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.3, ease: "power4.in" }, at(4.35 + 0.1));
+          // « bio » 2.80 · « on ne comprend pas » 3.36–3.92 · « ce que tu fais » 4.08–4.40
+          tl.fromTo("#s2-prof", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, at(2.55));
+          tl.fromTo("#s2-av", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, at(2.7));
+          tl.fromTo("#s2-bio", { filter: "blur(0px)" }, { filter: "blur(9px)", duration: 0.6, ease: "power2.in" }, at(3.3));
+          tl.fromTo("#s2-q", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(3)" }, at(3.7));
+          tl.fromTo("#s2-q", { rotation: -10 }, { rotation: 10, duration: 0.2, yoyo: true, repeat: 2, ease: "sine.inOut", immediateRender: false }, at(4.05));
+          tl.to("#s2-cam", { x: -1080, filter: "blur(16px)", duration: 0.2, ease: "power3.in" }, at(4.62));
+          window.__timelines["s2"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
