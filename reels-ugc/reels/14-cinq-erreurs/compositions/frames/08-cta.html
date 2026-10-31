@@ -51,8 +51,8 @@
           tl.fromTo("#s8-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.24, ease: "power3.out" }, 0);
           PX.letters(tl, "#s8-q", at(22.1), { y: 80, stagger: 0.03, dur: 0.4 });
           tl.fromTo("#s8-q", { scale: 1 }, { scale: 1.06, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at(23.4));
-          tl.fromTo("#s8-dm", { y: 160, opacity: 0, rotationX: -25 }, { y: 0, opacity: 1, rotationX: 0, duration: 0.45, ease: "expo.out", transformPerspective: 1400 }, at(23.9));
-          tl.fromTo("#s8-ig", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(24.05));
+          tl.fromTo("#s8-dm", { y: 160, opacity: 0, rotationX: -25 }, { y: 0, opacity: 1, rotationX: 0, duration: 0.45, ease: "expo.out", transformPerspective: 1400 }, at(22.45));
+          tl.fromTo("#s8-ig", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(3)" }, at(22.6));
           const txt = document.querySelector("#s8-txt"), ph = document.querySelector("#s8-ph"), W = "ERREUR";
           const ty = { _v: 0, get v() { return this._v; }, set v(x) { this._v = x; const n = Math.round(x); txt.textContent = W.slice(0, n); ph.style.display = n > 0 ? "none" : "block"; } };
           tl.fromTo(ty, { v: 0 }, { v: 6, duration: 0.5, ease: "none" }, at(24.85));
