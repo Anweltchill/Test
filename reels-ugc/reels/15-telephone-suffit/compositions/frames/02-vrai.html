@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s2-cam { position: absolute; inset: 0; }
+        #s2-l1 { position: absolute; left: 64px; right: 120px; top: 290px; text-align: center; font-size: 40px; display: block; }
+        #s2-tvc { position: absolute; left: 262px; top: 360px; width: 500px; height: 360px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
+        #s2-tv { width: 200px; height: 200px; }
+        #s2-tvt { font-size: 50px; display: block; }
+        #s2-x { position: absolute; left: 650px; top: 330px; width: 130px; height: 130px; opacity: 0; }
+        #s2-l2 { position: absolute; left: 64px; right: 120px; top: 800px; text-align: center; font-size: 50px; display: block; }
+        .s2-ch { position: absolute; top: 900px; width: 380px; height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
+        #s2-c1 { left: 112px; }
+        #s2-c2 { left: 532px; }
+        .s2-ci { width: 130px; height: 130px; }
+        .s2-ct { font-size: 60px; display: block; }
+      </style>
+      <div id="root" data-composition-id="s2" data-width="1080" data-height="1920">
+        <div id="s2-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s2-l1" class="t-label">Les marques ne veulent pas</span>
+          <div id="s2-tvc" class="card"><img id="s2-tv" class="img3d" src="assets/lib/emoji/television.png" alt="" /><span id="s2-tvt" class="t-serif">un spot télé</span></div>
+          <img id="s2-x" class="img3d" src="assets/lib/emoji/cross-mark.png" alt="" />
+          <span id="s2-l2" class="t-serif">Elles veulent…</span>
+          <div id="s2-c1" class="s2-ch card"><img class="s2-ci img3d" src="assets/lib/emoji/red-heart.png" alt="" /><span class="s2-ct t-serif acc">du vrai</span></div>
+          <div id="s2-c2" class="s2-ch card"><img class="s2-ci img3d" src="assets/lib/emoji/sunflower.png" alt="" /><span class="s2-ct t-serif acc">du naturel</span></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 2.6, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « marques » 3.57 · « spot télé » 4.45–4.77 · « vrai » 5.81 · « naturel » 6.45
+          tl.fromTo("#s2-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 0);
+          tl.fromTo("#s2-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3 }, at(3.4));
+          tl.fromTo("#s2-tvc", { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }, at(4.25));
+          tl.fromTo("#s2-x", { opacity: 0, scale: 2.5, rotation: -30 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.3, ease: "power4.in" }, at(4.85));
+          tl.to("#s2-tvc", { opacity: 0.45, duration: 0.3 }, at(5.1));
+          tl.fromTo("#s2-l2", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3 }, at(5.2));
+          tl.fromTo("#s2-c1", { y: 400, rotation: -8 }, { y: 0, rotation: 0, duration: 0.45, ease: "back.out(1.6)" }, at(5.7));
+          tl.fromTo("#s2-c2", { y: 400, rotation: 8 }, { y: 0, rotation: 0, duration: 0.45, ease: "back.out(1.6)" }, at(6.35));
+          tl.fromTo("#s2-c1 .s2-ci", { scale: 1 }, { scale: 1.2, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at(6.0));
+          PX.burst(tl, "#s2-cam", 722, 1030, at(6.6), { n: 14, r: 260, seed: 26 });
+          tl.to("#s2-cam", { x: -1080, filter: "blur(16px)", duration: 0.2, ease: "power3.in" }, at(6.9));
+          window.__timelines["s2"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

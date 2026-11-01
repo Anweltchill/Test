@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s3-cam { position: absolute; inset: 0; }
+        #s3-l1 { position: absolute; left: 64px; right: 120px; top: 290px; text-align: center; font-size: 40px; display: block; }
+        #s3-l2 { position: absolute; left: 64px; right: 120px; top: 350px; text-align: center; font-size: 96px; display: block; white-space: nowrap; }
+        #s3-chat { position: absolute; left: 112px; top: 540px; width: 800px; height: 600px; display: block; }
+        #s3-avw { position: absolute; left: 36px; top: 40px; width: 120px; height: 120px; border-radius: 50%; background: #F0E6DD; display: flex; align-items: center; justify-content: center; }
+        #s3-av { width: 90px; height: 90px; }
+        #s3-b1 { position: absolute; left: 180px; top: 50px; background: #F0E6DD; border-radius: 34px 34px 34px 8px; padding: 22px 32px; font: 500 40px "PxSans", sans-serif; display: block; white-space: nowrap; }
+        #s3-b2 { position: absolute; left: 180px; top: 170px; width: 340px; height: 340px; border-radius: 30px; background: linear-gradient(160deg, #E6BDC1, #DB96A1); display: flex; align-items: center; justify-content: center; }
+        #s3-pr { width: 170px; height: 170px; }
+        #s3-pl { position: absolute; right: 16px; bottom: 16px; width: 60px; height: 60px; }
+        #s3-ht { position: absolute; left: 560px; top: 400px; width: 120px; height: 120px; opacity: 0; }
+      </style>
+      <div id="root" data-composition-id="s3" data-width="1080" data-height="1920">
+        <div id="s3-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <span id="s3-l1" class="t-label">Une vidéo comme celle</span>
+          <span id="s3-l2" class="t-serif">d'une <span class="acc">amie</span></span>
+          <div id="s3-chat" class="card">
+            <div id="s3-avw"><img id="s3-av" class="img3d" src="assets/lib/emoji/woman-raising-hand.png" alt="" /></div>
+            <span id="s3-b1">Faut que tu testes ça !</span>
+            <div id="s3-b2"><img id="s3-pr" class="img3d" src="assets/lib/emoji/lotion-bottle.png" alt="" /><img id="s3-pl" src="assets/lib/emoji/play-button.png" alt="" /></div>
+            <img id="s3-ht" class="img3d" src="assets/lib/emoji/red-heart.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const T0 = 7.1, at = (t) => Math.max(0, t - T0);
+          const tl = gsap.timeline({ paused: true });
+          // « vidéo » 7.33 · « amie » 8.69 · « recommande » 9.33 · « produit » 9.81
+          tl.fromTo("#s3-cam", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 0);
+          tl.fromTo("#s3-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3 }, at(7.2));
+          tl.fromTo("#s3-l2", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power4.out" }, at(8.55));
+          tl.fromTo("#s3-chat", { y: 400, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, at(7.4));
+          tl.fromTo("#s3-av", { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(3)" }, at(8.6));
+          tl.fromTo("#s3-b1", { scale: 0.4, opacity: 0, transformOrigin: "0% 100%" }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(2)" }, at(9.0));
+          tl.fromTo("#s3-b2", { scale: 0.4, opacity: 0, transformOrigin: "0% 0%" }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }, at(9.4));
+          tl.fromTo("#s3-pr", { rotation: -30 }, { rotation: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" }, at(9.55));
+          tl.fromTo("#s3-ht", { opacity: 0, scale: 0, y: 40 }, { opacity: 1, scale: 1, y: -40, duration: 0.45, ease: "back.out(3)" }, at(9.8));
+          tl.to("#s3-cam", { x: -1080, filter: "blur(16px)", duration: 0.2, ease: "power3.in" }, at(10.0));
+          window.__timelines["s3"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

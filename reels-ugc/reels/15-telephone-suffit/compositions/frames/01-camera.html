@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/brand.css" />
+      <script src="assets/gsap.min.js"></script>
+      <script src="assets/fx.js"></script>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s1-cam { position: absolute; inset: 0; }
+        #s1-cc { position: absolute; left: 172px; top: 300px; width: 680px; height: 400px; display: flex; align-items: center; justify-content: center; gap: 30px; }
+        #s1-vc { width: 220px; height: 220px; }
+        #s1-pr { font-size: 90px; display: block; white-space: nowrap; }
+        #s1-bar { position: absolute; left: 140px; top: 485px; width: 744px; height: 16px; border-radius: 8px; background: #E2718D; transform-origin: 0% 50%; display: block; }
+        #s1-phw { position: absolute; left: 377px; top: 760px; width: 270px; height: 270px; display: block; }
+        #s1-ph { width: 270px; height: 270px; }
+        #s1-ok { position: absolute; left: 64px; right: 120px; top: 1080px; text-align: center; font-size: 100px; display: block; white-space: nowrap; }
+      </style>
+      <div id="root" data-composition-id="s1" data-width="1080" data-height="1920">
+        <div id="s1-cam" data-layout-allow-overflow data-layout-allow-overlap>
+          <div id="s1-cc" class="card"><img id="s1-vc" class="img3d" src="assets/lib/emoji/video-camera.png" alt="" /><span id="s1-pr" class="t-serif">1 000 €</span></div>
+          <span id="s1-bar"></span>
+          <div id="s1-phw"><img id="s1-ph" class="img3d" src="assets/lib/emoji/mobile-phone.png" alt="" /></div>
+          <span id="s1-ok" class="t-serif">Ton <span class="acc">téléphone</span></span>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          // « caméra » 0.32 · « 1000 € » 0.80 · « Ton téléphone » 1.44–1.68 · « suffit » 2.08
+          tl.fromTo("#s1-cc", { y: -400, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.6)" }, 0.05);
+          tl.fromTo("#s1-vc", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, 0.2);
+          tl.fromTo("#s1-pr", { opacity: 0, scale: 2 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.in" }, 0.7);
+          tl.fromTo("#s1-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.25, ease: "power2.out" }, 1.15);
+          tl.to("#s1-cc", { opacity: 0.4, scale: 0.92, duration: 0.3 }, 1.3);
+          tl.fromTo("#s1-ph", { x: 900, rotation: 30 }, { x: 0, rotation: 0, duration: 0.45, ease: "back.out(1.6)" }, 1.4);
+          tl.fromTo("#s1-ok", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "power4.out" }, 1.5);
+          tl.fromTo("#s1-phw", { scale: 1 }, { scale: 1.15, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, 2.08);
+          PX.burst(tl, "#s1-cam", 512, 895, 2.1, { n: 18, r: 380, seed: 15 });
+          tl.to("#s1-cam", { x: -1080, filter: "blur(16px)", duration: 0.2, ease: "power3.in" }, 2.42);
+          window.__timelines["s1"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
