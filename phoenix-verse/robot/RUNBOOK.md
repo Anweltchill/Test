@@ -48,7 +48,7 @@ b. S'il en manque, prends la plus ancienne vidéo `status='pending' and rights_o
    - `update phoenix_verse.videos set status='processing', processing_started_at=now() where id=<id>;`
    - `pv_worker.py download --path <storage_path> --out /tmp/pvw/video_<id>.mp4`
    - musiques : `select id from phoenix_verse.sounds where favorite and kind='music' and stored_path is not null order by use_count, random() limit 6;`
-   - `pv_worker.py plan --video /tmp/pvw/video_<id>.mp4 --max-clips 18 --music id1,id2,... --out /tmp/pvw/plan_<id>.json`
+   - `pv_worker.py plan --video /tmp/pvw/video_<id>.mp4 --max-clips 40 --music id1,id2,... --out /tmp/pvw/plan_<id>.json`
    - pour chaque clip du plan, insère une ligne `phoenix_verse.clips` : video_id, clip_index, status 'planned', format 'edit', music_id, et `plan` = l'objet clip du JSON. Mets à jour `videos.clips_planned`.
    - si le plan n'a aucun clip : `status='processed'`, `error='Vidéo trop courte pour un clip'`, puis `pv_worker.py delete --path <storage_path>`.
    Recommence (a).

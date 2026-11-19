@@ -142,24 +142,27 @@ def cmd_plan(a):
     musics = [m for m in a.music.split(",") if m]
     if not musics:
         raise SystemExit("aucune musique favorite")
-    # nombre de clips selon la durée et la richesse de la vidéo (1 clip ≈ 4 min de vidéo, entre 1 et max)
-    target_len = 75.0
-    n_clips = int(max(1 if dur >= 65 else 0, min(a.max_clips, dur // 240)))
+    # MAXIMUM de clips : autant de fenêtres de ~70 s que la vidéo en contient (sans recouvrement),
+    # en écartant seulement les passages vides (écran noir, silence, menus)
+    target_len = 70.0
+    n_clips = int(max(1 if dur >= 60 else 0, min(a.max_clips, dur // 72)))
     win = int(target_len * 2)
     cum = np.concatenate([[0], np.cumsum(score)])
+    empty = ((bri < 22) | (loud < -50)).astype(float)          # écran noir ou silence
+    cum_e = np.concatenate([[0], np.cumsum(empty)])
     taken, picks = np.zeros(len(score), bool), []
     while len(picks) < n_clips:
         best, bi = -1e9, None
-        for i in range(0, max(1, len(score) - win), 4):
-            if taken[i:i + win].any():
+        for i in range(0, max(1, len(score) - win + 1), 2):
+            if taken[i:i + win].any() or (cum_e[min(len(empty), i + win)] - cum_e[i]) / win > 0.6:
                 continue
             v = (cum[i + win] - cum[i]) / win
             if v > best:
                 best, bi = v, i
-        if bi is None:
+        if bi is None:          # plus aucune fenêtre libre et non vide
             break
         picks.append((bi / 2, best))
-        taken[max(0, bi - 20):bi + win + 20] = True
+        taken[max(0, bi - 2):bi + win + 2] = True
     picks.sort()
     clips = []
     for k, (t0, sc) in enumerate(picks):
