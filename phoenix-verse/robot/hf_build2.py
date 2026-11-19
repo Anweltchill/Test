@@ -91,17 +91,38 @@ def build(plan, out):
     # ---- musique : fenêtre la plus intense, coupes sur les vrais temps
     m = json.load(open(plan["music_map"]))
     beats = m["grid"]["beats_sec"]
-    n_beats = sum(c["beats"] for c in plan["cuts"])
-    b0, e = pick_music_window(m, n_beats + 2)
-    t_music0 = beats[b0]
-    bounds = [0.0]
-    acc = 0
-    for c in plan["cuts"]:
-        acc += c["beats"]
-        bounds.append(beats[b0 + acc] - t_music0)
+    moments = all("dur" in c for c in plan["cuts"])
+    if moments:
+        # mode « moments forts » : chaque plan = un moment choisi ; fins de plans recalées sur le temps le plus proche
+        beat = 60.0 / max(60, min(190, m["tempo"]["bpm"]))
+        want = sum(c["dur"] for c in plan["cuts"])
+        n_beats = int(want / beat) + 2
+        if len(beats) > n_beats + 4:
+            b0, e = pick_music_window(m, n_beats)
+        else:
+            b0, e = 0, 0.0
+        t_music0 = beats[b0] if beats else 0.0
+        rel = [b - t_music0 for b in beats[b0:]]
+        bounds, acc = [0.0], 0.0
+        for c in plan["cuts"]:
+            acc += c["dur"]
+            cand = [r for r in rel if r > bounds[-1] + 1.6]
+            snap = min(cand, key=lambda r: abs(r - acc)) if cand else acc
+            bounds.append(snap if abs(snap - acc) < 0.45 else max(acc, bounds[-1] + 1.6))
+        for i, c in enumerate(plan["cuts"]):
+            c["voice"] = False
+    else:
+        n_beats = sum(c["beats"] for c in plan["cuts"])
+        b0, e = pick_music_window(m, n_beats + 2)
+        t_music0 = beats[b0]
+        bounds = [0.0]
+        acc = 0
+        for c in plan["cuts"]:
+            acc += c["beats"]
+            bounds.append(beats[b0 + acc] - t_music0)
     end_cut = bounds[-1]
     # mode « continu » : plans consécutifs d'une même fenêtre, une seule piste voix (aucun clic aux coupes)
-    if plan.get("continuous"):
+    if plan.get("continuous") and not moments:
         w0 = float(plan["window_start"])
         for i, c in enumerate(plan["cuts"]):
             c["src"] = w0 + bounds[i]
@@ -128,48 +149,72 @@ def build(plan, out):
         vis = d + (0.12 if i < len(plan["cuts"]) - 1 else 0)
         voice = bool(c.get("voice"))
         seg = f"seg{i:02d}.mp4"
-        run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-ss", f"{c['src']:.3f}", "-i", plan["video"], "-t", f"{vis * sp + 0.3:.3f}",
-             "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-r", "30", "-g", "15", "-c:a", "aac", "-b:a", "160k", "-ar", "44100", A(seg)])
-        vend = None
-        if voice and c.get("voice_end"):
-            vend = max(0.3, min(d, (c["voice_end"] - c["src"]) / sp))
-        if voice and vend is not None and vend < d - 0.05:
-            vl = json.dumps({"version": 1, "lanes": [{"target": "volume", "points": [{"t": 0, "v": 1}, {"t": round(vend, 3), "v": 1}, {"t": round(min(d, vend + 0.12), 3), "v": 0}]}]})
-            aud = f"data-has-audio=\"true\" data-volume=\"1\" data-automation='{vl}'"
+        if moments:
+            # une seule vidéo continue (montage.mp4) : effets de coupe appliqués sur le cadre, jamais de plan manquant
+            if i > 0:
+                tr = c.get("tr", "punch")
+                if tr == "punch":
+                    js.append(f'tl.fromTo("#fgbox0",{{scale:1.28}},{{scale:1,duration:0.2,ease:"expo.out",immediateRender:false}},{t0:.3f});')
+                elif tr == "whip":
+                    js.append(f'tl.fromTo("#fgbox0",{{x:-140,filter:"blur(22px)"}},{{x:0,filter:"blur(0px)",duration:0.2,ease:"expo.out",immediateRender:false}},{t0:.3f});')
+                elif tr == "slide":
+                    js.append(f'tl.fromTo("#fgbox0",{{x:160}},{{x:0,duration:0.2,ease:"expo.out",immediateRender:false}},{t0:.3f});')
+                else:
+                    js.append(f'tl.fromTo("#flash",{{opacity:0.7}},{{opacity:0,duration:0.2,ease:"power2.out",immediateRender:false}},{t0:.3f});')
+            z = c.get("zoom", 1.1)
+            tp = t0 + c["peak"] if c.get("peak") is not None and 0.3 < c["peak"] < d - 0.3 else None
+            if tp is not None:   # zoom d'impact sur le pic du moment (coup, tir, chute)
+                js.append(f'tl.fromTo("#punch0",{{scale:1}},{{scale:{z:.3f},duration:0.08,ease:"power4.out",immediateRender:false}},{tp:.3f});')
+                js.append(f'tl.to("#punch0",{{scale:1,duration:0.45,ease:"power2.out"}},{tp + 0.08:.3f});')
+                js.append(f'tl.fromTo("#flash",{{opacity:0.25}},{{opacity:0,duration:0.12,immediateRender:false}},{tp:.3f});')
         else:
-            aud = 'data-has-audio="true" data-volume="1"' if voice else "muted"
-        html.append(f'''
-      <div class="cut" id="c{i}" style="z-index:{10 + i}">
-        <video id="bg{i}" class="clip bgv" src="assets/{seg}" data-start="{t0:.3f}" data-duration="{vis:.3f}" data-media-start="0"
-          data-playback-rate="{sp}" data-track-index="{i * 2}" muted playsinline></video>
-        <div class="fgbox" id="fgbox{i}"><div class="punch" id="punch{i}"><video id="fg{i}" class="clip fgv" src="assets/{seg}"
-          data-start="{t0:.3f}" data-duration="{vis:.3f}" data-media-start="0" data-playback-rate="{sp}" data-track-index="{i * 2 + 1}"
-          {aud} playsinline></video></div></div>
-      </div>''')
-        tr = c.get("tr", "slide")
-        sel = f"#c{i}"
-        if i == 0:
-            js.append(f'tl.set("{sel}",{{opacity:1}},0);')
-        elif tr == "slide":
-            js.append(f'tl.fromTo("{sel}",{{x:{W},opacity:1}},{{x:0,duration:0.22,ease:"expo.out",immediateRender:false}},{t0:.3f});')
-            js.append(f'tl.to("#c{i-1}",{{x:-260,duration:0.22,ease:"expo.out"}},{t0:.3f});')
-        elif tr == "punch":
-            js.append(f'tl.fromTo("{sel}",{{scale:1.35,opacity:0}},{{scale:1,opacity:1,duration:0.18,ease:"expo.out",immediateRender:false}},{t0:.3f});')
-        elif tr == "whip":
-            js.append(f'tl.fromTo("{sel}",{{x:-{W},opacity:1,filter:"blur(28px)"}},{{x:0,filter:"blur(0px)",duration:0.22,ease:"expo.out",immediateRender:false}},{t0:.3f});')
-            js.append(f'tl.to("#c{i-1}",{{x:{W // 3},filter:"blur(24px)",duration:0.22,ease:"expo.out"}},{t0:.3f});')
-        elif tr == "flash":
-            js.append(f'tl.set("{sel}",{{opacity:1}},{t0:.3f});')
-            js.append(f'tl.fromTo("#flash",{{opacity:0.75}},{{opacity:0,duration:0.2,ease:"power2.out",immediateRender:false}},{t0:.3f});')
-        if i > 0:
-            js.append(f'tl.set("#c{i-1}",{{opacity:0}},{t0 + 0.26:.3f});')
-        z = c.get("zoom", 1.1)
-        js.append(f'tl.fromTo("#fgbox{i}",{{scale:1.0}},{{scale:{1 + (z - 1) * 0.6:.3f},duration:{d:.3f},ease:"none"}},{t0:.3f});')
-        # punch-in sur le 3e temps d'un plan long (temps réel du morceau)
-        if c["beats"] >= 4:
-            tp = beats[b0 + sum(x["beats"] for x in plan["cuts"][:i]) + 2] - t_music0
-            js.append(f'tl.fromTo("#punch{i}",{{scale:1}},{{scale:{z:.3f},duration:0.08,ease:"power4.out",immediateRender:false}},{tp:.3f});')
-            js.append(f'tl.to("#punch{i}",{{scale:1,duration:0.4,ease:"power2.out"}},{tp + 0.08:.3f});')
+            run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-ss", f"{c['src']:.3f}", "-i", plan["video"], "-t", f"{vis * sp + 0.3:.3f}",
+                 "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-r", "30", "-g", "15", "-c:a", "aac", "-b:a", "160k", "-ar", "44100", A(seg)])
+            vend = None
+            if voice and c.get("voice_end"):
+                vend = max(0.3, min(d, (c["voice_end"] - c["src"]) / sp))
+            if voice and vend is not None and vend < d - 0.05:
+                vl = json.dumps({"version": 1, "lanes": [{"target": "volume", "points": [{"t": 0, "v": 1}, {"t": round(vend, 3), "v": 1}, {"t": round(min(d, vend + 0.12), 3), "v": 0}]}]})
+                aud = f"data-has-audio=\"true\" data-volume=\"1\" data-automation='{vl}'"
+            else:
+                aud = 'data-has-audio="true" data-volume="1"' if voice else "muted"
+            html.append(f'''
+          <div class="cut" id="c{i}" style="z-index:{10 + i}">
+            <video id="bg{i}" class="clip bgv" src="assets/{seg}" data-start="{t0:.3f}" data-duration="{vis:.3f}" data-media-start="0"
+              data-playback-rate="{sp}" data-track-index="{i * 2}" muted playsinline></video>
+            <div class="fgbox" id="fgbox{i}"><div class="punch" id="punch{i}"><video id="fg{i}" class="clip fgv" src="assets/{seg}"
+              data-start="{t0:.3f}" data-duration="{vis:.3f}" data-media-start="0" data-playback-rate="{sp}" data-track-index="{i * 2 + 1}"
+              {aud} playsinline></video></div></div>
+          </div>''')
+            tr = c.get("tr", "slide")
+            sel = f"#c{i}"
+            if i == 0:
+                js.append(f'tl.set("{sel}",{{opacity:1}},0);')
+            elif tr == "slide":
+                js.append(f'tl.fromTo("{sel}",{{x:{W},opacity:1}},{{x:0,duration:0.22,ease:"expo.out",immediateRender:false}},{t0:.3f});')
+                js.append(f'tl.to("#c{i-1}",{{x:-260,duration:0.22,ease:"expo.out"}},{t0:.3f});')
+            elif tr == "punch":
+                js.append(f'tl.fromTo("{sel}",{{scale:1.35,opacity:0}},{{scale:1,opacity:1,duration:0.18,ease:"expo.out",immediateRender:false}},{t0:.3f});')
+            elif tr == "whip":
+                js.append(f'tl.fromTo("{sel}",{{x:-{W},opacity:1,filter:"blur(28px)"}},{{x:0,filter:"blur(0px)",duration:0.22,ease:"expo.out",immediateRender:false}},{t0:.3f});')
+                js.append(f'tl.to("#c{i-1}",{{x:{W // 3},filter:"blur(24px)",duration:0.22,ease:"expo.out"}},{t0:.3f});')
+            elif tr == "flash":
+                js.append(f'tl.set("{sel}",{{opacity:1}},{t0:.3f});')
+                js.append(f'tl.fromTo("#flash",{{opacity:0.75}},{{opacity:0,duration:0.2,ease:"power2.out",immediateRender:false}},{t0:.3f});')
+            if i > 0:
+                js.append(f'tl.set("#c{i-1}",{{opacity:0}},{t0 + 0.26:.3f});')
+            z = c.get("zoom", 1.1)
+            js.append(f'tl.fromTo("#fgbox{i}",{{scale:1.0}},{{scale:{1 + (z - 1) * 0.6:.3f},duration:{d:.3f},ease:"none"}},{t0:.3f});')
+            # punch-in sur le 3e temps d'un plan long (temps réel du morceau)
+            tp = None
+            if moments:
+                if c.get("peak") is not None and 0.3 < c["peak"] < d - 0.3:
+                    tp = t0 + c["peak"]
+            elif c["beats"] >= 4:
+                tp = beats[b0 + sum(x["beats"] for x in plan["cuts"][:i]) + 2] - t_music0
+            if tp is not None:
+                js.append(f'tl.fromTo("#punch{i}",{{scale:1}},{{scale:{z:.3f},duration:0.08,ease:"power4.out",immediateRender:false}},{tp:.3f});')
+                js.append(f'tl.to("#punch{i}",{{scale:1,duration:0.4,ease:"power2.out"}},{tp + 0.08:.3f});')
         # textes d'impact (marque) : en haut et en bas
         for kind, key in (("top", "top"), ("lab", "label")):
             if c.get(key):
@@ -226,7 +271,7 @@ def build(plan, out):
         e0 = end_cut
         html.append('''
       <div id="end" style="z-index:100"><img id="endlogo" src="assets/logo.png"/><div id="endname">PHOENIX VERSE</div><div id="endsub">ABONNE-TOI</div></div>''')
-        js += [f'tl.set("#c{len(plan["cuts"])-1}",{{opacity:0}},{e0 + 0.02:.3f});',
+        js += [f'tl.set("#c{0 if moments else len(plan["cuts"])-1}",{{opacity:0}},{e0 + 0.02:.3f});',
                f'tl.fromTo("#end",{{opacity:0}},{{opacity:1,duration:0.12,immediateRender:false}},{e0:.3f});',
                f'tl.fromTo("#endlogo",{{scale:0.4,opacity:0}},{{scale:1,opacity:1,duration:0.4,ease:"back.out(2)",immediateRender:false}},{e0 + 0.05:.3f});',
                f'tl.fromTo("#endname",{{y:40,opacity:0}},{{y:0,opacity:1,duration:0.3,ease:"power3.out",immediateRender:false}},{e0 + 0.2:.3f});',
@@ -236,7 +281,51 @@ def build(plan, out):
         js.append('tl.fromTo("#title",{y:-50,opacity:0,scale:0.92},{y:0,opacity:1,scale:1,duration:0.3,ease:"back.out(2)"},0.05);')
         js.append(f'tl.to("#title",{{opacity:0,y:-30,duration:0.2}},{min(2.4, end_cut - 0.3):.3f});')
 
-    if plan.get("continuous"):
+    if moments:
+        fr = []
+        for i, c in enumerate(plan["cuts"]):
+            nf = int(round(bounds[i + 1] * FPS)) - int(round(bounds[i] * FPS))
+            p = A(f"m{i:02d}.mp4")
+            run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-ss", f"{c['src']:.3f}", "-i", plan["video"], "-an", "-vf",
+                 f"fps={FPS},scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,setsar=1,tpad=stop_mode=clone:stop_duration=2",
+                 "-frames:v", str(nf), "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-pix_fmt", "yuv420p", "-g", "15", p])
+            fr.append(p)
+        open(A("list.txt"), "w").write("".join(f"file '{os.path.basename(p)}'\n" for p in fr))
+        run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", A("list.txt"), "-c", "copy", A("montage.mp4")])
+        for p in fr:
+            os.remove(p)
+        os.remove(A("list.txt"))
+        html.insert(0, f'''
+      <div class="cut" id="c0" style="z-index:10;opacity:1">
+        <video id="bg0" class="clip bgv" src="assets/montage.mp4" data-start="0" data-duration="{end_cut:.3f}" data-media-start="0"
+          data-track-index="0" muted playsinline></video>
+        <div class="fgbox" id="fgbox0"><div class="punch" id="punch0"><video id="fg0" class="clip fgv" src="assets/montage.mp4"
+          data-start="0" data-duration="{end_cut:.3f}" data-media-start="0" data-track-index="1" muted playsinline></video></div></div>
+      </div>''')
+        import wave, array
+        pcm = array.array("h")
+        sr = 44100
+        for i, c in enumerate(plan["cuts"]):
+            d = bounds[i + 1] - bounds[i]
+            raw = subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-ss", f"{c['src']:.3f}", "-i", plan["video"], "-t", f"{d:.3f}",
+                                  "-vn", "-ac", "2", "-ar", str(sr), "-f", "s16le", "-"], capture_output=True).stdout
+            x = array.array("h", raw[:len(raw) // 4 * 4])
+            need = int(round(d * sr)) * 2
+            x = x[:need] + array.array("h", [0] * max(0, need - len(x)))
+            f = int(0.012 * sr)                          # fondu de 12 ms à chaque coupe
+            for k in range(min(f, len(x) // 4)):
+                g = k / f
+                for ch in (0, 1):
+                    x[2 * k + ch] = int(x[2 * k + ch] * g)
+                    x[len(x) - 2 - 2 * k + ch] = int(x[len(x) - 2 - 2 * k + ch] * g)
+            pcm.extend(x)
+        with wave.open(A("game_raw.wav"), "wb") as wf:
+            wf.setnchannels(2); wf.setsampwidth(2); wf.setframerate(sr); wf.writeframes(pcm.tobytes())
+        run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", A("game_raw.wav"), "-af",
+             f"loudnorm=I=-16:TP=-2:LRA=11,afade=t=out:st={max(0, end_cut - 0.4):.3f}:d=0.4", "-ar", "44100", "-ac", "2", A("voice.wav")])
+        os.remove(A("game_raw.wav"))
+        audio.append(f'<audio id="voice" src="assets/voice.wav" data-start="0" data-duration="{end_cut:.3f}" data-track-index="51" data-volume="1"></audio>')
+    elif plan.get("continuous"):
         run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-ss", f"{float(plan['window_start']):.3f}", "-i", plan["video"], "-t", f"{end_cut:.3f}",
              "-vn", "-af", f"loudnorm=I=-16:TP=-2:LRA=11,afade=t=out:st={max(0, end_cut - 0.4):.3f}:d=0.4", "-ar", "44100", "-ac", "2", A("voice.wav")])
         audio.append(f'<audio id="voice" src="assets/voice.wav" data-start="0" data-duration="{end_cut:.3f}" data-track-index="51" data-volume="1"></audio>')
@@ -258,14 +347,14 @@ html, body {{ width:{W}px; height:{H_}px; overflow:hidden; background:#0b0614; }
 .fgv {{ width:100%; height:100%; object-fit:cover; }}
 .cap {{ position:absolute; left:40px; width:{W - 80}px; top:{CAP_TOP}px; text-align:center; font-size:92px; line-height:1.05; color:#fff; z-index:80;
         -webkit-text-stroke:11px {PURPLE}; paint-order:stroke fill; text-shadow:0 9px 0 rgba(0,0,0,0.6); opacity:0; }}
-.top {{ position:absolute; left:40px; width:{W - 80}px; top:270px; text-align:center; font-size:96px; line-height:1.02; z-index:75; opacity:0;
+.top {{ position:absolute; left:40px; width:{W - 80}px; top:296px; text-align:center; font-size:88px; line-height:1.02; z-index:75; opacity:0;
         -webkit-text-stroke:10px #12081f; paint-order:stroke fill; text-shadow:0 8px 0 rgba(0,0,0,0.5); text-transform:uppercase; }}
 .lab {{ position:absolute; left:40px; width:{W - 80}px; top:{CAP_TOP}px; text-align:center; font-size:120px; line-height:1; z-index:76; opacity:0;
         -webkit-text-stroke:11px {PURPLE}; paint-order:stroke fill; text-shadow:0 9px 0 rgba(0,0,0,0.6); text-transform:uppercase; }}
-#title {{ position:absolute; left:40px; width:{W - 80}px; top:250px; text-align:center; font-size:92px; line-height:1.02; color:#fff; z-index:60;
+#title {{ position:absolute; left:40px; width:{W - 80}px; top:290px; text-align:center; font-size:84px; line-height:1.02; color:#fff; z-index:60;
          -webkit-text-stroke:8px {PURPLE}; paint-order:stroke fill; text-shadow:0 8px 0 rgba(0,0,0,0.5); opacity:0; text-transform:uppercase; }}
-#wm {{ position:absolute; left:36px; top:1640px; width:96px; z-index:70; opacity:0.85; }}
-#wmt {{ position:absolute; left:142px; top:1658px; font-size:36px; color:#fff; z-index:70; letter-spacing:1px; text-shadow:0 3px 0 rgba(0,0,0,.6); }}
+#wm {{ position:absolute; right:44px; top:186px; width:84px; z-index:70; opacity:0.92; filter:drop-shadow(0 3px 4px rgba(0,0,0,.6)); }}
+#wmt {{ position:absolute; right:140px; top:206px; font-size:34px; color:#fff; z-index:70; letter-spacing:1px; -webkit-text-stroke:5px {PURPLE}; paint-order:stroke fill; text-shadow:0 3px 0 rgba(0,0,0,.6); }}
 #flash {{ position:absolute; inset:0; background:#fff; z-index:90; opacity:0; }}
 #end {{ position:absolute; inset:0; background:radial-gradient(circle at 50% 40%, #2a0f4f 0%, #0b0614 70%); opacity:0; }}
 #endlogo {{ position:absolute; left:290px; top:430px; width:500px; }}

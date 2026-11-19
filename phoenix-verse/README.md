@@ -1,6 +1,6 @@
 # Phoenix Verse : robot de clips GTA 6
 
-Ce dossier contient le robot qui transforme les sessions de jeu déposées sur https://phoenix-verse.netlify.app en clips verticaux de 1 à 2 minutes, et qui les programme sur Instagram et YouTube via Zernio (6 par jour : 7 h, 10 h, 13 h, 16 h, 19 h et 22 h, heure de Paris).
+Ce dossier contient le robot qui transforme les sessions de jeu déposées sur https://phoenix-verse.netlify.app en clips verticaux de 40 secondes faits uniquement de moments forts (bagarres, tirs, chutes, trucs bizarres ou drôles), et qui les programme sur Instagram et YouTube via Zernio (6 par jour : 7 h, 10 h, 13 h, 16 h, 19 h et 22 h, heure de Paris).
 
 - `robot/pv_worker.py` : le programme (installation, analyse, montage HyperFrames, programmation Zernio, statistiques).
 - `robot/hf_build2.py` : le moteur de montage (plans calés sur la musique, transitions, textes aux couleurs de la marque, piste voix continue).

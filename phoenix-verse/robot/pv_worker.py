@@ -10,8 +10,7 @@ Commandes :
 Clés : jamais dans ce fichier. Supabase (stockage) et Zernio sont injectés par le proxy de l'environnement :
 on envoie des valeurs factices dans les en-têtes.
 """
-import argparse, json, math, os, subprocess, sys, time, urllib.parse, urllib.request
-from datetime import datetime, timezone
+import shutil, argparse, json, os, subprocess, sys, urllib.parse, urllib.request
 
 ROOT = "/tmp/pvw"
 ROBOT_DIR = os.path.dirname(os.path.abspath(__file__))   # dossier du dépôt (code versionné)
@@ -81,7 +80,9 @@ def cmd_setup(a):
     for x in idx:
         x["file"] = f"{ROOT}/sfx/{x['id']}.wav"
     json.dump([x for x in idx if os.path.exists(x["file"])], open(f"{ROOT}/sfx_index.json", "w"))
-    sh([sys.executable, "-m", "pip", "install", "-q", "librosa", "soundfile", "numpy", "pillow"], check=False)
+    pip = [sys.executable, "-m", "pip", "install", "-q", "librosa", "soundfile", "numpy"]
+    if subprocess.run(pip, capture_output=True).returncode:
+        subprocess.run(pip + ["--break-system-packages"], capture_output=True)
     sh(["npx", "--yes", "hyperframes@0.8.137", "--version"])
     print(json.dumps({"ok": True, "sfx": len(os.listdir(f"{ROOT}/sfx")), "maps": len(os.listdir(f"{ROOT}/maps"))}))
 
@@ -133,72 +134,170 @@ def profile(video):
     return dur, loud[:m], mot[:m], bri[:m]
 
 
-def cmd_plan(a):
+def _rollmed(x, n):
+    import numpy as np
+    pad = np.pad(x, (n, n), mode="edge")
+    return np.array([np.median(pad[i:i + 2 * n + 1]) for i in range(len(x))])
+
+
+def cmd_moments(a):
+    """Repère les MOMENTS FORTS (ruptures) : pic de son par rapport au bruit ambiant, à-coup de mouvement,
+    changement brutal d'image. La conduite ou la marche (mouvement régulier) ne ressort pas.
+    Produit des planches numérotées que le robot regarde pour garder seulement les moments viraux."""
     import numpy as np
     dur, loud, mot, bri = profile(a.video)
-    z = lambda x: (x - np.median(x)) / (x.std() + 1e-6)
-    score = z(loud) + 0.7 * z(mot)
-    score[bri < 22] -= 3          # écrans noirs / menus sombres
+    n = len(loud)
+    if n < 20:
+        raise SystemExit("vidéo trop courte")
+    z = lambda x: (x - np.median(x)) / (np.percentile(x, 90) - np.percentile(x, 10) + 1e-6)
+    loud_jump = loud - _rollmed(loud, 20)              # coup de feu, choc, cri : au-dessus du fond sonore des 10 s autour
+    mot_jump = mot - _rollmed(mot, 12)                 # à-coup de mouvement (pas le défilement régulier d'une route)
+    spike = 1.2 * z(loud_jump) + 0.9 * z(mot_jump) + 0.4 * z(loud)
+    spike = np.convolve(spike, [0.25, 0.5, 0.25], "same")
+    spike[(bri < 22) | (loud < -50)] = -9              # écran noir, menus, silence
+    sep = 10                                           # 5 s minimum entre deux moments
+    order, taken, cands = np.argsort(-spike), np.zeros(n, bool), []
+    limit = int(min(a.max, max(12, dur / 7)))
+    for i in order:
+        if len(cands) >= limit or spike[i] < a.min_score:
+            break
+        if taken[max(0, i - sep):i + sep + 1].any():
+            continue
+        taken[i] = True
+        t = i / 2
+        cands.append({"id": len(cands), "peak": round(t, 2), "start": round(max(0, t - 3.0), 2),
+                      "end": round(min(dur - 0.2, t + 2.5), 2), "spike": round(float(spike[i]), 2)})
+    cands.sort(key=lambda c: c["peak"])
+    for k, c in enumerate(cands):
+        c["id"] = k
+    os.makedirs(a.out, exist_ok=True)
+    json.dump({"video": a.video, "duration": dur, "moments": cands}, open(f"{a.out}/moments.json", "w"), indent=1)
+    # planches : 8 moments par image, 4 vues par moment (avant, pic, juste après, après) - ffmpeg seul
+    font = f"{ROOT}/assets/Anton-Regular.ttf"
+    tmp = f"{a.out}/_f"
+    sheets = []
+    for s0 in range(0, len(cands), 8):
+        group = cands[s0:s0 + 8]
+        shutil.rmtree(tmp, ignore_errors=True)
+        os.makedirs(tmp)
+        k = 0
+        for c in group:
+            for off in (-2.0, -0.5, 0.5, 2.0):
+                p = f"{tmp}/{k:03d}.png"
+                lab = f"#{c['id']}  {c['peak']:.0f}s" if off == -2.0 else ""
+                vf = "scale=320:180:force_original_aspect_ratio=decrease,pad=320:180:(ow-iw)/2:(oh-ih)/2"
+                if lab and os.path.exists(font):
+                    vf += f",drawbox=x=0:y=0:w=150:h=40:color=black@0.75:t=fill,drawtext=fontfile={font}:text='{lab}':x=8:y=5:fontsize=28:fontcolor=0xff2d95"
+                subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-ss", f"{max(0, c['peak'] + off):.2f}", "-i", a.video,
+                                "-frames:v", "1", "-vf", vf, p], capture_output=True)
+                if not os.path.exists(p):
+                    subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-f", "lavfi", "-i", "color=c=black:s=320x180",
+                                    "-frames:v", "1", p], capture_output=True)
+                k += 1
+        p = f"{a.out}/sheet_{s0 // 8:02d}.jpg"
+        subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-framerate", "1", "-i", f"{tmp}/%03d.png",
+                        "-vf", f"tile=4x{len(group)}:padding=4:color=0x140a1e", "-frames:v", "1", "-q:v", "4", p], capture_output=True)
+        sheets.append(p)
+    shutil.rmtree(tmp, ignore_errors=True)
+    print(json.dumps({"duration": round(dur), "moments": len(cands), "sheets": sheets}))
+
+
+def _fit(ms, target):
+    """Ajuste les durées des moments pour remplir exactement `target` secondes (2,5 à 8 s chacun, pic gardé)."""
+    for m in ms:
+        m["a"], m["b"] = m["start"], m["end"]
+    for _ in range(40):
+        tot = sum(m["b"] - m["a"] for m in ms)
+        diff = target - tot
+        if abs(diff) < 0.05:
+            break
+        free = [m for m in ms if (diff > 0 and m["b"] - m["a"] < 8 and (m["a"] > m.get("min_start", 0) + 0.01 or m["b"] < m["max_end"] - 0.01))
+                or (diff < 0 and m["b"] - m["a"] > 2.5)]
+        if not free:
+            break
+        step = diff / len(free)
+        for m in free:
+            if step > 0:
+                add = min(step, 8 - (m["b"] - m["a"]))
+                pre = min(add * 0.4, m["a"] - m.get("min_start", 0))
+                m["a"] -= pre
+                m["b"] = min(m["max_end"], m["b"] + add - pre)
+            else:
+                cut = min(-step, (m["b"] - m["a"]) - 2.5)
+                lead = m["peak"] - m["a"]
+                tail = m["b"] - m["peak"]
+                ca = min(cut * 0.55, max(0, lead - 0.8))
+                m["a"] += ca
+                m["b"] -= min(cut - ca, max(0, tail - 0.8))
+    return sum(m["b"] - m["a"] for m in ms)
+
+
+def cmd_compose(a):
+    """Assemble des clips de ~40 s UNIQUEMENT avec les moments retenus par le robot.
+    Chaque clip démarre par son meilleur moment (le hook) ; aucun moment n'est réutilisé."""
+    mom = json.load(open(a.moments))
+    sel = json.load(open(a.select))
+    byid = {m["id"]: m for m in mom["moments"]}
+    kept = []
+    for s in sel:
+        if s.get("id") in byid and float(s.get("score", 0)) >= a.min_keep:
+            m = dict(byid[s["id"]])
+            m.update({"score": float(s["score"]), "label": (s.get("label") or "")[:16], "kind": s.get("kind", "")})
+            m["max_end"] = mom["duration"] - 0.2
+            kept.append(m)
+    # aucun chevauchement : chaque moment reste dans sa moitié de l'espace qui le sépare de ses voisins
+    kept.sort(key=lambda m: m["peak"])
+    for i, m in enumerate(kept):
+        m["min_start"] = max(0.0, (kept[i - 1]["peak"] + m["peak"]) / 2) if i else 0.0
+        m["max_end"] = min(mom["duration"] - 0.2, (m["peak"] + kept[i + 1]["peak"]) / 2) if i + 1 < len(kept) else mom["duration"] - 0.2
+        m["start"] = max(m["start"], m["min_start"])
+        m["end"] = min(m["end"], m["max_end"])
     musics = [m for m in a.music.split(",") if m]
     if not musics:
         raise SystemExit("aucune musique favorite")
-    # MAXIMUM de clips : autant de fenêtres de ~70 s que la vidéo en contient (sans recouvrement),
-    # en écartant seulement les passages vides (écran noir, silence, menus)
-    target_len = 70.0
-    n_clips = int(max(1 if dur >= 60 else 0, min(a.max_clips, dur // 72)))
-    win = int(target_len * 2)
-    cum = np.concatenate([[0], np.cumsum(score)])
-    empty = ((bri < 22) | (loud < -50)).astype(float)          # écran noir ou silence
-    cum_e = np.concatenate([[0], np.cumsum(empty)])
-    taken, picks = np.zeros(len(score), bool), []
-    while len(picks) < n_clips:
-        best, bi = -1e9, None
-        for i in range(0, max(1, len(score) - win + 1), 2):
-            if taken[i:i + win].any() or (cum_e[min(len(empty), i + win)] - cum_e[i]) / win > 0.6:
-                continue
-            v = (cum[i + win] - cum[i]) / win
-            if v > best:
-                best, bi = v, i
-        if bi is None:          # plus aucune fenêtre libre et non vide
+    body = a.length - 1.3                               # 1,3 s de carte de fin
+    kept.sort(key=lambda m: -m["score"])
+    total = sum(min(8, m["max_end"] - m["min_start"]) for m in kept)
+    n_clips = int(min(a.max_clips, total // body))
+    if n_clips == 0 and len(kept) >= 3 and total >= body - 3:
+        n_clips = 1
+    groups = [[] for _ in range(n_clips)]
+    for k, m in enumerate(kept):                        # serpentin : les meilleurs moments deviennent les hooks
+        if not n_clips:
             break
-        picks.append((bi / 2, best))
-        taken[max(0, bi - 2):bi + win + 2] = True
-    picks.sort()
+        r, q = divmod(k, n_clips)
+        groups[q if r % 2 == 0 else n_clips - 1 - q].append(m)
     clips = []
-    for k, (t0, sc) in enumerate(picks):
+    for k, g in enumerate(groups):
+        # on retire les moments en trop pour tenir dans 40 s (minimum 2,5 s chacun)
+        g = sorted(g, key=lambda m: -m["score"])
+        while len(g) * 2.5 > body:
+            g.pop()
+        got = _fit(g, body)
+        if got < body - 3:
+            continue
+        hook, rest = g[0], g[1:]
+        # le hook frappe tout de suite : l'action arrive ~1 s après le début du clip
+        ln = hook["b"] - hook["a"]
+        hook["a"] = max(hook.get("min_start", 0), hook["peak"] - 1.0)
+        hook["b"] = min(hook["max_end"], hook["a"] + ln)
+        if rest and ln - (hook["b"] - hook["a"]) > 0.05:      # temps perdu redonné aux autres moments
+            _fit(rest, body - (hook["b"] - hook["a"]))
+        payoff = rest.pop(0) if len(rest) >= 3 else None   # 2e meilleur moment gardé pour la fin
+        rest.sort(key=lambda m: m["peak"])
+        order = [hook] + rest + ([payoff] if payoff else [])
+        trs = ["punch", "whip", "flash", "slide"]
+        cuts = [{"src": round(m["a"], 3), "dur": round(m["b"] - m["a"], 3), "peak": round(m["peak"] - m["a"], 3),
+                 "tr": trs[i % 4], "zoom": 1.14, "label": m["label"], "moment": m["id"], "score": m["score"]}
+                for i, m in enumerate(order)]
         mid = musics[k % len(musics)]
         mp, mm = music_file(mid)
-        m = json.load(open(mm))
-        beat = 60.0 / max(60, min(180, m["tempo"]["bpm"]))
-        beats_per_cut = 4 if beat * 4 >= 1.8 else 8          # un plan toutes les ~2-3 s
-        n_beats = int(target_len / beat)
-        cuts, trs = [], ["slide", "punch", "whip", "flash"]
-        for i in range(n_beats // beats_per_cut):
-            cuts.append({"beats": beats_per_cut, "tr": trs[i % 4], "zoom": 1.12, "src": 0})
-        clips.append({"index": k, "window_start": round(t0, 2), "score": round(float(sc), 2), "music": mid,
-                      "music_file": mp, "music_map": mm, "cuts": cuts})
-    plan = {"video": a.video, "duration": dur, "clips": clips}
+        clips.append({"index": len(clips), "window_start": round(hook["a"], 2), "score": round(sum(m["score"] for m in g) / len(g), 2),
+                      "music": mid, "music_file": mp, "music_map": mm, "moments": [m["id"] for m in order], "cuts": cuts})
+    plan = {"video": mom["video"], "duration": mom["duration"], "clips": clips}
     json.dump(plan, open(a.out, "w"), indent=1)
-    # planches pour relecture (titres et accroches) : 6 images par clip
-    from PIL import Image
-    for c in clips:
-        ims = []
-        for j in range(6):
-            t = c["window_start"] + j * target_len / 6
-            raw = subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-ss", f"{t:.2f}", "-i", a.video, "-frames:v", "1",
-                                  "-vf", "scale=320:-2", "-f", "image2pipe", "-vcodec", "png", "-"], capture_output=True).stdout
-            from io import BytesIO
-            try:
-                ims.append(Image.open(BytesIO(raw)).convert("RGB"))
-            except Exception:
-                pass
-        if ims:
-            W, H = ims[0].size
-            sheet = Image.new("RGB", (W * len(ims), H))
-            for j, im in enumerate(ims):
-                sheet.paste(im.resize((W, H)), (j * W, 0))
-            sheet.save(os.path.splitext(a.out)[0] + f"_clip{c['index']}.jpg", quality=80)
-    print(json.dumps({"duration": round(dur), "clips": len(clips), "windows": [c["window_start"] for c in clips]}))
+    print(json.dumps({"kept": len(kept), "clips": len(clips),
+                      "per_clip": [{"moments": len(c["cuts"]), "hook": c["moments"][0], "start": c["window_start"]} for c in clips]}))
 
 
 # ---------------------------------------------------------------- render
@@ -230,7 +329,6 @@ def cmd_render(a):
     if r.returncode or not os.path.exists(f"{work}/proj/renders/raw.mp4"):
         raise SystemExit("rendu : " + (r.stderr or r.stdout)[-1500:])
     raw = f"{work}/proj/renders/raw.mp4"
-    out = sh(["ffmpeg", "-nostdin", "-i", raw, "-af", "ebur128", "-f", "null", "-"], check=False)
     I = -16.0
     for line in subprocess.run(["ffmpeg", "-nostdin", "-i", raw, "-af", "ebur128", "-f", "null", "-"], capture_output=True, text=True).stderr.splitlines():
         if line.strip().startswith("I:"):
@@ -328,8 +426,11 @@ def main():
     ap = argparse.ArgumentParser()
     sp = ap.add_subparsers(dest="cmd", required=True)
     sp.add_parser("setup")
-    p = sp.add_parser("plan"); p.add_argument("--video", required=True); p.add_argument("--max-clips", type=int, default=6)
-    p.add_argument("--music", required=True); p.add_argument("--out", required=True)
+    p = sp.add_parser("moments"); p.add_argument("--video", required=True); p.add_argument("--out", required=True)
+    p.add_argument("--max", type=int, default=160); p.add_argument("--min-score", type=float, default=0.6)
+    p = sp.add_parser("compose"); p.add_argument("--moments", required=True); p.add_argument("--select", required=True)
+    p.add_argument("--music", required=True); p.add_argument("--out", required=True); p.add_argument("--length", type=float, default=40)
+    p.add_argument("--max-clips", type=int, default=40); p.add_argument("--min-keep", type=float, default=6)
     p = sp.add_parser("render"); p.add_argument("--plan", required=True); p.add_argument("--clip", type=int, required=True)
     p.add_argument("--title"); p.add_argument("--hooks"); p.add_argument("--out", required=True)
     p = sp.add_parser("publish"); p.add_argument("--file", required=True); p.add_argument("--clip-id", required=True)
@@ -342,7 +443,7 @@ def main():
     p = sp.add_parser("frames"); p.add_argument("--video", required=True); p.add_argument("--start", type=float, required=True)
     p.add_argument("--length", type=float, default=75); p.add_argument("--out", required=True)
     a = ap.parse_args()
-    {"setup": cmd_setup, "plan": cmd_plan, "render": cmd_render, "publish": cmd_publish, "stats": cmd_stats,
+    {"setup": cmd_setup, "moments": cmd_moments, "compose": cmd_compose, "render": cmd_render, "publish": cmd_publish, "stats": cmd_stats,
      "download": cmd_download, "delete": cmd_delete, "poststatus": cmd_poststatus, "frames": cmd_frames}[a.cmd](a)
 
 
