@@ -12,7 +12,7 @@ Créneaux, heure de Paris : 07:00, 10:00, 13:00, 16:00, 19:00, 22:00, soit 6 pub
 ## Règles absolues
 - Ne JAMAIS traiter ni publier une vidéo dont `rights_ok` est faux.
 - Publier uniquement via `pv_worker.py publish`, sur ces deux comptes.
-- Supprimer uniquement avec `pv_worker.py delete` : la vidéo déposée (source) **seulement quand TOUS ses clips sont publiés**, et les fichiers de clips publiés depuis plus de 3 jours (gardés 3 jours pour l'aperçu dans le calendrier).
+- Supprimer uniquement avec `pv_worker.py delete` : la vidéo déposée (source) **dès que tous ses clips sont programmés**, et les fichiers de clips publiés depuis plus de 3 jours (gardés 3 jours pour l'aperçu dans le calendrier).
 - En cas d'erreur sur un clip ou une vidéo : enregistre l'erreur dans la base, passe au suivant, ne boucle pas.
 - N'invente jamais de chiffres : laisse vide ce que Zernio ne donne pas.
 - Arrête de monter de nouveaux clips après 45 minutes de passage.
@@ -74,8 +74,7 @@ Pour chaque clip retenu :
    - `update phoenix_verse.sounds set use_count=use_count+1, last_used_at=now() where id=<music_id>;`
 
 ## 7. Fin de vidéo
-a. Pour chaque vidéo `status='processing'` qui n'a plus aucun clip `planned` : `status='processed'` et `processed_at=now()`. NE SUPPRIME PAS la source à ce moment-là.
-b. Suppression de la source, uniquement quand TOUT est publié : pour chaque vidéo `status='processed' and deleted_at is null` dont TOUS les clips sont `posted` ou `failed` (aucun `planned`, `ready` ni `scheduled`) : `pv_worker.py delete --path <storage_path>` puis `deleted_at=now()`.
+Pour chaque vidéo `status='processing'` qui n'a plus aucun clip `planned` (tous programmés, publiés ou en échec) : `pv_worker.py delete --path <storage_path>`, puis `status='processed'`, `processed_at=now()` et `deleted_at=now()`.
 
 ## 8. Journal
 `update phoenix_verse.worker_runs set finished_at=now(), ok=<vrai si aucune erreur bloquante>, summary='<résumé court en français : vidéos analysées, clips programmés, clips publiés, erreurs>' where id=<id>;`
