@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 phoenix-verse/robot/pv_worker.py:*)",
+      "Bash(python3 /home/user/Test/phoenix-verse/robot/pv_worker.py:*)",
+      "mcp__Supabase__execute_sql"
+    ]
+  }
+}
