@@ -232,7 +232,7 @@ def build(plan, out):
                 if name not in used_sfx:
                     shutil.copy(s["file"], A(name))
                     used_sfx[name] = s
-                g = 0.16 if voice else 0.24
+                g = 0.16 if voice else (0.12 if moments else 0.24)
                 audio.append(f'<audio id="sfx{i}" src="assets/{name}" data-start="{max(0, t0 - 0.06):.3f}" data-duration="{min(1.2, s["dur"]):.2f}" '
                              f'data-track-index="{60 + i}" data-volume="{g}"></audio>')
         # sous-titres mot à mot (voix)
@@ -287,7 +287,7 @@ def build(plan, out):
             nf = int(round(bounds[i + 1] * FPS)) - int(round(bounds[i] * FPS))
             p = A(f"m{i:02d}.mp4")
             run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-ss", f"{c['src']:.3f}", "-i", plan["video"], "-an", "-vf",
-                 f"fps={FPS},scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,setsar=1,tpad=stop_mode=clone:stop_duration=2",
+                 f"fps={FPS},scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,setsar=1,tpad=stop_mode=clone:stop_duration=2",
                  "-frames:v", str(nf), "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-pix_fmt", "yuv420p", "-g", "15", p])
             fr.append(p)
         open(A("list.txt"), "w").write("".join(f"file '{os.path.basename(p)}'\n" for p in fr))
@@ -322,7 +322,7 @@ def build(plan, out):
         with wave.open(A("game_raw.wav"), "wb") as wf:
             wf.setnchannels(2); wf.setsampwidth(2); wf.setframerate(sr); wf.writeframes(pcm.tobytes())
         run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", A("game_raw.wav"), "-af",
-             f"loudnorm=I=-16:TP=-2:LRA=11,afade=t=out:st={max(0, end_cut - 0.4):.3f}:d=0.4", "-ar", "44100", "-ac", "2", A("voice.wav")])
+             f"acompressor=threshold=0.1:ratio=4:attack=5:release=120:makeup=1,loudnorm=I=-16:TP=-2:LRA=7,afade=t=out:st={max(0, end_cut - 0.4):.3f}:d=0.4", "-ar", "44100", "-ac", "2", A("voice.wav")])
         os.remove(A("game_raw.wav"))
         audio.append(f'<audio id="voice" src="assets/voice.wav" data-start="0" data-duration="{end_cut:.3f}" data-track-index="51" data-volume="1"></audio>')
     elif plan.get("continuous"):

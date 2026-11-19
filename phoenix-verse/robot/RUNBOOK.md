@@ -13,7 +13,7 @@ Créneaux, heure de Paris : 07:00, 10:00, 13:00, 16:00, 19:00, 22:00, soit 6 pub
 ## Règles absolues
 - Ne JAMAIS traiter ni publier une vidéo dont `rights_ok` est faux.
 - Publier uniquement via `pv_worker.py publish`, sur ces deux comptes.
-- Supprimer uniquement avec `pv_worker.py delete` : la vidéo déposée (source) **dès que tous ses clips sont programmés**, et les fichiers de clips publiés depuis plus de 3 jours (gardés 3 jours pour l'aperçu dans le calendrier).
+- Supprimer uniquement avec `pv_worker.py delete` : la vidéo déposée (source) **dès que ses moments forts sont rangés dans la banque**, et les fichiers de clips publiés depuis plus de 3 jours (gardés 3 jours pour l'aperçu dans le calendrier).
 - En cas d'erreur sur un clip ou une vidéo : enregistre l'erreur dans la base, passe au suivant, ne boucle pas.
 - N'invente jamais de chiffres : laisse vide ce que Zernio ne donne pas.
 - Arrête de monter de nouveaux clips après 45 minutes de passage.
@@ -42,30 +42,37 @@ Lance `pv_worker.py stats --ig 6afde15fad243e2c01d1dbf6 --yt 6afde195dfaadaa18a0
 - insère une ligne `phoenix_verse.account_stats` par plateforme : followers, views_total, posts_total, quand l'information existe.
 
 ## 4. Créneaux libres
-Prends les créneaux d'aujourd'hui et de demain (heure de Paris) qui sont à plus de 20 minutes d'ici et qui n'ont pas de clip (`scheduled_for` égal au créneau et `status in ('scheduled','posted')`). Garde-en au plus 6. S'il n'y en a aucun, passe à l'étape 7.
+Prends les créneaux d'aujourd'hui et de demain (heure de Paris) qui sont à plus de 20 minutes d'ici et qui n'ont pas de clip (`scheduled_for` égal au créneau et `status in ('scheduled','posted')`). Garde-en au plus 6. S'il n'y en a aucun, fais quand même l'étape 5a (analyse des vidéos déposées), puis passe à l'étape 7.
 
 ## 5. Clips à monter (UNIQUEMENT des moments forts, 40 secondes)
-a. `select id, video_id, clip_index, plan, music_id from phoenix_verse.clips where status='planned' order by created_at, clip_index limit <nb créneaux libres>;`
-b. S'il en manque, prends la plus ancienne vidéo `status='pending' and rights_ok` :
+Principe : chaque vidéo déposée est découpée en **moments forts**, rangés dans une **banque** (`phoenix_verse.moments`). Un clip de 40 s peut mélanger des moments de **plusieurs vidéos** : une courte vidéo avec 2 bons moments n'est donc jamais perdue.
+
+**5a. Analyser TOUTES les vidéos en attente** (plus ancienne d'abord, `status='pending' and rights_ok`), une par une :
    1. `update phoenix_verse.videos set status='processing', processing_started_at=now() where id=<id>;`
    2. `pv_worker.py download --path <storage_path> --out /tmp/pvw/video_<id>.mp4`
    3. `pv_worker.py moments --video /tmp/pvw/video_<id>.mp4 --out /tmp/pvw/mom_<id>` : repère les ruptures (pic de son, à-coup de mouvement, changement brutal d'image) et crée des planches `sheet_XX.jpg` (8 moments numérotés par planche, 4 images chacun : avant, pic, juste après, après).
    4. **Regarde TOUTES les planches** (outil de lecture d'image) et note chaque moment de 0 à 10. Tu es le monteur d'une chaîne virale GTA : seules les **ruptures de pattern** comptent.
-      - À GARDER (7 à 10) : bagarre, quelqu'un qui se fait frapper, tirer dessus, renverser, arrêter ou asperger ; explosion, crash spectaculaire, chute, saut fou ; truc bizarre, absurde ou drôle (animal qui fait n'importe quoi, PNJ qui bugue, personnage qui fonce dans un mur, réaction inattendue) ; tout moment qui fait dire « attends, quoi ? ». Plus c'est surprenant dans les 2 premières secondes, plus la note est haute.
-      - À REJETER (0 à 5) : conduite ou marche tranquille, menus, cartes, garage ou personnalisation, générique, écrans de chargement, dialogue calme, paysage, cinématique sans action.
-      - Utilise aussi les idées du jour (`select title, why_it_works from phoenix_verse.ideas where day >= current_date - 2`) : un moment qui correspond à une tendance prend +1.
-   5. Écris `/tmp/pvw/sel_<id>.json` : la liste des moments gardés (note ≥ 6 seulement), par ex. `[{"id":41,"score":9,"label":"MAINS EN L'AIR","kind":"arrestation"}]`. `label` = 1 à 3 mots en MAJUSCULES (16 caractères au plus) affichés en bas pendant le moment, ou `""`.
-   6. Musiques : `select id from phoenix_verse.sounds where favorite and kind='music' and stored_path is not null order by use_count, random() limit 6;`
-   7. `pv_worker.py compose --moments /tmp/pvw/mom_<id>/moments.json --select /tmp/pvw/sel_<id>.json --music id1,id2,... --out /tmp/pvw/plan_<id>.json` : assemble des clips de **40 s** avec uniquement les moments gardés. Chaque clip commence par son meilleur moment (le hook) et garde le 2e meilleur pour la fin ; un moment n'est jamais utilisé deux fois. Autant de clips que les bons moments le permettent.
-   8. Pour chaque clip du plan, insère une ligne `phoenix_verse.clips` : video_id, clip_index, status 'planned', format 'moments', music_id, score, et `plan` = l'objet clip du JSON. Mets à jour `videos.clips_planned`.
-   9. Si le plan n'a aucun clip (pas assez de moments forts) : `status='processed'`, `error='Pas assez de moments forts pour un clip de 40 s'`, puis `pv_worker.py delete --path <storage_path>`.
-   Recommence (a).
+      - À GARDER (7 à 10) : bagarre, quelqu'un qui se fait frapper, tirer dessus, renverser, arrêter ou asperger ; explosion, crash spectaculaire, chute, saut fou ; truc bizarre, absurde ou drôle (animal qui fait n'importe quoi, PNJ qui bugue, personnage qui fonce dans un mur, réaction inattendue) ; tout moment qui fait dire « attends, quoi ? ».
+      - À REJETER (0 à 5) : conduite ou marche tranquille, menus, cartes, garage, générique, chargement, dialogue calme, paysage, cinématique sans action, **image floue ou trouble** (flou de transition, caméra floue).
+      - Une idée du jour qui correspond (`select title, why_it_works from phoenix_verse.ideas where day >= current_date - 2`) donne +1.
+   5. Écris `/tmp/pvw/sel_<id>.json` : les moments gardés (note ≥ 6), par ex. `[{"id":41,"score":9,"label":"MAINS EN L'AIR","kind":"arrestation"}]`. `label` = 1 à 3 mots en MAJUSCULES (16 caractères au plus) affichés pendant le moment, ou `""`.
+   6. `pv_worker.py extract --video /tmp/pvw/video_<id>.mp4 --video-id <id> --moments /tmp/pvw/mom_<id>/moments.json --select /tmp/pvw/sel_<id>.json` : envoie chaque moment gardé dans le stockage. Pour chaque élément renvoyé : `insert into phoenix_verse.moments (video_id, storage_path, duration_s, peak_s, score, label, kind) values (...);`
+   7. Seulement APRÈS l'insertion des moments : `pv_worker.py delete --path <storage_path>` (la source), puis `update phoenix_verse.videos set status='processed', processed_at=now(), deleted_at=now(), clips_planned=<nb de moments gardés>, error=<null, ou 'Aucun moment fort trouvé' si 0> where id=<id>;`
+   Si `extract` échoue : NE supprime PAS la source, remets `status='pending'`, note `error`, passe à la suite.
+
+**5b. Composer les clips depuis la banque** (s'il reste des créneaux libres sans clip `planned`) :
+   1. `select id, storage_path, duration_s, peak_s, score, label, kind from phoenix_verse.moments where status='available' order by score desc, created_at limit 60;` Écris la liste (JSON, champs tels quels) dans `/tmp/pvw/items_<n>.json` (n = l'id du passage).
+   2. `pv_worker.py bank --items /tmp/pvw/items_<n>.json --out /tmp/pvw/bank_<n>` : renvoie `map` (numéro de moment → id dans la banque).
+   3. Musiques : `select id from phoenix_verse.sounds where favorite and kind='music' and stored_path is not null order by use_count, random() limit 6;`
+   4. `pv_worker.py compose --moments /tmp/pvw/bank_<n>/moments.json --select /tmp/pvw/bank_<n>/select.json --music id1,id2,... --max-clips <nb créneaux libres> --out /tmp/pvw/plan_<n>.json` : clips de **40 s**, meilleur moment en premier (action dès la 1re seconde), 2e meilleur à la fin, aucun moment réutilisé.
+   5. Pour chaque clip du plan : insère une ligne `phoenix_verse.clips` : clip_index, status 'planned', format 'moments', music_id, score, `plan` = l'objet clip tel quel (il contient `bank_items` et `moment_ids`). Puis `update phoenix_verse.moments set status='used', clip_id=<clip_id> where id in (<plan.moment_ids>);`
+   6. Si `compose` ne donne aucun clip : pas assez de moments en banque pour 40 s. Les moments RESTENT en banque pour les prochaines vidéos ; écris-le dans le journal.
 
 ## 6. Montage et programmation (un clip par créneau libre, dans l'ordre)
 Pour chaque clip retenu :
-1. Si `/tmp/pvw/video_<video_id>.mp4` n'existe pas, télécharge-le avec `pv_worker.py download` (storage_path de la vidéo).
-2. Écris `/tmp/pvw/one_<clip_id>.json` = `{"video": "/tmp/pvw/video_<video_id>.mp4", "clips": [<plan du clip>]}`.
-3. Regarde les moments du clip (planches de l'étape 5, ou `pv_worker.py frames --video ... --start <src du 1er plan> --length 8 --out /tmp/pvw/f_<clip_id>`), puis rédige en français :
+1. Écris `/tmp/pvw/one_<clip_id>.json` = `{"clips": [<plan du clip>]}` (la commande `render` reconstruit elle-même la vidéo à partir des moments du clip).
+2. Pour voir le hook : `select storage_path from phoenix_verse.moments where id=<plan.moment_ids[0]>`, `pv_worker.py download --path <storage_path> --out /tmp/pvw/hook_<clip_id>.mp4`, puis `pv_worker.py frames --video /tmp/pvw/hook_<clip_id>.mp4 --start 0 --length 10 --out /tmp/pvw/f_<clip_id>`.
+3. Regarde ces 6 images, puis rédige en français :
    - un **titre** qui décrit le HOOK (le 1er moment) de façon intrigante et honnête, 60 caractères au plus ; il s'affiche pendant les 2 premières secondes ;
    - 3 **accroches** en majuscules, de 22 caractères au plus, qui annoncent la suite (« ATTENDS LA FIN », « IL L'A PAS VU VENIR »…).
 4. `pv_worker.py render --plan /tmp/pvw/one_<clip_id>.json --clip 0 --title "<titre>" --hooks "A|B|C" --out /tmp/pvw/clip_<clip_id>.mp4`. En cas d'échec : clip `status='failed'` et `error`, puis passe au suivant.
@@ -80,8 +87,8 @@ Pour chaque clip retenu :
    - deux lignes `phoenix_verse.posts` (instagram et youtube) : `status='pending'` et `zernio_post_id` ;
    - `update phoenix_verse.sounds set use_count=use_count+1, last_used_at=now() where id=<music_id>;`
 
-## 7. Fin de vidéo
-Pour chaque vidéo `status='processing'` qui n'a plus aucun clip `planned` (tous programmés, publiés ou en échec) : `pv_worker.py delete --path <storage_path>`, puis `status='processed'`, `processed_at=now()` et `deleted_at=now()`.
+## 7. Nettoyage de la banque
+Pour chaque moment `status='used'` dont le clip est `scheduled` ou `posted` : `pv_worker.py delete --path <storage_path>` puis `status='deleted'`. Les moments `available` restent (ils attendent d'autres moments pour former un clip de 40 s).
 
 ## 7 bis. Veille des tendances (une fois par jour)
 Si `select count(*) from phoenix_verse.ideas where day = current_date` vaut 0 et que l'outil de recherche web est disponible :

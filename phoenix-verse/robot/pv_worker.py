@@ -232,6 +232,67 @@ def _fit(ms, target):
     return sum(m["b"] - m["a"] for m in ms)
 
 
+def cmd_extract(a):
+    """Banque de moments : découpe chaque moment gardé (fenêtre de 10 s autour du pic) et l'envoie au stockage.
+    Les moments de plusieurs vidéos peuvent ensuite former un clip de 40 s."""
+    mom = json.load(open(a.moments))
+    byid = {m["id"]: m for m in mom["moments"]}
+    out = []
+    sel = [s for s in json.load(open(a.select)) if s.get("id") in byid and float(s.get("score", 0)) >= a.min_keep]
+    peaks = sorted(byid[s["id"]]["peak"] for s in sel)
+    for s in sel:
+        m = byid[s["id"]]
+        i = peaks.index(m["peak"])
+        lo = (peaks[i - 1] + m["peak"]) / 2 if i else 0.0                 # jamais la même image dans deux moments
+        hi = (m["peak"] + peaks[i + 1]) / 2 if i + 1 < len(peaks) else mom["duration"] - 0.1
+        t0 = max(0.0, lo, m["peak"] - 5.0)
+        t1 = min(mom["duration"] - 0.1, hi, m["peak"] + 5.0)
+        f = f"{ROOT}/moment_{a.video_id}_{m['id']}.mp4"
+        sh(["ffmpeg", "-nostdin", "-v", "error", "-y", "-ss", f"{t0:.3f}", "-i", a.video, "-t", f"{t1 - t0:.3f}",
+            "-vf", "fps=30,scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2,setsar=1",
+            "-c:v", "libx264", "-preset", "veryfast", "-crf", "17", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
+            "-ar", "44100", "-ac", "2", "-movflags", "+faststart", f])
+        path = f"moments/{a.video_id}_{m['id']}.mp4"
+        st, _ = http("POST", f"{SUPA}/object/{BUCKET}/{path}", raw=open(f, "rb").read(),
+                     headers={"apikey": "x", "Content-Type": "video/mp4", "x-upsert": "true"}, timeout=600)
+        if st != 200:
+            raise SystemExit(f"envoi moment : HTTP {st}")
+        os.remove(f)
+        out.append({"storage_path": path, "duration_s": round(t1 - t0, 3), "peak_s": round(m["peak"] - t0, 3),
+                    "score": float(s["score"]), "label": (s.get("label") or "")[:16], "kind": s.get("kind", "")})
+    print(json.dumps({"moments": out}, ensure_ascii=False))
+
+
+def cmd_bank(a):
+    """Assemble des moments de la banque (plusieurs vidéos) en une vidéo de travail + moments.json + sélection,
+    prêts pour `compose`."""
+    items = json.load(open(a.items))
+    r = _bank(items, a.out)
+    print(json.dumps({"video": r["video"], "moments": len(r["moments"]), "seconds": round(r["duration"], 1),
+                      "map": {m["id"]: m["db_id"] for m in r["moments"]}}))
+
+
+def _bank(items, out):
+    a = argparse.Namespace(out=out)
+    os.makedirs(a.out, exist_ok=True)
+    files, moms, sel, t = [], [], [], 0.0
+    for k, it in enumerate(items):
+        f = f"{a.out}/m{k:03d}.mp4"
+        if not os.path.exists(f):
+            supa_get(it["storage_path"], f)
+        files.append(f)
+        d = float(it["duration_s"])
+        moms.append({"id": k, "db_id": it["id"], "item": it, "file_start": round(t, 3), "peak": round(t + float(it["peak_s"]), 3), "start": round(t + max(0, float(it["peak_s"]) - 3), 3),
+                     "end": round(t + min(d, float(it["peak_s"]) + 2.5), 3), "lo": round(t + 0.05, 3), "hi": round(t + d - 0.1, 3)})
+        sel.append({"id": k, "score": it["score"], "label": it.get("label", ""), "kind": it.get("kind", "")})
+        t += d
+    open(f"{a.out}/list.txt", "w").write("".join(f"file '{os.path.basename(f)}'\n" for f in files))
+    sh(["ffmpeg", "-nostdin", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", f"{a.out}/list.txt", "-c", "copy", f"{a.out}/bank.mp4"])
+    json.dump({"video": f"{a.out}/bank.mp4", "duration": t, "moments": moms}, open(f"{a.out}/moments.json", "w"), indent=1)
+    json.dump(sel, open(f"{a.out}/select.json", "w"), ensure_ascii=False)
+    return {"video": f"{a.out}/bank.mp4", "duration": t, "moments": moms}
+
+
 def cmd_compose(a):
     """Assemble des clips de ~40 s UNIQUEMENT avec les moments retenus par le robot.
     Chaque clip démarre par son meilleur moment (le hook) ; aucun moment n'est réutilisé."""
@@ -250,6 +311,8 @@ def cmd_compose(a):
     for i, m in enumerate(kept):
         m["min_start"] = max(0.0, (kept[i - 1]["peak"] + m["peak"]) / 2) if i else 0.0
         m["max_end"] = min(mom["duration"] - 0.2, (m["peak"] + kept[i + 1]["peak"]) / 2) if i + 1 < len(kept) else mom["duration"] - 0.2
+        if "lo" in m:                                   # moment venant de la banque : bornes de son fichier
+            m["min_start"], m["max_end"] = max(m["min_start"], m["lo"]), min(m["max_end"], m["hi"])
         m["start"] = max(m["start"], m["min_start"])
         m["end"] = min(m["end"], m["max_end"])
     musics = [m for m in a.music.split(",") if m]
@@ -290,9 +353,15 @@ def cmd_compose(a):
         cuts = [{"src": round(m["a"], 3), "dur": round(m["b"] - m["a"], 3), "peak": round(m["peak"] - m["a"], 3),
                  "tr": trs[i % 4], "zoom": 1.14, "label": m["label"], "moment": m["id"], "score": m["score"]}
                 for i, m in enumerate(order)]
+        extra = {}
+        if all("item" in m for m in order):
+            extra["bank_items"] = [m["item"] for m in order]
+            extra["moment_ids"] = [m["db_id"] for m in order]
+            for j, (cu, m) in enumerate(zip(cuts, order)):
+                cu["item"], cu["src_rel"] = j, round(cu["src"] - m["file_start"], 3)
         mid = musics[k % len(musics)]
         mp, mm = music_file(mid)
-        clips.append({"index": len(clips), "window_start": round(hook["a"], 2), "score": round(sum(m["score"] for m in g) / len(g), 2),
+        clips.append({**extra, "index": len(clips), "window_start": round(hook["a"], 2), "score": round(sum(m["score"] for m in g) / len(g), 2),
                       "music": mid, "music_file": mp, "music_map": mm, "moments": [m["id"] for m in order], "cuts": cuts})
     plan = {"video": mom["video"], "duration": mom["duration"], "clips": clips}
     json.dump(plan, open(a.out, "w"), indent=1)
@@ -312,10 +381,17 @@ def cmd_render(a):
     for i, h in enumerate(hooks):
         j = min(len(cuts) - 1, first + i * step)
         cuts[j]["top"] = h.strip()[:28]
+    video = plan.get("video")
+    if c.get("bank_items"):                  # clip de la banque : vidéo de travail = ses propres moments, dans l'ordre
+        b = _bank(c["bank_items"], f"{ROOT}/work/bank_clip{a.clip}_{os.getpid()}")
+        video = b["video"]
+        starts = [m["file_start"] for m in b["moments"]]
+        for cu in cuts:
+            cu["src"] = round(starts[cu["item"]] + cu["src_rel"], 3)
     mp, mm = music_file(c["music"])          # retéléchargée si le clip est monté dans une autre session
-    p = {"name": f"pv-clip-{a.clip}", "video": plan["video"], "music": mp, "music_map": mm,
+    p = {"name": f"pv-clip-{a.clip}", "video": video, "music": mp, "music_map": mm,
          "sfx_index": f"{ROOT}/sfx_index.json", "title": (a.title or "")[:60], "endcard": True, "seed": a.clip + 3,
-         "sfx_every": 2, "continuous": True, "window_start": c["window_start"], "music_level": 0.2, "cuts": cuts}
+         "sfx_every": 2, "continuous": True, "window_start": c["window_start"], "music_level": 0.13, "cuts": cuts}
     work = f"{ROOT}/work/clip{a.clip}"
     os.makedirs(work, exist_ok=True)
     json.dump(p, open(f"{work}/plan.json", "w"))
@@ -397,8 +473,8 @@ def cmd_download(a):
 
 
 def cmd_delete(a):
-    if not (a.path.startswith("clips/") or a.path.startswith("inbox/")):
-        raise SystemExit("suppression refusée : seuls clips/ et inbox/ sont autorisés")
+    if not a.path.startswith(("clips/", "inbox/", "moments/")) or ".." in a.path:
+        raise SystemExit("suppression refusée : seuls clips/, inbox/ et moments/ sont autorisés")
     st, r = http("DELETE", f"{SUPA}/object/{BUCKET}", {"prefixes": [a.path]}, {"apikey": "x"})
     print(json.dumps({"ok": st == 200, "status": st}))
 
@@ -431,6 +507,9 @@ def main():
     p = sp.add_parser("compose"); p.add_argument("--moments", required=True); p.add_argument("--select", required=True)
     p.add_argument("--music", required=True); p.add_argument("--out", required=True); p.add_argument("--length", type=float, default=40)
     p.add_argument("--max-clips", type=int, default=40); p.add_argument("--min-keep", type=float, default=6)
+    p = sp.add_parser("extract"); p.add_argument("--video", required=True); p.add_argument("--video-id", required=True)
+    p.add_argument("--moments", required=True); p.add_argument("--select", required=True); p.add_argument("--min-keep", type=float, default=6)
+    p = sp.add_parser("bank"); p.add_argument("--items", required=True); p.add_argument("--out", required=True)
     p = sp.add_parser("render"); p.add_argument("--plan", required=True); p.add_argument("--clip", type=int, required=True)
     p.add_argument("--title"); p.add_argument("--hooks"); p.add_argument("--out", required=True)
     p = sp.add_parser("publish"); p.add_argument("--file", required=True); p.add_argument("--clip-id", required=True)
@@ -443,7 +522,7 @@ def main():
     p = sp.add_parser("frames"); p.add_argument("--video", required=True); p.add_argument("--start", type=float, required=True)
     p.add_argument("--length", type=float, default=75); p.add_argument("--out", required=True)
     a = ap.parse_args()
-    {"setup": cmd_setup, "moments": cmd_moments, "compose": cmd_compose, "render": cmd_render, "publish": cmd_publish, "stats": cmd_stats,
+    {"setup": cmd_setup, "moments": cmd_moments, "compose": cmd_compose, "extract": cmd_extract, "bank": cmd_bank, "render": cmd_render, "publish": cmd_publish, "stats": cmd_stats,
      "download": cmd_download, "delete": cmd_delete, "poststatus": cmd_poststatus, "frames": cmd_frames}[a.cmd](a)
 
 
