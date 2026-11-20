@@ -257,8 +257,9 @@ def cmd_extract(a):
                      headers={"apikey": "x", "Content-Type": "video/mp4", "x-upsert": "true"}, timeout=600)
         if st != 200:
             raise SystemExit(f"envoi moment : HTTP {st}")
+        size = os.path.getsize(f)
         os.remove(f)
-        out.append({"storage_path": path, "duration_s": round(t1 - t0, 3), "peak_s": round(m["peak"] - t0, 3),
+        out.append({"storage_path": path, "size_bytes": size, "duration_s": round(t1 - t0, 3), "peak_s": round(m["peak"] - t0, 3),
                     "score": float(s["score"]), "label": (s.get("label") or "")[:16], "kind": s.get("kind", "")})
     print(json.dumps({"moments": out}, ensure_ascii=False))
 
@@ -284,7 +285,7 @@ def _bank(items, out):
         d = float(it["duration_s"])
         moms.append({"id": k, "db_id": it["id"], "item": it, "file_start": round(t, 3), "peak": round(t + float(it["peak_s"]), 3), "start": round(t + max(0, float(it["peak_s"]) - 3), 3),
                      "end": round(t + min(d, float(it["peak_s"]) + 2.5), 3), "lo": round(t + 0.05, 3), "hi": round(t + d - 0.1, 3)})
-        sel.append({"id": k, "score": it["score"], "label": it.get("label", ""), "kind": it.get("kind", "")})
+        sel.append({"id": k, "score": it["score"], "label": it.get("label", ""), "kind": it.get("kind", ""), "recent": bool(it.get("recent"))})
         t += d
     open(f"{a.out}/list.txt", "w").write("".join(f"file '{os.path.basename(f)}'\n" for f in files))
     sh(["ffmpeg", "-nostdin", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", f"{a.out}/list.txt", "-c", "copy", f"{a.out}/bank.mp4"])
@@ -303,7 +304,7 @@ def cmd_compose(a):
     for s in sel:
         if s.get("id") in byid and float(s.get("score", 0)) >= a.min_keep:
             m = dict(byid[s["id"]])
-            m.update({"score": float(s["score"]), "label": (s.get("label") or "")[:16], "kind": s.get("kind", "")})
+            m.update({"score": float(s["score"]), "label": (s.get("label") or "")[:16], "kind": s.get("kind", ""), "recent": bool(s.get("recent"))})
             m["max_end"] = mom["duration"] - 0.2
             kept.append(m)
     # aucun chevauchement : chaque moment reste dans sa moitié de l'espace qui le sépare de ses voisins
@@ -325,15 +326,30 @@ def cmd_compose(a):
     if n_clips == 0 and len(kept) >= 3 and total >= body - 3:
         n_clips = 1
     groups = [[] for _ in range(n_clips)]
-    for k, m in enumerate(kept):                        # serpentin : les meilleurs moments deviennent les hooks
-        if not n_clips:
-            break
-        r, q = divmod(k, n_clips)
-        groups[q if r % 2 == 0 else n_clips - 1 - q].append(m)
+    rec = [m for m in kept if m.get("recent")]
+    old = [m for m in kept if not m.get("recent")]
+    if n_clips and rec and old:
+        # rythme 80/20 : chaque clip = environ 80 % de moments récents (dont le hook) + 20 % d'anciens
+        per = max(4, round(body / 6.5))
+        n_old = max(1, round(per * 0.2))
+        n_clips = max(1, min(n_clips, len(rec) // (per - n_old)))   # assez de récents pour tenir les 80 %
+        groups = groups[:n_clips]
+        for k in range(n_clips):
+            groups[k] = rec[k::n_clips][:per - n_old]
+            groups[k] += old[k::n_clips][:per - len(groups[k])]
+            if len(groups[k]) < per:                   # complète avec ce qui reste
+                rest = [m for m in kept if not any(m is x for g in groups for x in g)]
+                groups[k] += rest[:per - len(groups[k])]
+    else:
+        for k, m in enumerate(kept):                    # serpentin : les meilleurs moments deviennent les hooks
+            if not n_clips:
+                break
+            r, q = divmod(k, n_clips)
+            groups[q if r % 2 == 0 else n_clips - 1 - q].append(m)
     clips = []
     for k, g in enumerate(groups):
         # on retire les moments en trop pour tenir dans 40 s (minimum 2,5 s chacun)
-        g = sorted(g, key=lambda m: -m["score"])
+        g = sorted(g, key=lambda m: (not m.get("recent"), -m["score"]))   # le hook vient des moments récents
         while len(g) * 2.5 > body:
             g.pop()
         got = _fit(g, body)
