@@ -13,7 +13,7 @@ Créneaux, heure de Paris : 07:00, 10:00, 13:00, 16:00, 19:00, 22:00, soit 6 pub
 ## Règles absolues
 - Ne JAMAIS traiter ni publier une vidéo dont `rights_ok` est faux.
 - Publier uniquement via `pv_worker.py publish`, sur ces deux comptes.
-- Supprimer uniquement avec `pv_worker.py delete` : la vidéo déposée (source) **dès que ses moments forts sont rangés dans la banque**, et les fichiers de clips publiés depuis plus de 3 jours (gardés 3 jours pour l'aperçu dans le calendrier).
+- Supprimer uniquement avec `pv_worker.py delete` : la vidéo déposée (source) **7 jours après son traitement**, et les fichiers de clips publiés depuis plus de 3 jours (gardés 3 jours pour l'aperçu dans le calendrier).
 - En cas d'erreur sur un clip ou une vidéo : enregistre l'erreur dans la base, passe au suivant, ne boucle pas.
 - N'invente jamais de chiffres : laisse vide ce que Zernio ne donne pas.
 - Arrête de monter de nouveaux clips après 45 minutes de passage.
@@ -35,6 +35,7 @@ Si une ligne existe, arrête-toi sans rien faire. Sinon : `insert into phoenix_v
 4. Si toutes les plateformes sont publiées : clip `status='posted'`, `posted_at=now()`. Ne supprime PAS encore le fichier du clip (il sert d'aperçu dans le calendrier).
 6. Fichiers de clips anciens : pour les clips `status='posted' and posted_at < now() - interval '3 days' and deleted_at is null` : `pv_worker.py delete --path clips/<clip_id>.mp4` puis `deleted_at=now()`.
 5. Si une plateforme a échoué : clip `status='failed'` et `error`.
+7. **Visibilité YouTube** : le flux public de la chaîne ne liste que les 15 dernières vidéos. Pour les posts YouTube `published` depuis plus de 2 heures et moins de 3 jours, prends l'identifiant de la vidéo dans l'URL (`watch?v=<id>`) et lance `pv_worker.py ytcheck --ids id1,id2,...`. Si une vidéo répond `false` : `update phoenix_verse.posts set error='Publiée mais NON visible publiquement sur YouTube (non répertoriée, bloquée pour droits d''auteur ou restreinte) : vérifier dans YouTube Studio' where ...` et signale-le dans le journal. Ne republie rien toi-même.
 
 ## 3. Statistiques
 Lance `pv_worker.py stats --ig 6afde15fad243e2c01d1dbf6 --yt 6afde195dfaadaa18a00d802 --posts <zernio_post_id des clips publiés depuis 30 jours, 40 au plus>`. Puis :
@@ -57,7 +58,7 @@ Principe : chaque vidéo déposée est découpée en **moments forts**, rangés 
       - Une idée du jour qui correspond (`select title, why_it_works from phoenix_verse.ideas where day >= current_date - 2`) donne +1.
    5. Écris `/tmp/pvw/sel_<id>.json` : les moments gardés (note ≥ 6), par ex. `[{"id":41,"score":9,"label":"MAINS EN L'AIR","kind":"arrestation"}]`. `label` = 1 à 3 mots en MAJUSCULES (16 caractères au plus) affichés pendant le moment, ou `""`.
    6. `pv_worker.py extract --video /tmp/pvw/video_<id>.mp4 --video-id <id> --moments /tmp/pvw/mom_<id>/moments.json --select /tmp/pvw/sel_<id>.json` : envoie chaque moment gardé dans le stockage. Pour chaque élément renvoyé : `insert into phoenix_verse.moments (video_id, storage_path, size_bytes, duration_s, peak_s, score, label, kind) values (...);`
-   7. Seulement APRÈS l'insertion des moments : `pv_worker.py delete --path <storage_path>` (la source), puis `update phoenix_verse.videos set status='processed', processed_at=now(), deleted_at=now(), clips_planned=<nb de moments gardés>, error=<null, ou 'Aucun moment fort trouvé' si 0> where id=<id>;`
+   7. Seulement APRÈS l'insertion des moments : `update phoenix_verse.videos set status='processed', processed_at=now(), clips_planned=<nb de moments gardés>, error=<null, ou 'Aucun moment fort trouvé' si 0> where id=<id>;` La source est **gardée 7 jours** (filet de sécurité) : ne la supprime pas ici.
    Si `extract` échoue : NE supprime PAS la source, remets `status='pending'`, note `error`, passe à la suite.
 
 **5b. Composer les clips depuis la banque** (s'il reste des créneaux libres sans clip `planned`). La banque se **réutilise** : même sans nouvelle vidéo déposée, le robot remixe les anciens moments forts en NOUVEAUX clips (autre hook, autre ordre, autres moments autour, autre musique, nouveaux textes).
@@ -92,7 +93,10 @@ Pour chaque clip retenu :
    - deux lignes `phoenix_verse.posts` (instagram et youtube) : `status='pending'` et `zernio_post_id` ;
    - `update phoenix_verse.sounds set use_count=use_count+1, last_used_at=now() where id=<music_id>;`
 
-## 7. Nettoyage de la banque (limite : 10 Go)
+## 7. Nettoyage
+**Vidéos déposées** : pour chaque vidéo `status='processed' and deleted_at is null and processed_at < now() - interval '7 days'` : `pv_worker.py delete --path <storage_path>` puis `deleted_at=now()`.
+
+**Banque de moments (limite : 10 Go)**
 Les moments restent en banque pour être remixés. On les supprime seulement dans deux cas :
 - un moment utilisé dans 6 clips ou plus est épuisé ;
 - la banque dépasse **10 Go** (`select sum(size_bytes) from phoenix_verse.moments where status='available'`) : supprime les moments les plus ANCIENS (`order by created_at`) jusqu'à repasser sous 10 Go, sans toucher à ceux d'un clip `planned`.

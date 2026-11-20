@@ -514,6 +514,16 @@ def cmd_frames(a):
     print(json.dumps({"ok": True, "frames": [f"{a.out}_{k}.jpg" for k in range(6)]}))
 
 
+def cmd_ytcheck(a):
+    """Vérifie qu'une vidéo YouTube publiée est VRAIMENT visible publiquement (flux public de la chaîne).
+    Une vidéo absente du flux = non répertoriée, privée, bloquée (droits d'auteur) ou encore en traitement."""
+    import re
+    req = urllib.request.Request(f"https://www.youtube.com/feeds/videos.xml?channel_id={a.channel}", headers={"User-Agent": "Mozilla/5.0"})
+    feed = urllib.request.urlopen(req, timeout=60).read().decode("utf-8", "replace")
+    public = set(re.findall(r"<yt:videoId>([^<]+)</yt:videoId>", feed))
+    print(json.dumps({v: (v in public) for v in a.ids.split(",") if v}))
+
+
 def main():
     ap = argparse.ArgumentParser()
     sp = ap.add_subparsers(dest="cmd", required=True)
@@ -537,9 +547,10 @@ def main():
     p = sp.add_parser("poststatus"); p.add_argument("--ids", required=True)
     p = sp.add_parser("frames"); p.add_argument("--video", required=True); p.add_argument("--start", type=float, required=True)
     p.add_argument("--length", type=float, default=75); p.add_argument("--out", required=True)
+    p = sp.add_parser("ytcheck"); p.add_argument("--channel", default="UCOje5e9UGi-_WK9Y6hHzL5w"); p.add_argument("--ids", required=True)
     a = ap.parse_args()
     {"setup": cmd_setup, "moments": cmd_moments, "compose": cmd_compose, "extract": cmd_extract, "bank": cmd_bank, "render": cmd_render, "publish": cmd_publish, "stats": cmd_stats,
-     "download": cmd_download, "delete": cmd_delete, "poststatus": cmd_poststatus, "frames": cmd_frames}[a.cmd](a)
+     "download": cmd_download, "delete": cmd_delete, "poststatus": cmd_poststatus, "frames": cmd_frames, "ytcheck": cmd_ytcheck}[a.cmd](a)
 
 
 if __name__ == "__main__":
