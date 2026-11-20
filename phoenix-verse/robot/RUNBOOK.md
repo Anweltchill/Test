@@ -60,13 +60,18 @@ Principe : chaque vidéo déposée est découpée en **moments forts**, rangés 
    7. Seulement APRÈS l'insertion des moments : `pv_worker.py delete --path <storage_path>` (la source), puis `update phoenix_verse.videos set status='processed', processed_at=now(), deleted_at=now(), clips_planned=<nb de moments gardés>, error=<null, ou 'Aucun moment fort trouvé' si 0> where id=<id>;`
    Si `extract` échoue : NE supprime PAS la source, remets `status='pending'`, note `error`, passe à la suite.
 
-**5b. Composer les clips depuis la banque** (s'il reste des créneaux libres sans clip `planned`) :
-   1. `select id, storage_path, duration_s, peak_s, score, label, kind from phoenix_verse.moments where status='available' order by score desc, created_at limit 60;` Écris la liste (JSON, champs tels quels) dans `/tmp/pvw/items_<n>.json` (n = l'id du passage).
-   2. `pv_worker.py bank --items /tmp/pvw/items_<n>.json --out /tmp/pvw/bank_<n>` : renvoie `map` (numéro de moment → id dans la banque).
+**5b. Composer les clips depuis la banque** (s'il reste des créneaux libres sans clip `planned`). La banque se **réutilise** : même sans nouvelle vidéo déposée, le robot remixe les anciens moments forts en NOUVEAUX clips (autre hook, autre ordre, autres moments autour, autre musique, nouveaux textes).
+   1. Liste les moments, les moins utilisés et jamais mis en hook en premier (un peu de hasard pour varier) :
+      `select id, storage_path, duration_s, peak_s, round((score - 1.2*use_count - 2*hook_count + random()*0.8)::numeric, 2) as score, label, kind from phoenix_verse.moments where status='available' order by 5 desc limit 40;`
+      Écris le résultat (JSON, champs tels quels) dans `/tmp/pvw/items_<n>.json` (n = l'id du passage).
+   2. `pv_worker.py bank --items /tmp/pvw/items_<n>.json --out /tmp/pvw/bank_<n>`
    3. Musiques : `select id from phoenix_verse.sounds where favorite and kind='music' and stored_path is not null order by use_count, random() limit 6;`
-   4. `pv_worker.py compose --moments /tmp/pvw/bank_<n>/moments.json --select /tmp/pvw/bank_<n>/select.json --music id1,id2,... --max-clips <nb créneaux libres> --out /tmp/pvw/plan_<n>.json` : clips de **40 s**, meilleur moment en premier (action dès la 1re seconde), 2e meilleur à la fin, aucun moment réutilisé.
-   5. Pour chaque clip du plan : insère une ligne `phoenix_verse.clips` : clip_index, status 'planned', format 'moments', music_id, score, `plan` = l'objet clip tel quel (il contient `bank_items` et `moment_ids`). Puis `update phoenix_verse.moments set status='used', clip_id=<clip_id> where id in (<plan.moment_ids>);`
-   6. Si `compose` ne donne aucun clip : pas assez de moments en banque pour 40 s. Les moments RESTENT en banque pour les prochaines vidéos ; écris-le dans le journal.
+   4. `pv_worker.py compose --moments /tmp/pvw/bank_<n>/moments.json --select /tmp/pvw/bank_<n>/select.json --music id1,id2,... --max-clips <nb créneaux libres> --min-keep 0 --out /tmp/pvw/plan_<n>.json` : clips de **40 s**, le moment le mieux placé en premier (hook, action dès la 1re seconde), le 2e à la fin, aucun moment deux fois dans le même clip.
+   5. Ne garde pas un clip dont le hook ET la liste des moments sont identiques à un clip déjà programmé ou publié (`select plan->'moment_ids' from phoenix_verse.clips where status in ('scheduled','posted')`).
+   6. Pour chaque clip gardé : insère une ligne `phoenix_verse.clips` : clip_index, status 'planned', format 'moments', music_id, score, `plan` = l'objet clip tel quel (il contient `bank_items` et `moment_ids`). Puis :
+      `update phoenix_verse.moments set use_count=use_count+1, last_used_at=now(), clip_id=<clip_id> where id in (<plan.moment_ids>);`
+      `update phoenix_verse.moments set hook_count=hook_count+1 where id=<plan.moment_ids[0]>;`
+   7. Si `compose` ne donne aucun clip : pas assez de moments en banque pour 40 s (il en faut environ 5 à 6). Écris-le dans le journal.
 
 ## 6. Montage et programmation (un clip par créneau libre, dans l'ordre)
 Pour chaque clip retenu :
@@ -88,7 +93,7 @@ Pour chaque clip retenu :
    - `update phoenix_verse.sounds set use_count=use_count+1, last_used_at=now() where id=<music_id>;`
 
 ## 7. Nettoyage de la banque
-Pour chaque moment `status='used'` dont le clip est `scheduled` ou `posted` : `pv_worker.py delete --path <storage_path>` puis `status='deleted'`. Les moments `available` restent (ils attendent d'autres moments pour former un clip de 40 s).
+Les moments restent en banque pour être remixés. Un moment utilisé dans 6 clips ou plus est épuisé : `pv_worker.py delete --path <storage_path>` puis `status='deleted'`.
 
 ## 7 bis. Veille des tendances (une fois par jour)
 Si `select count(*) from phoenix_verse.ideas where day = current_date` vaut 0 et que l'outil de recherche web est disponible :
