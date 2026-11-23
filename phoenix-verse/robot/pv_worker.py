@@ -68,7 +68,7 @@ def cmd_setup(a):
     for d in ("sfx", "music", "maps"):
         os.makedirs(f"{ROOT}/{d}", exist_ok=True)
     supa_get("worker/sfx_index.json", f"{ROOT}/sfx_index.json")   # données uniquement (index des bruitages)
-    for f in ("gsap.min.js", "Anton-Regular.ttf", "logo.png"):
+    for f in ("gsap.min.js", "Anton-Regular.ttf", "logo.png", "gta6_logo.png"):
         supa_get(f"worker/assets/{f}", f"{ROOT}/assets/{f}")
     from concurrent.futures import ThreadPoolExecutor
     jobs = [(f"worker/sfx/{n}", f"{ROOT}/sfx/{n}") for n in supa_list("worker/sfx")]

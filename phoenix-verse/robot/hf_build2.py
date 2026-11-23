@@ -20,6 +20,7 @@ LIB = os.path.dirname(os.path.abspath(__file__))
 PVLIB = "/tmp/claude-0/-home-user-Test/cec51034-2f27-5af8-8dca-62c208c00870/scratchpad/pv/library"
 FONT = os.path.join(_AS, "Anton-Regular.ttf") if _AS else os.path.join(PVLIB, "fonts", "Anton-Regular.ttf")
 LOGO = os.path.join(_AS, "logo.png") if _AS else os.path.join(PVLIB, "brand", "logo_phoenix_transparent.png")
+GTA_LOGO = os.path.join(_AS, "gta6_logo.png") if _AS else ""
 W, H_, FPS = 1080, 1920, 30
 PURPLE, PINK, GOLD = "#7b2cff", "#ff2d95", "#ffd23f"
 FG_TOP, FG_H = 500, 780          # zone du jeu (format paysage mis en valeur)
@@ -86,6 +87,8 @@ def build(plan, out):
     os.makedirs(os.path.join(out, "assets"), exist_ok=True)
     for s, d in [(GSAP, "gsap.min.js"), (FONT, "Anton-Regular.ttf"), (LOGO, "logo.png")]:
         shutil.copy(s, A(d))
+    if GTA_LOGO and os.path.exists(GTA_LOGO):
+        shutil.copy(GTA_LOGO, A("gta6_logo.png"))
     seed = plan.get("seed", 1)
 
     # ---- musique : fenêtre la plus intense, coupes sur les vrais temps
@@ -355,6 +358,7 @@ html, body {{ width:{W}px; height:{H_}px; overflow:hidden; background:#0b0614; }
          -webkit-text-stroke:8px {PURPLE}; paint-order:stroke fill; text-shadow:0 8px 0 rgba(0,0,0,0.5); opacity:0; text-transform:uppercase; }}
 #wm {{ position:absolute; right:44px; top:186px; width:84px; z-index:70; opacity:0.92; filter:drop-shadow(0 3px 4px rgba(0,0,0,.6)); }}
 #wmt {{ position:absolute; right:140px; top:206px; font-size:34px; color:#fff; z-index:70; letter-spacing:1px; -webkit-text-stroke:5px {PURPLE}; paint-order:stroke fill; text-shadow:0 3px 0 rgba(0,0,0,.6); }}
+#gta {{ position:absolute; left:30px; top:30px; width:300px; z-index:72; filter:drop-shadow(0 4px 6px rgba(0,0,0,.55)); }}
 #flash {{ position:absolute; inset:0; background:#fff; z-index:90; opacity:0; }}
 #end {{ position:absolute; inset:0; background:radial-gradient(circle at 50% 40%, #2a0f4f 0%, #0b0614 70%); opacity:0; }}
 #endlogo {{ position:absolute; left:290px; top:430px; width:500px; }}
@@ -364,7 +368,7 @@ html, body {{ width:{W}px; height:{H_}px; overflow:hidden; background:#0b0614; }
 <div id="root" data-composition-id="main" data-start="0" data-duration="{total:.3f}" data-width="{W}" data-height="{H_}">
 {''.join(html)}
   <div id="title">{H.escape(plan.get("title", ""))}</div>
-  <img id="wm" src="assets/logo.png" /><div id="wmt">PHOENIX VERSE</div>
+  <img id="wm" src="assets/logo.png" />{'<img id="gta" src="assets/gta6_logo.png" />' if GTA_LOGO and os.path.exists(GTA_LOGO) else ''}<div id="wmt">PHOENIX VERSE</div>
   <div id="flash"></div>
   {chr(10).join(audio)}
 </div>
