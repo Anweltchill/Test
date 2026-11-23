@@ -534,7 +534,7 @@ def main():
     p.add_argument("--music", required=True); p.add_argument("--out", required=True); p.add_argument("--length", type=float, default=40)
     p.add_argument("--max-clips", type=int, default=40); p.add_argument("--min-keep", type=float, default=6)
     p = sp.add_parser("extract"); p.add_argument("--video", required=True); p.add_argument("--video-id", required=True)
-    p.add_argument("--moments", required=True); p.add_argument("--select", required=True); p.add_argument("--min-keep", type=float, default=6)
+    p.add_argument("--moments", required=True); p.add_argument("--select", required=True); p.add_argument("--min-keep", type=float, default=5)
     p = sp.add_parser("bank"); p.add_argument("--items", required=True); p.add_argument("--out", required=True)
     p = sp.add_parser("render"); p.add_argument("--plan", required=True); p.add_argument("--clip", type=int, required=True)
     p.add_argument("--title"); p.add_argument("--hooks"); p.add_argument("--out", required=True)

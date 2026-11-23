@@ -56,7 +56,7 @@ Principe : chaque vidéo déposée est découpée en **moments forts**, rangés 
       - À GARDER (7 à 10) : bagarre, quelqu'un qui se fait frapper, tirer dessus, renverser, arrêter ou asperger ; explosion, crash spectaculaire, chute, saut fou ; truc bizarre, absurde ou drôle (animal qui fait n'importe quoi, PNJ qui bugue, personnage qui fonce dans un mur, réaction inattendue) ; tout moment qui fait dire « attends, quoi ? ».
       - À REJETER (0 à 5) : conduite ou marche tranquille, menus, cartes, garage, générique, chargement, dialogue calme, paysage, cinématique sans action, **image floue ou trouble** (flou de transition, caméra floue).
       - Une idée du jour qui correspond (`select title, why_it_works from phoenix_verse.ideas where day >= current_date - 2`) donne +1.
-   5. Écris `/tmp/pvw/sel_<id>.json` : les moments gardés (note ≥ 6), par ex. `[{"id":41,"score":9,"label":"MAINS EN L'AIR","kind":"arrestation"}]`. `label` = 1 à 3 mots en MAJUSCULES (16 caractères au plus) affichés pendant le moment, ou `""`.
+   5. Écris `/tmp/pvw/sel_<id>.json` : les moments gardés (note ≥ 5 : sois généreux, la banque doit être fournie ; un moment correct mais pas exceptionnel sert à compléter les clips), par ex. `[{"id":41,"score":9,"label":"MAINS EN L'AIR","kind":"arrestation"}]`. `label` = 1 à 3 mots en MAJUSCULES (16 caractères au plus) affichés pendant le moment, ou `""`.
    6. `pv_worker.py extract --video /tmp/pvw/video_<id>.mp4 --video-id <id> --moments /tmp/pvw/mom_<id>/moments.json --select /tmp/pvw/sel_<id>.json` : envoie chaque moment gardé dans le stockage. Pour chaque élément renvoyé : `insert into phoenix_verse.moments (video_id, storage_path, size_bytes, duration_s, peak_s, score, label, kind) values (...);`
    7. Seulement APRÈS l'insertion des moments : `update phoenix_verse.videos set status='processed', processed_at=now(), clips_planned=<nb de moments gardés>, error=<null, ou 'Aucun moment fort trouvé' si 0> where id=<id>;` La source est **gardée 7 jours** (filet de sécurité) : ne la supprime pas ici.
    Si `extract` échoue : NE supprime PAS la source, remets `status='pending'`, note `error`, passe à la suite.
@@ -67,12 +67,13 @@ Principe : chaque vidéo déposée est découpée en **moments forts**, rangés 
       S'il n'y a aucun moment récent, le robot remixe uniquement les anciens. Écris le résultat (JSON, champs tels quels) dans `/tmp/pvw/items_<n>.json` (n = l'id du passage).
    2. `pv_worker.py bank --items /tmp/pvw/items_<n>.json --out /tmp/pvw/bank_<n>`
    3. Musiques : `select id from phoenix_verse.sounds where favorite and kind='music' and stored_path is not null order by use_count, random() limit 6;`
-   4. `pv_worker.py compose --moments /tmp/pvw/bank_<n>/moments.json --select /tmp/pvw/bank_<n>/select.json --music id1,id2,... --max-clips <nb créneaux libres> --min-keep 0 --out /tmp/pvw/plan_<n>.json` : clips de **40 s**, le moment le mieux placé en premier (hook, action dès la 1re seconde), le 2e à la fin, aucun moment deux fois dans le même clip.
+   4. `pv_worker.py compose --moments /tmp/pvw/bank_<n>/moments.json --select /tmp/pvw/bank_<n>/select.json --music id1,id2,... --max-clips <nb créneaux libres> --min-keep -100 --out /tmp/pvw/plan_<n>.json` : clips de **40 s**, le moment le mieux placé en premier (hook, action dès la 1re seconde), le 2e à la fin, aucun moment deux fois dans le même clip.
    5. Ne garde pas un clip dont le hook ET la liste des moments sont identiques à un clip déjà programmé ou publié (`select plan->'moment_ids' from phoenix_verse.clips where status in ('scheduled','posted')`).
    6. Pour chaque clip gardé : insère une ligne `phoenix_verse.clips` : clip_index, status 'planned', format 'moments', music_id, score, `plan` = l'objet clip tel quel (il contient `bank_items` et `moment_ids`). Puis :
       `update phoenix_verse.moments set use_count=use_count+1, last_used_at=now(), clip_id=<clip_id> where id in (<plan.moment_ids>);`
       `update phoenix_verse.moments set hook_count=hook_count+1 where id=<plan.moment_ids[0]>;`
-   7. Si `compose` ne donne aucun clip : pas assez de moments en banque pour 40 s (il en faut environ 5 à 6). Écris-le dans le journal.
+   7. Tant qu'il reste des créneaux libres, **recommence 5b** (3 fois au plus par passage) : les compteurs d'utilisation ayant changé, chaque tour donne un mélange différent.
+   8. Si `compose` ne donne aucun clip : pas assez de moments en banque pour 40 s (il en faut environ 5 à 6). Écris-le dans le journal.
 
 ## 6. Montage et programmation (un clip par créneau libre, dans l'ordre)
 Pour chaque clip retenu :
@@ -98,7 +99,6 @@ Pour chaque clip retenu :
 
 **Banque de moments (limite : 10 Go)**
 Les moments restent en banque pour être remixés. On les supprime seulement dans deux cas :
-- un moment utilisé dans 6 clips ou plus est épuisé ;
 - la banque dépasse **10 Go** (`select sum(size_bytes) from phoenix_verse.moments where status='available'`) : supprime les moments les plus ANCIENS (`order by created_at`) jusqu'à repasser sous 10 Go, sans toucher à ceux d'un clip `planned`.
 Pour chacun : `pv_worker.py delete --path <storage_path>` puis `status='deleted'`.
 
