@@ -358,7 +358,7 @@ html, body {{ width:{W}px; height:{H_}px; overflow:hidden; background:#0b0614; }
          -webkit-text-stroke:8px {PURPLE}; paint-order:stroke fill; text-shadow:0 8px 0 rgba(0,0,0,0.5); opacity:0; text-transform:uppercase; }}
 #wm {{ position:absolute; right:44px; top:186px; width:84px; z-index:70; opacity:0.92; filter:drop-shadow(0 3px 4px rgba(0,0,0,.6)); }}
 #wmt {{ position:absolute; right:140px; top:206px; font-size:34px; color:#fff; z-index:70; letter-spacing:1px; -webkit-text-stroke:5px {PURPLE}; paint-order:stroke fill; text-shadow:0 3px 0 rgba(0,0,0,.6); }}
-#gta {{ position:absolute; left:30px; top:30px; width:300px; z-index:72; filter:drop-shadow(0 4px 6px rgba(0,0,0,.55)); }}
+#gta {{ position:absolute; left:575px; top:1590px; width:290px; z-index:72; filter:drop-shadow(0 4px 6px rgba(0,0,0,.55)); }}
 #flash {{ position:absolute; inset:0; background:#fff; z-index:90; opacity:0; }}
 #end {{ position:absolute; inset:0; background:radial-gradient(circle at 50% 40%, #2a0f4f 0%, #0b0614 70%); opacity:0; }}
 #endlogo {{ position:absolute; left:290px; top:430px; width:500px; }}
