@@ -285,7 +285,8 @@ def _bank(items, out):
         d = float(it["duration_s"])
         moms.append({"id": k, "db_id": it["id"], "item": it, "file_start": round(t, 3), "peak": round(t + float(it["peak_s"]), 3), "start": round(t + max(0, float(it["peak_s"]) - 3), 3),
                      "end": round(t + min(d, float(it["peak_s"]) + 2.5), 3), "lo": round(t + 0.05, 3), "hi": round(t + d - 0.1, 3)})
-        sel.append({"id": k, "score": it["score"], "label": it.get("label", ""), "kind": it.get("kind", ""), "recent": bool(it.get("recent"))})
+        sel.append({"id": k, "score": it["score"], "label": it.get("label", ""), "kind": it.get("kind", ""), "recent": bool(it.get("recent")),
+                    "normal": bool(it.get("normal"))})
         t += d
     open(f"{a.out}/list.txt", "w").write("".join(f"file '{os.path.basename(f)}'\n" for f in files))
     sh(["ffmpeg", "-nostdin", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", f"{a.out}/list.txt", "-c", "copy", f"{a.out}/bank.mp4"])
@@ -304,7 +305,8 @@ def cmd_compose(a):
     for s in sel:
         if s.get("id") in byid and float(s.get("score", 0)) >= a.min_keep:
             m = dict(byid[s["id"]])
-            m.update({"score": float(s["score"]), "label": (s.get("label") or "")[:16], "kind": s.get("kind", ""), "recent": bool(s.get("recent"))})
+            m.update({"score": float(s["score"]), "label": (s.get("label") or "")[:16], "kind": s.get("kind", ""), "recent": bool(s.get("recent")),
+                      "normal": bool(s.get("normal"))})
             m["max_end"] = mom["duration"] - 0.2
             kept.append(m)
     # aucun chevauchement : chaque moment reste dans sa moitié de l'espace qui le sépare de ses voisins
@@ -322,11 +324,23 @@ def cmd_compose(a):
     body = a.length - 1.3                               # 1,3 s de carte de fin
     kept.sort(key=lambda m: -m["score"])
     total = sum(min(8, m["max_end"] - m["min_start"]) for m in kept)
+    # moments « normaux » : seulement en dépannage, quand les moments forts ne suffisent pas pour un clip
+    normal = [m for m in kept if m.get("normal")]
+    kept = [m for m in kept if not m.get("normal")]
+    total = sum(min(8, m["max_end"] - m["min_start"]) for m in kept)
     n_clips = int(min(a.max_clips, total // body))
     if n_clips == 0 and len(kept) >= 3 and total >= body - 3:
         n_clips = 1
+    mixed = n_clips == 0 and len(kept) >= 2 and normal
+    if mixed:
+        # au plus 3 moments normaux sur 5 ; le hook est toujours un moment fort
+        g = kept[:3] + normal[:3]
+        if sum(min(8, m["max_end"] - m["min_start"]) for m in g) >= body - 3:
+            n_clips = 1
     groups = [[] for _ in range(n_clips)]
-    rec = [m for m in kept if m.get("recent")]
+    if mixed and n_clips:
+        groups[0] = g
+    rec = [] if mixed else [m for m in kept if m.get("recent")]
     old = [m for m in kept if not m.get("recent")]
     if n_clips and rec and old:
         # rythme 80/20 : chaque clip = environ 80 % de moments récents (dont le hook) + 20 % d'anciens
@@ -340,7 +354,7 @@ def cmd_compose(a):
             if len(groups[k]) < per:                   # complète avec ce qui reste
                 rest = [m for m in kept if not any(m is x for g in groups for x in g)]
                 groups[k] += rest[:per - len(groups[k])]
-    else:
+    elif not mixed:
         for k, m in enumerate(kept):                    # serpentin : les meilleurs moments deviennent les hooks
             if not n_clips:
                 break
@@ -349,7 +363,7 @@ def cmd_compose(a):
     clips = []
     for k, g in enumerate(groups):
         # on retire les moments en trop pour tenir dans 40 s (minimum 2,5 s chacun)
-        g = sorted(g, key=lambda m: (not m.get("recent"), -m["score"]))   # le hook vient des moments récents
+        g = sorted(g, key=lambda m: (bool(m.get("normal")), not m.get("recent"), -m["score"]))   # hook : fort et récent
         while len(g) * 2.5 > body:
             g.pop()
         got = _fit(g, body)
