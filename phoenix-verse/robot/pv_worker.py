@@ -157,7 +157,7 @@ def cmd_moments(a):
     spike[(bri < 22) | (loud < -50)] = -9              # écran noir, menus, silence
     sep = 10                                           # 5 s minimum entre deux moments
     order, taken, cands = np.argsort(-spike), np.zeros(n, bool), []
-    limit = int(min(a.max, max(12, dur / 7)))
+    limit = int(min(a.max, max(12, dur / a.every)))
     for i in order:
         if len(cands) >= limit or spike[i] < a.min_score:
             break
@@ -239,6 +239,8 @@ def cmd_extract(a):
     byid = {m["id"]: m for m in mom["moments"]}
     out = []
     sel = [s for s in json.load(open(a.select)) if s.get("id") in byid and float(s.get("score", 0)) >= a.min_keep]
+    taken = [float(x) for x in a.exclude_peaks.split(",") if x.strip()]
+    sel = [s for s in sel if all(abs(byid[s["id"]]["peak"] - t) > 6 for t in taken)]   # jamais deux fois le même passage
     peaks = sorted(byid[s["id"]]["peak"] for s in sel)
     for s in sel:
         m = byid[s["id"]]
@@ -252,14 +254,14 @@ def cmd_extract(a):
             "-vf", "fps=30,scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2,setsar=1",
             "-c:v", "libx264", "-preset", "veryfast", "-crf", "17", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
             "-ar", "44100", "-ac", "2", "-movflags", "+faststart", f])
-        path = f"moments/{a.video_id}_{m['id']}.mp4"
+        path = f"moments/{a.video_id}_t{int(m['peak'] * 10)}.mp4"   # nom unique par passage de la vidéo
         st, _ = http("POST", f"{SUPA}/object/{BUCKET}/{path}", raw=open(f, "rb").read(),
                      headers={"apikey": "x", "Content-Type": "video/mp4", "x-upsert": "true"}, timeout=600)
         if st != 200:
             raise SystemExit(f"envoi moment : HTTP {st}")
         size = os.path.getsize(f)
         os.remove(f)
-        out.append({"storage_path": path, "size_bytes": size, "duration_s": round(t1 - t0, 3), "peak_s": round(m["peak"] - t0, 3),
+        out.append({"storage_path": path, "size_bytes": size, "src_peak_s": round(m["peak"], 2), "duration_s": round(t1 - t0, 3), "peak_s": round(m["peak"] - t0, 3),
                     "score": float(s["score"]), "label": (s.get("label") or "")[:16], "kind": s.get("kind", "")})
     print(json.dumps({"moments": out}, ensure_ascii=False))
 
@@ -544,11 +546,13 @@ def main():
     sp.add_parser("setup")
     p = sp.add_parser("moments"); p.add_argument("--video", required=True); p.add_argument("--out", required=True)
     p.add_argument("--max", type=int, default=160); p.add_argument("--min-score", type=float, default=0.6)
+    p.add_argument("--every", type=float, default=7, help="un moment candidat pour N secondes de vidéo (4 = plus de candidats)")
     p = sp.add_parser("compose"); p.add_argument("--moments", required=True); p.add_argument("--select", required=True)
     p.add_argument("--music", required=True); p.add_argument("--out", required=True); p.add_argument("--length", type=float, default=40)
     p.add_argument("--max-clips", type=int, default=40); p.add_argument("--min-keep", type=float, default=6)
     p = sp.add_parser("extract"); p.add_argument("--video", required=True); p.add_argument("--video-id", required=True)
     p.add_argument("--moments", required=True); p.add_argument("--select", required=True); p.add_argument("--min-keep", type=float, default=5)
+    p.add_argument("--exclude-peaks", default="", help="pics (s) déjà en banque pour cette vidéo, séparés par des virgules")
     p = sp.add_parser("bank"); p.add_argument("--items", required=True); p.add_argument("--out", required=True)
     p = sp.add_parser("render"); p.add_argument("--plan", required=True); p.add_argument("--clip", type=int, required=True)
     p.add_argument("--title"); p.add_argument("--hooks"); p.add_argument("--out", required=True)
